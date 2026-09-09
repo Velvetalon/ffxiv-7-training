@@ -9,6 +9,9 @@ import { createRenderer, addLighting, setQuality } from './renderer.js';
 import { SCENE_BUILDERS } from './scenes/index.js';
 import { getLayout } from './terrain/layouts.js';
 import { Navigation } from './terrain/Navigation.js';
+import { loadExtractedScene } from './imported/ExtractedScene.js';
+import { MeshNavigation } from './imported/MeshNavigation.js';
+import { mountEncounter } from './imported/MountScene.js';
 
 const contextTarget = new THREE.Vector3();
 const contextPlayer = new THREE.Vector3();
@@ -16,9 +19,9 @@ const cameraFocus = new THREE.Vector3();
 const cameraLook = new THREE.Vector3();
 
 export class World {
-  constructor(canvas, { onTarget, onInteract, onMove } = {}) {
+  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady } = {}) {
     this.canvas = canvas;
-    this.callbacks = { onTarget, onInteract, onMove };
+    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady };
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
     this.renderer = createRenderer(canvas);
@@ -63,9 +66,11 @@ export class World {
   }
 
   setScene(id) {
+    if (this.loading && this.sceneId === id) return this.loadPromise;
     const builder = SCENE_BUILDERS[id];
     if (!builder) throw new Error(`Unknown world scene: ${id}`);
     this.clearScene();
+    this.isImported = false;
     this.sceneId = id;
     this.sceneRoot = new THREE.Group();
     this.scene.add(this.sceneRoot);
@@ -92,6 +97,49 @@ export class World {
     this.introFocus = 1;
     this.targetNearest();
     this.updateCamera(0);
+    this.loadPromise = this.loadClientScene(id);
+    return this.loadPromise;
+  }
+
+  async loadClientScene(id) {
+    const request = this.loadRequest = (this.loadRequest || 0) + 1;
+    this.loading = true; this.loadError = null;
+    this.input.setEnabled(false);
+    this.callbacks.onLoading?.(0);
+    try {
+      const [loaded, collisionResponse] = await Promise.all([
+        loadExtractedScene(id,progress=>{if(request===this.loadRequest)this.callbacks.onLoading?.(progress*0.9);}),
+        fetch(`/extracted/${id}/collision.bin`),
+      ]);
+      if(!collisionResponse.ok)throw new Error('未找到导出的原始碰撞数据');
+      const bytes=await collisionResponse.arrayBuffer();
+      if(request!==this.loadRequest){disposeObject(loaded.group);return;}
+      const navigation=new MeshNavigation(new Float32Array(bytes));
+      this.clearScene();
+      this.navigation=navigation;
+      this.sceneRoot=loaded.group;
+      this.layout=mountEncounter(this,loaded,navigation);
+      this.scene.add(this.sceneRoot);
+      this.water=[];this.crystals=[];this.architecture=[];this.landmarkLabels=[];
+      this.importedManifest=loaded.manifest;
+      this.isImported=true;
+      this.scene.background=new THREE.Color(id==='gridania'?'#afc8bb':'#aac4d0');
+      this.scene.fog=new THREE.Fog(this.scene.background,180,650);
+      addLighting(this.sceneRoot,id);
+      this.player.rotation.y=Math.PI;
+      this.introFocus=0;this.zoom=14;this.polar=1.17;this.azimuth=0.1;
+      this.targetNearest();
+      if(this.jobId==='RPR')this.moveToDummy();
+      this.loading=false;this.input.setEnabled(true);
+      this.callbacks.onLoading?.(1);
+      this.callbacks.onSceneReady?.(id);
+    } catch(error) {
+      if(request!==this.loadRequest)return;
+      this.loading=false;this.loadError=error.message;
+      this.input.setEnabled(true);
+      this.callbacks.onLoading?.(null,error.message);
+      console.error('Client map import:',error);
+    }
   }
 
   setJob(id) {
@@ -175,7 +223,7 @@ export class World {
   }
 
   setInputEnabled(enabled) {
-    this.input.setEnabled(enabled);
+    this.input.setEnabled(enabled && !this.loading);
     if (!enabled) this.moving = false;
   }
 
@@ -196,8 +244,10 @@ export class World {
     if (kind === 'return') {
       if (!this.returnGate) return { ok: false, reason: '没有可返回的空间印记' };
       const destination = this.returnGate.position;
-      if (this.isBlocked(destination.x, destination.z)) return { ok: false, reason: '返回点已被阻挡' };
-      this.player.position.set(destination.x, this.navigation.surfaceAt(destination.x, destination.z)?.height || 0, destination.z);
+      const floor=this.navigation.surfaceAt(destination.x,destination.z,destination.y);
+      if (!floor) return { ok: false, reason: '返回点已被阻挡' };
+      this.player.position.set(destination.x, floor.height, destination.z);
+      if(this.isImported)this.navigation.height=floor.height;
       this.clearReturnGate();
       this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
       return { ok: true, moved: 0, returned: true, position: { x: this.player.position.x, z: this.player.position.z } };
@@ -208,13 +258,7 @@ export class World {
     const direction = new THREE.Vector3(Math.sin(this.player.rotation.y), 0, Math.cos(this.player.rotation.y));
     if (kind === 'backward') direction.negate();
     const origin = this.player.position.clone();
-    const stepSize = 0.35;
-    for (let moved = 0; moved < requested; moved += stepSize) {
-      const candidate = this.player.position.clone().addScaledVector(direction, Math.min(stepSize, requested - moved));
-      if (this.isBlocked(candidate.x, candidate.z)) break;
-      candidate.y = this.navigation.surfaceAt(candidate.x, candidate.z)?.height || 0;
-      this.player.position.copy(candidate);
-    }
+    this.navigation.move(this.player.position,direction.x*requested,direction.z*requested);
     const moved = origin.distanceTo(this.player.position);
     if (moved > 0.02) this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
     return { ok: moved > 0.02, moved: Number(moved.toFixed(2)), position: { x: Number(this.player.position.x.toFixed(2)), z: Number(this.player.position.z.toFixed(2)) } };
@@ -237,14 +281,18 @@ export class World {
   moveToDummy() {
     const target = this.registry.nearestTarget(this.player.position);
     if (!target) return;
-    const point = this.navigation.nearestWalkable(target.object.position.x, target.object.position.z + 2.4);
-    this.player.position.set(point.x, this.navigation.surfaceAt(point.x, point.z)?.height || 0, point.z);
+    const point = this.navigation.nearestWalkable(target.object.position.x, target.object.position.z + 2.4,25,target.object.position.y);
+    if(!point)return;
+    this.player.position.set(point.x, point.y ?? this.navigation.surfaceAt(point.x, point.z)?.height ?? 0, point.z);
+    if(this.isImported)this.navigation.height=this.player.position.y;
     this.player.rotation.y = Math.PI;
     this.selectTarget(target);
     this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
   }
 
   dispose() {
+    this.loadRequest=(this.loadRequest||0)+1;
+    this.navigation?.dispose?.();
     this.input.dispose();
     this.effects.clear();
     this.clearReturnGate();
@@ -262,6 +310,7 @@ export class World {
 
   clearScene() {
     this.effects.clear();
+    this.navigation?.dispose?.();
     if (!this.sceneRoot) return;
     this.scene.remove(this.sceneRoot);
     disposeObject(this.sceneRoot);
@@ -288,7 +337,7 @@ export class World {
       this.introFocus = 0;
       this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
     }
-    const floor = this.navigation.surfaceAt(this.player.position.x, this.player.position.z)?.height || 0;
+    const floor = this.navigation.surfaceAt(this.player.position.x, this.player.position.z)?.height ?? this.player.position.y;
     if (this.jumpVelocity || this.input.consumeJump()) {
       if (!this.jumpVelocity && this.player.position.y <= floor + 0.001) this.jumpVelocity = 6.2;
       this.jumpVelocity -= 18 * dt;
@@ -363,6 +412,10 @@ export class World {
     cameraLook.copy(cameraFocus);
     if (this.target && this.cameraMode === 'orbit') cameraLook.lerp(this.target.object.position.clone().add(new THREE.Vector3(0, 1.2, 0)), 0.2);
     this.camera.lookAt(cameraLook);
+    if(this.isImported && this.navigation.cameraHit){
+      const hit=this.navigation.cameraHit(cameraLook,this.camera.position);
+      if(hit && hit.distance>0.5)this.camera.position.copy(cameraLook).addScaledVector(this.camera.position.clone().sub(cameraLook).normalize(),Math.max(1,hit.distance-0.3));
+    }
   }
 
   pick(event) {
@@ -380,9 +433,10 @@ export class World {
   goToLandmark(id) {
     const landmark = this.layout.landmarks.find(item => item.id === id);
     if (!landmark) return false;
-    const point = this.navigation.nearestWalkable(landmark.x, landmark.z + (landmark.d || 0) / 2 + 2);
+    const point = this.navigation.nearestWalkable(landmark.x, landmark.z + (landmark.d || 0) / 2 + 2,25,landmark.y);
     if (!point) return false;
-    this.player.position.set(point.x, this.navigation.surfaceAt(point.x, point.z)?.height || 0, point.z);
+    this.player.position.set(point.x, point.y ?? this.navigation.surfaceAt(point.x, point.z)?.height ?? 0, point.z);
+    if(this.isImported)this.navigation.height=this.player.position.y;
     this.player.rotation.y = Math.PI;
     this.callbacks.onMove?.(point);
     return true;

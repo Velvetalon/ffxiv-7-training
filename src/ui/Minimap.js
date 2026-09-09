@@ -1,3 +1,4 @@
+const mapImages=new Map();
 export function drawMap(canvas, info, sceneId, expanded = false) {
   if (!canvas || !info.map) return;
   const ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height;
@@ -13,6 +14,11 @@ export function drawMap(canvas, info, sceneId, expanded = false) {
   };
   ctx.clearRect(0, 0, w, h);
   ctx.fillStyle = sceneId === 'gridania' ? '#637c65' : '#477b88'; ctx.fillRect(0, 0, w, h);
+  if(info.map.image){
+    if(!mapImages.has(info.map.image)){const image=new Image();image.src=info.map.image;mapImages.set(info.map.image,image);}
+    const image=mapImages.get(info.map.image), area=info.map.imageBounds;
+    if(image.complete&&image.naturalWidth)ctx.drawImage(image,px(area.minX),py(area.minZ),(area.maxX-area.minX)*scale,(area.maxZ-area.minZ)*scale);
+  }
   ctx.strokeStyle = '#e4e3b519'; ctx.lineWidth = 1;
   for (let i = -500; i < 500; i += 20) {
     ctx.beginPath(); ctx.moveTo(px(i), 0); ctx.lineTo(px(i), h); ctx.moveTo(0, py(i)); ctx.lineTo(w, py(i)); ctx.stroke();

@@ -46,6 +46,8 @@
 
 ## 场景
 
+当前默认载入 `world/imported/` 中的客户端地图：`ExtractedScene` 负责原始模型实例与贴图，`MeshNavigation` 对原始 PCB 碰撞三角形构建 BVH，`MountScene` 在真实坐标中布置练习实体。加载状态与异步替换由 `World` 管理，场景加载失败时显示错误并使用手工回退。详见 [CLIENT-MAPS.md](CLIENT-MAPS.md)。
+
 场景元数据保存在 `world/scenes.js`，构建器注册位于 `world/scenes/index.js`。原图描绘和地标位置位于 `world/terrain/layouts.js`，由 `buildCity.js` 生成三维道路、平台、坡道和实体。`World` 负责第三人称透视相机、自由环绕、角色移动、目标、更新和资源释放。
 
 增加新地图时同时注册元数据和构建器：

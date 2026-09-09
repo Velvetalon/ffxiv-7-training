@@ -28,6 +28,13 @@ const world = new World($('#world'), {
   onTarget: () => {},
   onInteract: (npc) => openDialogue(npc),
   onMove: () => { if (teleportController.cast) teleportController.cancel(); },
+  onLoading: (progress,error) => {
+    const screen=$('#loading');
+    screen.classList.toggle('loaded',progress===1||!!error);
+    screen.querySelector('p').textContent=error||`正在载入客户端地图 ${Math.round((progress||0)*100)}%`;
+    if(error)toast(`客户端地图未载入：${error}`);
+  },
+  onSceneReady: id => { sceneTitle(id); hud.invalidate(); },
 });
 world.setJob('WHM');
 world.setQuality(settings.quality);
@@ -65,6 +72,7 @@ function context() {
 let targetCount = 1;
 
 function useAction(id) {
+  if(world.loading)return {ok:false,reason:'地图加载中'};
   if (teleportController.cast) { toast('正在传送'); return { ok: false, reason: '正在传送' }; }
   const result = combat.use(id, context());
   if (!result.ok) toast(result.reason || '技能尚未就绪');
@@ -271,7 +279,7 @@ window.addEventListener('resize', resize);
 resize();
 sceneTitle(currentScene);
 renderCombat();
-setTimeout(() => $('#loading').classList.add('loaded'), 350);
+setTimeout(() => { if(!world.loading)$('#loading').classList.add('loaded'); }, 350);
 let last = performance.now(), uiElapsed = 0, mapElapsed = 0, frameElapsed = 0, frameCount = 0;
 function frame(now) {
   const dt = Math.min((now - last) / 1000, 0.1);

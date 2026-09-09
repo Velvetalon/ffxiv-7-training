@@ -3,3 +3,4 @@ dist/
 work/
 *.log
 HUMAN_RESPONSE.md
+public/extracted/

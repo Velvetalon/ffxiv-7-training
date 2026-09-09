@@ -8,11 +8,13 @@
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "verify": "node scripts/verify.mjs",
-    "verify:terrain": "node scripts/verify-terrain.mjs"
+    "verify:terrain": "node scripts/verify-terrain.mjs",
+    "verify:extracted": "node scripts/verify-extracted.mjs"
   },
   "dependencies": {
+    "lucide": "^0.468.0",
     "three": "0.180.0",
-    "lucide": "^0.468.0"
+    "three-mesh-bvh": "^0.9.14"
   },
   "devDependencies": {
     "vite": "^6.1.0"

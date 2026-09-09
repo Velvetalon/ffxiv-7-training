@@ -2,9 +2,9 @@
 
 基于 Three.js 的《最终幻想 XIV》7.0 / 100 级单机职业循环练习器。首批职业为白魔法师、绘灵法师、钐镰客；首批地区为格里达尼亚新街与利姆萨·罗敏萨下层甲板。
 
-保留第三人称 3D、自由镜头、即时技能战斗与 FF14 式操作。场景地形参考游戏地图重建主要道路、广场、平台与地标；美术采用早期日式 RPG 的手绘材质和柔和色调。城市和角色模型为原创程序化素材，技能图标使用同编号游戏图标，来源见 [ICON-SOURCES.md](docs/ICON-SOURCES.md)。
+保留第三人称 3D、自由镜头、即时技能战斗与 FF14 式操作。两座城市现在优先载入本机 WeGame 客户端提取的真实模型、摆放、基础贴图和碰撞；原来的手工地形作为缺少导出时的回退。角色和木人仍为练习器模型，技能图标来源见 [ICON-SOURCES.md](docs/ICON-SOURCES.md)。
 
-当前提供本地单人练习模式，未实现多人联网服务；地形人工描绘与建筑高差的近似见 [TERRAIN-REFERENCES.md](docs/TERRAIN-REFERENCES.md)。威力统计不是装备面板下的实际 DPS，规则边界见 [RULES.md](docs/RULES.md)。
+当前提供本地单人练习模式，未实现多人联网服务。真实地图的版本、导入结果与材质边界见 [CLIENT-MAPS.md](docs/CLIENT-MAPS.md)；手工回退版本见 [TERRAIN-REFERENCES.md](docs/TERRAIN-REFERENCES.md)。威力统计不是装备面板下的实际 DPS，规则边界见 [RULES.md](docs/RULES.md)。
 
 ## 启动
 
@@ -30,6 +30,7 @@ npm run build
 npm run preview
 npm run verify
 npm run verify:terrain
+npm run verify:extracted
 ```
 
 `build` 输出到 `dist/`，可部署在静态 Web 服务器上。通过 HTTP 访问，不能直接双击 `index.html` 使用 ES 模块。
@@ -81,6 +82,7 @@ npm run verify:terrain
 | `src/world/scenes/` | 场景构建器注册 |
 | `src/world/terrain/` | 原图坐标、道路/广场/高差、导航和三维地形构建 |
 | `src/world/art/` | 手绘材质、建筑与植被造型 |
+| `src/world/imported/` | 客户端真实地图加载、实例、原始碰撞导航 |
 | `src/world/entities.js` | NPC、木人、怪物的实体注册 |
 | `src/world/actors.js` | 角色、武器和训练目标外观 |
 | `src/world/input.js` | 三维移动与镜头输入 |
@@ -93,4 +95,4 @@ npm run verify:terrain
 
 新增职业、场景、NPC、怪物的开发说明见 [ARCHITECTURE.md](docs/ARCHITECTURE.md)。模块之间的接口见 [CONTRACT.md](docs/CONTRACT.md)。
 
-本项目不提取 FFXIV 客户端模型。图标清单保留原文件信息与实际下载来源；后续可替换角色与场景美术，保留战斗引擎和模块接口。
+客户端导出仅保存在本机 `public/extracted/`，不包含在 Git 提交中。图标与地图清单保留实际来源和版本；角色与场景美术可继续替换，战斗引擎保持独立。
