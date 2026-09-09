@@ -6,13 +6,13 @@
 
 ## 启动
 
-在项目根目录运行：
+双击 `Start.cmd`，或右键 `Start.ps1` 选择“使用 PowerShell 运行”。启动成功后自动打开浏览器，服务在后台运行。也可在项目根目录运行：
 
 ```powershell
 .\Start.ps1
 ```
 
-默认地址：`http://127.0.0.1:5173`。脚本会优先使用本机 Codex 附带的现代 Node.js，避免系统 Node.js 16 不兼容 Vite 的问题。也可在 Node.js 18+ 环境下使用标准命令：
+默认地址：`http://127.0.0.1:5173`。重复启动会复用已运行的演武场；端口被其他程序占用时自动选择后续端口。脚本会优先使用本机 Codex 附带的现代 Node.js，避免系统 Node.js 16 不兼容 Vite 的问题。也可在 Node.js 18+ 环境下使用标准命令：
 
 ```sh
 npm install
@@ -20,6 +20,8 @@ npm run dev
 ```
 
 建议使用 Node.js 22 和支持 WebGL 2 的现代浏览器。依赖安装后，运行不需要外部图片、字体、账号或在线游戏服务。可用 `.\Start.ps1 -Port 5174` 更换端口。
+
+启动日志保存在 `work/server-端口.stdout.log` 和 `work/server-端口.stderr.log`；失败信息另写入 `work/startup-error.log`，错误窗口会等待按键后关闭。`Start.ps1` 使用带 BOM 的 UTF-8 编码以兼容 Windows PowerShell 5.1，编辑时请保留此编码。自动化调用可加 `-NoBrowser -NoPause`。
 
 ```sh
 npm run build
