@@ -18,3 +18,5 @@ public/extracted/*
 !public/extracted/active.json
 !public/extracted/bundled/
 !public/extracted/bundled/**
+!public/extracted/world/
+!public/extracted/world/**

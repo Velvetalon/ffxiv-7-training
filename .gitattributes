@@ -3,6 +3,8 @@
 *.jpg binary
 *.glb binary
 *.bin binary
+*.webp binary
+*.gz binary
 # Preserve release bytes and manifest digests across Windows/Linux checkouts.
 public/extracted/** -text
 site/** -text
