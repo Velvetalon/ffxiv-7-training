@@ -2,11 +2,27 @@
 
 基于 Three.js 的《最终幻想 XIV》7.0 / 100 级单机职业循环练习器。首批职业为白魔法师、绘灵法师、钐镰客；首批地区为格里达尼亚新街与利姆萨·罗敏萨下层甲板。
 
-保留第三人称 3D、自由镜头、即时技能战斗与 FF14 式操作。两座城市现在优先载入本机 WeGame 客户端提取的真实模型、摆放、基础贴图和碰撞；原来的手工地形作为缺少导出时的回退。角色和木人仍为练习器模型，技能图标来源见 [ICON-SOURCES.md](docs/ICON-SOURCES.md)。
+保留第三人称 3D、自由镜头、即时技能战斗与 FF14 式操作。仓库包含两座城市的模型、摆放、贴图和碰撞快照，以及可直接部署的 `site/` 成品。资源均使用相对路径，支持部署在 `/ff14-web/` 等子目录。角色和木人仍为练习器模型，技能图标来源见 [ICON-SOURCES.md](docs/ICON-SOURCES.md)。
 
 当前提供本地单人练习模式，未实现多人联网服务。真实地图的版本、导入结果与材质边界见 [CLIENT-MAPS.md](docs/CLIENT-MAPS.md)；手工回退版本见 [TERRAIN-REFERENCES.md](docs/TERRAIN-REFERENCES.md)。威力统计不是装备面板下的实际 DPS，规则边界见 [RULES.md](docs/RULES.md)。
 
 ## 启动
+
+服务器或只想直接体验时，安装 Node.js 22 后在仓库根目录运行：
+
+```sh
+npm start
+```
+
+打开 `http://localhost:8080`。此入口直接提供已提交的 `site/`，无需 `npm install`、游戏客户端、Python、.NET 或本机绝对路径。也可直接运行 `node scripts/serve.mjs`。部署到子目录：
+
+```sh
+node scripts/serve.mjs --port 8080 --base /ff14-web
+```
+
+也可以将 `site/` 的内容交给 Nginx 等静态服务器。`/ff14-web` 应重定向至 `/ff14-web/`，具体说明见 [DEPLOYMENT.md](docs/DEPLOYMENT.md)。
+
+修改源码、进行开发时：
 
 双击 `Start.cmd`，或右键 `Start.ps1` 选择“使用 PowerShell 运行”。启动成功后自动打开浏览器，服务在后台运行。也可在项目根目录运行：
 
@@ -29,11 +45,12 @@ npm run dev
 npm run build
 npm run preview
 npm run verify
+npm run verify:camera
 npm run verify:terrain
 npm run verify:extracted
 ```
 
-`build` 输出到 `dist/`，可部署在静态 Web 服务器上。通过 HTTP 访问，不能直接双击 `index.html` 使用 ES 模块。
+`build` 输出到 `dist/`；发布前运行 `npm run release` 更新随仓库提交的 `site/`。构建仅复制当前激活的两张地图，不复制旧的重建版本。通过 HTTP 访问，不能直接双击 `index.html` 使用 ES 模块。
 
 ## 操作
 
@@ -95,4 +112,4 @@ npm run verify:extracted
 
 新增职业、场景、NPC、怪物的开发说明见 [ARCHITECTURE.md](docs/ARCHITECTURE.md)。模块之间的接口见 [CONTRACT.md](docs/CONTRACT.md)。
 
-客户端导出仅保存在本机 `public/extracted/`，不包含在 Git 提交中。图标与地图清单保留实际来源和版本；角色与场景美术可继续替换，战斗引擎保持独立。
+当前两张地图的部署快照保存在 `public/extracted/bundled/`，随本私有仓库及 `site/` 提交。原始客户端、解包中间文件、历史重建版本和服务器凭据不在 Git 中。可选离线重建工具源码在 `tools/map-tools/`，不影响服务器直接启动。图标与地图清单保留实际来源和版本；角色与场景美术可继续替换，战斗引擎保持独立。

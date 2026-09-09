@@ -108,10 +108,8 @@ export class World {
     this.input.setEnabled(false);
     this.callbacks.onLoading?.(0);
     try {
-      const [loaded, collisionResponse] = await Promise.all([
-        loadExtractedScene(id,progress=>{if(request===this.loadRequest)this.callbacks.onLoading?.(progress*0.9);}),
-        fetch(`/extracted/${id}/collision.bin`),
-      ]);
+      const loaded = await loadExtractedScene(id,progress=>{if(request===this.loadRequest)this.callbacks.onLoading?.(progress*0.9);});
+      const collisionResponse = await fetch(`${loaded.base}collision.bin`);
       if(!collisionResponse.ok)throw new Error('未找到导出的原始碰撞数据');
       const bytes=await collisionResponse.arrayBuffer();
       if(request!==this.loadRequest){disposeObject(loaded.group);return;}
@@ -127,8 +125,9 @@ export class World {
       this.scene.background=new THREE.Color(id==='gridania'?'#afc8bb':'#aac4d0');
       this.scene.fog=new THREE.Fog(this.scene.background,180,650);
       addLighting(this.sceneRoot,id);
-      this.player.rotation.y=Math.PI;
-      this.introFocus=0;this.zoom=14;this.polar=1.17;this.azimuth=0.1;
+      this.azimuth=this.trainingAzimuth ?? 0.1;
+      this.player.rotation.y=this.azimuth+Math.PI;
+      this.introFocus=0;this.zoom=14;this.polar=1.17;
       this.followCamera.reset();
       this.targetNearest();
       if(this.jobId==='RPR')this.moveToDummy();
@@ -283,11 +282,12 @@ export class World {
   moveToDummy() {
     const target = this.registry.nearestTarget(this.player.position);
     if (!target) return;
-    const point = this.navigation.nearestWalkable(target.object.position.x, target.object.position.z + 2.4,25,target.object.position.y);
+    const rearAngle=target.object.rotation.y+Math.PI;
+    const point = this.navigation.nearestWalkable(target.object.position.x+Math.sin(rearAngle)*2.4, target.object.position.z+Math.cos(rearAngle)*2.4,25,target.object.position.y);
     if(!point)return;
     this.player.position.set(point.x, point.y ?? this.navigation.surfaceAt(point.x, point.z)?.height ?? 0, point.z);
     if(this.isImported)this.navigation.height=this.player.position.y;
-    this.player.rotation.y = Math.PI;
+    this.player.rotation.y = target.object.rotation.y;
     this.followCamera.reset();
     this.selectTarget(target);
     this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });

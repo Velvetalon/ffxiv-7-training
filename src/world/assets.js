@@ -410,7 +410,8 @@ export function disposeObject(root) {
     if (!node.material) return;
     const materials = Array.isArray(node.material) ? node.material : [node.material];
     materials.forEach((value) => {
-      if (value.map?.userData.sceneOwned) textures.add(value.map);
+      for (const item of Object.values(value)) if (item?.isTexture && item.userData.sceneOwned) textures.add(item);
+      for (const texture of value.userData.ownedTextures || []) textures.add(texture);
       if (!value.userData.sharedWorldMaterial) value.dispose?.();
     });
   });

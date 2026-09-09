@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
+    "release": "vite build --outDir site",
+    "start": "node scripts/serve.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "verify": "node scripts/verify.mjs",
+    "verify:camera": "node scripts/verify-camera.mjs",
     "verify:terrain": "node scripts/verify-terrain.mjs",
     "verify:extracted": "node scripts/verify-extracted.mjs"
   },

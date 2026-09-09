@@ -1,0 +1,1286 @@
+{
+  "source": "Huiji public imageinfo API for file metadata; matching icon-ID images downloaded from XIVAPI because Huiji image CDN returned HTTP 567.",
+  "api": "https://ff14.huijiwiki.com/api.php",
+  "rulesRevision": "1b6d74360fcb3665dd5ab2f62129144112caf0f8",
+  "actions": {
+    "Cure": {
+      "actionId": 120,
+      "iconId": 405,
+      "name": "Cure"
+    },
+    "Medica": {
+      "actionId": 124,
+      "iconId": 408,
+      "name": "Medica"
+    },
+    "Raise": {
+      "actionId": 125,
+      "iconId": 411,
+      "name": "Raise"
+    },
+    "Cure III": {
+      "actionId": 131,
+      "iconId": 407,
+      "name": "Cure III"
+    },
+    "Cure II": {
+      "actionId": 135,
+      "iconId": 406,
+      "name": "Cure II"
+    },
+    "Presence of Mind": {
+      "actionId": 136,
+      "iconId": 2626,
+      "name": "Presence of Mind"
+    },
+    "Regen": {
+      "actionId": 137,
+      "iconId": 2628,
+      "name": "Regen"
+    },
+    "Benediction": {
+      "actionId": 140,
+      "iconId": 2627,
+      "name": "Benediction"
+    },
+    "Asylum": {
+      "actionId": 3569,
+      "iconId": 2632,
+      "name": "Asylum"
+    },
+    "Tetragrammaton": {
+      "actionId": 3570,
+      "iconId": 2633,
+      "name": "Tetragrammaton"
+    },
+    "Assize": {
+      "actionId": 3571,
+      "iconId": 2634,
+      "name": "Assize"
+    },
+    "Thin Air": {
+      "actionId": 7430,
+      "iconId": 2636,
+      "name": "Thin Air"
+    },
+    "Divine Benison": {
+      "actionId": 7432,
+      "iconId": 2638,
+      "name": "Divine Benison"
+    },
+    "Plenary Indulgence": {
+      "actionId": 7433,
+      "iconId": 2639,
+      "name": "Plenary Indulgence"
+    },
+    "Second Wind": {
+      "actionId": 7541,
+      "iconId": 821,
+      "name": "Second Wind"
+    },
+    "Bloodbath": {
+      "actionId": 7542,
+      "iconId": 823,
+      "name": "Bloodbath"
+    },
+    "True North": {
+      "actionId": 7546,
+      "iconId": 830,
+      "name": "True North"
+    },
+    "Arm's Length": {
+      "actionId": 7548,
+      "iconId": 822,
+      "name": "Arm's Length"
+    },
+    "Feint": {
+      "actionId": 7549,
+      "iconId": 828,
+      "name": "Feint"
+    },
+    "Surecast": {
+      "actionId": 7559,
+      "iconId": 869,
+      "name": "Surecast"
+    },
+    "Addle": {
+      "actionId": 7560,
+      "iconId": 861,
+      "name": "Addle"
+    },
+    "Swiftcast": {
+      "actionId": 7561,
+      "iconId": 866,
+      "name": "Swiftcast"
+    },
+    "Lucid Dreaming": {
+      "actionId": 7562,
+      "iconId": 865,
+      "name": "Lucid Dreaming"
+    },
+    "Esuna": {
+      "actionId": 7568,
+      "iconId": 884,
+      "name": "Esuna"
+    },
+    "Rescue": {
+      "actionId": 7571,
+      "iconId": 890,
+      "name": "Rescue"
+    },
+    "Leg Sweep": {
+      "actionId": 7863,
+      "iconId": 824,
+      "name": "Leg Sweep"
+    },
+    "Afflatus Solace": {
+      "actionId": 16531,
+      "iconId": 2640,
+      "name": "Afflatus Solace"
+    },
+    "Dia": {
+      "actionId": 16532,
+      "iconId": 2641,
+      "name": "Dia"
+    },
+    "Afflatus Rapture": {
+      "actionId": 16534,
+      "iconId": 2643,
+      "name": "Afflatus Rapture"
+    },
+    "Afflatus Misery": {
+      "actionId": 16535,
+      "iconId": 2644,
+      "name": "Afflatus Misery"
+    },
+    "Temperance": {
+      "actionId": 16536,
+      "iconId": 2645,
+      "name": "Temperance"
+    },
+    "Repose": {
+      "actionId": 16560,
+      "iconId": 891,
+      "name": "Repose"
+    },
+    "Slice": {
+      "actionId": 24373,
+      "iconId": 3601,
+      "name": "Slice"
+    },
+    "Waxing Slice": {
+      "actionId": 24374,
+      "iconId": 3602,
+      "name": "Waxing Slice"
+    },
+    "Infernal Slice": {
+      "actionId": 24375,
+      "iconId": 3603,
+      "name": "Infernal Slice"
+    },
+    "Spinning Scythe": {
+      "actionId": 24376,
+      "iconId": 3604,
+      "name": "Spinning Scythe"
+    },
+    "Nightmare Scythe": {
+      "actionId": 24377,
+      "iconId": 3605,
+      "name": "Nightmare Scythe"
+    },
+    "Shadow of Death": {
+      "actionId": 24378,
+      "iconId": 3606,
+      "name": "Shadow of Death"
+    },
+    "Whorl of Death": {
+      "actionId": 24379,
+      "iconId": 3607,
+      "name": "Whorl of Death"
+    },
+    "Soul Slice": {
+      "actionId": 24380,
+      "iconId": 3608,
+      "name": "Soul Slice"
+    },
+    "Soul Scythe": {
+      "actionId": 24381,
+      "iconId": 3609,
+      "name": "Soul Scythe"
+    },
+    "Gibbet": {
+      "actionId": 24382,
+      "iconId": 3610,
+      "name": "Gibbet"
+    },
+    "Gallows": {
+      "actionId": 24383,
+      "iconId": 3611,
+      "name": "Gallows"
+    },
+    "Guillotine": {
+      "actionId": 24384,
+      "iconId": 3612,
+      "name": "Guillotine"
+    },
+    "Plentiful Harvest": {
+      "actionId": 24385,
+      "iconId": 3613,
+      "name": "Plentiful Harvest"
+    },
+    "Harpe": {
+      "actionId": 24386,
+      "iconId": 3614,
+      "name": "Harpe"
+    },
+    "Soulsow": {
+      "actionId": 24387,
+      "iconId": 3615,
+      "name": "Soulsow"
+    },
+    "Harvest Moon": {
+      "actionId": 24388,
+      "iconId": 3616,
+      "name": "Harvest Moon"
+    },
+    "Blood Stalk": {
+      "actionId": 24389,
+      "iconId": 3617,
+      "name": "Blood Stalk"
+    },
+    "Unveiled Gibbet": {
+      "actionId": 24390,
+      "iconId": 3618,
+      "name": "Unveiled Gibbet"
+    },
+    "Unveiled Gallows": {
+      "actionId": 24391,
+      "iconId": 3619,
+      "name": "Unveiled Gallows"
+    },
+    "Grim Swathe": {
+      "actionId": 24392,
+      "iconId": 3620,
+      "name": "Grim Swathe"
+    },
+    "Gluttony": {
+      "actionId": 24393,
+      "iconId": 3621,
+      "name": "Gluttony"
+    },
+    "Enshroud": {
+      "actionId": 24394,
+      "iconId": 3622,
+      "name": "Enshroud"
+    },
+    "Void Reaping": {
+      "actionId": 24395,
+      "iconId": 3623,
+      "name": "Void Reaping"
+    },
+    "Cross Reaping": {
+      "actionId": 24396,
+      "iconId": 3624,
+      "name": "Cross Reaping"
+    },
+    "Grim Reaping": {
+      "actionId": 24397,
+      "iconId": 3625,
+      "name": "Grim Reaping"
+    },
+    "Communio": {
+      "actionId": 24398,
+      "iconId": 3626,
+      "name": "Communio"
+    },
+    "Lemure's Slice": {
+      "actionId": 24399,
+      "iconId": 3627,
+      "name": "Lemure's Slice"
+    },
+    "Lemure's Scythe": {
+      "actionId": 24400,
+      "iconId": 3628,
+      "name": "Lemure's Scythe"
+    },
+    "Hell's Ingress": {
+      "actionId": 24401,
+      "iconId": 3629,
+      "name": "Hell's Ingress"
+    },
+    "Hell's Egress": {
+      "actionId": 24402,
+      "iconId": 3630,
+      "name": "Hell's Egress"
+    },
+    "Regress": {
+      "actionId": 24403,
+      "iconId": 3631,
+      "name": "Regress"
+    },
+    "Arcane Crest": {
+      "actionId": 24404,
+      "iconId": 3632,
+      "name": "Arcane Crest"
+    },
+    "Arcane Circle": {
+      "actionId": 24405,
+      "iconId": 3633,
+      "name": "Arcane Circle"
+    },
+    "Glare III": {
+      "actionId": 25859,
+      "iconId": 2646,
+      "name": "Glare III"
+    },
+    "Holy III": {
+      "actionId": 25860,
+      "iconId": 2647,
+      "name": "Holy III"
+    },
+    "Aquaveil": {
+      "actionId": 25861,
+      "iconId": 2648,
+      "name": "Aquaveil"
+    },
+    "Liturgy of the Bell": {
+      "actionId": 25862,
+      "iconId": 2649,
+      "name": "Liturgy of the Bell"
+    },
+    "Sleep": {
+      "actionId": 25880,
+      "iconId": 871,
+      "name": "Sleep"
+    },
+    "Fire in Red": {
+      "actionId": 34650,
+      "iconId": 3801,
+      "name": "Fire in Red"
+    },
+    "Aero in Green": {
+      "actionId": 34651,
+      "iconId": 3802,
+      "name": "Aero in Green"
+    },
+    "Water in Blue": {
+      "actionId": 34652,
+      "iconId": 3803,
+      "name": "Water in Blue"
+    },
+    "Blizzard in Cyan": {
+      "actionId": 34653,
+      "iconId": 3804,
+      "name": "Blizzard in Cyan"
+    },
+    "Stone in Yellow": {
+      "actionId": 34654,
+      "iconId": 3805,
+      "name": "Stone in Yellow"
+    },
+    "Thunder in Magenta": {
+      "actionId": 34655,
+      "iconId": 3806,
+      "name": "Thunder in Magenta"
+    },
+    "Fire II in Red": {
+      "actionId": 34656,
+      "iconId": 3807,
+      "name": "Fire II in Red"
+    },
+    "Aero II in Green": {
+      "actionId": 34657,
+      "iconId": 3808,
+      "name": "Aero II in Green"
+    },
+    "Water II in Blue": {
+      "actionId": 34658,
+      "iconId": 3809,
+      "name": "Water II in Blue"
+    },
+    "Blizzard II in Cyan": {
+      "actionId": 34659,
+      "iconId": 3810,
+      "name": "Blizzard II in Cyan"
+    },
+    "Stone II in Yellow": {
+      "actionId": 34660,
+      "iconId": 3811,
+      "name": "Stone II in Yellow"
+    },
+    "Thunder II in Magenta": {
+      "actionId": 34661,
+      "iconId": 3812,
+      "name": "Thunder II in Magenta"
+    },
+    "Holy in White": {
+      "actionId": 34662,
+      "iconId": 3813,
+      "name": "Holy in White"
+    },
+    "Comet in Black": {
+      "actionId": 34663,
+      "iconId": 3814,
+      "name": "Comet in Black"
+    },
+    "Pom Motif": {
+      "actionId": 34664,
+      "iconId": 3815,
+      "name": "Pom Motif"
+    },
+    "Wing Motif": {
+      "actionId": 34665,
+      "iconId": 3816,
+      "name": "Wing Motif"
+    },
+    "Claw Motif": {
+      "actionId": 34666,
+      "iconId": 3817,
+      "name": "Claw Motif"
+    },
+    "Maw Motif": {
+      "actionId": 34667,
+      "iconId": 3818,
+      "name": "Maw Motif"
+    },
+    "Hammer Motif": {
+      "actionId": 34668,
+      "iconId": 3819,
+      "name": "Hammer Motif"
+    },
+    "Starry Sky Motif": {
+      "actionId": 34669,
+      "iconId": 3820,
+      "name": "Starry Sky Motif"
+    },
+    "Pom Muse": {
+      "actionId": 34670,
+      "iconId": 3821,
+      "name": "Pom Muse"
+    },
+    "Winged Muse": {
+      "actionId": 34671,
+      "iconId": 3822,
+      "name": "Winged Muse"
+    },
+    "Clawed Muse": {
+      "actionId": 34672,
+      "iconId": 3823,
+      "name": "Clawed Muse"
+    },
+    "Fanged Muse": {
+      "actionId": 34673,
+      "iconId": 3824,
+      "name": "Fanged Muse"
+    },
+    "Striking Muse": {
+      "actionId": 34674,
+      "iconId": 3825,
+      "name": "Striking Muse"
+    },
+    "Starry Muse": {
+      "actionId": 34675,
+      "iconId": 3826,
+      "name": "Starry Muse"
+    },
+    "Mog of the Ages": {
+      "actionId": 34676,
+      "iconId": 3827,
+      "name": "Mog of the Ages"
+    },
+    "Retribution of the Madeen": {
+      "actionId": 34677,
+      "iconId": 3828,
+      "name": "Retribution of the Madeen"
+    },
+    "Hammer Stamp": {
+      "actionId": 34678,
+      "iconId": 3829,
+      "name": "Hammer Stamp"
+    },
+    "Hammer Brush": {
+      "actionId": 34679,
+      "iconId": 3830,
+      "name": "Hammer Brush"
+    },
+    "Polishing Hammer": {
+      "actionId": 34680,
+      "iconId": 3831,
+      "name": "Polishing Hammer"
+    },
+    "Star Prism": {
+      "actionId": 34681,
+      "iconId": 3832,
+      "name": "Star Prism"
+    },
+    "Subtractive Palette": {
+      "actionId": 34683,
+      "iconId": 3833,
+      "name": "Subtractive Palette"
+    },
+    "Smudge": {
+      "actionId": 34684,
+      "iconId": 3834,
+      "name": "Smudge"
+    },
+    "Tempera Coat": {
+      "actionId": 34685,
+      "iconId": 3835,
+      "name": "Tempera Coat"
+    },
+    "Tempera Grassa": {
+      "actionId": 34686,
+      "iconId": 3836,
+      "name": "Tempera Grassa"
+    },
+    "Rainbow Drip": {
+      "actionId": 34688,
+      "iconId": 3838,
+      "name": "Rainbow Drip"
+    },
+    "Sacrificium": {
+      "actionId": 36969,
+      "iconId": 3634,
+      "name": "Sacrificium"
+    },
+    "Executioner's Gibbet": {
+      "actionId": 36970,
+      "iconId": 3635,
+      "name": "Executioner's Gibbet"
+    },
+    "Executioner's Gallows": {
+      "actionId": 36971,
+      "iconId": 3636,
+      "name": "Executioner's Gallows"
+    },
+    "Executioner's Guillotine": {
+      "actionId": 36972,
+      "iconId": 3637,
+      "name": "Executioner's Guillotine"
+    },
+    "Perfectio": {
+      "actionId": 36973,
+      "iconId": 3638,
+      "name": "Perfectio"
+    },
+    "Aetherial Shift": {
+      "actionId": 37008,
+      "iconId": 2125,
+      "name": "Aetherial Shift"
+    },
+    "Glare IV": {
+      "actionId": 37009,
+      "iconId": 2126,
+      "name": "Glare IV"
+    },
+    "Medica III": {
+      "actionId": 37010,
+      "iconId": 2127,
+      "name": "Medica III"
+    },
+    "Divine Caress": {
+      "actionId": 37011,
+      "iconId": 2128,
+      "name": "Divine Caress"
+    }
+  },
+  "files": {
+    "405": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/db/000405.png",
+      "imageUrl": "https://xivapi.com/i/000000/000405.png",
+      "local": "icons/000405.png",
+      "sha256": "e8d2abb2669df9f36ffb9f714022632f81f91c6f9c5eae970b8b34102425f9e7"
+    },
+    "406": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/d5/000406.png",
+      "imageUrl": "https://xivapi.com/i/000000/000406.png",
+      "local": "icons/000406.png",
+      "sha256": "d540f859629d29f3f49021fe2cd6f94a3062f4f59d41c98b9fb1bb4ac8692bcd"
+    },
+    "407": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/80/000407.png",
+      "imageUrl": "https://xivapi.com/i/000000/000407.png",
+      "local": "icons/000407.png",
+      "sha256": "dd9ae7696717b07cac05a64910952029d2e8fbdba3c62b5f9096e74a93c8c03f"
+    },
+    "408": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/5b/000408.png",
+      "imageUrl": "https://xivapi.com/i/000000/000408.png",
+      "local": "icons/000408.png",
+      "sha256": "a4a68dd44190103abe3f90bf96be0964af1fad0d1bddcd690332c9dad1d8ebb6"
+    },
+    "411": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/0e/000411.png",
+      "imageUrl": "https://xivapi.com/i/000000/000411.png",
+      "local": "icons/000411.png",
+      "sha256": "3d3cf892fb6a4a5765e5a7507d3d27bf5b3f28155b936050216a6ed18b93463b"
+    },
+    "821": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/92/000821.png",
+      "imageUrl": "https://xivapi.com/i/000000/000821.png",
+      "local": "icons/000821.png",
+      "sha256": "b4a6bcfcbd40ffbbda63db715d0b99e5bf5810fe77e0f8e6b442de9a790483a4"
+    },
+    "822": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/59/000822.png",
+      "imageUrl": "https://xivapi.com/i/000000/000822.png",
+      "local": "icons/000822.png",
+      "sha256": "974f37cc84abfd3ef563db391c03327ff9f04268cd51283f8f2d22ed84c772a4"
+    },
+    "823": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/42/000823.png",
+      "imageUrl": "https://xivapi.com/i/000000/000823.png",
+      "local": "icons/000823.png",
+      "sha256": "21335ef56a799b4c145991b64601f128cd499c1ed7c697b091e97c6420051d54"
+    },
+    "824": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/44/000824.png",
+      "imageUrl": "https://xivapi.com/i/000000/000824.png",
+      "local": "icons/000824.png",
+      "sha256": "bad81cec5d10ec587f7d196a0209530f34eff9a19d4c7a952d7c7e00dd824d0d"
+    },
+    "828": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/5f/000828.png",
+      "imageUrl": "https://xivapi.com/i/000000/000828.png",
+      "local": "icons/000828.png",
+      "sha256": "6a2fc9b4b1d1c58e2898f879c2207d6ae46c7629c83d1629f16c02a0fa1a38fd"
+    },
+    "830": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/e/ee/000830.png",
+      "imageUrl": "https://xivapi.com/i/000000/000830.png",
+      "local": "icons/000830.png",
+      "sha256": "bd072cf25bb3a292756942446494c2ea3d72fa7e37c52bbbebba98d04c86cb51"
+    },
+    "861": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/37/000861.png",
+      "imageUrl": "https://xivapi.com/i/000000/000861.png",
+      "local": "icons/000861.png",
+      "sha256": "3581b8b52c5f01cf1fa4549b8bc97e8e7e69a97e1894400ee3d5b7f35716ab8c"
+    },
+    "865": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/81/000865.png",
+      "imageUrl": "https://xivapi.com/i/000000/000865.png",
+      "local": "icons/000865.png",
+      "sha256": "7c512096669becfd325bd74bd8f500410f4348b894d7cdcfad727ae73dad3001"
+    },
+    "866": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/96/000866.png",
+      "imageUrl": "https://xivapi.com/i/000000/000866.png",
+      "local": "icons/000866.png",
+      "sha256": "5651eadc4d13e2cb2e84b039fb71ca4b12bdcfc9a6c635d34f5f2f555296a291"
+    },
+    "869": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/8a/000869.png",
+      "imageUrl": "https://xivapi.com/i/000000/000869.png",
+      "local": "icons/000869.png",
+      "sha256": "f13c6653dafea46e621cc213385d0cf59395314f4769b0d835d8ac1806ecc764"
+    },
+    "871": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/26/000871.png",
+      "imageUrl": "https://xivapi.com/i/000000/000871.png",
+      "local": "icons/000871.png",
+      "sha256": "96353c55eb6e6d8ce0a4611648b1f1844ef1b374eca0e4e8f52c14872f168265"
+    },
+    "884": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/4d/000884.png",
+      "imageUrl": "https://xivapi.com/i/000000/000884.png",
+      "local": "icons/000884.png",
+      "sha256": "fd983370593e95d57187bab250b41a15c51e2056e82d6953d15e14aae72a8316"
+    },
+    "890": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/1/12/000890.png",
+      "imageUrl": "https://xivapi.com/i/000000/000890.png",
+      "local": "icons/000890.png",
+      "sha256": "fe52ef426cec06060991d3828dc4d7f05385912686c5721ff3fe24ea4a520d76"
+    },
+    "891": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/a/aa/000891.png",
+      "imageUrl": "https://xivapi.com/i/000000/000891.png",
+      "local": "icons/000891.png",
+      "sha256": "76fae4fdfbaa2197f84a32f9353ecec560eb7d8fc9c81cb550ac673eabebcd96"
+    },
+    "2125": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/44/002125.png",
+      "imageUrl": "https://xivapi.com/i/002000/002125.png",
+      "local": "icons/002125.png",
+      "sha256": "451ccd65140881354c168b9979c387006a31c7db262590bc19a157e4d8f662b7"
+    },
+    "2126": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/51/002126.png",
+      "imageUrl": "https://xivapi.com/i/002000/002126.png",
+      "local": "icons/002126.png",
+      "sha256": "9b953b1c0bb3345b43d85ef81c555eaab1e9f753c8876f6f64e835d81e149bac"
+    },
+    "2127": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/c0/002127.png",
+      "imageUrl": "https://xivapi.com/i/002000/002127.png",
+      "local": "icons/002127.png",
+      "sha256": "0cc2dc539dfca1ad4ae2bc174183c59c7852a6908cbf55616e451bb57f4695f5"
+    },
+    "2128": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/7e/002128.png",
+      "imageUrl": "https://xivapi.com/i/002000/002128.png",
+      "local": "icons/002128.png",
+      "sha256": "70a495de5abf29db6db79a3db55e9b38dd6c5f1effa525f578baf149de576c41"
+    },
+    "2626": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/04/002626.png",
+      "imageUrl": "https://xivapi.com/i/002000/002626.png",
+      "local": "icons/002626.png",
+      "sha256": "b3aa795ba4ef803261d57693a75a707ebf53f20db901452f25aaa27692d22baa"
+    },
+    "2627": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/3d/002627.png",
+      "imageUrl": "https://xivapi.com/i/002000/002627.png",
+      "local": "icons/002627.png",
+      "sha256": "a4acec38051ed077fca6dc6d1bbd81567adb4b6c805c49b5b82a44954b3674c8"
+    },
+    "2628": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/00/002628.png",
+      "imageUrl": "https://xivapi.com/i/002000/002628.png",
+      "local": "icons/002628.png",
+      "sha256": "2361c9663c3ec2f6d715b37d23aa6de940fe4ca61d1401649d98138924ce09f7"
+    },
+    "2632": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/c6/002632.png",
+      "imageUrl": "https://xivapi.com/i/002000/002632.png",
+      "local": "icons/002632.png",
+      "sha256": "4e0d24da589d31794c034fe191ab3938f81cad9ab9b9933a3e17d8cae273b1bc"
+    },
+    "2633": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/26/002633.png",
+      "imageUrl": "https://xivapi.com/i/002000/002633.png",
+      "local": "icons/002633.png",
+      "sha256": "6d8bedf167494d7ba56fa03cb23c18316bdefba895e29c376741ba31af5c86cf"
+    },
+    "2634": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/0e/002634.png",
+      "imageUrl": "https://xivapi.com/i/002000/002634.png",
+      "local": "icons/002634.png",
+      "sha256": "12a252ff4de5df9a51d4ae7c4a0e705218dd9b91fe5db151b9133c332663baa3"
+    },
+    "2636": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/f/fe/002636.png",
+      "imageUrl": "https://xivapi.com/i/002000/002636.png",
+      "local": "icons/002636.png",
+      "sha256": "8dcac790ffaedd611795eca4600c640294297504fcae5edd09c8c8ddbff0b8bf"
+    },
+    "2638": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/74/002638.png",
+      "imageUrl": "https://xivapi.com/i/002000/002638.png",
+      "local": "icons/002638.png",
+      "sha256": "49a53ca74a126732eff2fb4372b289a1b6cceb7e6455be1bdeefd6be206135a1"
+    },
+    "2639": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/48/002639.png",
+      "imageUrl": "https://xivapi.com/i/002000/002639.png",
+      "local": "icons/002639.png",
+      "sha256": "34661ec590ab561df9b8b3041134f3bdccdc8014d5332eeb2bfcff8136a11247"
+    },
+    "2640": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/1/16/002640.png",
+      "imageUrl": "https://xivapi.com/i/002000/002640.png",
+      "local": "icons/002640.png",
+      "sha256": "4388d61f9476597303cb1fb07257ed577a691b5a59837ce2f7928e76696ff529"
+    },
+    "2641": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/b/ba/002641.png",
+      "imageUrl": "https://xivapi.com/i/002000/002641.png",
+      "local": "icons/002641.png",
+      "sha256": "08fee9cadd7c98fb10af6a410d54c88970ac902af6dcd9cf6e37c57550058f6c"
+    },
+    "2643": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/26/002643.png",
+      "imageUrl": "https://xivapi.com/i/002000/002643.png",
+      "local": "icons/002643.png",
+      "sha256": "4c639f7f9920a71104d56e87c44cd4aec9c9f495099bc094458e74827a9b77a9"
+    },
+    "2644": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9b/002644.png",
+      "imageUrl": "https://xivapi.com/i/002000/002644.png",
+      "local": "icons/002644.png",
+      "sha256": "4824694438b2b9cec74cc4a35a797fc7c19e2b3f65e086d1327b5999e41601c4"
+    },
+    "2645": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/f/f3/002645.png",
+      "imageUrl": "https://xivapi.com/i/002000/002645.png",
+      "local": "icons/002645.png",
+      "sha256": "6945c8254dded0e9c177948ad66cdb17d7b61cf6b28b492e07e188664c230f6e"
+    },
+    "2646": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/d3/002646.png",
+      "imageUrl": "https://xivapi.com/i/002000/002646.png",
+      "local": "icons/002646.png",
+      "sha256": "a17f80a10b32cacb7919af89164848e0772a599835982fcf94300ba3ce31a704"
+    },
+    "2647": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/56/002647.png",
+      "imageUrl": "https://xivapi.com/i/002000/002647.png",
+      "local": "icons/002647.png",
+      "sha256": "6df0d0c3fd650526d2635d1bae34ca0b7b566428da5006a51053924623eb369c"
+    },
+    "2648": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/dd/002648.png",
+      "imageUrl": "https://xivapi.com/i/002000/002648.png",
+      "local": "icons/002648.png",
+      "sha256": "1edba7dc1e74ab53e3e78ba3a9a9f397f1d100a7a8db7ee4bcb4eaf924aab4b8"
+    },
+    "2649": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/c5/002649.png",
+      "imageUrl": "https://xivapi.com/i/002000/002649.png",
+      "local": "icons/002649.png",
+      "sha256": "b8a3991e77d88af79a39d08eb6f212ced956e949ab8e4576cee6cb7978e054df"
+    },
+    "3601": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/02/003601.png",
+      "imageUrl": "https://xivapi.com/i/003000/003601.png",
+      "local": "icons/003601.png",
+      "sha256": "8f292fc5fb8c1041bd3c5ac1c95cc8dd822ca6da677915dd590b2477f47a860a"
+    },
+    "3602": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/d9/003602.png",
+      "imageUrl": "https://xivapi.com/i/003000/003602.png",
+      "local": "icons/003602.png",
+      "sha256": "54af362278b7d3fa4bfb6c59c86c150b3a7d9dd80fd439738bce25a4ed83263c"
+    },
+    "3603": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/8d/003603.png",
+      "imageUrl": "https://xivapi.com/i/003000/003603.png",
+      "local": "icons/003603.png",
+      "sha256": "aa681ae53a127af12e0ea8ea4a981cd91bf1ae87d9d2482cc5c7e40874c33650"
+    },
+    "3604": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/ce/003604.png",
+      "imageUrl": "https://xivapi.com/i/003000/003604.png",
+      "local": "icons/003604.png",
+      "sha256": "0f5b131c8c2e7cdeb96f00e0ceb9dbb7ec3ca2fd0b8d591e56fced7146fbdabc"
+    },
+    "3605": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/e/e4/003605.png",
+      "imageUrl": "https://xivapi.com/i/003000/003605.png",
+      "local": "icons/003605.png",
+      "sha256": "c39a744d5cfbe8c4c2ee18b836bf1c5092cc89b46cf5b0fa7900f1f84dda2aaf"
+    },
+    "3606": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9e/003606.png",
+      "imageUrl": "https://xivapi.com/i/003000/003606.png",
+      "local": "icons/003606.png",
+      "sha256": "91deccb0d3ef3fb431fae821d6b1e3965ad1fed19ffffbb55190ca5091f172ea"
+    },
+    "3607": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/98/003607.png",
+      "imageUrl": "https://xivapi.com/i/003000/003607.png",
+      "local": "icons/003607.png",
+      "sha256": "9150406d4029b3eb9ec0bd0fc13b89d5f579886c95966b16f51f61ca127780d3"
+    },
+    "3608": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9b/003608.png",
+      "imageUrl": "https://xivapi.com/i/003000/003608.png",
+      "local": "icons/003608.png",
+      "sha256": "c55ae93537ab47bf126260125669ec49f7ba5a46aeeefcbebde402cda2b6e7dc"
+    },
+    "3609": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/cc/003609.png",
+      "imageUrl": "https://xivapi.com/i/003000/003609.png",
+      "local": "icons/003609.png",
+      "sha256": "4af4a9eaf886040eadbbb98776be1c8224d93e744da7ef3fb682bc5651720bc5"
+    },
+    "3610": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9b/003610.png",
+      "imageUrl": "https://xivapi.com/i/003000/003610.png",
+      "local": "icons/003610.png",
+      "sha256": "6d3b9eac58cb1716c976ddf4b3a220ce7a641d120ad9f43405b1a97aa997593c"
+    },
+    "3611": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/75/003611.png",
+      "imageUrl": "https://xivapi.com/i/003000/003611.png",
+      "local": "icons/003611.png",
+      "sha256": "c4b16798b471ac9b793f5332d5120ebd3f59a238e4253f1e9e8676336ea405f7"
+    },
+    "3612": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/89/003612.png",
+      "imageUrl": "https://xivapi.com/i/003000/003612.png",
+      "local": "icons/003612.png",
+      "sha256": "8bd648d84f9fb910efdbf1bd971bec1e967e71a42d1dd190f3756f61fd82c5a2"
+    },
+    "3613": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/a/ab/003613.png",
+      "imageUrl": "https://xivapi.com/i/003000/003613.png",
+      "local": "icons/003613.png",
+      "sha256": "59c574df5ca86a299bf438e337666a9645232d2dfed8823e554a18add56c6d69"
+    },
+    "3614": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/7e/003614.png",
+      "imageUrl": "https://xivapi.com/i/003000/003614.png",
+      "local": "icons/003614.png",
+      "sha256": "223304d8ab68a0ecb9824fbef4b35388abb987309a0d90b46b2b173729c23e73"
+    },
+    "3615": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/56/003615.png",
+      "imageUrl": "https://xivapi.com/i/003000/003615.png",
+      "local": "icons/003615.png",
+      "sha256": "251085a4e50f22609ad5125a8ecc57e98c96b09019deb9ea3407b17514f01559"
+    },
+    "3616": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/6/61/003616.png",
+      "imageUrl": "https://xivapi.com/i/003000/003616.png",
+      "local": "icons/003616.png",
+      "sha256": "3d5129ece464641a1251494c878e60c56ab06c6a9c18b21f4f17e1fcbaef1428"
+    },
+    "3617": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/b/b4/003617.png",
+      "imageUrl": "https://xivapi.com/i/003000/003617.png",
+      "local": "icons/003617.png",
+      "sha256": "ab8fe6862034e4f75ea33d98bf1f7cc2efe81290f8316190451dc2c80160c266"
+    },
+    "3618": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/96/003618.png",
+      "imageUrl": "https://xivapi.com/i/003000/003618.png",
+      "local": "icons/003618.png",
+      "sha256": "73bb07ffce42baf2237613ffcd6dd766ae5ef49f5e1dbc962d3559f89ae0c074"
+    },
+    "3619": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/e/e9/003619.png",
+      "imageUrl": "https://xivapi.com/i/003000/003619.png",
+      "local": "icons/003619.png",
+      "sha256": "c52c10cdffa434b83ae0314b7090784350d8111a1745954b44a57c59dac01dcc"
+    },
+    "3620": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/78/003620.png",
+      "imageUrl": "https://xivapi.com/i/003000/003620.png",
+      "local": "icons/003620.png",
+      "sha256": "bed16acb1c4dc0fbcda800584cc1fa02bff8b196134bce511e72182929a8d7da"
+    },
+    "3621": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/7f/003621.png",
+      "imageUrl": "https://xivapi.com/i/003000/003621.png",
+      "local": "icons/003621.png",
+      "sha256": "49ea4439bee6ca02b28fb15836f61b81158f95c5e924d489d8be9ad3ac333d33"
+    },
+    "3622": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/23/003622.png",
+      "imageUrl": "https://xivapi.com/i/003000/003622.png",
+      "local": "icons/003622.png",
+      "sha256": "daa87734fe44052e17655b4999c9a1fae623e107779474c98ebcfed79bfbe5e3"
+    },
+    "3623": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/cf/003623.png",
+      "imageUrl": "https://xivapi.com/i/003000/003623.png",
+      "local": "icons/003623.png",
+      "sha256": "a6277e7530bdd7a68edad67e1dee3c4355ac13cacbc26c4004d2ee3dca1c39d0"
+    },
+    "3624": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/87/003624.png",
+      "imageUrl": "https://xivapi.com/i/003000/003624.png",
+      "local": "icons/003624.png",
+      "sha256": "a9b9cdf2457dcc3e7993b8376549b0bdce3fbec3d75f526d258b488674a2f400"
+    },
+    "3625": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/6/61/003625.png",
+      "imageUrl": "https://xivapi.com/i/003000/003625.png",
+      "local": "icons/003625.png",
+      "sha256": "8bc4ce7794f706198c94e7e12cb92e7c5bac9d8caa531aff2409bc0a2745be84"
+    },
+    "3626": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/51/003626.png",
+      "imageUrl": "https://xivapi.com/i/003000/003626.png",
+      "local": "icons/003626.png",
+      "sha256": "b42fbee63713ad0c6c4fb53257267cdbf1140ef42c9ffc985c5c8ef06812e6cc"
+    },
+    "3627": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/1/18/003627.png",
+      "imageUrl": "https://xivapi.com/i/003000/003627.png",
+      "local": "icons/003627.png",
+      "sha256": "7ce10d513bd3896b6240c79f174669204af08bb35da16b76e71a51d30202bfe3"
+    },
+    "3628": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/4a/003628.png",
+      "imageUrl": "https://xivapi.com/i/003000/003628.png",
+      "local": "icons/003628.png",
+      "sha256": "bc573088c3f01be656abe87804b408a125c9778aa913715d3bb0796a6ac564e9"
+    },
+    "3629": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/75/003629.png",
+      "imageUrl": "https://xivapi.com/i/003000/003629.png",
+      "local": "icons/003629.png",
+      "sha256": "a9e29826a8124bd3cf6200baa98577daf5b5f8a6797ec15336f12607cdb40863"
+    },
+    "3630": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9d/003630.png",
+      "imageUrl": "https://xivapi.com/i/003000/003630.png",
+      "local": "icons/003630.png",
+      "sha256": "fa45182f2c2a086d7e3ae90778cd365528d540531007ca7a516e494943d1d8ba"
+    },
+    "3631": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/4e/003631.png",
+      "imageUrl": "https://xivapi.com/i/003000/003631.png",
+      "local": "icons/003631.png",
+      "sha256": "f7ec3c08c9e45888e8df48a318dbb08617a69a65d8539d7a21a8c953f710f3e3"
+    },
+    "3632": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/90/003632.png",
+      "imageUrl": "https://xivapi.com/i/003000/003632.png",
+      "local": "icons/003632.png",
+      "sha256": "9c8b512d45c6c61d3e868258865f1733533efb094a1c7c51fee6da4fd1f50863"
+    },
+    "3633": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/4/42/003633.png",
+      "imageUrl": "https://xivapi.com/i/003000/003633.png",
+      "local": "icons/003633.png",
+      "sha256": "7d7c7bae9f654444c5f483f30ac65472fbbc16886629737b836d6e0da2ed3fc8"
+    },
+    "3634": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/a/ad/003634.png",
+      "imageUrl": "https://xivapi.com/i/003000/003634.png",
+      "local": "icons/003634.png",
+      "sha256": "0aaa04c3dadd0d6a5e6bec754ccc1f48ea455b4379ca8eae01e7897ee06f2a7e"
+    },
+    "3635": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/b/b1/003635.png",
+      "imageUrl": "https://xivapi.com/i/003000/003635.png",
+      "local": "icons/003635.png",
+      "sha256": "af84240c56a9dbbab243a4bc1935d9d6af6e300009054bef6d9947dc032eea15"
+    },
+    "3636": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/f/f6/003636.png",
+      "imageUrl": "https://xivapi.com/i/003000/003636.png",
+      "local": "icons/003636.png",
+      "sha256": "5a134cf46803f43bc40843cbcc1842526a7db6262fe14512a3b86c121d6fff1b"
+    },
+    "3637": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/5b/003637.png",
+      "imageUrl": "https://xivapi.com/i/003000/003637.png",
+      "local": "icons/003637.png",
+      "sha256": "0636cd1373ccbb51605ad99cd15cd4c709a40d5a947aa94daea0265f2a83495e"
+    },
+    "3638": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/36/003638.png",
+      "imageUrl": "https://xivapi.com/i/003000/003638.png",
+      "local": "icons/003638.png",
+      "sha256": "e9d9d29d4208cf5bd3fbca20f4868b48a448270023aeb6c3b69bb0c7bdc9f2bf"
+    },
+    "3801": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/59/003801.png",
+      "imageUrl": "https://xivapi.com/i/003000/003801.png",
+      "local": "icons/003801.png",
+      "sha256": "a1ba8fc52ae7447a55ad65f0687a84119a83c8c764050f9d51259b600792df60"
+    },
+    "3802": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/1/19/003802.png",
+      "imageUrl": "https://xivapi.com/i/003000/003802.png",
+      "local": "icons/003802.png",
+      "sha256": "32ecc03fc389c78671faff84a6b97ffcc9421f860b5aafb0bd30cb3895733026"
+    },
+    "3803": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/b/bc/003803.png",
+      "imageUrl": "https://xivapi.com/i/003000/003803.png",
+      "local": "icons/003803.png",
+      "sha256": "daf40c256b8410cf1c7f5909cb604f22f93ab725344876ff20665ff5d3c85704"
+    },
+    "3804": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/20/003804.png",
+      "imageUrl": "https://xivapi.com/i/003000/003804.png",
+      "local": "icons/003804.png",
+      "sha256": "434408f1e0207f7a8270cb0b27e0b2c1a83acbd0d5b26778afc4a20587c004d6"
+    },
+    "3805": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/dd/003805.png",
+      "imageUrl": "https://xivapi.com/i/003000/003805.png",
+      "local": "icons/003805.png",
+      "sha256": "f80b5585a0777f531081fab6d45b21aa1cca2089e6091b4a7453095c9a02d2cf"
+    },
+    "3806": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/5a/003806.png",
+      "imageUrl": "https://xivapi.com/i/003000/003806.png",
+      "local": "icons/003806.png",
+      "sha256": "ec660b707ceda21305cfd9f64d8ea8aa20d5404ec54f4f1dd0dde0b54eb3f5aa"
+    },
+    "3807": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/e/e3/003807.png",
+      "imageUrl": "https://xivapi.com/i/003000/003807.png",
+      "local": "icons/003807.png",
+      "sha256": "ced9d86783ea3e2cd51efe9b0b1dab23934344dbd2b5e67bb234a6fbe08b9601"
+    },
+    "3808": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/0c/003808.png",
+      "imageUrl": "https://xivapi.com/i/003000/003808.png",
+      "local": "icons/003808.png",
+      "sha256": "09942b6a9bf9140086a3c14bff2b68eb2655e34fcfd9f7153167d28977f281f2"
+    },
+    "3809": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/b/b3/003809.png",
+      "imageUrl": "https://xivapi.com/i/003000/003809.png",
+      "local": "icons/003809.png",
+      "sha256": "09ad1f38a7793faa54037341df54c41ad78dfd4b0b7ccab7004b51a618182ea4"
+    },
+    "3810": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/1/12/003810.png",
+      "imageUrl": "https://xivapi.com/i/003000/003810.png",
+      "local": "icons/003810.png",
+      "sha256": "cc52e2ac44cbfc4e619a30e8fc7751b75ceeb25dec6a3d27931a077c020e58d2"
+    },
+    "3811": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/f/f2/003811.png",
+      "imageUrl": "https://xivapi.com/i/003000/003811.png",
+      "local": "icons/003811.png",
+      "sha256": "73ec0c958a89af06a8c7919010ccc5c2cc6a9ca96dc728055a3225a1fa8fa61b"
+    },
+    "3812": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/e/e5/003812.png",
+      "imageUrl": "https://xivapi.com/i/003000/003812.png",
+      "local": "icons/003812.png",
+      "sha256": "47176f6c9a994f1137e3bf328a05bc59f1d116a5933b5d0a74c7e4fb5dc9baef"
+    },
+    "3813": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/35/003813.png",
+      "imageUrl": "https://xivapi.com/i/003000/003813.png",
+      "local": "icons/003813.png",
+      "sha256": "5b2afcc613f5261255a489d3d5ce2cf1c4636669123ca10036903003e20411f5"
+    },
+    "3814": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9f/003814.png",
+      "imageUrl": "https://xivapi.com/i/003000/003814.png",
+      "local": "icons/003814.png",
+      "sha256": "0141a2cc85e768fa3ef09818b916c2d7a5eebb498ac63948795410a9d6f00598"
+    },
+    "3815": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/76/003815.png",
+      "imageUrl": "https://xivapi.com/i/003000/003815.png",
+      "local": "icons/003815.png",
+      "sha256": "a65dac904f78283806556d2fa53a08add04e36c3be7f877bb56cea7968c91e56"
+    },
+    "3816": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/d/d3/003816.png",
+      "imageUrl": "https://xivapi.com/i/003000/003816.png",
+      "local": "icons/003816.png",
+      "sha256": "f3d0626c899ad6815389fb0e20e1deed996e08ca7e36c7112e115323866bb79b"
+    },
+    "3817": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/7d/003817.png",
+      "imageUrl": "https://xivapi.com/i/003000/003817.png",
+      "local": "icons/003817.png",
+      "sha256": "e07337d313d7567e14c5da5983ab53da1d199603e1ec028232690f93ea12c769"
+    },
+    "3818": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/f/fb/003818.png",
+      "imageUrl": "https://xivapi.com/i/003000/003818.png",
+      "local": "icons/003818.png",
+      "sha256": "ce00db21f4b7ef392f685dd7e1a75850b3e646c23f1c232ab3852efae17f8f08"
+    },
+    "3819": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/30/003819.png",
+      "imageUrl": "https://xivapi.com/i/003000/003819.png",
+      "local": "icons/003819.png",
+      "sha256": "c297647b82ea725f31f4326e0a1e0bc96aa2b4a2316ee5bd908096f59ec43227"
+    },
+    "3820": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/78/003820.png",
+      "imageUrl": "https://xivapi.com/i/003000/003820.png",
+      "local": "icons/003820.png",
+      "sha256": "8c11993e79dd5d1388966de30e2029f45207dfa953132152e21f379662e33bec"
+    },
+    "3821": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/27/003821.png",
+      "imageUrl": "https://xivapi.com/i/003000/003821.png",
+      "local": "icons/003821.png",
+      "sha256": "724ac4e55f88dd49a3706159eb144aa35629209a2e716e125b8b22b891f4751c"
+    },
+    "3822": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/94/003822.png",
+      "imageUrl": "https://xivapi.com/i/003000/003822.png",
+      "local": "icons/003822.png",
+      "sha256": "ad51ea31a64201430b79657d8628c2f7672475aa216054f5f108553d7c987bd0"
+    },
+    "3823": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/32/003823.png",
+      "imageUrl": "https://xivapi.com/i/003000/003823.png",
+      "local": "icons/003823.png",
+      "sha256": "3cca5fef4e09f9c52308cdfb6e26c03483e5717e382c536cb50fb25f01f9d7e2"
+    },
+    "3824": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/9c/003824.png",
+      "imageUrl": "https://xivapi.com/i/003000/003824.png",
+      "local": "icons/003824.png",
+      "sha256": "aae977e354cd9e596effa9f11c10b22552c960206eb75200f1447bc8b7457cfe"
+    },
+    "3825": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/06/003825.png",
+      "imageUrl": "https://xivapi.com/i/003000/003825.png",
+      "local": "icons/003825.png",
+      "sha256": "ead04e66018bcf0bcfdb8f75f54b57758e1ef5bef4a30d2d418703ae3257bf5e"
+    },
+    "3826": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/3/38/003826.png",
+      "imageUrl": "https://xivapi.com/i/003000/003826.png",
+      "local": "icons/003826.png",
+      "sha256": "3445f2b1dd7869d986e7359d44679419c90def3e243dcea5550099723c5c4552"
+    },
+    "3827": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/c/c0/003827.png",
+      "imageUrl": "https://xivapi.com/i/003000/003827.png",
+      "local": "icons/003827.png",
+      "sha256": "0f97e114483b30efa4d556ff0097f556a45e48786e02fc3f04ee0a3906d0e7e4"
+    },
+    "3828": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/b/b0/003828.png",
+      "imageUrl": "https://xivapi.com/i/003000/003828.png",
+      "local": "icons/003828.png",
+      "sha256": "c6eb09a5e99babbdd0abe07e0847ac774b22b56b199fed3f1783c52597618a15"
+    },
+    "3829": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/9/92/003829.png",
+      "imageUrl": "https://xivapi.com/i/003000/003829.png",
+      "local": "icons/003829.png",
+      "sha256": "6ef0c9172d8c19bd9fb9ff4713e072d0cfb2501a93f7eef114dfefce92eb14f9"
+    },
+    "3830": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/8/8a/003830.png",
+      "imageUrl": "https://xivapi.com/i/003000/003830.png",
+      "local": "icons/003830.png",
+      "sha256": "5b5faebac249b1b1d0e6d0186326b00c8889147d1761d9667122137f2212d3a7"
+    },
+    "3831": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/2/22/003831.png",
+      "imageUrl": "https://xivapi.com/i/003000/003831.png",
+      "local": "icons/003831.png",
+      "sha256": "6f71bea77f28613441050cf2a0518e5c66da23eb5fccd96dae859c4526c5ba24"
+    },
+    "3832": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/7/76/003832.png",
+      "imageUrl": "https://xivapi.com/i/003000/003832.png",
+      "local": "icons/003832.png",
+      "sha256": "91edd66e8586d0e3bf87b820ebcdc2d3987e9643277d867e999939b95e6b9d27"
+    },
+    "3833": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/54/003833.png",
+      "imageUrl": "https://xivapi.com/i/003000/003833.png",
+      "local": "icons/003833.png",
+      "sha256": "7294cbb0e6f663410a934928c4aab4648281caa48228473fba967a265b6e469e"
+    },
+    "3834": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/1/18/003834.png",
+      "imageUrl": "https://xivapi.com/i/003000/003834.png",
+      "local": "icons/003834.png",
+      "sha256": "9661fd33bc05fe6b57e6eab45bb8a386da368fd360d1d4fcb96aeb016590b0f6"
+    },
+    "3835": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/5/50/003835.png",
+      "imageUrl": "https://xivapi.com/i/003000/003835.png",
+      "local": "icons/003835.png",
+      "sha256": "00d7a52e4c42e95570ab11e94ff06d4831ee5b7583d773259062756fc6489798"
+    },
+    "3836": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/0a/003836.png",
+      "imageUrl": "https://xivapi.com/i/003000/003836.png",
+      "local": "icons/003836.png",
+      "sha256": "549ba9a4d10e52b4056500d79a70dc0735144a3cb6bb6840608fdebb9676ba1f"
+    },
+    "3838": {
+      "huijiUrl": "https://huiji-public.huijistatic.com/ff14/uploads/0/08/003838.png",
+      "imageUrl": "https://xivapi.com/i/003000/003838.png",
+      "local": "icons/003838.png",
+      "sha256": "a69bab08ac4a910040ccb5827c6595bf0ae21075aaf8a736173579be3d1222e3"
+    }
+  },
+  "missing": []
+}

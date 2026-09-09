@@ -1,0 +1,10 @@
+vendor/
+fixtures/
+*.exe
+*.obj
+*.glb
+*-dump.txt
+*-tracks.csv
+skeleton-*.json
+fixture-report.json
+__pycache__/

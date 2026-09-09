@@ -59,7 +59,7 @@ def download(item):
         path.write_bytes(response.content)
     with Image.open(path) as image:
         image.verify()
-    return icon_id, {"huijiUrl": url, "imageUrl": image_url, "local": f"/icons/{icon_id:06d}.png", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    return icon_id, {"huijiUrl": url, "imageUrl": image_url, "local": f"icons/{icon_id:06d}.png", "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
 
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
     downloaded = dict(pool.map(download, locations.items()))

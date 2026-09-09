@@ -22,7 +22,7 @@
 | 原始地形碰撞分块 | 173 | 76 |
 | 合并后原始碰撞三角形 | 98,518 | 227,082 |
 
-原始导出保存在 `G:\FFXIV-MapTools\exports/`。可运行的本地场景资源保存在 `public/extracted/`，当前约 360 MiB；该目录已加入 Git 忽略，代码提交不包含提取后的游戏模型和贴图。
+当前可运行快照在 `public/extracted/bundled/`，随私有仓库提交；`active.json` 使用相对目录指向这两张地图。预构建的 `site/` 同时包含完整运行资源，服务器无需原始客户端。原始解包、历史版本和失败暂存仍被 Git 忽略。
 
 ## 模块划分
 
@@ -37,17 +37,19 @@
 ## 重建与验证
 
 ```powershell
-.\scripts\import-client.ps1
+.\scripts\import-client.ps1 -Client "<你的客户端目录>"
 npm run verify:extracted
 npm run verify
 npm run build
 ```
 
-也可以从工具目录执行 `G:\FFXIV-MapTools\rebuild-client-maps.ps1`，一次完成工具构建、两张地图解包、模型/贴图/场景组装、PCB 碰撞转换和项目验证。`-SkipExtract` 复用已有原始导出，`-KeepIntermediate` 保留自检夹具；日志写入工具目录。
+工具源码随仓库保存在 `tools/map-tools/`。先按工具 README 准备依赖，再调用项目入口。`-Client` 指定客户端目录，也可设置 `FFXIV_CLIENT`；`-Tools` 可指向外部工具目录，`-Output` 可指定原始导出位置，默认均从项目或工具目录推导。
 
-`import-client.ps1` 默认使用上述本机目录，可通过 `-Client`、`-Tools` 指定其他位置。工具包含 `.NET 10` 便携 SDK，Python 解码需要 `requests` 和 Pillow。
+`-Maps gridania` 只重建所选场景；`-SkipExtract` 复用与当前客户端版本一致的原始解包数据，但仍重新转换模型；`-NoPublish` 验证生成结果而不切换当前地图。Python 入口也支持 `--scenes`、`--skip-extract`、`--no-publish` 和 `--node`。日志逐步写入工具目录的 `logs/<run-id>/`。
 
-提取器先读取 LVB/LGB/TERA/MDL/MTRL/TEX/SGB，展开共享场景组并记录位移、旋转和缩放。读取原始 `collision/list.pcb` 及对应 `trNNNN.pcb`，连同建筑实例碰撞组装为独立碰撞数据。GLB 保留位置、法线、UV 与材质路径。MTRL 的采样器 CRC 映射到颜色、法线、高光和水面纹理；`g_ColorUVScale`、`g_NormalUVScale`、`g_SpecularUVScale` 以及颜色/自发光参数写入清单并应用到 Three.js 材质。
+每次重建生成独立版本目录，验证通过后原子替换 `active.json`。另一张未选中的地图保持原引用，失败不会覆盖正在使用的版本，旧版本保留供回滚。发布到 Git 前更新 `bundled/` 快照与 `site/`；原始解包目录无需上传。
+
+提取器先读取 LVB/LGB/TERA/MDL/MTRL/TEX/SGB，展开共享场景组并记录位移、旋转和缩放。读取原始 `collision/list.pcb` 及对应 `trNNNN.pcb`，连同建筑实例碰撞组装为独立碰撞数据。GLB 保留源位置、法线、最多四组 UV、顶点颜色与材质路径；实例保留源层级矩阵。每个材质使用独立的纹理采样变换，避免共享贴图的 UV 缩放互相覆盖。第二层颜色使用源 UV1 与顶点 alpha，混合公式仍是近似。MTRL 的采样器 CRC 映射到颜色、法线、高光和水面纹理；`g_ColorUVScale`、`g_NormalUVScale`、`g_SpecularUVScale` 以及颜色/自发光参数写入清单并应用到 Three.js 材质。运行时按材质清单绑定颜色、法线和高光贴图，`flipY`、重复模式和各组 UV 缩放保持一致。
 
 验证包括所有 GLB 头/索引/顶点范围、实例矩阵、贴图存在性、原始碰撞三角形合法性、出生点落地，以及浏览器中的真实地图加载和木人战斗。
 

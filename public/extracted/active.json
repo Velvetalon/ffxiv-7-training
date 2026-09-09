@@ -1,0 +1,16 @@
+{
+  "runId": "20260909T105118Z-43c2c6",
+  "publishedAt": "2026-09-09T10:52:07.831808+00:00",
+  "scenes": {
+    "gridania": {
+      "base": "bundled/gridania/",
+      "clientVersion": "2026.09.01.0000.0000",
+      "manifestSha256": "ee394f7b052bf7168b0ff31101a68442e9eacedbd24b361a408d3308401d7af4"
+    },
+    "limsa": {
+      "base": "bundled/limsa/",
+      "clientVersion": "2026.09.01.0000.0000",
+      "manifestSha256": "d46d2807f2566133034a6871c03eff24c567eceb16de196f8038856235cfc672"
+    }
+  }
+}

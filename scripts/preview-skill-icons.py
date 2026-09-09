@@ -1,13 +1,57 @@
+import argparse
 import json
+import os
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
+
+
+def discover_font(requested: str | None) -> Path | None:
+    """Use a caller-supplied font first, then find a common system UI font."""
+    if requested:
+        candidate = Path(requested).expanduser()
+        if not candidate.is_file():
+            raise SystemExit(f"Font file does not exist: {candidate}")
+        return candidate
+
+    directories = [
+        Path("/usr/share/fonts"),
+        Path("/usr/local/share/fonts"),
+        Path.home() / ".local/share/fonts",
+        Path.home() / ".fonts",
+    ]
+    if os.environ.get("WINDIR"):
+        directories.insert(0, Path(os.environ["WINDIR"]) / "Fonts")
+    names = (
+        "msyh.ttc", "msyh.ttf", "NotoSansCJK-Regular.ttc", "NotoSansCJK-Regular.otf",
+        "NotoSans-Regular.ttf", "DejaVuSans.ttf", "segoeui.ttf", "arial.ttf",
+    )
+    for directory in directories:
+        for name in names:
+            candidate = directory / name
+            if candidate.is_file():
+                return candidate
+    return None
+
+
+def load_font(path: Path | None, size: int):
+    return ImageFont.truetype(str(path), size) if path else ImageFont.load_default()
+
+
+parser = argparse.ArgumentParser(description="Render the local skill icon contact sheet.")
+parser.add_argument("--font", help="TTF/TTC/OTF font file to use; defaults to a discovered system font")
+args = parser.parse_args()
 
 root = Path(__file__).resolve().parents[1]
 roster = json.loads((root / "work/icon-tools/roster.json").read_text(encoding="utf-8"))
 mapping = json.loads((root / "src/ui/action-icons.json").read_text(encoding="utf-8"))
-title_font = ImageFont.truetype("C:/Windows/Fonts/msyh.ttc", 26)
-label_font = ImageFont.truetype("C:/Windows/Fonts/msyh.ttc", 16)
-small_font = ImageFont.truetype("C:/Windows/Fonts/segoeui.ttf", 12)
+font_path = discover_font(args.font)
+if font_path is None:
+    print("No system TrueType font found; Pillow default font will be used.")
+else:
+    print(f"Using font: {font_path}")
+title_font = load_font(font_path, 26)
+label_font = load_font(font_path, 16)
+small_font = load_font(font_path, 12)
 canvas = Image.new("RGB", (1120, 870), "#132330")
 draw = ImageDraw.Draw(canvas)
 draw.text((30, 20), "FFXIV 7.0  技能图标对照", font=title_font, fill="#f0dbad")
