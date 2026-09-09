@@ -1,0 +1,8 @@
+{
+  "folders": [{ "path": "." }],
+  "settings": {
+    "files.exclude": { "**/node_modules": true, "**/dist": true, "**/work": true },
+    "files.eol": "\n",
+    "editor.tabSize": 2
+  }
+}
