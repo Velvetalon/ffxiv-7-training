@@ -1,0 +1,13 @@
+{
+  "scene": "g3t1",
+  "terrainChunks": 54,
+  "instancedCollisionModels": 182,
+  "triangles": 152335,
+  "bytes": 5484060,
+  "spawn": [
+    78.2422,
+    1.989535,
+    97.48843
+  ],
+  "errors": []
+}
