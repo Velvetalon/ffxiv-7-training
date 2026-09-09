@@ -404,12 +404,15 @@ export function addBanners(group, x, z, count = 3) {
 }
 
 export function disposeObject(root) {
+  const textures = new Set();
   root.traverse?.((node) => {
     node.geometry?.dispose();
     if (!node.material) return;
     const materials = Array.isArray(node.material) ? node.material : [node.material];
     materials.forEach((value) => {
+      if (value.map?.userData.sceneOwned) textures.add(value.map);
       if (!value.userData.sharedWorldMaterial) value.dispose?.();
     });
   });
+  textures.forEach(texture => texture.dispose());
 }

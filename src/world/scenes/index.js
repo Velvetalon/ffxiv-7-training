@@ -1,4 +1,3 @@
-import { buildGridania } from './gridania.js';
-import { buildLimsa } from './limsa.js';
+import { buildCity } from '../terrain/buildCity.js';
 
-export const SCENE_BUILDERS = { gridania: buildGridania, limsa: buildLimsa };
+export const SCENE_BUILDERS = { gridania: (state, group) => buildCity(state, group, 'gridania'), limsa: (state, group) => buildCity(state, group, 'limsa') };

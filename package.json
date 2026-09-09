@@ -7,7 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "verify:terrain": "node scripts/verify-terrain.mjs"
   },
   "dependencies": {
     "three": "0.180.0",

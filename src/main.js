@@ -31,6 +31,7 @@ const world = new World($('#world'), {
 });
 world.setJob('WHM');
 world.setQuality(settings.quality);
+world.setControlMode(settings.controlMode);
 world.setScene(currentScene);
 world.targetNearest();
 
@@ -152,6 +153,12 @@ function saveSettings() {
 saveSettings();
 
 document.addEventListener('click', (event) => {
+  const landmark = event.target.closest('[data-landmark]');
+  if (landmark) {
+    if (combat.getState().inCombat) { toast('请先重置练习再快速前往'); return; }
+    if (world.goToLandmark(landmark.dataset.landmark)) closeModal();
+    return;
+  }
   if (event.target.closest('#training-hit')) {
     training.hit();
     closeModal();
@@ -180,6 +187,7 @@ document.addEventListener('click', (event) => {
   }
   if (event.target.closest('.modal-close') || event.target.id === 'modal-layer') closeModal();
 });
+$('#app').addEventListener('contextmenu', event => event.preventDefault());
 $('#teleport-open').addEventListener('click', openTeleport);
 $('#book-open').addEventListener('click', () => openBook());
 $('#settings-open').addEventListener('click', openSettings);
@@ -198,6 +206,7 @@ document.addEventListener('input', (event) => {
   if (id === 'volume') { settings.volume = Number(value); saveSettings(); }
   if (id === 'hud-scale') { settings.scale = Number(value); $('#hud-scale-output').textContent = `${value}%`; saveSettings(); }
   if (id === 'target-count') targetCount = Math.max(1, Math.min(8, Math.round(Number(value) || 1)));
+  if (id === 'control-mode') { settings.controlMode = value; world.setControlMode(value); saveSettings(); }
   if (id === 'healing-pressure') training.setEnabled(checked);
 });
 document.addEventListener('pointerover', (event) => {

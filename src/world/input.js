@@ -1,5 +1,5 @@
 export class InputController {
-  constructor(canvas, { onOrbit, onClick } = {}) {
+  constructor(canvas, { onOrbit, onClick, onLookStart } = {}) {
     this.canvas = canvas;
     this.enabled = true;
     this.keys = new Set();
@@ -7,6 +7,16 @@ export class InputController {
     this.start = null;
     this.onOrbit = onOrbit;
     this.onClick = onClick;
+    this.onLookStart = onLookStart;
+    this.controlMode = 'traditional';
+    this.onContextMenu = event => event.preventDefault();
+    this.onBlur = () => { this.keys.clear(); this.releaseLook(); };
+    this.onLockChange = () => {
+      if (document.pointerLockElement === this.canvas) {
+        if (!this.isLooking) document.exitPointerLock();
+      } else if (this.wasLocked) this.releaseLook();
+      this.wasLocked = document.pointerLockElement === this.canvas;
+    };
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);
@@ -19,17 +29,29 @@ export class InputController {
     window.addEventListener('pointermove', this.onPointerMove);
     window.addEventListener('pointerup', this.onPointerUp);
     canvas.addEventListener('wheel', this.onWheel, { passive: false });
+    canvas.addEventListener('contextmenu', this.onContextMenu);
+    window.addEventListener('blur', this.onBlur);
+    window.addEventListener('pointercancel', this.onBlur);
+    document.addEventListener('pointerlockchange', this.onLockChange);
     canvas.style.touchAction = 'none';
   }
 
   setEnabled(enabled) {
     this.enabled = Boolean(enabled);
-    if (!this.enabled) this.keys.clear();
+    if (!this.enabled) { this.keys.clear(); this.releaseLook(); }
   }
 
+  get isLooking() { return this.drag?.button === 2 && this.controlMode === 'traditional'; }
+  setControlMode(mode) { this.releaseLook(); this.controlMode = mode === 'orbit' ? 'orbit' : 'traditional'; }
+  releaseLook() {
+    const pointerId = this.drag?.pointerId;
+    this.drag = null; this.start = null; this.canvas.style.cursor = '';
+    if (pointerId !== undefined && this.canvas.hasPointerCapture?.(pointerId)) this.canvas.releasePointerCapture(pointerId);
+    if (document.pointerLockElement === this.canvas) document.exitPointerLock();
+  }
   axes() {
     const forward = Number(this.keys.has('KeyW') || this.keys.has('ArrowUp')) - Number(this.keys.has('KeyS') || this.keys.has('ArrowDown'));
-    const right = Number(this.keys.has('KeyD') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('ArrowLeft'));
+    const right = Number(this.keys.has('KeyD') || this.keys.has('KeyE') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('KeyQ') || this.keys.has('ArrowLeft'));
     return { forward, right, sprint: this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') };
   }
 
@@ -40,12 +62,17 @@ export class InputController {
   }
 
   dispose() {
+    this.releaseLook();
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('keyup', this.onKeyUp);
     this.canvas.removeEventListener('pointerdown', this.onPointerDown);
     window.removeEventListener('pointermove', this.onPointerMove);
     window.removeEventListener('pointerup', this.onPointerUp);
     this.canvas.removeEventListener('wheel', this.onWheel);
+    this.canvas.removeEventListener('contextmenu', this.onContextMenu);
+    window.removeEventListener('blur', this.onBlur);
+    window.removeEventListener('pointercancel', this.onBlur);
+    document.removeEventListener('pointerlockchange', this.onLockChange);
   }
 
   onKeyDown(event) {
@@ -55,7 +82,8 @@ export class InputController {
       this.onClick?.('nearest');
       return;
     }
-    if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'].includes(event.code)) {
+    if (event.code === 'Escape') this.releaseLook();
+    if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'].includes(event.code)) {
       event.preventDefault();
       this.keys.add(event.code);
     }
@@ -67,15 +95,24 @@ export class InputController {
 
   onPointerDown(event) {
     if (!this.enabled) return;
-    this.drag = { x: event.clientX, y: event.clientY, button: event.button };
+    if (![0, 2].includes(event.button)) return;
+    event.preventDefault();
+    this.drag = { x: event.clientX, y: event.clientY, button: event.button, pointerId: event.pointerId };
     this.start = { x: event.clientX, y: event.clientY };
     this.canvas.setPointerCapture?.(event.pointerId);
+    if (this.isLooking) {
+      this.canvas.style.cursor = 'none';
+      this.onLookStart?.();
+      // Embedded browsers may deny pointer lock. Pointer capture still provides drag-look.
+      try { this.canvas.requestPointerLock?.()?.catch(() => {}); } catch { /* Keep captured drag-look. */ }
+    }
   }
 
   onPointerMove(event) {
     if (!this.drag || !this.enabled) return;
-    const dx = event.clientX - this.drag.x;
-    const dy = event.clientY - this.drag.y;
+    const locked = document.pointerLockElement === this.canvas;
+    const dx = locked ? event.movementX : event.clientX - this.drag.x;
+    const dy = locked ? event.movementY : event.clientY - this.drag.y;
     if (this.drag.button === 0 || this.drag.button === 2) this.onOrbit?.(dx, dy);
     this.drag.x = event.clientX;
     this.drag.y = event.clientY;
@@ -83,8 +120,9 @@ export class InputController {
 
   onPointerUp(event) {
     if (!this.drag) return;
+    if (event.button !== this.drag.button) return;
     const moved = Math.hypot(event.clientX - this.start.x, event.clientY - this.start.y);
-    this.drag = null;
+    this.releaseLook();
     if (moved < 7 && event.button === 0) this.onClick?.('pick', event);
   }
 

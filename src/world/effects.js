@@ -86,7 +86,7 @@ export class EffectSystem {
     const duration = Math.max(0.1, Number(event.duration) || 10);
     const color = new THREE.Color(event.color || '#ecd08d');
     const group = new THREE.Group();
-    group.position.set(origin.x, 0.07, origin.z);
+    group.position.set(origin.x, (origin.y || 0) + 0.07, origin.z);
     const ring = mesh(new THREE.TorusGeometry(radius, 0.05, 8, 48), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.8, depthWrite: false }), 0, 0, 0, false);
     ring.rotation.x = Math.PI * 0.5;
     const constellation = new THREE.Group();

@@ -7,6 +7,8 @@ import { EntityRegistry } from './entities.js';
 import { InputController } from './input.js';
 import { createRenderer, addLighting, setQuality } from './renderer.js';
 import { SCENE_BUILDERS } from './scenes/index.js';
+import { getLayout } from './terrain/layouts.js';
+import { Navigation } from './terrain/Navigation.js';
 
 const contextTarget = new THREE.Vector3();
 const contextPlayer = new THREE.Vector3();
@@ -18,7 +20,7 @@ export class World {
     this.canvas = canvas;
     this.callbacks = { onTarget, onInteract, onMove };
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(56, 1, 0.1, 220);
+    this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
     this.renderer = createRenderer(canvas);
     this.registry = new EntityRegistry();
     this.sceneRoot = new THREE.Group();
@@ -55,6 +57,7 @@ export class World {
     this.input = new InputController(canvas, {
       onOrbit: (dx, dy, wheel) => this.adjustCamera(dx, dy, wheel),
       onClick: (type, event) => (type === 'nearest' ? this.targetNearest() : this.pick(event)),
+      onLookStart: () => { this.player.rotation.y = this.azimuth + Math.PI; },
     });
     this.setScene(this.sceneId);
   }
@@ -72,9 +75,11 @@ export class World {
     this.crystals = [];
     this.paths = [];
     this.navigationRegions = [];
+    this.layout = getLayout(id);
+    this.navigation = new Navigation(this.layout);
     builder(this, this.sceneRoot);
     this.scene.background = new THREE.Color(this.fogColor);
-    this.scene.fog = new THREE.Fog(this.fogColor, 35, 115);
+    this.scene.fog = new THREE.Fog(this.fogColor, 65, 260);
     addLighting(this.sceneRoot, id);
     setQuality(this.renderer, this.sceneRoot, this.quality);
     this.player.position.copy(this.spawn);
@@ -83,7 +88,7 @@ export class World {
     this.clearReturnGate();
     this.azimuth = 0.05;
     this.polar = 1.2;
-    this.zoom = 18.5;
+    this.zoom = 16;
     this.introFocus = 1;
     this.targetNearest();
     this.updateCamera(0);
@@ -111,8 +116,10 @@ export class World {
     this.actorAnimation.update(elapsed, this.moving, this.time);
     animateWater(this.water, this.time);
     animateCrystals(this.crystals, this.time, elapsed);
+    for (const building of this.architecture || []) if (building.userData.wheel) building.userData.wheel.rotation.z += elapsed * 0.18;
+    for (const label of this.landmarkLabels || []) label.visible = label.position.distanceTo(this.player.position) < 36;
     this.registry.values().forEach((entity, index) => {
-      if (entity.type === 'npc') entity.object.position.y = Math.sin(this.time * 1.65 + index * 1.7) * 0.035;
+      if (entity.type === 'npc') entity.object.position.y = (entity.baseY || 0) + Math.sin(this.time * 1.65 + index * 1.7) * 0.025;
     });
     this.effects.update(elapsed);
     this.updateCamera(elapsed);
@@ -130,7 +137,7 @@ export class World {
     const fields = this.effects.activeFieldIdsAt(this.player.position);
     if (!this.target) return { moving: this.moving, distance: 99, positional: 'rear', target: false, targets: 0, fields };
     const targetPosition = this.target.object.getWorldPosition(contextTarget);
-    const distance = this.player.position.distanceTo(targetPosition);
+    const distance = Math.hypot(this.player.position.x - targetPosition.x, this.player.position.z - targetPosition.z);
     const direction = contextPlayer.copy(this.player.position).sub(targetPosition).setY(0).normalize();
     const forward = new THREE.Vector3(0, 0, 1).applyQuaternion(this.target.object.quaternion);
     const dot = forward.dot(direction);
@@ -152,7 +159,7 @@ export class World {
       target: this.target ? { id: this.target.id, name: this.target.name, hp: this.target.hp, level: this.target.level } : null,
       entities: this.registry.getInfo(),
       cameraAngle: Number(this.azimuth.toFixed(3)),
-      map: { paths: this.paths.map((path) => ({ ...path })) },
+      map: { ...this.layout },
     };
   }
 
@@ -190,7 +197,7 @@ export class World {
       if (!this.returnGate) return { ok: false, reason: '没有可返回的空间印记' };
       const destination = this.returnGate.position;
       if (this.isBlocked(destination.x, destination.z)) return { ok: false, reason: '返回点已被阻挡' };
-      this.player.position.set(destination.x, 0, destination.z);
+      this.player.position.set(destination.x, this.navigation.surfaceAt(destination.x, destination.z)?.height || 0, destination.z);
       this.clearReturnGate();
       this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
       return { ok: true, moved: 0, returned: true, position: { x: this.player.position.x, z: this.player.position.z } };
@@ -205,6 +212,7 @@ export class World {
     for (let moved = 0; moved < requested; moved += stepSize) {
       const candidate = this.player.position.clone().addScaledVector(direction, Math.min(stepSize, requested - moved));
       if (this.isBlocked(candidate.x, candidate.z)) break;
+      candidate.y = this.navigation.surfaceAt(candidate.x, candidate.z)?.height || 0;
       this.player.position.copy(candidate);
     }
     const moved = origin.distanceTo(this.player.position);
@@ -229,7 +237,8 @@ export class World {
   moveToDummy() {
     const target = this.registry.nearestTarget(this.player.position);
     if (!target) return;
-    this.player.position.set(target.object.position.x, 0, target.object.position.z + 2.4);
+    const point = this.navigation.nearestWalkable(target.object.position.x, target.object.position.z + 2.4);
+    this.player.position.set(point.x, this.navigation.surfaceAt(point.x, point.z)?.height || 0, point.z);
     this.player.rotation.y = Math.PI;
     this.selectTarget(target);
     this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
@@ -271,27 +280,32 @@ export class World {
         0,
         -Math.cos(this.azimuth) * forward - Math.sin(this.azimuth) * right,
       ).normalize();
-      const candidate = this.player.position.clone().addScaledVector(direction, (sprint ? 8.5 : 5.4) * this.movementSpeed * dt);
-      if (!this.isBlocked(candidate.x, candidate.z)) this.player.position.copy(candidate);
-      this.player.rotation.y = Math.atan2(direction.x, direction.z);
+      const offset = direction.clone().multiplyScalar((sprint ? 8.5 : 5.4) * this.movementSpeed * dt);
+      const y = this.player.position.y;
+      this.navigation.move(this.player.position, offset.x, offset.z);
+      if (this.jumpVelocity) this.player.position.y = y;
+      this.player.rotation.y = this.input.isLooking ? this.azimuth + Math.PI : Math.atan2(direction.x, direction.z);
       this.introFocus = 0;
       this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
     }
+    const floor = this.navigation.surfaceAt(this.player.position.x, this.player.position.z)?.height || 0;
     if (this.jumpVelocity || this.input.consumeJump()) {
-      if (!this.jumpVelocity && this.player.position.y <= 0.001) this.jumpVelocity = 6.2;
+      if (!this.jumpVelocity && this.player.position.y <= floor + 0.001) this.jumpVelocity = 6.2;
       this.jumpVelocity -= 18 * dt;
-      this.player.position.y = Math.max(0, this.player.position.y + this.jumpVelocity * dt);
-      if (this.player.position.y === 0) this.jumpVelocity = 0;
+      this.player.position.y = Math.max(floor, this.player.position.y + this.jumpVelocity * dt);
+      if (this.player.position.y === floor) this.jumpVelocity = 0;
     }
   }
 
   isBlocked(x, z) {
+    if (this.navigation) return !this.navigation.isWalkable(x, z);
     if (Math.abs(x) > this.bounds || Math.abs(z) > this.bounds) return true;
     if (this.navigationRegions.length && !this.isWalkable(x, z)) return true;
     return this.obstacles.some((obstacle) => Math.hypot(x - obstacle.x, z - obstacle.z) < obstacle.radius + 0.48);
   }
 
   isWalkable(x, z) {
+    if (this.navigation) return this.navigation.isWalkable(x, z);
     return this.navigationRegions.some((region) => {
       if (region.type === 'circle') return Math.hypot(x - region.x, z - region.z) <= region.radius;
       const rotation = region.rotation || 0;
@@ -308,14 +322,17 @@ export class World {
   adjustCamera(dx, dy, wheel = 0) {
     this.azimuth -= dx * 0.007;
     this.polar = THREE.MathUtils.clamp(this.polar + dy * 0.006, 0.56, 1.42);
-    this.zoom = THREE.MathUtils.clamp(this.zoom + wheel * 0.012, 6.5, 25);
+    this.zoom = THREE.MathUtils.clamp(this.zoom + wheel * 0.012, 4.5, 45);
     this.introFocus = 0;
+    if (this.input.isLooking) this.player.rotation.y = this.azimuth + Math.PI;
   }
+
+  setControlMode(mode) { this.input.setControlMode(mode); }
 
   saveReturnGate(duration, color) {
     this.clearReturnGate();
     const group = new THREE.Group();
-    group.position.set(this.player.position.x, 0.08, this.player.position.z);
+    group.position.set(this.player.position.x, this.player.position.y + 0.08, this.player.position.z);
     const ring = new THREE.Mesh(new THREE.TorusGeometry(0.78, 0.055, 8, 28), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.9 }));
     ring.rotation.x = Math.PI * 0.5;
     const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.27, 2.1, 8, 1, true), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.2, side: THREE.DoubleSide }));
@@ -338,7 +355,7 @@ export class World {
       this.returnGate.group.rotation.y += dt * 1.7;
       if (this.returnGate.expiresAt && this.time >= this.returnGate.expiresAt) this.clearReturnGate();
     }
-    cameraFocus.copy(this.player.position).add(new THREE.Vector3(0, 1.45, -8 * this.introFocus));
+    cameraFocus.copy(this.player.position).add(new THREE.Vector3(0, 1.45, -3 * this.introFocus));
     const polar = this.cameraMode === 'follow' ? 1.12 : this.polar;
     const distance = this.cameraMode === 'follow' ? Math.min(this.zoom, 10.5) : this.zoom;
     const horizontal = Math.sin(polar) * distance;
@@ -358,5 +375,16 @@ export class World {
     if (!entity) return;
     if (entity.type === 'dummy' || entity.type === 'monster') this.selectTarget(entity);
     else this.callbacks.onInteract?.({ id: entity.id, name: entity.name, dialogue: entity.dialogue });
+  }
+
+  goToLandmark(id) {
+    const landmark = this.layout.landmarks.find(item => item.id === id);
+    if (!landmark) return false;
+    const point = this.navigation.nearestWalkable(landmark.x, landmark.z + (landmark.d || 0) / 2 + 2);
+    if (!point) return false;
+    this.player.position.set(point.x, this.navigation.surfaceAt(point.x, point.z)?.height || 0, point.z);
+    this.player.rotation.y = Math.PI;
+    this.callbacks.onMove?.(point);
+    return true;
   }
 }

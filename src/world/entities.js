@@ -11,7 +11,7 @@ export class EntityRegistry {
     if (!entity?.id || !entity?.object) throw new Error('Entity requires an id and Three.js object');
     this.entities.set(entity.id, entity);
     entity.object.traverse((node) => {
-      if (node.isMesh) node.userData.entityId = entity.id;
+      if (node.isMesh || node.isSprite) node.userData.entityId = entity.id;
     });
     return entity;
   }

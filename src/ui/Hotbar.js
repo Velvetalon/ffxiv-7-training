@@ -1,5 +1,6 @@
 import { $, escape, icon, iconify } from './dom.js';
 import { actionColor } from './ActionPresentation.js';
+import { skillIcon } from './SkillIcon.js';
 
 const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='];
 const codes = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal'];
@@ -51,7 +52,7 @@ export class Hotbar {
         if (!action) return `<div class="skill empty"><span class="skill-key">${index >= 12 ? '⇧' : ''}${keys[index % 12]}</span></div>`;
         const color = actionColor(action, this.jobs.find(job => job.id === state.jobId));
         return `<button class="skill" data-action="${escape(action.id)}" aria-label="${escape(action.name)}" style="--skill-color:${color}">
-          <span class="skill-art">${icon(action.icon || 'sparkles')}</span><span class="cooldown-mask"></span><span class="skill-key">${index >= 12 ? '⇧' : ''}${keys[index % 12]}</span><span class="skill-cooldown"></span><span class="skill-charges"></span><span class="skill-label">${escape(action.name)}</span><span class="skill-kind ${action.gcd ? 'gcd' : 'ogcd'}"></span>
+          <span class="skill-art">${skillIcon(action)}</span><span class="cooldown-mask"></span><span class="skill-key">${index >= 12 ? '⇧' : ''}${keys[index % 12]}</span><span class="skill-cooldown"></span><span class="skill-charges"></span><span class="skill-label">${escape(action.name)}</span><span class="skill-kind ${action.gcd ? 'gcd' : 'ogcd'}"></span>
         </button>`;
       }).join('');
       iconify($('#hotbars'));
@@ -80,7 +81,7 @@ export class Hotbar {
     if (!action) { this.hideTooltip(); return; }
     this.hoverId = id;
     const tooltip = $('#skill-tooltip');
-    tooltip.innerHTML = `<div class="tooltip-heading"><span class="tooltip-icon" style="color:${action.color || '#ddc687'}">${icon(action.icon || 'sparkles')}</span><div><h3>${escape(action.name)}</h3><small>${escape(action.en || ({ spell: '魔法', ability: '能力', weaponskill: '战技' })[action.kind] || '技能')}</small></div><span class="tooltip-type">${action.gcd ? 'GCD' : '能力'}</span></div><div class="tooltip-stats"><span>咏唱 <b>${action.cast ? `${action.cast.toFixed(1)}s` : '即时'}</b></span><span>复唱 <b>${Number(action.recast || 0).toFixed(1)}s</b></span><span>射程 <b>${action.range ?? 0}y</b></span>${action.potency ? `<span>威力 <b>${action.potency}</b></span>` : ''}</div><p>${escape(action.description)}</p>${!action.enabled && action.reason ? `<div class="tooltip-requirement">${escape(action.reason)}</div>` : ''}`;
+    tooltip.innerHTML = `<div class="tooltip-heading"><span class="tooltip-icon" style="color:${action.color || '#ddc687'}">${skillIcon(action)}</span><div><h3>${escape(action.name)}</h3><small>${escape(action.en || ({ spell: '魔法', ability: '能力', weaponskill: '战技' })[action.kind] || '技能')}</small></div><span class="tooltip-type">${action.gcd ? 'GCD' : '能力'}</span></div><div class="tooltip-stats"><span>咏唱 <b>${action.cast ? `${action.cast.toFixed(1)}s` : '即时'}</b></span><span>复唱 <b>${Number(action.recast || 0).toFixed(1)}s</b></span><span>射程 <b>${action.range ?? 0}y</b></span>${action.potency ? `<span>威力 <b>${action.potency}</b></span>` : ''}</div><p>${escape(action.description)}</p>${!action.enabled && action.reason ? `<div class="tooltip-requirement">${escape(action.reason)}</div>` : ''}`;
     iconify(tooltip);
     tooltip.classList.remove('hidden');
   }
