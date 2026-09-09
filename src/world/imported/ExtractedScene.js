@@ -16,9 +16,9 @@ export async function loadExtractedScene(id, onProgress = () => {}) {
   let completed = 0, cursor = 0;
   async function getMaterial(path) {
     if (materials.has(path)) return materials.get(path);
-    const promise = (async () => {
-      const record = manifest.materials[path];
-      let map;
+      const promise = (async () => {
+        const record = manifest.materials[path];
+        let map;
       if (record?.map) {
         if (!textures.has(record.map)) textures.set(record.map, textureLoader.loadAsync(base + record.map));
         map = await textures.get(record.map);
@@ -30,12 +30,36 @@ export async function loadExtractedScene(id, onProgress = () => {}) {
       }
       const water = /water/i.test(record?.shader || path || '');
       const foliage = /(?:tre[ea]|leaf|grass|shiba|kus[ae]|plant)/i.test(path || '');
+      let normalMap;
+      let specularMap;
+      if (record?.normalMap) {
+        if (!textures.has(record.normalMap)) textures.set(record.normalMap, textureLoader.loadAsync(base + record.normalMap));
+        normalMap = await textures.get(record.normalMap);
+        normalMap.colorSpace = THREE.NoColorSpace;
+        normalMap.flipY = false;
+        normalMap.wrapS = normalMap.wrapT = THREE.RepeatWrapping;
+      }
+      if (record?.specularMap) {
+        if (!textures.has(record.specularMap)) textures.set(record.specularMap, textureLoader.loadAsync(base + record.specularMap));
+        specularMap = await textures.get(record.specularMap);
+        specularMap.colorSpace = THREE.NoColorSpace;
+        specularMap.flipY = false;
+        specularMap.wrapS = specularMap.wrapT = THREE.RepeatWrapping;
+      }
+      const diffuseColor = record?.diffuseColor || [1, 1, 1];
       const mat = new THREE.MeshStandardMaterial({
-        map: map || null, color: map ? '#ffffff' : water ? '#6dabae' : '#abb4a9',
+        map: map || null,
+        normalMap: normalMap || null,
+        normalScale: new THREE.Vector2(record?.normalScale || 1, record?.normalScale || 1),
+        roughnessMap: specularMap || null,
+        color: map ? new THREE.Color(diffuseColor[0], diffuseColor[1], diffuseColor[2]) : water ? '#6dabae' : '#abb4a9',
         roughness: water ? 0.2 : 0.95, metalness: 0,
         side: THREE.DoubleSide, alphaTest: foliage ? 0.4 : 0.05,
         transparent: water, opacity: water ? 0.7 : 1,
       });
+      if (map && record?.colorUVScale) map.repeat.set(record.colorUVScale[0] || 1, record.colorUVScale[1] || 1);
+      if (normalMap && record?.normalUVScale) normalMap.repeat.set(record.normalUVScale[0] || 1, record.normalUVScale[1] || 1);
+      if (specularMap && record?.specularUVScale) specularMap.repeat.set(record.specularUVScale[0] || 1, record.specularUVScale[1] || 1);
       mat.name = path || 'unmapped';
       return mat;
     })();

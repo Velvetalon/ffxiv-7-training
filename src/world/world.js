@@ -12,11 +12,10 @@ import { Navigation } from './terrain/Navigation.js';
 import { loadExtractedScene } from './imported/ExtractedScene.js';
 import { MeshNavigation } from './imported/MeshNavigation.js';
 import { mountEncounter } from './imported/MountScene.js';
+import { FollowCamera } from './camera/FollowCamera.js';
 
 const contextTarget = new THREE.Vector3();
 const contextPlayer = new THREE.Vector3();
-const cameraFocus = new THREE.Vector3();
-const cameraLook = new THREE.Vector3();
 
 export class World {
   constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady } = {}) {
@@ -24,6 +23,7 @@ export class World {
     this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady };
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
+    this.followCamera = new FollowCamera(this.camera);
     this.renderer = createRenderer(canvas);
     this.registry = new EntityRegistry();
     this.sceneRoot = new THREE.Group();
@@ -96,6 +96,7 @@ export class World {
     this.zoom = 16;
     this.introFocus = 1;
     this.targetNearest();
+    this.followCamera.reset();
     this.updateCamera(0);
     this.loadPromise = this.loadClientScene(id);
     return this.loadPromise;
@@ -128,6 +129,7 @@ export class World {
       addLighting(this.sceneRoot,id);
       this.player.rotation.y=Math.PI;
       this.introFocus=0;this.zoom=14;this.polar=1.17;this.azimuth=0.1;
+      this.followCamera.reset();
       this.targetNearest();
       if(this.jobId==='RPR')this.moveToDummy();
       this.loading=false;this.input.setEnabled(true);
@@ -286,6 +288,7 @@ export class World {
     this.player.position.set(point.x, point.y ?? this.navigation.surfaceAt(point.x, point.z)?.height ?? 0, point.z);
     if(this.isImported)this.navigation.height=this.player.position.y;
     this.player.rotation.y = Math.PI;
+    this.followCamera.reset();
     this.selectTarget(target);
     this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
   }
@@ -399,23 +402,13 @@ export class World {
   }
 
   updateCamera(dt) {
-    this.introFocus = Math.max(0, this.introFocus - dt * 0.12);
     if (this.returnGate) {
       this.returnGate.group.rotation.y += dt * 1.7;
       if (this.returnGate.expiresAt && this.time >= this.returnGate.expiresAt) this.clearReturnGate();
     }
-    cameraFocus.copy(this.player.position).add(new THREE.Vector3(0, 1.45, -3 * this.introFocus));
     const polar = this.cameraMode === 'follow' ? 1.12 : this.polar;
     const distance = this.cameraMode === 'follow' ? Math.min(this.zoom, 10.5) : this.zoom;
-    const horizontal = Math.sin(polar) * distance;
-    this.camera.position.set(cameraFocus.x + Math.sin(this.azimuth) * horizontal, cameraFocus.y + Math.cos(polar) * distance, cameraFocus.z + Math.cos(this.azimuth) * horizontal);
-    cameraLook.copy(cameraFocus);
-    if (this.target && this.cameraMode === 'orbit') cameraLook.lerp(this.target.object.position.clone().add(new THREE.Vector3(0, 1.2, 0)), 0.2);
-    this.camera.lookAt(cameraLook);
-    if(this.isImported && this.navigation.cameraHit){
-      const hit=this.navigation.cameraHit(cameraLook,this.camera.position);
-      if(hit && hit.distance>0.5)this.camera.position.copy(cameraLook).addScaledVector(this.camera.position.clone().sub(cameraLook).normalize(),Math.max(1,hit.distance-0.3));
-    }
+    this.followCamera.update(this.player, { azimuth: this.azimuth, polar, distance, navigation: this.isImported ? this.navigation : null }, dt);
   }
 
   pick(event) {

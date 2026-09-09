@@ -22,7 +22,7 @@
 | 原始地形碰撞分块 | 173 | 76 |
 | 合并后原始碰撞三角形 | 98,518 | 227,082 |
 
-原始导出保存在 `G:\FFXIV-MapTools\exports/`。可运行的本地场景资源保存在 `public/extracted/`，约 214 MB；该目录已加入 Git 忽略，代码提交不包含提取后的游戏模型和贴图。
+原始导出保存在 `G:\FFXIV-MapTools\exports/`。可运行的本地场景资源保存在 `public/extracted/`，当前约 360 MiB；该目录已加入 Git 忽略，代码提交不包含提取后的游戏模型和贴图。
 
 ## 模块划分
 
@@ -43,9 +43,11 @@ npm run verify
 npm run build
 ```
 
+也可以从工具目录执行 `G:\FFXIV-MapTools\rebuild-client-maps.ps1`，一次完成工具构建、两张地图解包、模型/贴图/场景组装、PCB 碰撞转换和项目验证。`-SkipExtract` 复用已有原始导出，`-KeepIntermediate` 保留自检夹具；日志写入工具目录。
+
 `import-client.ps1` 默认使用上述本机目录，可通过 `-Client`、`-Tools` 指定其他位置。工具包含 `.NET 10` 便携 SDK，Python 解码需要 `requests` 和 Pillow。
 
-提取器先读取 LVB/LGB/TERA/MDL/MTRL/TEX/SGB，展开共享场景组并记录位移、旋转和缩放。读取原始 `collision/list.pcb` 及对应 `trNNNN.pcb`，连同建筑实例碰撞组装为独立碰撞数据。GLB 保留位置、法线、UV 与材质路径。
+提取器先读取 LVB/LGB/TERA/MDL/MTRL/TEX/SGB，展开共享场景组并记录位移、旋转和缩放。读取原始 `collision/list.pcb` 及对应 `trNNNN.pcb`，连同建筑实例碰撞组装为独立碰撞数据。GLB 保留位置、法线、UV 与材质路径。MTRL 的采样器 CRC 映射到颜色、法线、高光和水面纹理；`g_ColorUVScale`、`g_NormalUVScale`、`g_SpecularUVScale` 以及颜色/自发光参数写入清单并应用到 Three.js 材质。
 
 验证包括所有 GLB 头/索引/顶点范围、实例矩阵、贴图存在性、原始碰撞三角形合法性、出生点落地，以及浏览器中的真实地图加载和木人战斗。
 
@@ -53,6 +55,6 @@ npm run build
 
 地形和建筑几何、摆放坐标、基础贴图及碰撞数据直接来自客户端，已替换此前手工描绘路线。游戏引擎完整 shader、光照、动态水面、植被风、门的动画和场景条件状态未逐项重写。当前选择普通背景层，排除节日层，材质以基础颜色和近似 PBR 显示。
 
-因此这是基于真实客户端地图的可运行导入，而不是宣称最终画面与原引擎逐像素一致。现有职业循环、传送、木人练习和传统右键控制不依赖这些材质近似。
+因此这是基于真实客户端地图的可运行导入，而不是宣称最终画面与原引擎逐像素一致。当前没有完整复刻原版 shader 的多层混合、环境遮罩、动态水面和节日条件；基础颜色、法线、高光、UV 缩放、实例变换和碰撞已纳入。现有职业循环、传送、木人练习和传统右键控制不依赖这些材质近似。
 
 格式参考：Meddle 与 Lumina 的原始解析代码；PCB 布局对照 Physis/Lumina 文档和实现。工具目录保留相应来源，不覆盖用户安装的客户端文件。
