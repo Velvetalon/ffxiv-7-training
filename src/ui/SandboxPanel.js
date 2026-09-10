@@ -3,6 +3,7 @@ import { icon, iconify, escape } from './dom.js';
 export class SandboxPanel {
   constructor({ root, world, onAppearance, onMount, onAnimation, onError }) {
     Object.assign(this, { root, world, onAppearance, onMount, onAnimation, onError });
+    this.busy = false;
     this.element = document.createElement('aside');
     this.element.className = 'sandbox-panel hidden';
     this.element.setAttribute('aria-label', '角色与世界');
@@ -33,13 +34,23 @@ export class SandboxPanel {
       catch (error) { onError(error.message); }
       finally { event.target.value = ''; }
     });
-    this.element.querySelector('[data-play-animation]').addEventListener('click', () => onAnimation(this.element.querySelector('[data-animation]').value));
+    this.element.querySelector('[data-play-animation]').addEventListener('click', () => {
+      const state = this.element.querySelector('[data-animation]').value;
+      if (state) onAnimation(state);
+    });
     this.element.querySelector('[data-mount-toggle]').addEventListener('click', () => {
-      Promise.resolve(onMount(this.element.querySelector('[data-mount]').value)).catch(error => onError(error.message));
+      if (this.busy) return;
+      this.busy = true;
+      this.update();
+      Promise.resolve(onMount(this.element.querySelector('[data-mount]').value))
+        .catch(error => onError(error.message))
+        .finally(() => { this.busy = false; this.update(); });
     });
     this.element.querySelector('[data-flight-toggle]').addEventListener('click', () => {
+      if (this.busy) return;
       if (world.mount.state.movementMode === 'ground') world.mount.takeoff();
       else world.mount.land();
+      this.update();
     });
     this.element.querySelector('[data-world-hour]').addEventListener('input', event => world.worldTime.setHour(Number(event.target.value)));
     this.element.querySelector('[data-world-paused]').addEventListener('change', event => world.worldTime.setState({ paused: event.target.checked }));
@@ -49,7 +60,7 @@ export class SandboxPanel {
   setAssets({ animations = [], mounts = [] }) {
     this.element.querySelector('[data-animation]').innerHTML = animations.map(id => `<option value="${escape(id)}">${escape(id)}</option>`).join('');
     this.element.querySelector('[data-mount]').innerHTML = mounts.map(mount => `<option value="${escape(mount.id)}">${escape(mount.name || mount.id)}</option>`).join('');
-    this.element.querySelector('[data-mount-toggle]').disabled = !mounts.length;
+    this.element.querySelector('[data-mount-toggle]').disabled = this.busy || !mounts.length;
   }
 
   setAppearance(appearance) {
@@ -68,9 +79,12 @@ export class SandboxPanel {
     this.element.querySelector('[data-world-hour-label]').textContent = `${String(Math.floor(hour)).padStart(2, '0')}:${String(Math.floor(hour % 1 * 60)).padStart(2, '0')}`;
     this.element.querySelector('[data-world-paused]').checked = this.world.worldTime.paused;
     const state = this.world.mount.state;
-    this.element.querySelector('[data-mount-toggle] span').textContent = state.isMounted ? '下坐骑' : '骑乘';
-    this.element.querySelector('[data-flight-toggle]').disabled = !state.isMounted || !this.world.mount.definition?.canFly;
+    const mountButton = this.element.querySelector('[data-mount-toggle]');
+    mountButton.disabled = this.busy || (!state.isMounted && !this.element.querySelector('[data-mount]').value);
+    mountButton.querySelector('span').textContent = state.loading ? '载入中' : state.isMounted ? '下坐骑' : '骑乘';
+    this.element.querySelector('[data-flight-toggle]').disabled = this.busy || !state.isMounted || !this.world.mount.definition?.canFly;
     this.element.querySelector('[data-flight-toggle] span').textContent = state.movementMode === 'ground' ? '起飞' : '降落';
-    this.element.querySelector('[data-mount-state]').textContent = !state.isMounted ? '步行' : ({ ground: '骑乘', takeoff: '起飞', flying: '飞行', landing: '降落' })[state.movementMode];
+    const status = state.loading ? '载入坐骑资源…' : state.loadError ? `坐骑载入失败：${state.loadError}` : !state.isMounted ? '步行' : ({ ground: '骑乘', takeoff: '起飞', flying: '飞行', landing: '降落' })[state.movementMode] || state.movementMode;
+    this.element.querySelector('[data-mount-state]').textContent = status;
   }
 }

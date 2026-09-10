@@ -87,6 +87,8 @@ def make_samples(lighting: dict[str, Any], fog: dict[str, Any] | None, tone: dic
     for frame in lighting["keyframes"]:
         seconds = float(frame["timeSeconds"])
         sun = frame.get("sunlightColor") or {}
+        moon = frame.get("moonlightColor") or {}
+        extra_ambient = frame.get("extraAmbientColor") or {}
         fog_frame = nearest(fog_frames, seconds)
         fog_value = fog_frame.get("v700") if fog_frame else None
         fog_color = fog_frame.get("fogColor") if fog_frame else None
@@ -96,6 +98,13 @@ def make_samples(lighting: dict[str, Any], fog: dict[str, Any] | None, tone: dic
             "sourceOwnerId": None,
             "sunColor": sun.get("hex"),
             "sunIntensity": sun.get("intensity"),
+            "moonColor": moon.get("hex"),
+            "moonIntensity": moon.get("intensity"),
+            "ambientSaturation": frame.get("ambientLightSaturation"),
+            "ambientAttenuation": frame.get("ambientAttenuation"),
+            "extraAmbientColor": extra_ambient.get("hex"),
+            "extraAmbientIntensity": extra_ambient.get("intensity"),
+            "extraAmbientWeight": frame.get("extraAmbientColorWeight"),
             # The source field is explicitly a scale, not a final renderer
             # intensity.  Keep that distinction at the runtime boundary.
             "ambientScale": frame.get("ambientLightScale"),
@@ -107,6 +116,7 @@ def make_samples(lighting: dict[str, Any], fog: dict[str, Any] | None, tone: dic
         }
         if fog_color:
             sample["fogColor"] = fog_color.get("hex")
+            sample["fogIntensity"] = fog_color.get("intensity")
         if fog_frame:
             sample["fogNear"] = fog_frame.get("fogStartDistance")
             # fogFadeDistance is a length, not a far plane.  Keep the

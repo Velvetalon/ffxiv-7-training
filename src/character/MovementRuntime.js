@@ -20,15 +20,32 @@ export class MovementRuntime {
       }
     }
     const floor = navigation.surfaceAt(object.position.x, object.position.z)?.height ?? object.position.y;
+    const wasAirborne = this.verticalVelocity !== 0 || object.position.y > floor + 0.001;
+    let jumpStarted = false;
     if (this.verticalVelocity || intent.jump) {
-      if (!this.verticalVelocity && object.position.y <= floor + 0.001) this.verticalVelocity = 6.2;
+      if (!this.verticalVelocity && object.position.y <= floor + 0.001) {
+        this.verticalVelocity = 6.2;
+        jumpStarted = true;
+      }
       this.verticalVelocity -= 18 * dt;
       object.position.y = Math.max(floor, object.position.y + this.verticalVelocity * dt);
       if (object.position.y === floor) this.verticalVelocity = 0;
     }
+    const airborne = this.verticalVelocity !== 0 || object.position.y > floor + 0.001;
     const moving = Math.hypot(object.position.x - origin.x, object.position.z - origin.z) > 0.0001;
-    this.character.state.movement = moving ? intent.sprint ? 'run' : 'walk' : 'idle';
+    this.character.state.airborne = airborne;
+    this.character.state.movement = jumpStarted
+      ? 'jump-start'
+      : airborne ? 'jump-airborne'
+        : wasAirborne ? 'jump-land'
+          : moving ? intent.sprint ? 'run' : 'walk' : 'idle';
     this.character.syncTransform();
-    return { moving, changed: object.position.distanceToSquared(origin) > 0.000001 };
+    return {
+      moving,
+      airborne,
+      jumpStarted,
+      landed: wasAirborne && !airborne,
+      changed: object.position.distanceToSquared(origin) > 0.000001,
+    };
   }
 }

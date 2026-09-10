@@ -21,6 +21,18 @@ function copyColor(target, source) {
   if (target?.isColor) target.copy(source);
 }
 
+function saturationAdjusted(source, saturation = 1) {
+  const hsl = {};
+  source.getHSL(hsl);
+  return new THREE.Color().setHSL(hsl.h, hsl.s * clamp01(saturation), hsl.l);
+}
+
+function sourceFillColor(source, baseline) {
+  const hasSun = source?.sunIntensity > 0 && source?.sunColor && !source.sunColor.equals(color('#000000'));
+  const keyColor = hasSun ? source.sunColor : source?.moonColor;
+  return keyColor ? saturationAdjusted(keyColor, source?.ambientSaturation) : color(baseline.ambientSky);
+}
+
 function sampleValue(left, right, ratio, name) {
   if (left[name] === undefined && right[name] === undefined) return undefined;
   if (typeof left[name] !== 'number' || typeof right[name] !== 'number') return ratio < 0.5 ? left[name] : right[name];
@@ -37,11 +49,13 @@ function sampleSource(samples, hour) {
   const left = extended[rightIndex - 1];
   const ratio = clamp01((target - left.hour) / Math.max(0.0001, right.hour - left.hour));
   const result = {};
-  for (const key of ['sunIntensity', 'ambientIntensity', 'ambientScale', 'exposure', 'fogNear', 'fogFar']) {
+  for (const key of ['sunIntensity', 'moonIntensity', 'ambientIntensity', 'ambientScale',
+    'ambientSaturation', 'ambientAttenuation', 'extraAmbientIntensity', 'extraAmbientWeight',
+    'exposure', 'fogNear', 'fogFar', 'fogIntensity', 'fogDensityPercent', 'fogMinOpacity']) {
     const value = sampleValue(left, right, ratio, key);
     if (value !== undefined) result[key] = value;
   }
-  for (const key of ['sunColor', 'ambientSky', 'ambientGround', 'background', 'fogColor']) {
+  for (const key of ['sunColor', 'moonColor', 'extraAmbientColor', 'ambientSky', 'ambientGround', 'background', 'fogColor']) {
     if (left[key] === undefined && right[key] === undefined) continue;
     const first = color(left[key] ?? right[key]);
     result[key] = first.lerp(color(right[key] ?? left[key]), ratio);
@@ -72,8 +86,14 @@ export function createEnvironmentLights(profile = getEnvironmentProfile()) {
   sun.shadow.camera.bottom = -55;
   sun.shadow.bias = -0.0006;
   sun.shadow.normalBias = 0.06;
-  rig.add(ambient, sun);
-  return { rig, ambient, sun };
+  const moon = new THREE.DirectionalLight('#b2daff', 0);
+  moon.name = 'EnvironmentMoon';
+  moon.shadow.mapSize.copy(sun.shadow.mapSize);
+  moon.shadow.camera.copy(sun.shadow.camera);
+  moon.shadow.bias = sun.shadow.bias;
+  moon.shadow.normalBias = sun.shadow.normalBias;
+  rig.add(ambient, sun, moon, sun.target, moon.target);
+  return { rig, ambient, sun, moon };
 }
 
 /**
@@ -113,7 +133,9 @@ export class EnvironmentRuntime {
       daylight,
       twilight,
       sunDirection,
+      moonDirection: sunDirection.clone().negate(),
       sunIntensity: baseline.directionalIntensity * daylight,
+      moonIntensity: 0,
       ambientIntensity: baseline.ambientIntensity * THREE.MathUtils.lerp(0.16, 1, twilight),
       exposure: baseline.exposure * THREE.MathUtils.lerp(0.58, 1, twilight),
       skyEnergy: THREE.MathUtils.lerp(0.07, 1, twilight),
@@ -123,7 +145,16 @@ export class EnvironmentRuntime {
     };
     const source = sampleSource(this.sourceSamples, hour);
     if (source) Object.assign(state, source);
-    if (source?.ambientScale !== undefined) state.ambientIntensity *= source.ambientScale;
+    if (source?.ambientScale !== undefined) {
+      // ENVB names this a scale, so retain the browser rig's irradiance and
+      // use it as a multiplier. Attenuation has no confirmed Three.js mapping.
+      state.ambientIntensity = baseline.ambientIntensity * source.ambientScale;
+    }
+    if (source) {
+      // The decoded tone-mapping channel has no browser-equivalent scalar.
+      // Do not stack an unrelated twilight exposure reduction on top of it.
+      state.exposure = baseline.exposure;
+    }
     this.state = state;
     return state;
   }
@@ -134,6 +165,7 @@ export class EnvironmentRuntime {
     const defaults = this._captureSceneDefaults(scene, baseline);
     const sun = lights.sun || lights.directional;
     const ambient = lights.ambient || lights.hemisphere;
+    const moon = lights.moon;
     const source = sampleSource(this.sourceSamples, state.hour);
 
     if (sun) {
@@ -142,19 +174,31 @@ export class EnvironmentRuntime {
       copyColor(sun.color, source?.sunColor || color(baseline.directional));
       sun.castShadow = state.shadowEnabled;
     }
+    if (moon) {
+      moon.position.copy(state.moonDirection).multiplyScalar(80);
+      moon.intensity = state.moonIntensity;
+      copyColor(moon.color, source?.moonColor || color('#b2daff'));
+      moon.castShadow = !state.shadowEnabled && state.moonIntensity > 0;
+    }
     if (ambient) {
       ambient.intensity = state.ambientIntensity;
-      copyColor(ambient.color, source?.ambientSky || color(baseline.ambientSky));
-      copyColor(ambient.groundColor, source?.ambientGround || color(baseline.ambientGround));
+      const sky = source?.ambientSky || sourceFillColor(source, baseline);
+      const extra = source?.extraAmbientColor?.clone().multiplyScalar(
+        (source.extraAmbientIntensity ?? 1) * (source.extraAmbientWeight ?? 0),
+      );
+      copyColor(ambient.color, extra ? sky.clone().add(extra) : sky);
+      copyColor(ambient.groundColor, source?.ambientGround || sky.clone().multiplyScalar(0.5).add(extra || color('#000000')));
     }
     if (renderer) renderer.toneMappingExposure = state.exposure;
 
-    const background = source?.background || defaults.background.clone().multiplyScalar(state.skyEnergy);
+    const background = source?.background || source?.fogColor?.clone().multiplyScalar(source.fogIntensity ?? 1)
+      || defaults.background.clone().multiplyScalar(state.skyEnergy);
     if (scene?.background?.isColor) scene.background.copy(background);
     else if (scene && !scene.background) scene.background = background.clone();
     if (scene && !scene.fog) scene.fog = new THREE.Fog(defaults.fog, defaults.fogNear, defaults.fogFar);
     if (scene?.fog?.color) {
-      const fogColor = source?.fogColor || defaults.fog.clone().multiplyScalar(state.fogEnergy);
+      const fogColor = source?.fogColor?.clone().multiplyScalar(source.fogIntensity ?? 1)
+        || defaults.fog.clone().multiplyScalar(state.fogEnergy);
       scene.fog.color.copy(fogColor);
       if (scene.fog.isFog) {
         const range = Math.max(1, defaults.fogFar - defaults.fogNear);

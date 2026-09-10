@@ -32,7 +32,10 @@ export function installThreeDecoders(runtime) {
       if (node.geometry) geometries.add(node.geometry);
       for (const material of Array.isArray(node.material) ? node.material : node.material ? [node.material] : []) materials.add(material);
     });
-    geometries.forEach(value => value.dispose());
+    geometries.forEach(value => {
+      value.userData.lodGeometries?.forEach(level => level.dispose());
+      value.dispose();
+    });
     materials.forEach(value => value.dispose());
   });
   runtime.decoder('texture', async (bytes, record) => {

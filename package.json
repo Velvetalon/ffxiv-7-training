@@ -23,10 +23,13 @@
     "regress:summary": "node scripts/assets/summarize-regression.mjs",
     "validate-fast": "node scripts/validate-fast.mjs",
     "validate-smoke": "node scripts/validate-smoke.mjs",
-    "validate-map": "node scripts/validate-map.mjs"
+    "validate-map": "node scripts/validate-map.mjs",
+    "validate-sandbox": "node scripts/validate-sandbox.mjs",
+    "check-map-position": "node scripts/check-map-position.mjs"
   },
   "dependencies": {
     "lucide": "^0.468.0",
+    "meshoptimizer": "1.2.0",
     "three": "0.180.0",
     "three-mesh-bvh": "^0.9.14"
   },

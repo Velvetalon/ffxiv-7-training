@@ -6,6 +6,7 @@ import { assetProfiler } from '../../assets/AssetProfiler.js';
 import { disposeObject } from '../assets.js';
 import { StreamingNavigation } from './StreamingNavigation.js';
 import { decompressGzip } from '../../assets/Decompress.js';
+import { DistanceLod } from './DistanceLod.js';
 
 runtime.decoder('navigation', async (_, record, store, options) => {
   const payload = store.get(record.dependencies[0]);
@@ -32,6 +33,7 @@ export async function loadProgressiveScene(id, map, { entry = {}, renderer, onPr
   const signal = controller.signal;
   const group = new THREE.Group();
   group.name = `client-map-${id}`;
+  const lod = new DistanceLod(group);
   const retained = new Set();
   const completed = new Set();
   const pending = new Map();
@@ -121,7 +123,10 @@ export async function loadProgressiveScene(id, map, { entry = {}, renderer, onPr
         return mesh;
       }));
       signal.throwIfAborted();
-      for (const mesh of instances) group.add(mesh);
+      for (const mesh of instances) {
+        group.add(mesh);
+        lod.add(mesh);
+      }
       completed.add(model.index);
       onProgress(completed.size / map.models.length);
     })().finally(() => pending.delete(model.index));
@@ -130,7 +135,7 @@ export async function loadProgressiveScene(id, map, { entry = {}, renderer, onPr
   }
   const loaded = {
     group, manifest, base: '', colliders: [], navigationTask, controller, renderer,
-    streaming: true, completed, map, fullyLoaded: null, streamError: null,
+    streaming: true, completed, map, fullyLoaded: null, streamError: null, lod,
     canMoveTo(point) {
       center = [point.x, point.y, point.z];
       return (!streamingNavigation || streamingNavigation.isReady(center)) &&
@@ -148,6 +153,7 @@ export async function loadProgressiveScene(id, map, { entry = {}, renderer, onPr
     },
     release() {
       controller.abort();
+      lod.dispose();
       wakeEnhancements();
       streamingNavigation?.dispose();
       if (this.mapImageUrl) URL.revokeObjectURL(this.mapImageUrl);

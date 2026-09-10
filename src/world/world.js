@@ -253,7 +253,10 @@ export class World {
     const elapsed = Math.min(Math.max(dt || 0, 0), 0.08);
     this.time += elapsed;
     this.updateMovement(elapsed);
-    if (!this.mount.state.isMounted) this.character.state.movement = this.moving ? this.input.axes().sprint ? 'run' : 'walk' : 'idle';
+    if (!this.mount.state.isMounted && !this.character.state.airborne &&
+        !['jump-start', 'jump-land'].includes(this.character.state.movement)) {
+      this.character.state.movement = this.moving ? this.input.axes().sprint ? 'run' : 'walk' : 'idle';
+    }
     for (const character of this.characters.values()) {
       character.update(elapsed, this.time);
       character.actions.update(elapsed);
@@ -270,8 +273,13 @@ export class World {
       sun.target.position.copy(this.player.position);
       sun.position.copy(this.player.position).addScaledVector(environment.sunDirection, 80);
       sun.target.updateMatrixWorld(true);
+      const moon = this.environmentLights.moon;
+      moon.target.position.copy(this.player.position);
+      moon.position.copy(this.player.position).addScaledVector(environment.moonDirection, 80);
+      moon.target.updateMatrixWorld(true);
     }
     this.updateCamera(elapsed);
+    this.assetScene?.lod?.update(elapsed, this.camera);
     const cpuSubmitStartedAt = performance.now();
     const firstImportedFrame = this.isImported && !this.loading && !assetProfiler.active?.firstRender && assetProfiler.active?.sceneId === this.sceneId;
     const gpuToken = firstImportedFrame ? this.gpuTimer.begin({ sceneId: this.sceneId, phase: 'first-imported-render' }) : null;
@@ -297,7 +305,6 @@ export class World {
     this.environment.setZone(id);
     this.environment.setSourceSamples(this.environment.profile.samples || []);
     this.environmentLights = createEnvironmentLights(this.environment.profile);
-    this.environmentLights.rig.add(this.environmentLights.sun.target);
     this.sceneRoot.add(this.environmentLights.rig);
   }
 
@@ -540,7 +547,7 @@ export class World {
 
   adjustCamera(dx, dy, wheel = 0) {
     this.azimuth -= dx * 0.007;
-    this.polar = THREE.MathUtils.clamp(this.polar + dy * 0.006, 0.05, Math.PI - 0.05);
+    this.polar = THREE.MathUtils.clamp(this.polar - dy * 0.006, 0.05, Math.PI - 0.05);
     this.zoom = THREE.MathUtils.clamp(this.zoom * Math.exp(wheel * 0.0015), 2, 60);
     this.introFocus = 0;
     if (this.input.isLooking) this.player.rotation.y = this.azimuth + Math.PI;

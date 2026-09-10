@@ -97,7 +97,7 @@ export class InputController {
     if (!this.enabled) return;
     if (![0, 2].includes(event.button)) return;
     event.preventDefault();
-    this.drag = { x: event.clientX, y: event.clientY, button: event.button, pointerId: event.pointerId };
+    this.drag = { x: event.clientX, y: event.clientY, button: event.button, pointerId: event.pointerId, moved: 0 };
     this.start = { x: event.clientX, y: event.clientY };
     this.canvas.setPointerCapture?.(event.pointerId);
     if (this.isLooking) {
@@ -111,9 +111,13 @@ export class InputController {
   onPointerMove(event) {
     if (!this.drag || !this.enabled) return;
     const locked = document.pointerLockElement === this.canvas;
+    if (!locked && event.pointerId !== this.drag.pointerId) return;
     const dx = locked ? event.movementX : event.clientX - this.drag.x;
     const dy = locked ? event.movementY : event.clientY - this.drag.y;
-    if (this.drag.button === 0 || this.drag.button === 2) this.onOrbit?.(dx, dy);
+    if (this.drag.button === 0 || this.drag.button === 2) {
+      this.drag.moved += Math.hypot(dx || 0, dy || 0);
+      this.onOrbit?.(dx || 0, dy || 0);
+    }
     this.drag.x = event.clientX;
     this.drag.y = event.clientY;
   }
@@ -121,7 +125,8 @@ export class InputController {
   onPointerUp(event) {
     if (!this.drag) return;
     if (event.button !== this.drag.button) return;
-    const moved = Math.hypot(event.clientX - this.start.x, event.clientY - this.start.y);
+    if (event.pointerId !== undefined && event.pointerId !== this.drag.pointerId && document.pointerLockElement !== this.canvas) return;
+    const moved = this.drag.moved || Math.hypot(event.clientX - this.start.x, event.clientY - this.start.y);
     this.releaseLook();
     if (moved < 7 && event.button === 0) this.onClick?.('pick', event);
   }

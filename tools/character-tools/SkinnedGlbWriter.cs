@@ -88,12 +88,13 @@ public static class SkinnedGlbWriter
                     var index = uvSet;
                     attributes[$"TEXCOORD_{index}"] = WriteVec2(writer, binary, views, accessors, geometry.Vertices.Select(vertex => vertex.TexCoords is { } coordinates && coordinates.Length > index ? coordinates[index] : Vector2.Zero).ToArray());
                 }
-                if (materialNameFor(model, geometry).Contains("_iri_", StringComparison.OrdinalIgnoreCase))
+                var materialName = materialNameFor(model, geometry);
+                if (materialName.Contains("_iri_", StringComparison.OrdinalIgnoreCase))
                 {
                     var eyeColors = positions.Select(position => ToVec4(SquareRgb(position.X < 0 ? colors.LeftEye : colors.RightEye))).ToArray();
                     attributes["COLOR_0"] = WriteVec4(writer, binary, views, accessors, eyeColors);
                 }
-                else if (geometry.Vertices.Any(vertex => vertex.Colors?.Length > 0))
+                else if (!materialName.Contains("_fac_", StringComparison.OrdinalIgnoreCase) && !materialName.Contains("b0001", StringComparison.OrdinalIgnoreCase) && geometry.Vertices.Any(vertex => vertex.Colors?.Length > 0))
                     attributes["COLOR_0"] = WriteVec4(writer, binary, views, accessors, geometry.Vertices.Select(vertex => vertex.Colors?.FirstOrDefault() ?? Vector4.One).ToArray());
 
                 var joints = new ushort[geometry.Vertices.Count * 4];
@@ -121,17 +122,20 @@ public static class SkinnedGlbWriter
                 attributes["WEIGHTS_0"] = WriteVec4(writer, binary, views, accessors, weights);
                 var indexAccessor = WriteIndices(writer, binary, views, accessors, geometry.Indices);
 
-                var materialName = materialNameFor(model, geometry);
                 var materialIndex = materials.Count;
+                var shaderPackage = ShaderPackageFor(source.GamePath, materialName);
+                var hasDiffuse = materialTextures.TryGetValue(materialName, out var texturePath);
+                var hasNormal = TryMaterialTexture(materialTextures, materialName, "normal", out var normalPath);
+                var hasMask = TryMaterialTexture(materialTextures, materialName, "mask", out var maskPath);
                 var pbr = new Dictionary<string, object>
                 {
-                    ["baseColorFactor"] = materialTextures.ContainsKey(materialName) && IsBakedHair(materialName, source.GamePath) ? new float[] { 1, 1, 1, 1 } : ComponentColor(source.GamePath, materialName, colors),
+                    ["baseColorFactor"] = hasDiffuse && IsBakedHair(materialName, source.GamePath) ? new float[] { 1, 1, 1, 1 } : ComponentColor(source.GamePath, materialName, colors),
                     ["metallicFactor"] = 0f,
-                    ["roughnessFactor"] = .85f,
+                    ["roughnessFactor"] = shaderPackage == "iris.shpk" ? .42f : shaderPackage == "skin.shpk" ? .76f : .85f,
                 };
-                if (materialTextures.TryGetValue(materialName, out var texturePath))
+                if (hasDiffuse)
                 {
-                    var textureIndex = EmbedTexture(texturePath);
+                    var textureIndex = EmbedTexture(texturePath!);
                     pbr["baseColorTexture"] = new { index = textureIndex };
                 }
                 var material = new Dictionary<string, object>
@@ -139,9 +143,39 @@ public static class SkinnedGlbWriter
                     ["name"] = materialName,
                     ["doubleSided"] = true,
                     ["pbrMetallicRoughness"] = pbr,
-                    ["extras"] = new { sourceMaterialPath = materialName, status = materialTextures.ContainsKey(materialName) ? "client-base-texture-embedded" : "client-palette-color" },
+                    ["extras"] = new
+                    {
+                        sourceMaterialPath = materialName,
+                        shaderPackage,
+                        status = hasDiffuse ? "client-material-inputs-embedded" : "client-palette-color",
+                        inputRoles = new
+                        {
+                            diffuse = hasDiffuse,
+                            normal = hasNormal,
+                            maskInput = hasMask,
+                            maskBound = false,
+                            vertexColor = shaderPackage == "iris.shpk",
+                        },
+                    },
                 };
-                if (((float[])pbr["baseColorFactor"])[3] < 1) material["alphaMode"] = "BLEND";
+                if (hasNormal) material["normalTexture"] = new { index = EmbedTexture(normalPath), scale = shaderPackage == "skin.shpk" ? .65f : 1f };
+                if (hasMask) material["extras"] = new
+                {
+                    sourceMaterialPath = materialName,
+                    shaderPackage,
+                    status = hasDiffuse ? "client-material-inputs-embedded" : "client-palette-color",
+                    inputRoles = new
+                    {
+                        diffuse = hasDiffuse,
+                        normal = hasNormal,
+                        maskInput = true,
+                        maskBound = false,
+                        vertexColor = shaderPackage == "iris.shpk",
+                    },
+                    maskBinding = "FFXIV shader input retained as embedded texture metadata; not bound by portable glTF PBR",
+                };
+                var alphaTexture = hasDiffuse && (materialName.Contains("_etc_a", StringComparison.OrdinalIgnoreCase) || shaderPackage == "characterocclusion.shpk");
+                if (((float[])pbr["baseColorFactor"])[3] < 1 || alphaTexture) material["alphaMode"] = "BLEND";
                 materials.Add(material);
                 var meshIndex = meshes.Count;
                 meshes.Add(new { name = $"{Path.GetFileName(source.GamePath)}#{geometry.MeshIdx}", primitives = new[] { new { attributes, indices = indexAccessor, material = materialIndex, mode = 4 } } });
@@ -235,7 +269,7 @@ public static class SkinnedGlbWriter
             buffers = new[] { new { byteLength = (int)binary.Length } },
             bufferViews = views,
             accessors,
-            extras = new { sourceEvidence, appearanceColors = colors, appearanceGeometry = geometryConfig, skinning = "MDL blend indices -> per-mesh bone table names -> SKLB skeleton nodes", maxInfluences = 4 },
+            extras = new { sourceEvidence, appearanceColors = colors, appearanceGeometry = geometryConfig, skinning = "MDL blend indices -> per-mesh bone table names -> SKLB skeleton nodes", maxInfluences = 4, materialInputs = "MTRL shader package roles: diffuse/normal/skin-mask; iris colors remain vertex COLOR_0" },
         };
         WriteGlb(destination, document, binary.ToArray());
         Console.WriteLine($"Wrote {destination}: bones={skeleton.Count} meshes={meshes.Count} bytes={new FileInfo(destination).Length}");
@@ -327,6 +361,23 @@ public static class SkinnedGlbWriter
     }
 
     private static string materialNameFor(Model model, Meddle.Utils.Export.Mesh geometry) => geometry.MaterialIdx < model.MtrlFileNames.Count ? model.MtrlFileNames[geometry.MaterialIdx] : "unknown";
+    private static string ShaderPackageFor(string path, string material)
+    {
+        if (material.Contains("_iri_", StringComparison.OrdinalIgnoreCase)) return "iris.shpk";
+        if (material.Contains("_fac_", StringComparison.OrdinalIgnoreCase) || material.Contains("b0001", StringComparison.OrdinalIgnoreCase)) return "skin.shpk";
+        if (path.Contains("/face/", StringComparison.OrdinalIgnoreCase) && material.Contains("_etc_a", StringComparison.OrdinalIgnoreCase)) return "hair.shpk";
+        if (path.Contains("/face/", StringComparison.OrdinalIgnoreCase) && material.Contains("_etc_b", StringComparison.OrdinalIgnoreCase)) return "charactertattoo.shpk";
+        if (path.Contains("/face/", StringComparison.OrdinalIgnoreCase) && material.Contains("_etc_c", StringComparison.OrdinalIgnoreCase)) return "characterocclusion.shpk";
+        if (path.Contains("/hair/", StringComparison.OrdinalIgnoreCase) || path.Contains("/tail/", StringComparison.OrdinalIgnoreCase) || material.Contains("_hir_", StringComparison.OrdinalIgnoreCase)) return "hair.shpk";
+        return "characterlegacy.shpk";
+    }
+    private static bool TryMaterialTexture(IReadOnlyDictionary<string, string> textures, string material, string role, out string path)
+    {
+        foreach (var key in new[] { $"{material}|{role}", $"{material}#{role}", $"{material}:{role}" })
+            if (textures.TryGetValue(key, out path!) && !string.IsNullOrWhiteSpace(path)) return true;
+        path = string.Empty;
+        return false;
+    }
     private static float[] ComponentColor(string path, string material, AppearanceColors colors)
     {
         if (material.Contains("_iri_", StringComparison.OrdinalIgnoreCase)) return [1, 1, 1, 1];
@@ -334,6 +385,7 @@ public static class SkinnedGlbWriter
         if (path.Contains("/hair/", StringComparison.OrdinalIgnoreCase) || path.Contains("/tail/", StringComparison.OrdinalIgnoreCase) || material.Contains("_hir_", StringComparison.OrdinalIgnoreCase)) return SquareRgb(colors.Hair);
         if (path.Contains("/face/", StringComparison.OrdinalIgnoreCase) && material.Contains("_etc_a", StringComparison.OrdinalIgnoreCase)) return SquareRgb(colors.Hair);
         if (path.Contains("/face/", StringComparison.OrdinalIgnoreCase) && material.Contains("_etc_b", StringComparison.OrdinalIgnoreCase)) return [0, 0, 0, 0];
+        if (path.Contains("/face/", StringComparison.OrdinalIgnoreCase) && material.Contains("_etc_c", StringComparison.OrdinalIgnoreCase)) return [0, 0, 0, 1];
         return [1, 1, 1, 1];
     }
     private static float[] SquareRgb(float[] value) => [value[0] * value[0], value[1] * value[1], value[2] * value[2], value[3]];

@@ -2,6 +2,35 @@
 
 This document records what the browser environment runtime is allowed to claim. It separates the FFXIV client evidence from compatibility defaults, so an attractive render is not mistaken for a decoded game setting.
 
+## Quality Correction V2
+
+The previous adapter discarded decoded moonlight, ambient saturation,
+attenuation, additional ambient color/weight and fog color intensity. All 65
+profiles now preserve these named fields. In Gridania, the source night sample
+has blue moonlight at intensity `0.4`, ambient attenuation `2`, and saturation
+`0.7`; daytime attenuation is `0`. These values are not newly tuned constants.
+
+The renderer now has a separate source-colored moon light and uses the source
+fog color/intensity for the background instead of a static zone tint.
+Environment fill treats decoded `ambientScale` as a multiplier on the existing
+browser hemisphere irradiance; it does not reinterpret that multiplier as an
+absolute Three.js light intensity. The hemisphere is tinted from the active
+decoded sun or moon color, with decoded saturation, and accepts the decoded
+additional ambient color/weight. Fog remains a background and fog input, not
+an invented source of ambient light energy. `ambientAttenuation` is retained in
+the sampled runtime state but is not divided into browser lighting because no
+source establishes that equation. Likewise, the decoded tone-mapping time does
+not establish a browser exposure scalar, so source-driven frames retain the
+zone's display exposure rather than stacking a generic night reduction.
+The hemisphere approximation and half-energy ground bounce are **browser
+adapter choices**, not confirmed FFXIV shader equations. Sun/moon direction
+and exposure remain browser approximations. No claim of complete proprietary
+sky, weather, tone-mapping or subsurface parity is made.
+
+Numeric validation confirms the source fields reach the live light rig.
+Visual comparison is still required for the v2 release; numeric changes alone
+are not sufficient evidence of improved appearance.
+
 ## Confirmed
 
 - The catalog identifies each selectable zone root from versioned 7.0 CSV inputs. For example, `gridania` resolves to `bg/ffxiv/fst_f1/twn/f1t1`; see `tools/map-tools/world-catalog.json`.

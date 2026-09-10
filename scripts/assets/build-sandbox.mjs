@@ -48,7 +48,10 @@ for (const file of inputs) {
   for (const [id, character] of Object.entries(data.characters || {})) {
     const appearance = typeof character.appearance === 'string' ? await readJson(path.resolve(path.dirname(file), character.appearance)) : character.appearance;
     normalized.characters ||= {};
-    normalized.characters[id] = { ...character, appearance: appearance || character.appearanceMatch };
+    normalized.characters[id] = {
+      ...character,
+      ...(appearance || character.appearanceMatch ? { appearance: appearance || character.appearanceMatch } : {}),
+    };
     normalized.defaultAppearance ||= appearance;
   }
   const sourceSceneBgm = data.sceneBgm || data.SceneBgm;
@@ -109,9 +112,14 @@ for (const input of sections) {
   for (const name of ['characters', 'mounts', 'sceneBgm', 'actionSfx', 'skills', 'environment', 'uiSounds']) {
     if (!input[name]) continue;
     const values = remap(input[name]);
-    if (name === 'skills') {
-      for (const [id, skill] of Object.entries(values)) {
-        manifest.skills[id] = { ...manifest.skills[id], ...skill };
+    if (['characters', 'mounts', 'skills'].includes(name)) {
+      for (const [id, definition] of Object.entries(values)) {
+        const previous = manifest[name][id] || {};
+        const merged = { ...previous, ...definition };
+        for (const field of ['animations', 'riderAnimations', 'states', 'timing']) {
+          if (definition[field]) merged[field] = { ...previous[field], ...definition[field] };
+        }
+        manifest[name][id] = merged;
       }
     } else {
       manifest[name] = { ...manifest[name], ...values };

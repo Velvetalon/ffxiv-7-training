@@ -70,7 +70,7 @@ export class ClientMaterials {
       for (const [index, texture] of (material.userData.ownedTextures || []).entries()) {
         if (texture.userData.fullVariant) slots.push([`owned:${index}`, texture]);
       }
-      await Promise.all(slots.map(async ([slot, preview]) => {
+      const replacements = await Promise.all(slots.map(async ([slot, preview]) => {
         const id = preview.userData.fullVariant;
         if (!this.retained.has(id)) this.retained.set(id, this.runtime.load(id, { ...this.options, priority }));
         const full = await this.retained.get(id);
@@ -79,12 +79,18 @@ export class ClientMaterials {
           signal: this.options.signal, priority,
           onTiming: cpuMs => this.runtime.event({ event: 'gpu-upload-cpu', resourceId: id, mapId: this.options.mapId, cpuMs }),
         });
+        return { slot, full };
+      }));
+      this.options.signal?.throwIfAborted();
+      // Commit the complete sampler set together; never render new diffuse with
+      // preview normals, emission or the other half of a blended terrain layer.
+      for (const { slot, full } of replacements) {
         if (slot.startsWith('owned:')) {
           const index = Number(slot.slice(6));
           material.userData.ownedTextures[index] = full;
           if (index === 0 && material.userData.clientUniforms) material.userData.clientUniforms.clientMap1.value = full;
         } else material[slot] = full;
-      }));
+      }
     })();
     this.upgrades.set(material, work);
     return work;

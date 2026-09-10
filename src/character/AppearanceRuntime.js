@@ -11,7 +11,7 @@ export class AppearanceRuntime {
   serialize() { return this.data ? structuredClone(this.data) : null; }
 
   apply(model, bindings = {}) {
-    if (!this.data) return;
+    if (!this.data || !model) return;
     const appearance = this.data;
     if (!this.boneBindings.has(model)) {
       const controls = [];
@@ -50,13 +50,12 @@ export class AppearanceRuntime {
         node.scale.copy(new THREE.Vector3(...scaleBinding.referenceScale)).multiplyScalar(factor);
       }
       for (const material of Array.isArray(node.material) ? node.material : node.material ? [node.material] : []) {
-        const binding = bindings.materials?.[material.name];
-        if (!binding) continue;
+        const binding = bindings.materials?.[material.name] || {};
+        const role = binding.shader || binding.role || inferMaterialRole(material.name);
+        if (role) applyMaterialRole(material, role, binding, node, appearance, bindings);
         for (const [property, source] of Object.entries(binding.colors || {})) {
           const value = bindings.palettes?.[source.palette]?.[appearance[source.field]];
-          if (value && material[property]?.isColor) {
-            material[property].setRGB(value[0], value[1], value[2], source.colorSpace === 'linear' ? THREE.LinearSRGBColorSpace : THREE.SRGBColorSpace);
-          }
+          if (value && material[property]?.isColor) setFfxivColor(material[property], value, source);
         }
       }
     });
@@ -72,4 +71,66 @@ export class AppearanceRuntime {
       item.bone.scale.multiply(item.factor);
     }
   }
+}
+
+function inferMaterialRole(name = '') {
+  if (name.includes('_iri_')) return 'iris';
+  if (name.includes('_fac_') || name.includes('b0001')) return 'skin';
+  if (name.includes('_hir_') || name.includes('hair')) return 'hair';
+  return null;
+}
+
+function applyMaterialRole(material, role, binding, node, appearance, bindings) {
+  material.userData.ffxivRole = role;
+  if (role === 'iris') {
+    material.vertexColors = true;
+    material.color?.setRGB(1, 1, 1, THREE.LinearSRGBColorSpace);
+    material.roughness = binding.roughness ?? 0.42;
+    material.metalness = binding.metalness ?? 0;
+    applyIrisVertexColors(node, appearance, bindings);
+  } else if (role === 'skin') {
+    material.roughness = binding.roughness ?? 0.76;
+    material.metalness = binding.metalness ?? 0;
+  } else if (role === 'hair') {
+    material.roughness = binding.roughness ?? 0.85;
+    material.metalness = binding.metalness ?? 0;
+  }
+  if (binding.normalScale && material.normalScale?.isVector2) {
+    material.normalScale.set(binding.normalScale[0], binding.normalScale[1]);
+  }
+  if (binding.opacity !== undefined) {
+    material.opacity = binding.opacity;
+    material.transparent = binding.opacity < 1;
+  }
+}
+
+function applyIrisVertexColors(mesh, appearance, bindings) {
+  let geometry = mesh?.geometry;
+  if (!geometry?.getAttribute) return;
+  // SkeletonUtils and material clones still share BufferGeometry between actors.
+  // Isolate the iris attribute before applying per-character eye colors.
+  if (!mesh.userData.ffxivIrisGeometryIsolated) {
+    mesh.geometry = geometry.clone();
+    mesh.geometry.userData.assetRuntimeOwned = false;
+    mesh.userData.ffxivIrisGeometryIsolated = true;
+    geometry = mesh.geometry;
+  }
+  const colors = geometry.getAttribute('color');
+  const positions = geometry.getAttribute('position');
+  if (!colors || !positions) return;
+  const right = bindings.palettes?.rightEye?.[appearance.rightEyeColor] || appearance.palette?.rightEye;
+  const left = bindings.palettes?.leftEye?.[appearance.leftEyeColor] || appearance.palette?.leftEye;
+  if (!right || !left) return;
+  for (let index = 0; index < positions.count; index++) {
+    const value = positions.getX(index) < 0 ? left : right;
+    colors.setXYZ(index, value[0] * value[0], value[1] * value[1], value[2] * value[2]);
+  }
+  colors.needsUpdate = true;
+}
+
+function setFfxivColor(target, value, source = {}) {
+  const ffxivLinear = source.colorSpace === 'ffxiv-linear' || source.squared === true;
+  const sourceLinear = source.colorSpace === 'linear';
+  const rgb = ffxivLinear ? value.slice(0, 3).map(channel => channel * channel) : value;
+  target.setRGB(rgb[0], rgb[1], rgb[2], ffxivLinear || sourceLinear ? THREE.LinearSRGBColorSpace : THREE.SRGBColorSpace);
 }

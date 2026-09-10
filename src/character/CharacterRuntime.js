@@ -21,7 +21,7 @@ export class CharacterRuntime {
     this.root.userData.characterId = id;
     this.state = {
       id, name, position: { x: 0, y: 0, z: 0 }, heading: 0,
-      movement: 'idle', jobId: 'WHM', appearance,
+      movement: 'idle', airborne: false, jobId: 'WHM', appearance,
       actionId: null, mount: { isMounted: false, mountId: null, movementMode: 'ground' },
     };
     this.assets = assetRuntime;
@@ -79,7 +79,7 @@ export class CharacterRuntime {
     };
     try {
       const gltf = await load(definition.model);
-      const animationEntries = await Promise.all(Object.entries(definition.animations || {}).map(async ([state, id]) => {
+      const animationEntries = await Promise.all(Object.entries(definition.animations || {}).filter(([, id]) => id).map(async ([state, id]) => {
         const asset = await load(id);
         return [state, asset.animations?.[0]];
       }));
@@ -94,6 +94,7 @@ export class CharacterRuntime {
       this.setModel(model, { clips: gltf.animations || [], states: definition.states || {}, source: 'ffxiv-client' });
       for (const [state, clip] of animationEntries) this.animation.register(state, clip);
       this.state.appearance = appearance ? structuredClone(appearance) : null;
+      this.state.actionError = null;
       if (appearance) {
         this.appearance.setData(appearance);
         this.appearance.apply(model, definition.appearanceBindings);
@@ -132,19 +133,31 @@ export class CharacterRuntime {
 
   playAction(definition, event = {}) {
     this.state.actionId = definition?.id || event.actionId || null;
+    this.state.actionPhase = event.type || 'action';
+    this.state.actionError = null;
     const sequence = ++this.actionSequence;
-    const clip = definition?.animationState || this.state.actionId;
-    if (this.animation?.play(clip, { loop: false, restart: true })) return;
-    if (definition?.animationId && this.assets?.registry.resources.has(definition.animationId)) {
+    const clip = definition?.animationState || definition?.animationClip || this.state.actionId;
+    if (this.animation?.play(clip, { loop: false, restart: true })) return true;
+    const animationId = definition?.animationResourceId
+      || (typeof definition?.animationId === 'string' ? definition.animationId : null)
+      || definition?.animation?.resourceId;
+    if (animationId && this.assets?.registry.resources.has(animationId)) {
       const generation = this.generation;
-      void this.assets.load(definition.animationId, { priority: 0 }).then(asset => {
-        if (generation !== this.generation) { this.assets.release(definition.animationId); return; }
-        if (this.retained.has(definition.animationId)) this.assets.release(definition.animationId);
-        else this.retained.add(definition.animationId);
-        this.animation.register(clip, asset.animations?.[0]);
+      void this.assets.load(animationId, { priority: 0 }).then(asset => {
+        if (generation !== this.generation) { this.assets.release(animationId); return; }
+        if (this.retained.has(animationId)) this.assets.release(animationId);
+        else this.retained.add(animationId);
+        if (!this.animation.register(clip, asset.animations?.[0])) {
+          this.state.actionError = `动作资源没有可播放片段: ${animationId}`;
+          return;
+        }
         if (sequence === this.actionSequence) this.animation.play(clip, { loop: false, restart: true });
       }).catch(error => { this.state.actionError = error.message; });
-    } else this.fallback?.trigger(event, this.state.jobId);
+    } else {
+      this.fallback?.trigger(event, this.state.jobId);
+      if (definition?.animationId) this.state.actionError = `动作资源尚未注册: ${definition.animationId}`;
+    }
+    return true;
   }
 
   update(dt, time) {
@@ -154,7 +167,12 @@ export class CharacterRuntime {
     const motion = this.state.movement === 'idle' && Math.abs(this.state.turn) > 0.005
       ? this.state.turn > 0 ? 'turn-left' : 'turn-right' : this.state.movement;
     this.appearance.beforeAnimation(this.model);
-    if (this.animation?.clips.size) this.animation.update(dt, this.animation.clips.has(motion) ? motion : this.state.movement);
+    if (this.animation?.clips.size) {
+      this.animation.update(dt, this.animation.has(motion) ? motion : this.state.movement);
+      if (this.state.movement === 'jump-land' && this.animation.state === 'jump-land' && !this.animation.actionRemaining) {
+        this.state.movement = 'idle';
+      }
+    }
     else this.fallback?.update(dt, this.state.movement !== 'idle', time);
     this.appearance.afterAnimation(this.model);
   }

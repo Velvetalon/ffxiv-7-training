@@ -421,3 +421,7 @@ export async function runSmoke(options) {
 export async function runRepresentative(options) {
   return runValidation({ ...options, representative: true, concurrency: 1 });
 }
+
+// Shared by bounded feature validators that need the same Playwright module
+// resolution as the fast smoke/representative checks.
+export { loadPlaywright };
