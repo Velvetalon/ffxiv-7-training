@@ -20,6 +20,8 @@ export class AudioRuntime {
     this.sceneToken = 0;
     this.pendingScene = null;
     this.pendingActions = [];
+    this.sfxSources = new Set();
+    this.sfxGeneration = 0;
     this.unlockBound = false;
     this.unlocked = false;
     this.gestureHandler = () => { void this.unlock(); };
@@ -232,6 +234,7 @@ export class AudioRuntime {
   }
 
   async _playAction(soundId, options) {
+    const generation = this.sfxGeneration;
     const entry = this.actionEntry(soundId) || (this.manifest().resources?.[soundId]?.type === 'audio' ? { id: soundId } : null);
     const resourceId = resourceIdOf(entry);
     if (!resourceId) return { ok: false, reason: 'action-sfx-unknown', soundId };
@@ -242,6 +245,7 @@ export class AudioRuntime {
     } catch (error) {
       return { ok: false, reason: 'action-sfx-load-failed', soundId, resourceId, error };
     }
+    if (generation !== this.sfxGeneration) return { ok: false, stale: true, soundId, resourceId };
     if (!this.isUnlocked() || !this.context) return { ok: false, pending: 'user-gesture', soundId, resourceId };
     const source = this.context.createBufferSource();
     const gain = this.context.createGain();
@@ -252,8 +256,9 @@ export class AudioRuntime {
     const now = this.context.currentTime;
     const volume = Math.max(0, Math.min(1, Number(options.volume ?? entry?.volume ?? 1)));
     gain.gain.setValueAtTime(volume, now);
-    source.onended = () => { source.disconnect(); gain.disconnect(); };
+    source.onended = () => { this.sfxSources.delete(source); source.disconnect(); gain.disconnect(); };
     source.start(Math.max(now, requestedStart), Math.max(0, Number(options.offset ?? 0)));
+    this.sfxSources.add(source);
     return { ok: true, soundId, resourceId };
   }
 
@@ -268,6 +273,8 @@ export class AudioRuntime {
   }
 
   async stopBgm({ fadeMs = this.options.fadeMs ?? 650 } = {}) {
+    this.sceneToken++;
+    this.pendingScene = null;
     const track = this.bgm;
     this.bgm = null;
     if (!track) return { ok: true, stopped: false };
@@ -298,8 +305,11 @@ export class AudioRuntime {
   }
 
   stopAll(options = {}) {
+    this.sfxGeneration++;
     this.pendingScene = null;
     this.pendingActions.length = 0;
+    for (const source of this.sfxSources) source.stop();
+    this.sfxSources.clear();
     void this.stopBgm(options);
   }
 

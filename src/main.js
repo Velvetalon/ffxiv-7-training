@@ -16,8 +16,14 @@ import { initializeHudLayout } from './ui/layout/index.js';
 import { SandboxAssets } from './assets/SandboxAssets.js';
 import { SandboxPanel } from './ui/SandboxPanel.js';
 import { parseFfxivCharaDat } from './character/appearance/FfxivCharaDat.js';
+import { SessionPreferences } from './core/SessionPreferences.js';
+import { DeveloperRuntime } from './dev/DeveloperRuntime.js';
+import { DeveloperPanel } from './ui/developer/DeveloperPanel.js';
+import { DebugOverlay } from './ui/developer/DebugOverlay.js';
+import { RuntimeFeedback } from './ui/RuntimeFeedback.js';
 
 const settings = loadSettings();
+const preferences = new SessionPreferences(settings, () => persistSettings(settings));
 let currentScene = SCENES[0].id;
 let feedbackTimeout;
 const sandboxAssets = new SandboxAssets();
@@ -25,12 +31,17 @@ const audio = new AudioRuntime(sandboxAssets.runtime, settings, { getManifest: (
 let fps = 60;
 let mobileMovement = null;
 let sceneTransition = false;
+let developerRuntime;
+let initialCameraRestore = true;
+let lastLoadFailure = null;
 
 mountShell(JOBS);
+const loadingFeedback = new RuntimeFeedback({ root: $('#app'), onRetry: () => retryLoading() });
 try { await loadSceneCatalog(); } catch (error) { console.warn('Scene catalog:', error); }
 const requestedScene = new URLSearchParams(window.location.search).get('scene');
 currentScene = SCENES.some(scene => scene.id === requestedScene)
-  ? requestedScene : SCENES.find(scene => scene.id === 'gridania')?.id || SCENES[0].id;
+  ? requestedScene : SCENES.some(scene => scene.id === preferences.lastSceneId)
+    ? preferences.lastSceneId : SCENES.find(scene => scene.id === 'gridania')?.id || SCENES[0].id;
 
 const combat = createCombat('WHM');
 const training = new TrainingDirector(combat);
@@ -41,12 +52,15 @@ const world = new World($('#world'), {
   onInteract: (npc) => openDialogue(npc),
   onMove: () => { if (teleportController.cast) teleportController.cancel(); },
   onLoading: (progress,error) => {
-    const screen=$('#loading');
-    screen.classList.toggle('loaded',progress===1||!!error);
-    screen.querySelector('p').textContent=error||`正在载入地区 ${Math.round((progress||0)*100)}%`;
-    if(error)toast(`地区载入失败：${error}`);
+    loadingFeedback.mapProgress(progress, error, assetProfiler.active?.sceneId || currentScene);
+    if(error) { lastLoadFailure = 'map'; toast(`地区载入失败：${error}`); }
   },
-  onSceneReady: id => { if (id === currentScene) { sceneTitle(id); hud.invalidate(); } },
+  onSceneReady: id => {
+    restoreCamera(id);
+    preferences.recordScene(id);
+    developerRuntime?.captureEnvironmentBase();
+    if (id === currentScene) { sceneTitle(id); hud.invalidate(); }
+  },
   onConnection: connection => travelConnection(connection),
 });
 world.setJob('WHM');
@@ -80,16 +94,7 @@ const hudLayout = initializeHudLayout({
 });
 const sandboxPanel = new SandboxPanel({
   root: $('#app'), world, onError: toast,
-  onAppearance: async file => {
-    if (world.mount.state.isMounted && !world.mount.dismount()) throw new Error('请先降落再切换外观');
-    const appearance = parseFfxivCharaDat(await file.arrayBuffer());
-    await sandboxAssets.initialize();
-    const definition = sandboxAssets.getCharacter(appearance);
-    if (!definition) throw new Error('此种族或外观部件尚未包含在资源目录中');
-    await world.character.loadDefinition(definition, appearance);
-    sandboxPanel.setAppearance(appearance);
-    sandboxPanel.setAssets({ animations: [...world.character.animation.clips.keys()], mounts: sandboxAssets.mounts });
-  },
+  onAppearance: importAppearance,
   onAnimation: state => world.character.animation.play(state, { loop: false, restart: true }),
   onMount: async id => {
     if (world.mount.state.isMounted) {
@@ -114,19 +119,119 @@ world.sandboxReady = world.loadPromise.then(async success => {
   if (!success) return;
   await sandboxAssets.initialize();
   world.skillDefinitions.merge(sandboxAssets.skills);
-  const appearance = sandboxAssets.manifest.defaultAppearance;
-  const definition = sandboxAssets.getCharacter(appearance);
-  if (!definition) throw new Error('角色资源目录为空或缺少对应外观');
-  await world.character.loadDefinition(definition, appearance);
+  const saved = preferences.appearance;
+  const appearance = saved && sandboxAssets.getCharacter(saved) ? saved : sandboxAssets.manifest.defaultAppearance;
+  const definition = await reloadCharacter(appearance);
   await world.setNpcDefinition(definition);
-  if (appearance) sandboxPanel.setAppearance(appearance);
-  sandboxPanel.setAssets({ animations: [...world.character.animation.clips.keys()], mounts: sandboxAssets.mounts });
   await audio.playScene(world.sceneId);
 }).catch(error => {
+  lastLoadFailure = 'character';
   world.sandboxError = error.message;
+  loadingFeedback.setCharacterLoading(false);
+  loadingFeedback.fail(error, currentScene);
   console.warn('Sandbox asset initialization:', error.message);
   toast(`角色资源载入失败：${error.message}`);
 });
+
+const debugOverlay = new DebugOverlay({ root: $('#app') });
+developerRuntime = new DeveloperRuntime({
+  world, assets: sandboxAssets, audio, scenes: SCENES, preferences,
+  changeMap: id => finishTeleport(id),
+  importAppearance, reloadCharacter: () => reloadCharacter(),
+  teleportPosition: async ({ x, y, z }) => {
+    if (world.loading || !world.navigation) throw new Error('请等待地图就绪');
+    if (![x, y, z].every(Number.isFinite)) throw new Error('坐标必须是有限数字');
+    const point = world.player.position.clone().set(x, y, z);
+    await world.assetScene?.prepareLocation(point);
+    teleportController.cancel();
+    world.player.position.copy(point);
+    world.character.syncTransform();
+    world.jumpVelocity = 0;
+    world.followCamera.reset();
+    world.updateCamera(0);
+  },
+  retryLoad: retryLoading,
+  getLoadingState: () => loadingFeedback.getState(),
+  onAudioSettings: next => {
+    if (typeof next.sound === 'boolean') settings.sound = next.sound;
+    if (Number.isFinite(next.volume)) settings.volume = Math.max(0, Math.min(1, next.volume));
+    saveSettings();
+  },
+});
+const developerPanel = new DeveloperPanel({
+  root: $('#app'), controller: developerRuntime,
+  onStateChange: state => {
+    preferences.setDeveloper(state);
+    debugOverlay.setEnabled(Boolean(preferences.developer.overlay));
+    $('#developer-open')?.classList.toggle('active', Boolean(preferences.developer.open));
+  },
+});
+const developerButton = document.createElement('button');
+developerButton.id = 'developer-open';
+developerButton.className = 'icon-button';
+developerButton.title = '开发者面板';
+developerButton.setAttribute('aria-label', '开发者面板');
+developerButton.innerHTML = icon('wrench');
+$('#settings-open').before(developerButton);
+iconify(developerButton);
+developerButton.addEventListener('click', () => {
+  if (dialogs.active) closeModal();
+  hudLayout.close();
+  sandboxPanel.close();
+  developerPanel.toggle();
+});
+debugOverlay.setEnabled(Boolean(preferences.developer.overlay));
+if (preferences.developer.open || new URLSearchParams(location.search).get('dev') === '1') developerPanel.open();
+
+function restoreCamera(sceneId) {
+  const camera = preferences.camera;
+  if (Number.isFinite(camera?.polar)) world.polar = Math.max(0.05, Math.min(Math.PI - 0.05, camera.polar));
+  if (Number.isFinite(camera?.distance)) world.zoom = Math.max(2, Math.min(60, camera.distance));
+  if (initialCameraRestore && sceneId === preferences.lastSceneId && Number.isFinite(camera?.azimuth)) world.azimuth = camera.azimuth;
+  initialCameraRestore = false;
+  world.followCamera.reset();
+}
+
+async function importAppearance(file) {
+  return reloadCharacter(parseFfxivCharaDat(await file.arrayBuffer()));
+}
+
+async function reloadCharacter(appearance) {
+  if (world.mount.state.isMounted && !world.mount.dismount()) throw new Error('请先降落再重载角色');
+  loadingFeedback.setCharacterLoading(true);
+  world.sandboxError = null;
+  try {
+    await sandboxAssets.initialize();
+    world.skillDefinitions.merge(sandboxAssets.skills);
+    const selected = appearance || world.character.state.appearance || preferences.appearance || sandboxAssets.manifest.defaultAppearance;
+    const definition = sandboxAssets.getCharacter(selected);
+    if (!definition) throw new Error('此种族或外观部件尚未包含在资源目录中');
+    await world.character.loadDefinition(definition, selected);
+    preferences.setAppearance(selected);
+    if (selected) sandboxPanel.setAppearance(selected);
+    sandboxPanel.setAssets({ animations: [...world.character.animation.clips.keys()], mounts: sandboxAssets.mounts });
+    loadingFeedback.setCharacterLoading(false);
+    if (!world.loading && !world.loadError) loadingFeedback.ready(currentScene);
+    lastLoadFailure = null;
+    return definition;
+  } catch (error) {
+    lastLoadFailure = 'character';
+    world.sandboxError = error.message;
+    loadingFeedback.setCharacterLoading(false);
+    loadingFeedback.fail(error, currentScene);
+    throw error;
+  }
+}
+
+async function retryLoading() {
+  if (lastLoadFailure === 'character' || world.sandboxError) {
+    const definition = await reloadCharacter();
+    if (!world.npcDefinition) await world.setNpcDefinition(definition);
+    await audio.playScene(currentScene);
+    return { ok: true };
+  }
+  return finishTeleport(loadingFeedback.getState().mapId || currentScene);
+}
 
 function toast(message) {
   const node = $('#feedback');
@@ -200,6 +305,7 @@ async function finishTeleport(id, entry = {}) {
   if (sceneTransition || world.loading) return { ok: false, reason: '地区正在载入' };
   if (!SCENES.some(scene => scene.id === id)) return { ok: false, reason: '目标地区尚未开放' };
   sceneTransition = true;
+  developerRuntime?.clearPreview();
   teleportController.cancel();
   combat.reset();
   training.reset();
@@ -209,6 +315,10 @@ async function finishTeleport(id, entry = {}) {
     const success = await world.setScene(id, entry);
     if (success !== true) return { ok: false, reason: world.loadError || '地区载入失败，请重试' };
     currentScene = id;
+    lastLoadFailure = null;
+    const locationUrl = new URL(location.href);
+    locationUrl.searchParams.set('scene', id);
+    history.replaceState(null, '', locationUrl);
     world.targetNearest();
     sceneTitle(id);
     hud.invalidate();
@@ -320,12 +430,13 @@ $('#app').addEventListener('contextmenu', event => event.preventDefault());
 const showDialog = callback => () => {
   hudLayout.close();
   sandboxPanel.close();
+  developerPanel.close();
   callback();
 };
 $('#teleport-open').addEventListener('click', showDialog(openTeleport));
 $('#book-open').addEventListener('click', showDialog(() => openBook()));
 $('#settings-open').addEventListener('click', showDialog(openSettings));
-$('#hud-layout-open').addEventListener('click', () => { closeModal(); sandboxPanel.close(); hudLayout.toggle(); });
+$('#hud-layout-open').addEventListener('click', () => { closeModal(); sandboxPanel.close(); developerPanel.close(); hudLayout.toggle(); });
 $('#help-open').addEventListener('click', showDialog(openHelp));
 $('#area-open').addEventListener('click', showDialog(openMap));
 $('#reset').addEventListener('click', reset);
@@ -372,11 +483,12 @@ document.addEventListener('keydown', (event) => {
   }
   if (event.key === 'Escape') {
     if (dialogs.active) closeModal();
+    else if (developerPanel.isOpen) developerPanel.close();
     else if (teleportController.cast) teleportController.cancel();
     else world.clearTarget();
     return;
   }
-  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName) || dialogs.active) return;
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName) || dialogs.active || event.target.closest('.developer-panel')) return;
   if (event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.code === 'KeyF') {
     const connection = world.getNearbyConnection?.();
@@ -421,11 +533,11 @@ window.addEventListener('resize', resize);
 resize();
 sceneTitle(currentScene);
 renderCombat();
-setTimeout(() => { if(!world.loading)$('#loading').classList.add('loaded'); }, 350);
-let last = performance.now(), uiElapsed = 0, mapElapsed = 0, frameElapsed = 0, frameCount = 0;
+let last = performance.now(), uiElapsed = 0, mapElapsed = 0, frameElapsed = 0, developerElapsed = 0, frameCount = 0;
 function frame(now) {
   const dt = Math.min((now - last) / 1000, 0.1);
   last = now;
+  developerRuntime.update(dt);
   world.update(dt);
   if (!world.loading && world.isImported && assetProfiler.active?.firstRender && !assetProfiler.active?.interactive) {
     const overlay = getComputedStyle($('#loading'));
@@ -448,9 +560,20 @@ function frame(now) {
   uiElapsed += dt;
   mapElapsed += dt;
   frameElapsed += dt;
+  developerElapsed += dt;
   frameCount++;
   if (uiElapsed >= 0.065) { renderCombat(); updateConnectionPrompt(); if (sandboxPanel.isOpen) sandboxPanel.update(); uiElapsed = 0; }
   if (mapElapsed >= 0.2) { drawMap($('#minimap')); if (dialogs.active === 'map-modal') drawMap($('#area-map-canvas'), true); mapElapsed = 0; }
+  if (developerElapsed >= 0.25) {
+    loadingFeedback.update(world, assetProfiler);
+    if (!world.loading && world.isImported) preferences.setCamera({ azimuth: world.azimuth, polar: world.polar, distance: world.zoom });
+    if (developerPanel.isOpen || preferences.developer.overlay) {
+      const snapshot = developerRuntime.getSnapshot();
+      if (developerPanel.isOpen) developerPanel.update(snapshot);
+      if (preferences.developer.overlay) debugOverlay.update(snapshot);
+    }
+    developerElapsed = 0;
+  }
   if (frameElapsed >= 1) {
     fps = Math.round(frameCount / frameElapsed);
     $('#render-stats').textContent = `${fps} FPS`;
@@ -461,4 +584,4 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__APP__ = { world, combat, training, useAction, switchJob, teleport, reset, openTeleport, openBook, closeModal, SCENES, JOBS, sandbox: { assets: sandboxAssets, audio, panel: sandboxPanel, hudLayout }, getContext: context, getFPS: () => fps };
+window.__APP__ = { world, combat, training, useAction, switchJob, teleport, reset, openTeleport, openBook, closeModal, SCENES, JOBS, sandbox: { assets: sandboxAssets, audio, panel: sandboxPanel, hudLayout }, developer: { runtime: developerRuntime, panel: developerPanel, overlay: debugOverlay, preferences, feedback: loadingFeedback }, getContext: context, getFPS: () => fps };

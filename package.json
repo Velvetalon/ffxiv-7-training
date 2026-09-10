@@ -25,6 +25,8 @@
     "validate-smoke": "node scripts/validate-smoke.mjs",
     "validate-map": "node scripts/validate-map.mjs",
     "validate-sandbox": "node scripts/validate-sandbox.mjs",
+    "validate-developer": "node scripts/validate-developer.mjs",
+    "content:scan": "node scripts/content-coverage.mjs",
     "check-map-position": "node scripts/check-map-position.mjs"
   },
   "dependencies": {
