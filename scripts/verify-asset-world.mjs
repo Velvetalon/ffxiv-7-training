@@ -36,6 +36,7 @@ const expectedSceneCount = args['expected-scenes'] === undefined ? null : Number
 const expectedEdgeCount = args['expected-edges'] === undefined ? null : Number(args['expected-edges']);
 const resumePath = args.resume ? path.resolve(String(args.resume)) : null;
 const continueOnFailure = args['continue-on-failure'] === true || args['continue-on-failure'] === 'true';
+const transitionsOnly = args['transitions-only'] === true || args['transitions-only'] === 'true';
 const requested = args.scenes ? new Set(String(args.scenes).split(',').map(value => value.trim()).filter(Boolean)) : null;
 const smoke = args.smoke === true || args.smoke === 'true';
 const smokeIds = String(args['smoke-scenes'] || 'x6f2,gridania,limsa').split(',').map(value => value.trim()).filter(Boolean);
@@ -96,8 +97,8 @@ if (!allScenes.length) throw new Error('active catalog has no scenes');
 const catalogIds = new Set(allScenes.map(scene => scene.id));
 const unknown = requested && [...requested].filter(id => !catalogIds.has(id));
 if (unknown?.length) throw new Error(`unknown scene ids: ${unknown.join(', ')}`);
-const selectedScenes = requested ? allScenes.filter(scene => requested.has(scene.id)) : smoke ? allScenes.filter(scene => smokeIds.includes(scene.id)) : allScenes;
-if (!selectedScenes.length) throw new Error('no scenes selected');
+const selectedScenes = transitionsOnly ? [] : requested ? allScenes.filter(scene => requested.has(scene.id)) : smoke ? allScenes.filter(scene => smokeIds.includes(scene.id)) : allScenes;
+if (!transitionsOnly && !selectedScenes.length) throw new Error('no scenes selected');
 
 const manifests = new Map();
 for (const scene of allScenes) {
@@ -133,7 +134,7 @@ const report = {
   assetPipeline: pipeline ? { catalogMaps: Object.keys(pipeline.catalog.maps || {}).length, ticketed: Boolean(active.assetPipeline?.ticket) } : null,
   expected: { scenes: expectedSceneCount, directedConnections: expectedEdgeCount },
   static: { catalogCount: allScenes.length, directedConnections: staticEdges.length, problems: staticProblems },
-  selection: selectedScenes.map(scene => scene.id), smoke,
+  selection: selectedScenes.map(scene => scene.id), smoke, transitionsOnly,
   zones: [], transitions: [],
 };
 function compatiblePassingEvidence(zone) {
@@ -451,7 +452,7 @@ try {
     await persist();
     if (result.status === 'fail' && !continueOnFailure) break;
   }
-  if (!requested && report.zones.length === selectedScenes.length && report.zones.every(zone => zone.status === 'pass' || zone.status === 'resumed-pass')) {
+  if (transitionsOnly || (!requested && report.zones.length === selectedScenes.length && report.zones.every(zone => zone.status === 'pass' || zone.status === 'resumed-pass'))) {
     for (const edge of representativeEdges()) {
       const result = await inspectTransition(browser, edge);
       report.transitions.push(result);
@@ -459,7 +460,7 @@ try {
       if (result.status === 'fail') break;
     }
   }
-  report.complete = report.zones.length === selectedScenes.length && report.zones.every(zone => zone.status === 'pass' || zone.status === 'resumed-pass') && report.transitions.every(transition => transition.status === 'pass');
+  report.complete = (transitionsOnly ? report.transitions.length === 4 : report.zones.length === selectedScenes.length && report.zones.every(zone => zone.status === 'pass' || zone.status === 'resumed-pass')) && report.transitions.every(transition => transition.status === 'pass');
   await persist();
   await progress('run:complete', { complete: report.complete, summary: report.summary });
   console.log(JSON.stringify({ complete: report.complete, summary: report.summary }, null, 2));

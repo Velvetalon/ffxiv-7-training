@@ -175,7 +175,10 @@ const expectedIds = new Set(selection?.selected || (reportedSelection.length ? r
 const byId = new Set(analyzed.map(record => record.id));
 const notRun = [...expectedIds].filter(id => !byId.has(id));
 const transitionRecords = analyzed.filter(record => record.kind === 'transition');
-const expectedTransitions = reports.some(item => item.data.summary?.releaseReady !== undefined || item.data.complete !== undefined) ? 4 : 0;
+const expectedTransitions = reports.some(({ data }) =>
+  data.expected?.scenes === 65 && data.expected?.directedConnections === 145 &&
+  data.selection?.length === 65 && !data.smoke
+) ? 4 : 0;
 const notRunTransitions = Math.max(0, expectedTransitions - transitionRecords.length);
 const abnormal = analyzed.filter(record => record.functionalFailure || record.performanceRegression || record.outlier);
 const detail = abnormal.slice(0, topLimit).map(record => ({ id: record.id, label: record.label, source: record.source, functionalFailure: record.functionalFailure, performanceRegression: record.performanceRegression, outlier: record.outlier, reasons: [...record.failureReasons, ...record.absolute, ...record.relativeReasons] }));
@@ -216,7 +219,7 @@ const lines = [
 ];
 await fs.writeFile(mdPath, lines.join('\n'));
 console.log(JSON.stringify({ counts: summary.counts, exceptions: detail.length, truncated: summary.truncatedAbnormalDetails, summary: outPath, markdown: mdPath }));
-if (summary.counts.failed || summary.counts.functionalUnknown || summary.counts.performanceRegression || summary.counts.notRun || (config.baseline?.required && summary.baseline.usableRecords === 0)) process.exitCode = 1;
+if (summary.counts.failed || summary.counts.functionalUnknown || summary.counts.performanceRegression || summary.counts.notRun || summary.counts.transitionNotRun || (config.baseline?.required && summary.baseline.usableRecords === 0)) process.exitCode = 1;
 if (selfTestDir) {
   const assert = (condition, message) => { if (!condition) throw new Error(`self-test: ${message}`); };
   assert(summary.counts.total === 22 && summary.counts.notRun === 2, 'partial selection must report two not-run maps');

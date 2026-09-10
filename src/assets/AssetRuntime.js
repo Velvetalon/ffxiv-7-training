@@ -79,11 +79,12 @@ export class AssetRuntime {
       this.scheduler.promote(`range:${record.id}`, options.priority);
     }
     if (!work) {
-      work = { controller: new AbortController(), clients: 0 };
+      work = { controller: new AbortController(), clients: 0, settled: false };
       this.inflight.set(id, work);
-      work.promise = this.prepare(record, { ...options, signal: work.controller.signal }).finally(() => {
-        if (this.inflight.get(id) === work) this.inflight.delete(id);
-      });
+      work.promise = this.prepare(record, { ...options, signal: work.controller.signal }).then(
+        entry => { work.settled = true; return entry; },
+        error => { work.settled = true; throw error; },
+      );
     }
     work.clients++;
     try {
@@ -95,7 +96,9 @@ export class AssetRuntime {
     } finally {
       work.clients--;
       if (!work.clients && this.inflight.get(id) === work) {
-        work.controller.abort();
+        // A resolved decoder is still in flight until its consumers own their
+        // references; another completion must not evict it between microtasks.
+        if (!work.settled) work.controller.abort();
         this.inflight.delete(id);
       }
       this.evict();
@@ -108,7 +111,7 @@ export class AssetRuntime {
     try {
       // The scheduler bounds actual fetches; dependency loading shares inflight work.
       const dependencyResults = await Promise.allSettled(record.dependencies.map(async id => {
-        await this.load(id, options);
+        await this.load(id, { ...options, retain: true });
         dependencies.push(id);
       }));
       const failedDependency = dependencyResults.find(result => result.status === 'rejected');

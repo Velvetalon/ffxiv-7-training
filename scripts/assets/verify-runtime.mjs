@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { AssetCache } from '../../src/assets/AssetCache.js';
 import { AssetRuntime } from '../../src/assets/AssetRuntime.js';
 import { FetchScheduler } from '../../src/assets/FetchScheduler.js';
+import { decompressGzip } from '../../src/assets/Decompress.js';
+import { gzipSync } from 'node:zlib';
 
 const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 const abortName = error => error?.name === 'AbortError' || error?.message === 'aborted';
@@ -102,6 +104,25 @@ async function verifyRuntime() {
   await assert.rejects(recovering.load('flaky'), /Asset HTTP 404/);
   assert.equal((await recovering.load('flaky')).byteLength, 1);
   assert.equal(failedAttempts, 2, 'failed runtime load did not recover with fresh work');
+
+  const pressured = makeRuntime(async () => response([1, 2, 3, 4]), 0);
+  const resources = Object.fromEntries(Array.from({ length: 32 }, (_, i) => [
+    `blob-${i}`, { type: 'bin', hash: `hash-${i}`, size: 4, dependencies: [], url: `${i}.bin` },
+  ]));
+  for (let i = 0; i < 16; i++) resources[`pair-${i}`] = {
+    type: 'pair', hash: `pair-${i}`, size: 1, virtual: true,
+    dependencies: [`blob-${i * 2}`, `blob-${i * 2 + 1}`],
+  };
+  pressured.configure({ schemaVersion: 1, resources, bundles: {} }, 'https://assets.test/');
+  pressured.decoder('pair', (_, record, store) => {
+    for (const id of record.dependencies) assert.ok(store.get(id), `dependency ${id} was evicted before decoding`);
+    return record.id;
+  });
+  await Promise.all(Array.from({ length: 16 }, (_, i) => pressured.load(`pair-${i}`)));
+  for (let i = 0; i < 16; i++) pressured.release(`pair-${i}`);
+  assert.equal(pressured.memoryBytes, 0);
+  await pressured.preload(['pair-0', 'pair-1']);
+  assert.equal(pressured.memoryBytes, 0, 'unretained preloads must release retained dependencies');
 }
 
 class FakeCache {
@@ -144,4 +165,9 @@ async function verifyCache() {
 await verifyFetchScheduler();
 await verifyRuntime();
 await verifyCache();
+const collisionFixture = Float32Array.from({ length: 9000 }, (_, i) => (i - 4500) / 16);
+const compressedFixture = gzipSync(new Uint8Array(collisionFixture.buffer));
+const restoredFixture = await decompressGzip(compressedFixture);
+assert.deepEqual(new Uint8Array(restoredFixture), new Uint8Array(collisionFixture.buffer));
+await assert.rejects(decompressGzip(Uint8Array.from([1, 2, 3])));
 console.log('verify-runtime: FetchScheduler sharing/cancellation/retry, AssetRuntime dedup/recovery/eviction, and AssetCache namespace/quota passed');

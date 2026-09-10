@@ -1,3 +1,5 @@
+import { decompressGzip } from '../../assets/Decompress.js';
+
 export async function loadCollision(base, manifest) {
   const response = await fetch(`${base}${manifest.collisionFile || 'collision.bin'}`);
   if (!response.ok) throw new Error('未找到导出的原始碰撞数据');
@@ -11,7 +13,7 @@ export async function loadCollision(base, manifest) {
       && payload.byteLength === manifest.collisionBytes;
     if (!decodedByHttp) {
       if (header[0] !== 0x1f || header[1] !== 0x8b) throw new Error('碰撞文件不是有效的 gzip 数据');
-      bytes = await new Response(new Blob([payload]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      bytes = await decompressGzip(payload);
     }
   }
   if (bytes.byteLength % 36 !== 0 || (manifest.collisionBytes && bytes.byteLength !== manifest.collisionBytes)) {

@@ -5,13 +5,15 @@ import { mapAssetRuntime as runtime } from '../../assets/MapAssets.js';
 import { assetProfiler } from '../../assets/AssetProfiler.js';
 import { disposeObject } from '../assets.js';
 import { StreamingNavigation } from './StreamingNavigation.js';
+import { decompressGzip } from '../../assets/Decompress.js';
 
 runtime.decoder('navigation', async (_, record, store, options) => {
   const payload = store.get(record.dependencies[0]);
+  if (!payload) throw new Error(`Collision dependency is not retained: ${record.dependencies[0]}`);
   const meta = record.metadata;
   assetProfiler.mark('collision:decode:start');
   const bytes = meta.encoding === 'gzip'
-    ? await new Response(new Blob([payload]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer()
+    ? await decompressGzip(payload)
     : payload.slice(0);
   if (bytes.byteLength !== meta.bytes) throw new Error('Collision byte count mismatch');
   assetProfiler.mark('collision:decode:complete', { bytes: bytes.byteLength });
