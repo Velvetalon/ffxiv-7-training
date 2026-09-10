@@ -2,7 +2,7 @@ param(
   [string]$Client = $env:FFXIV_CLIENT,
   [string]$Tools = '',
   [string]$Output = '',
-  [ValidateSet('gridania','limsa')][string[]]$Maps = @('gridania','limsa'),
+  [string[]]$Maps = @(),
   [string]$Node = '',
   [switch]$SkipExtract,
   [switch]$NoPublish
@@ -18,10 +18,10 @@ $parameters = @{
   Client = $Client
   Project = $project
   Output = $Output
-  Maps = $Maps
   SkipExtract = $SkipExtract
   NoPublish = $NoPublish
 }
+if ($Maps.Count) { $parameters.Maps = $Maps }
 if ($Node) { $parameters.Node = $Node }
 & $entry @parameters
 if ($LASTEXITCODE -ne 0) { throw "Map rebuild failed (exit $LASTEXITCODE). See the tool logs." }

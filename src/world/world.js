@@ -11,16 +11,19 @@ import { getLayout } from './terrain/layouts.js';
 import { Navigation } from './terrain/Navigation.js';
 import { loadExtractedScene } from './imported/ExtractedScene.js';
 import { MeshNavigation } from './imported/MeshNavigation.js';
-import { mountEncounter } from './imported/MountScene.js';
+import { mountEncounter, prepareEncounter } from './imported/MountScene.js';
 import { FollowCamera } from './camera/FollowCamera.js';
+import { SCENES } from './scenes.js';
+import { connectionDistance, findArrival, mountConnections, nearestConnection } from './imported/ZoneConnections.js';
+import { loadCollision } from './imported/CollisionData.js';
 
 const contextTarget = new THREE.Vector3();
 const contextPlayer = new THREE.Vector3();
 
 export class World {
-  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady } = {}) {
+  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, initialScene = 'gridania' } = {}) {
     this.canvas = canvas;
-    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady };
+    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection };
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
     this.followCamera = new FollowCamera(this.camera);
@@ -34,7 +37,7 @@ export class World {
     this.scene.add(this.player);
     this.actorAnimation = new ActorAnimation(this.player);
     this.spawn = new THREE.Vector3();
-    this.sceneId = 'gridania';
+    this.sceneId = initialScene;
     this.jobId = 'WHM';
     this.target = null;
     this.obstacles = [];
@@ -65,82 +68,126 @@ export class World {
     this.setScene(this.sceneId);
   }
 
-  setScene(id) {
-    if (this.loading && this.sceneId === id) return this.loadPromise;
+  setScene(id, entry = {}) {
+    if (this.loading) return this.requestedSceneId === id ? this.loadPromise : Promise.resolve(false);
+    if (!SCENES.some(scene => scene.id === id)) throw new Error(`Unknown world scene: ${id}`);
+    this.requestedSceneId = id;
     const builder = SCENE_BUILDERS[id];
-    if (!builder) throw new Error(`Unknown world scene: ${id}`);
-    this.clearScene();
-    this.isImported = false;
-    this.sceneId = id;
-    this.sceneRoot = new THREE.Group();
-    this.scene.add(this.sceneRoot);
-    this.registry.clear();
-    this.obstacles = [];
-    this.water = [];
-    this.crystals = [];
-    this.paths = [];
-    this.navigationRegions = [];
-    this.layout = getLayout(id);
-    this.navigation = new Navigation(this.layout);
-    builder(this, this.sceneRoot);
-    this.scene.background = new THREE.Color(this.fogColor);
-    this.scene.fog = new THREE.Fog(this.fogColor, 65, 260);
-    addLighting(this.sceneRoot, id);
-    setQuality(this.renderer, this.sceneRoot, this.quality);
-    this.player.position.copy(this.spawn);
-    this.player.rotation.y = Math.PI;
-    this.target = null;
-    this.clearReturnGate();
-    this.azimuth = 0.05;
-    this.polar = 1.2;
-    this.zoom = 16;
-    this.introFocus = 1;
-    this.targetNearest();
-    this.followCamera.reset();
-    this.updateCamera(0);
-    this.loadPromise = this.loadClientScene(id);
+    if (!this.layout && builder) {
+      this.clearScene();
+      this.isImported = false;
+      this.sceneId = id;
+      this.sceneRoot = new THREE.Group();
+      this.scene.add(this.sceneRoot);
+      this.registry.clear();
+      this.obstacles = [];
+      this.water = [];
+      this.crystals = [];
+      this.paths = [];
+      this.navigationRegions = [];
+      this.layout = getLayout(id);
+      this.navigation = new Navigation(this.layout);
+      builder(this, this.sceneRoot);
+      this.scene.background = new THREE.Color(this.fogColor);
+      this.scene.fog = new THREE.Fog(this.fogColor, 65, 260);
+      addLighting(this.sceneRoot, id);
+      setQuality(this.renderer, this.sceneRoot, this.quality);
+      this.player.position.copy(this.spawn);
+      this.player.rotation.y = Math.PI;
+      this.target = null;
+      this.clearReturnGate();
+      this.azimuth = 0.05;
+      this.polar = 1.2;
+      this.zoom = 16;
+      this.introFocus = 1;
+      this.targetNearest();
+      this.followCamera.reset();
+      this.updateCamera(0);
+    }
+    this.loadPromise = this.loadClientScene(id, entry);
     return this.loadPromise;
   }
 
-  async loadClientScene(id) {
+  async loadClientScene(id, entry = {}) {
     const request = this.loadRequest = (this.loadRequest || 0) + 1;
     this.loading = true; this.loadError = null;
     this.input.setEnabled(false);
     this.callbacks.onLoading?.(0);
+    let loaded, navigation;
     try {
-      const loaded = await loadExtractedScene(id,progress=>{if(request===this.loadRequest)this.callbacks.onLoading?.(progress*0.9);});
-      const collisionResponse = await fetch(`${loaded.base}collision.bin`);
-      if(!collisionResponse.ok)throw new Error('未找到导出的原始碰撞数据');
-      const bytes=await collisionResponse.arrayBuffer();
-      if(request!==this.loadRequest){disposeObject(loaded.group);return;}
-      const navigation=new MeshNavigation(new Float32Array(bytes));
+      loaded = await loadExtractedScene(id,progress=>{if(request===this.loadRequest)this.callbacks.onLoading?.(progress*0.9);});
+      const collision=await loadCollision(loaded.base,loaded.manifest);
+      if(request!==this.loadRequest){disposeObject(loaded.group);return false;}
+      navigation=new MeshNavigation(collision);
+      const encounter=prepareEncounter(loaded.manifest,navigation);
+      const arrival=findArrival(loaded.manifest,navigation,entry);
+      this.clearReturnGate();
       this.clearScene();
+      this.sceneId=id;
       this.navigation=navigation;
       this.sceneRoot=loaded.group;
-      this.layout=mountEncounter(this,loaded,navigation);
+      this.layout=mountEncounter(this,loaded,navigation,encounter);
+      mountConnections(this.sceneRoot,loaded.manifest.connections || []);
       this.scene.add(this.sceneRoot);
       this.water=[];this.crystals=[];this.architecture=[];this.landmarkLabels=[];
       this.importedManifest=loaded.manifest;
+      this.preferredConnectionId=entry.arrivalConnection || null;
       this.isImported=true;
       this.scene.background=new THREE.Color(id==='gridania'?'#afc8bb':'#aac4d0');
       this.scene.fog=new THREE.Fog(this.scene.background,180,650);
+      this.camera.far=Math.max(650,navigation.bounds.getSize(new THREE.Vector3()).length());
+      this.camera.updateProjectionMatrix();
       addLighting(this.sceneRoot,id);
+      setQuality(this.renderer,this.sceneRoot,this.quality);
       this.azimuth=this.trainingAzimuth ?? 0.1;
       this.player.rotation.y=this.azimuth+Math.PI;
       this.introFocus=0;this.zoom=14;this.polar=1.17;
       this.followCamera.reset();
+      this.target=null;
       this.targetNearest();
-      if(this.jobId==='RPR')this.moveToDummy();
+      if(arrival) {
+        this.player.position.set(arrival.x,arrival.y,arrival.z);
+        this.navigation.height=arrival.y;
+        const endpoint=loaded.manifest.connections?.find(connection=>connection.id===entry.arrivalConnection);
+        const outwardHeading=endpoint?.source?.playerRunningDirection;
+        if(Number.isFinite(outwardHeading)) {
+          this.azimuth=outwardHeading;
+          this.player.rotation.y=outwardHeading+Math.PI;
+        }
+        this.followCamera.reset();
+      } else if(this.jobId==='RPR')this.moveToDummy();
+      this.jumpVelocity=0;
       this.loading=false;this.input.setEnabled(true);
+      this.requestedSceneId=null;
       this.callbacks.onLoading?.(1);
       this.callbacks.onSceneReady?.(id);
+      return true;
     } catch(error) {
-      if(request!==this.loadRequest)return;
+      if(loaded && loaded.group!==this.sceneRoot)disposeObject(loaded.group);
+      if(navigation && navigation!==this.navigation)navigation.dispose();
+      if(request!==this.loadRequest)return false;
       this.loading=false;this.loadError=error.message;
-      this.input.setEnabled(true);
+      this.requestedSceneId=null;
+      this.input.setEnabled(Boolean(this.navigation));
       this.callbacks.onLoading?.(null,error.message);
       console.error('Client map import:',error);
+      return false;
     }
+  }
+
+  getConnections() { return this.isImported ? this.importedManifest?.connections || [] : []; }
+
+  getNearbyConnection() {
+    if (this.loading) return null;
+    const preferred=this.getConnections().find(connection=>connection.id===this.preferredConnectionId);
+    if(preferred && connectionDistance(preferred,this.player.position)<=(preferred.radius || 3))return preferred;
+    this.preferredConnectionId=null;
+    return nearestConnection(this.getConnections(), this.player.position);
+  }
+
+  canUseConnection(id) {
+    const connection=this.getConnections().find(connection=>connection.id===id);
+    return !this.loading && !!connection && connectionDistance(connection,this.player.position)<=(connection.radius || 3);
   }
 
   setJob(id) {
@@ -224,7 +271,7 @@ export class World {
   }
 
   setInputEnabled(enabled) {
-    this.input.setEnabled(enabled && !this.loading);
+    this.input.setEnabled(enabled && !this.loading && Boolean(this.navigation));
     if (!enabled) this.moving = false;
   }
 
@@ -320,7 +367,7 @@ export class World {
   }
 
   updateMovement(dt) {
-    if (!this.input.enabled) {
+    if (!this.input.enabled || !this.navigation) {
       this.moving = false;
       return;
     }
@@ -412,9 +459,16 @@ export class World {
   }
 
   pick(event) {
+    if (this.loading) return;
     const rect = this.canvas.getBoundingClientRect();
     this.pointer.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.camera);
+    const portals = this.sceneRoot.children.filter(node => node.userData.connection);
+    const portalHit = this.raycaster.intersectObjects(portals, true)[0];
+    if (portalHit) {
+      this.callbacks.onConnection?.(portalHit.object.userData.connection);
+      return;
+    }
     const hit = this.raycaster.intersectObjects(this.registry.pickRoots(), true).find((value) => value.object.userData.entityId);
     if (!hit) return;
     const entity = this.registry.get(hit.object.userData.entityId);
@@ -424,13 +478,16 @@ export class World {
   }
 
   goToLandmark(id) {
+    if (this.loading) return false;
     const landmark = this.layout.landmarks.find(item => item.id === id);
     if (!landmark) return false;
-    const point = this.navigation.nearestWalkable(landmark.x, landmark.z + (landmark.d || 0) / 2 + 2,25,landmark.y);
+    const point = this.navigation.nearestWalkable(landmark.x, landmark.z + (landmark.type==='connection' ? 0 : (landmark.d || 0) / 2 + 2),25,landmark.y);
     if (!point) return false;
     this.player.position.set(point.x, point.y ?? this.navigation.surfaceAt(point.x, point.z)?.height ?? 0, point.z);
     if(this.isImported)this.navigation.height=this.player.position.y;
+    this.preferredConnectionId=landmark.type==='connection' ? id.slice('connection:'.length) : null;
     this.player.rotation.y = Math.PI;
+    this.followCamera.reset();
     this.callbacks.onMove?.(point);
     return true;
   }

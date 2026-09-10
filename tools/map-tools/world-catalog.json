@@ -1,0 +1,7105 @@
+{
+  "schemaVersion": 1,
+  "rulesVersion": "7.0",
+  "clientVersionPolicy": "Read installed client; do not claim historical 7.0 assets",
+  "sources": [
+    {
+      "file": "TerritoryType-7.0.csv",
+      "sha256": "27ab6b695917796c6c83ddf4727f72b33ee66ab4cca75c726f7dc9950d3d2f91"
+    },
+    {
+      "file": "Map-7.0.csv",
+      "sha256": "f5249adbe591ea40336d3bf27aa286d311140278dd8d14c94978fb3d5555f773"
+    },
+    {
+      "file": "PlaceName-7.0.csv",
+      "sha256": "08149ce4ee05be8266cc401ce6d47b5e038d1938bacb5aca5dcb7bf88aeee013"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1t1",
+      "territoryId": 128,
+      "name": "利姆萨·罗敏萨上层甲板",
+      "en": "Limsa Lominsa Upper Decks",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "city",
+      "root": "bg/ffxiv/sea_s1/twn/s1t1",
+      "mapId": "s1t1/01",
+      "mapTexture": "ui/map/s1t1/01/s1t101_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 128,
+        "intendedUse": 0,
+        "mapRow": 11,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "limsa",
+      "territoryId": 129,
+      "name": "利姆萨·罗敏萨下层甲板",
+      "en": "Limsa Lominsa Lower Decks",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "city",
+      "root": "bg/ffxiv/sea_s1/twn/s1t2",
+      "mapId": "s1t2/01",
+      "mapTexture": "ui/map/s1t2/01/s1t201_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 129,
+        "intendedUse": 0,
+        "mapRow": 12,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "w1t1",
+      "territoryId": 130,
+      "name": "乌尔达哈现世回廊",
+      "en": "Ul'dah - Steps of Nald",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "city",
+      "root": "bg/ffxiv/wil_w1/twn/w1t1",
+      "mapId": "w1t1/01",
+      "mapTexture": "ui/map/w1t1/01/w1t101_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 130,
+        "intendedUse": 0,
+        "mapRow": 13,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "w1t2",
+      "territoryId": 131,
+      "name": "乌尔达哈来生回廊",
+      "en": "Ul'dah - Steps of Thal",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "city",
+      "root": "bg/ffxiv/wil_w1/twn/w1t2",
+      "mapId": "w1t2/01",
+      "mapTexture": "ui/map/w1t2/01/w1t201_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 131,
+        "intendedUse": 0,
+        "mapRow": 14,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "gridania",
+      "territoryId": 132,
+      "name": "格里达尼亚新街",
+      "en": "New Gridania",
+      "region": "The Black Shroud",
+      "expansion": 0,
+      "kind": "city",
+      "root": "bg/ffxiv/fst_f1/twn/f1t1",
+      "mapId": "f1t1/00",
+      "mapTexture": "ui/map/f1t1/00/f1t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 132,
+        "intendedUse": 0,
+        "mapRow": 2,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "f1t2",
+      "territoryId": 133,
+      "name": "格里达尼亚旧街",
+      "en": "Old Gridania",
+      "region": "The Black Shroud",
+      "expansion": 0,
+      "kind": "city",
+      "root": "bg/ffxiv/fst_f1/twn/f1t2",
+      "mapId": "f1t2/00",
+      "mapTexture": "ui/map/f1t2/00/f1t200_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 133,
+        "intendedUse": 0,
+        "mapRow": 3,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "s1f1",
+      "territoryId": 134,
+      "name": "中拉诺西亚",
+      "en": "Middle La Noscea",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/sea_s1/fld/s1f1",
+      "mapId": "s1f1/00",
+      "mapTexture": "ui/map/s1f1/00/s1f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 134,
+        "intendedUse": 1,
+        "mapRow": 15,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "s1f2",
+      "territoryId": 135,
+      "name": "拉诺西亚低地",
+      "en": "Lower La Noscea",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/sea_s1/fld/s1f2",
+      "mapId": "s1f2/00",
+      "mapTexture": "ui/map/s1f2/00/s1f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 135,
+        "intendedUse": 1,
+        "mapRow": 16,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "s1f3",
+      "territoryId": 137,
+      "name": "东拉诺西亚",
+      "en": "Eastern La Noscea",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/sea_s1/fld/s1f3",
+      "mapId": "s1f3/01",
+      "mapTexture": "ui/map/s1f3/01/s1f301_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 137,
+        "intendedUse": 1,
+        "mapRow": 17,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "s1f4",
+      "territoryId": 138,
+      "name": "西拉诺西亚",
+      "en": "Western La Noscea",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/sea_s1/fld/s1f4",
+      "mapId": "s1f4/00",
+      "mapTexture": "ui/map/s1f4/00/s1f400_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 138,
+        "intendedUse": 1,
+        "mapRow": 18,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "s1f5",
+      "territoryId": 139,
+      "name": "拉诺西亚高地",
+      "en": "Upper La Noscea",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/sea_s1/fld/s1f5",
+      "mapId": "s1f5/00",
+      "mapTexture": "ui/map/s1f5/00/s1f500_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 139,
+        "intendedUse": 1,
+        "mapRow": 19,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "w1f1",
+      "territoryId": 140,
+      "name": "西萨纳兰",
+      "en": "Western Thanalan",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/wil_w1/fld/w1f1",
+      "mapId": "w1f1/00",
+      "mapTexture": "ui/map/w1f1/00/w1f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 140,
+        "intendedUse": 1,
+        "mapRow": 20,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "w1f2",
+      "territoryId": 141,
+      "name": "中萨纳兰",
+      "en": "Central Thanalan",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/wil_w1/fld/w1f2",
+      "mapId": "w1f2/00",
+      "mapTexture": "ui/map/w1f2/00/w1f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 141,
+        "intendedUse": 1,
+        "mapRow": 21,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "w1f3",
+      "territoryId": 145,
+      "name": "东萨纳兰",
+      "en": "Eastern Thanalan",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/wil_w1/fld/w1f3",
+      "mapId": "w1f3/00",
+      "mapTexture": "ui/map/w1f3/00/w1f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 145,
+        "intendedUse": 1,
+        "mapRow": 22,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "w1f4",
+      "territoryId": 146,
+      "name": "南萨纳兰",
+      "en": "Southern Thanalan",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/wil_w1/fld/w1f4",
+      "mapId": "w1f4/01",
+      "mapTexture": "ui/map/w1f4/01/w1f401_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 146,
+        "intendedUse": 1,
+        "mapRow": 23,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "w1f5",
+      "territoryId": 147,
+      "name": "北萨纳兰",
+      "en": "Northern Thanalan",
+      "region": "Thanalan",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/wil_w1/fld/w1f5",
+      "mapId": "w1f5/00",
+      "mapTexture": "ui/map/w1f5/00/w1f500_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 147,
+        "intendedUse": 1,
+        "mapRow": 24,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "f1f1",
+      "territoryId": 148,
+      "name": "黑衣森林中央林区",
+      "en": "Central Shroud",
+      "region": "The Black Shroud",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/fst_f1/fld/f1f1",
+      "mapId": "f1f1/00",
+      "mapTexture": "ui/map/f1f1/00/f1f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 148,
+        "intendedUse": 1,
+        "mapRow": 4,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "f1f2",
+      "territoryId": 152,
+      "name": "黑衣森林东部林区",
+      "en": "East Shroud",
+      "region": "The Black Shroud",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/fst_f1/fld/f1f2",
+      "mapId": "f1f2/00",
+      "mapTexture": "ui/map/f1f2/00/f1f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 152,
+        "intendedUse": 1,
+        "mapRow": 5,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "f1f3",
+      "territoryId": 153,
+      "name": "黑衣森林南部林区",
+      "en": "South Shroud",
+      "region": "The Black Shroud",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/fst_f1/fld/f1f3",
+      "mapId": "f1f3/00",
+      "mapTexture": "ui/map/f1f3/00/f1f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 153,
+        "intendedUse": 1,
+        "mapRow": 6,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "f1f4",
+      "territoryId": 154,
+      "name": "黑衣森林北部林区",
+      "en": "North Shroud",
+      "region": "The Black Shroud",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/fst_f1/fld/f1f4",
+      "mapId": "f1f4/00",
+      "mapTexture": "ui/map/f1f4/00/f1f400_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 154,
+        "intendedUse": 1,
+        "mapRow": 7,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "r1f1",
+      "territoryId": 155,
+      "name": "库尔札斯中央高地",
+      "en": "Coerthas Central Highlands",
+      "region": "Coerthas",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/roc_r1/fld/r1f1",
+      "mapId": "r1f1/00",
+      "mapTexture": "ui/map/r1f1/00/r1f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 155,
+        "intendedUse": 1,
+        "mapRow": 53,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "l1f1",
+      "territoryId": 156,
+      "name": "摩杜纳",
+      "en": "Mor Dhona",
+      "region": "Mor Dhona",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/lak_l1/fld/l1f1",
+      "mapId": "l1f1/01",
+      "mapTexture": "ui/map/l1f1/01/l1f101_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 156,
+        "intendedUse": 1,
+        "mapRow": 25,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "s1f6",
+      "territoryId": 180,
+      "name": "拉诺西亚外地",
+      "en": "Outer La Noscea",
+      "region": "La Noscea",
+      "expansion": 0,
+      "kind": "overworld",
+      "root": "bg/ffxiv/sea_s1/fld/s1f6",
+      "mapId": "s1f6/00",
+      "mapTexture": "ui/map/s1f6/00/s1f600_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 180,
+        "intendedUse": 1,
+        "mapRow": 30,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "r2f1",
+      "territoryId": 397,
+      "name": "Coerthas Western Highlands",
+      "en": "Coerthas Western Highlands",
+      "region": "Coerthas",
+      "expansion": 1,
+      "kind": "overworld",
+      "root": "bg/ex1/01_roc_r2/fld/r2f1",
+      "mapId": "r2f1/00",
+      "mapTexture": "ui/map/r2f1/00/r2f100_m.tex",
+      "sizeFactor": 95,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 397,
+        "intendedUse": 1,
+        "mapRow": 211,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "d2f1",
+      "territoryId": 398,
+      "name": "The Dravanian Forelands",
+      "en": "The Dravanian Forelands",
+      "region": "Dravania",
+      "expansion": 1,
+      "kind": "overworld",
+      "root": "bg/ex1/02_dra_d2/fld/d2f1",
+      "mapId": "d2f1/00",
+      "mapTexture": "ui/map/d2f1/00/d2f100_m.tex",
+      "sizeFactor": 95,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 398,
+        "intendedUse": 1,
+        "mapRow": 212,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "d2f2",
+      "territoryId": 399,
+      "name": "The Dravanian Hinterlands",
+      "en": "The Dravanian Hinterlands",
+      "region": "Dravania",
+      "expansion": 1,
+      "kind": "overworld",
+      "root": "bg/ex1/02_dra_d2/fld/d2f2",
+      "mapId": "d2f2/00",
+      "mapTexture": "ui/map/d2f2/00/d2f200_m.tex",
+      "sizeFactor": 95,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 399,
+        "intendedUse": 1,
+        "mapRow": 213,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "d2f3",
+      "territoryId": 400,
+      "name": "The Churning Mists",
+      "en": "The Churning Mists",
+      "region": "Dravania",
+      "expansion": 1,
+      "kind": "overworld",
+      "root": "bg/ex1/02_dra_d2/fld/d2f3",
+      "mapId": "d2f3/00",
+      "mapTexture": "ui/map/d2f3/00/d2f300_m.tex",
+      "sizeFactor": 95,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 400,
+        "intendedUse": 1,
+        "mapRow": 214,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "a2f1",
+      "territoryId": 401,
+      "name": "The Sea of Clouds",
+      "en": "The Sea of Clouds",
+      "region": "Abalathia's Spine",
+      "expansion": 1,
+      "kind": "overworld",
+      "root": "bg/ex1/03_abr_a2/fld/a2f1",
+      "mapId": "a2f1/00",
+      "mapTexture": "ui/map/a2f1/00/a2f100_m.tex",
+      "sizeFactor": 95,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 401,
+        "intendedUse": 1,
+        "mapRow": 215,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "a2f2",
+      "territoryId": 402,
+      "name": "Azys Lla",
+      "en": "Azys Lla",
+      "region": "Abalathia's Spine",
+      "expansion": 1,
+      "kind": "overworld",
+      "root": "bg/ex1/03_abr_a2/fld/a2f2",
+      "mapId": "a2f2/00",
+      "mapTexture": "ui/map/a2f2/00/a2f200_m.tex",
+      "sizeFactor": 95,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 402,
+        "intendedUse": 1,
+        "mapRow": 216,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "r2t1",
+      "territoryId": 418,
+      "name": "Foundation",
+      "en": "Foundation",
+      "region": "Coerthas",
+      "expansion": 1,
+      "kind": "city",
+      "root": "bg/ex1/01_roc_r2/twn/r2t1",
+      "mapId": "r2t1/00",
+      "mapTexture": "ui/map/r2t1/00/r2t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 418,
+        "intendedUse": 0,
+        "mapRow": 218,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "r2t2",
+      "territoryId": 419,
+      "name": "The Pillars",
+      "en": "The Pillars",
+      "region": "Coerthas",
+      "expansion": 1,
+      "kind": "city",
+      "root": "bg/ex1/01_roc_r2/twn/r2t2",
+      "mapId": "r2t2/00",
+      "mapTexture": "ui/map/r2t2/00/r2t200_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 419,
+        "intendedUse": 0,
+        "mapRow": 219,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "d2t1",
+      "territoryId": 478,
+      "name": "Idyllshire",
+      "en": "Idyllshire",
+      "region": "Dravania",
+      "expansion": 1,
+      "kind": "city",
+      "root": "bg/ex1/02_dra_d2/twn/d2t1",
+      "mapId": "d2t1/00",
+      "mapTexture": "ui/map/d2t1/00/d2t100_m.tex",
+      "sizeFactor": 400,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 478,
+        "intendedUse": 0,
+        "mapRow": 257,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "g3f1",
+      "territoryId": 612,
+      "name": "The Fringes",
+      "en": "The Fringes",
+      "region": "Gyr Abania",
+      "expansion": 2,
+      "kind": "overworld",
+      "root": "bg/ex2/01_gyr_g3/fld/g3f1",
+      "mapId": "g3f1/00",
+      "mapTexture": "ui/map/g3f1/00/g3f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 612,
+        "intendedUse": 1,
+        "mapRow": 367,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "e3f1",
+      "territoryId": 613,
+      "name": "The Ruby Sea",
+      "en": "The Ruby Sea",
+      "region": "Othard",
+      "expansion": 2,
+      "kind": "overworld",
+      "root": "bg/ex2/02_est_e3/fld/e3f1",
+      "mapId": "e3f1/00",
+      "mapTexture": "ui/map/e3f1/00/e3f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 613,
+        "intendedUse": 1,
+        "mapRow": 371,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "e3f2",
+      "territoryId": 614,
+      "name": "Yanxia",
+      "en": "Yanxia",
+      "region": "Othard",
+      "expansion": 2,
+      "kind": "overworld",
+      "root": "bg/ex2/02_est_e3/fld/e3f2",
+      "mapId": "e3f2/00",
+      "mapTexture": "ui/map/e3f2/00/e3f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 614,
+        "intendedUse": 1,
+        "mapRow": 354,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "g3f2",
+      "territoryId": 620,
+      "name": "The Peaks",
+      "en": "The Peaks",
+      "region": "Gyr Abania",
+      "expansion": 2,
+      "kind": "overworld",
+      "root": "bg/ex2/01_gyr_g3/fld/g3f2",
+      "mapId": "g3f2/00",
+      "mapTexture": "ui/map/g3f2/00/g3f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 620,
+        "intendedUse": 1,
+        "mapRow": 368,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "g3f3",
+      "territoryId": 621,
+      "name": "The Lochs",
+      "en": "The Lochs",
+      "region": "Gyr Abania",
+      "expansion": 2,
+      "kind": "overworld",
+      "root": "bg/ex2/01_gyr_g3/fld/g3f3",
+      "mapId": "g3f3/00",
+      "mapTexture": "ui/map/g3f3/00/g3f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 621,
+        "intendedUse": 1,
+        "mapRow": 369,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "e3f3",
+      "territoryId": 622,
+      "name": "The Azim Steppe",
+      "en": "The Azim Steppe",
+      "region": "Othard",
+      "expansion": 2,
+      "kind": "overworld",
+      "root": "bg/ex2/02_est_e3/fld/e3f3",
+      "mapId": "e3f3/00",
+      "mapTexture": "ui/map/e3f3/00/e3f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 622,
+        "intendedUse": 1,
+        "mapRow": 372,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "e3t1",
+      "territoryId": 628,
+      "name": "Kugane",
+      "en": "Kugane",
+      "region": "Hingashi",
+      "expansion": 2,
+      "kind": "city",
+      "root": "bg/ex2/02_est_e3/twn/e3t1",
+      "mapId": "e3t1/00",
+      "mapTexture": "ui/map/e3t1/00/e3t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 628,
+        "intendedUse": 0,
+        "mapRow": 370,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "g3t1",
+      "territoryId": 635,
+      "name": "Rhalgr's Reach",
+      "en": "Rhalgr's Reach",
+      "region": "Gyr Abania",
+      "expansion": 2,
+      "kind": "city",
+      "root": "bg/ex2/01_gyr_g3/twn/g3t1",
+      "mapId": "g3t1/00",
+      "mapTexture": "ui/map/g3t1/00/g3t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 635,
+        "intendedUse": 0,
+        "mapRow": 366,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "e3ec",
+      "territoryId": 759,
+      "name": "The Doman Enclave",
+      "en": "The Doman Enclave",
+      "region": "Othard",
+      "expansion": 2,
+      "kind": "city",
+      "root": "bg/ex2/02_est_e3/evt/e3ec",
+      "mapId": "e3ec/00",
+      "mapTexture": "ui/map/e3ec/00/e3ec00_m.tex",
+      "sizeFactor": 400,
+      "offsetX": 23,
+      "offsetY": 34,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 759,
+        "intendedUse": 0,
+        "mapRow": 463,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "n4f1",
+      "territoryId": 813,
+      "name": "Lakeland",
+      "en": "Lakeland",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "overworld",
+      "root": "bg/ex3/01_nvt_n4/fld/n4f1",
+      "mapId": "n4f1/00",
+      "mapTexture": "ui/map/n4f1/00/n4f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 813,
+        "intendedUse": 1,
+        "mapRow": 491,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n4f2",
+      "territoryId": 814,
+      "name": "Kholusia",
+      "en": "Kholusia",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "overworld",
+      "root": "bg/ex3/01_nvt_n4/fld/n4f2",
+      "mapId": "n4f2/00",
+      "mapTexture": "ui/map/n4f2/00/n4f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 814,
+        "intendedUse": 1,
+        "mapRow": 492,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n4f3",
+      "territoryId": 815,
+      "name": "Amh Araeng",
+      "en": "Amh Araeng",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "overworld",
+      "root": "bg/ex3/01_nvt_n4/fld/n4f3",
+      "mapId": "n4f3/00",
+      "mapTexture": "ui/map/n4f3/00/n4f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 815,
+        "intendedUse": 1,
+        "mapRow": 493,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n4f4",
+      "territoryId": 816,
+      "name": "Il Mheg",
+      "en": "Il Mheg",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "overworld",
+      "root": "bg/ex3/01_nvt_n4/fld/n4f4",
+      "mapId": "n4f4/00",
+      "mapTexture": "ui/map/n4f4/00/n4f400_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 816,
+        "intendedUse": 1,
+        "mapRow": 494,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n4f5",
+      "territoryId": 817,
+      "name": "The Rak'tika Greatwood",
+      "en": "The Rak'tika Greatwood",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "overworld",
+      "root": "bg/ex3/01_nvt_n4/fld/n4f5",
+      "mapId": "n4f5/00",
+      "mapTexture": "ui/map/n4f5/00/n4f500_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 817,
+        "intendedUse": 1,
+        "mapRow": 495,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n4f6",
+      "territoryId": 818,
+      "name": "The Tempest",
+      "en": "The Tempest",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "overworld",
+      "root": "bg/ex3/01_nvt_n4/fld/n4f6",
+      "mapId": "n4f6/00",
+      "mapTexture": "ui/map/n4f6/00/n4f600_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 818,
+        "intendedUse": 1,
+        "mapRow": 496,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n4t1",
+      "territoryId": 819,
+      "name": "The Crystarium",
+      "en": "The Crystarium",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "city",
+      "root": "bg/ex3/01_nvt_n4/twn/n4t1",
+      "mapId": "n4t1/00",
+      "mapTexture": "ui/map/n4t1/00/n4t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 819,
+        "intendedUse": 0,
+        "mapRow": 497,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "n4t2",
+      "territoryId": 820,
+      "name": "Eulmore",
+      "en": "Eulmore",
+      "region": "Norvrandt",
+      "expansion": 3,
+      "kind": "city",
+      "root": "bg/ex3/01_nvt_n4/twn/n4t2",
+      "mapId": "n4t2/01",
+      "mapTexture": "ui/map/n4t2/01/n4t201_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 820,
+        "intendedUse": 0,
+        "mapRow": 498,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "k5f1",
+      "territoryId": 956,
+      "name": "Labyrinthos",
+      "en": "Labyrinthos",
+      "region": "The Northern Empty",
+      "expansion": 4,
+      "kind": "overworld",
+      "root": "bg/ex4/03_kld_k5/fld/k5f1",
+      "mapId": "k5f1/00",
+      "mapTexture": "ui/map/k5f1/00/k5f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 956,
+        "intendedUse": 1,
+        "mapRow": 695,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "m5f1",
+      "territoryId": 957,
+      "name": "Thavnair",
+      "en": "Thavnair",
+      "region": "Ilsabard",
+      "expansion": 4,
+      "kind": "overworld",
+      "root": "bg/ex4/02_mid_m5/fld/m5f1",
+      "mapId": "m5f1/00",
+      "mapTexture": "ui/map/m5f1/00/m5f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 957,
+        "intendedUse": 1,
+        "mapRow": 696,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "m5f2",
+      "territoryId": 958,
+      "name": "Garlemald",
+      "en": "Garlemald",
+      "region": "Ilsabard",
+      "expansion": 4,
+      "kind": "overworld",
+      "root": "bg/ex4/02_mid_m5/fld/m5f2",
+      "mapId": "m5f2/00",
+      "mapTexture": "ui/map/m5f2/00/m5f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 958,
+        "intendedUse": 1,
+        "mapRow": 697,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "u5f1",
+      "territoryId": 959,
+      "name": "Mare Lamentorum",
+      "en": "Mare Lamentorum",
+      "region": "The Sea of Stars",
+      "expansion": 4,
+      "kind": "overworld",
+      "root": "bg/ex4/04_uvs_u5/fld/u5f1",
+      "mapId": "u5f1/00",
+      "mapTexture": "ui/map/u5f1/00/u5f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 959,
+        "intendedUse": 1,
+        "mapRow": 698,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "u5f2",
+      "territoryId": 960,
+      "name": "Ultima Thule",
+      "en": "Ultima Thule",
+      "region": "The Sea of Stars",
+      "expansion": 4,
+      "kind": "overworld",
+      "root": "bg/ex4/04_uvs_u5/fld/u5f2",
+      "mapId": "u5f2/00",
+      "mapTexture": "ui/map/u5f2/00/u5f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 960,
+        "intendedUse": 1,
+        "mapRow": 699,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "n5f1",
+      "territoryId": 961,
+      "name": "Elpis",
+      "en": "Elpis",
+      "region": "The World Unsundered",
+      "expansion": 4,
+      "kind": "overworld",
+      "root": "bg/ex4/01_nvt_n5/fld/n5f1",
+      "mapId": "n5f1/00",
+      "mapTexture": "ui/map/n5f1/00/n5f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 961,
+        "intendedUse": 1,
+        "mapRow": 700,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "k5t1",
+      "territoryId": 962,
+      "name": "Old Sharlayan",
+      "en": "Old Sharlayan",
+      "region": "The Northern Empty",
+      "expansion": 4,
+      "kind": "city",
+      "root": "bg/ex4/03_kld_k5/twn/k5t1",
+      "mapId": "k5t1/00",
+      "mapTexture": "ui/map/k5t1/00/k5t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 962,
+        "intendedUse": 0,
+        "mapRow": 693,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "m5t1",
+      "territoryId": 963,
+      "name": "Radz-at-Han",
+      "en": "Radz-at-Han",
+      "region": "Ilsabard",
+      "expansion": 4,
+      "kind": "city",
+      "root": "bg/ex4/02_mid_m5/twn/m5t1",
+      "mapId": "m5t1/00",
+      "mapTexture": "ui/map/m5t1/00/m5t100_m.tex",
+      "sizeFactor": 200,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 963,
+        "intendedUse": 0,
+        "mapRow": 694,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "y6t1",
+      "territoryId": 1185,
+      "name": "Tuliyollal",
+      "en": "Tuliyollal",
+      "region": "Yok Tural",
+      "expansion": 5,
+      "kind": "city",
+      "root": "bg/ex5/02_ykt_y6/twn/y6t1",
+      "mapId": "y6t1/00",
+      "mapTexture": "ui/map/y6t1/00/y6t100_m.tex",
+      "sizeFactor": 180,
+      "offsetX": 50,
+      "offsetY": -70,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1185,
+        "intendedUse": 0,
+        "mapRow": 855,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "x6t1",
+      "territoryId": 1186,
+      "name": "Solution Nine",
+      "en": "Solution Nine",
+      "region": "Xak Tural",
+      "expansion": 5,
+      "kind": "city",
+      "root": "bg/ex5/01_xkt_x6/twn/x6t1",
+      "mapId": "x6t1/00",
+      "mapTexture": "ui/map/x6t1/00/x6t100_m.tex",
+      "sizeFactor": 180,
+      "offsetX": 0,
+      "offsetY": 90,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1186,
+        "intendedUse": 0,
+        "mapRow": 856,
+        "reason": "public city or hub connecting overworld"
+      }
+    },
+    {
+      "id": "y6f1",
+      "territoryId": 1187,
+      "name": "Urqopacha",
+      "en": "Urqopacha",
+      "region": "Yok Tural",
+      "expansion": 5,
+      "kind": "overworld",
+      "root": "bg/ex5/02_ykt_y6/fld/y6f1",
+      "mapId": "y6f1/00",
+      "mapTexture": "ui/map/y6f1/00/y6f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1187,
+        "intendedUse": 1,
+        "mapRow": 857,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "y6f2",
+      "territoryId": 1188,
+      "name": "Kozama'uka",
+      "en": "Kozama'uka",
+      "region": "Yok Tural",
+      "expansion": 5,
+      "kind": "overworld",
+      "root": "bg/ex5/02_ykt_y6/fld/y6f2",
+      "mapId": "y6f2/00",
+      "mapTexture": "ui/map/y6f2/00/y6f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1188,
+        "intendedUse": 1,
+        "mapRow": 858,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "y6f3",
+      "territoryId": 1189,
+      "name": "Yak T'el",
+      "en": "Yak T'el",
+      "region": "Yok Tural",
+      "expansion": 5,
+      "kind": "overworld",
+      "root": "bg/ex5/02_ykt_y6/fld/y6f3",
+      "mapId": "y6f3/00",
+      "mapTexture": "ui/map/y6f3/00/y6f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1189,
+        "intendedUse": 1,
+        "mapRow": 859,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "x6f1",
+      "territoryId": 1190,
+      "name": "Shaaloani",
+      "en": "Shaaloani",
+      "region": "Xak Tural",
+      "expansion": 5,
+      "kind": "overworld",
+      "root": "bg/ex5/01_xkt_x6/fld/x6f1",
+      "mapId": "x6f1/00",
+      "mapTexture": "ui/map/x6f1/00/x6f100_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1190,
+        "intendedUse": 1,
+        "mapRow": 860,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "x6f2",
+      "territoryId": 1191,
+      "name": "Heritage Found",
+      "en": "Heritage Found",
+      "region": "Xak Tural",
+      "expansion": 5,
+      "kind": "overworld",
+      "root": "bg/ex5/01_xkt_x6/fld/x6f2",
+      "mapId": "x6f2/00",
+      "mapTexture": "ui/map/x6f2/00/x6f200_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1191,
+        "intendedUse": 1,
+        "mapRow": 861,
+        "reason": "normal public overworld"
+      }
+    },
+    {
+      "id": "x6f3",
+      "territoryId": 1192,
+      "name": "Living Memory",
+      "en": "Living Memory",
+      "region": "Unlost World",
+      "expansion": 5,
+      "kind": "overworld",
+      "root": "bg/ex5/01_xkt_x6/fld/x6f3",
+      "mapId": "x6f3/00",
+      "mapTexture": "ui/map/x6f3/00/x6f300_m.tex",
+      "sizeFactor": 100,
+      "offsetX": 0,
+      "offsetY": 0,
+      "source": {
+        "table": "TerritoryType-7.0.csv",
+        "row": 1192,
+        "intendedUse": 1,
+        "mapRow": 862,
+        "reason": "normal public overworld"
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "territoryId": 136,
+      "name": "Mist",
+      "intendedUse": 0,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 142,
+      "name": "Halatali",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 144,
+      "name": "The Gold Saucer",
+      "intendedUse": 23,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 149,
+      "name": "The Feasting Grounds",
+      "intendedUse": 28,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 151,
+      "name": "The World of Darkness",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 159,
+      "name": "The Wanderer's Palace",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 160,
+      "name": "Pharos Sirius",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 162,
+      "name": "Halatali",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 163,
+      "name": "The Sunken Temple of Qarn",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 167,
+      "name": "Amdapor Keep",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 170,
+      "name": "Cutter's Cry",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 171,
+      "name": "Dzemael Darkhold",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 172,
+      "name": "Aurum Vale",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 174,
+      "name": "Labyrinth of the Ancients",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 176,
+      "name": "Mordion Gaol",
+      "intendedUse": 5,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 177,
+      "name": "Mizzenmast Inn",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 178,
+      "name": "The Hourglass",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 179,
+      "name": "The Roost",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 181,
+      "name": "Limsa Lominsa",
+      "intendedUse": 6,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 182,
+      "name": "Ul'dah - Steps of Nald",
+      "intendedUse": 6,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 183,
+      "name": "New Gridania",
+      "intendedUse": 6,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 188,
+      "name": "The Wanderer's Palace",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 189,
+      "name": "Amdapor Keep",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 190,
+      "name": "Central Shroud",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 191,
+      "name": "East Shroud",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 192,
+      "name": "South Shroud",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 193,
+      "name": "IC-06 Central Decks",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 194,
+      "name": "IC-06 Regeneration Grid",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 195,
+      "name": "IC-06 Main Bridge",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 196,
+      "name": "The Burning Heart",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 198,
+      "name": "Command Room",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 204,
+      "name": "Seat of the First Bow",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 205,
+      "name": "Lotus Stand",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 210,
+      "name": "Heart of the Sworn",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 212,
+      "name": "The Waking Sands",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 214,
+      "name": "Middle La Noscea",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 215,
+      "name": "Western Thanalan",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 216,
+      "name": "Central Thanalan",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 219,
+      "name": "Central Shroud",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 220,
+      "name": "South Shroud",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 221,
+      "name": "Upper La Noscea",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 222,
+      "name": "Lower La Noscea",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 223,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 225,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 226,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 227,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 228,
+      "name": "North Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 229,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 230,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 231,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 232,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 233,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 234,
+      "name": "East Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 235,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 236,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 237,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 238,
+      "name": "Old Gridania",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 239,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 240,
+      "name": "North Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 241,
+      "name": "Upper Aetheroacoustic Exploratory Site",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 242,
+      "name": "Lower Aetheroacoustic Exploratory Site",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 243,
+      "name": "The Ragnarok",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 244,
+      "name": "Ragnarok Drive Cylinder",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 245,
+      "name": "Ragnarok Central Core",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 246,
+      "name": "IC-04 Main Bridge",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 247,
+      "name": "Ragnarok Main Bridge",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 248,
+      "name": "Central Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 249,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 250,
+      "name": "Wolves' Den Pier",
+      "intendedUse": 1,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 251,
+      "name": "Ul'dah - Steps of Nald",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 252,
+      "name": "Middle La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 253,
+      "name": "Central Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 254,
+      "name": "Ul'dah - Steps of Nald",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 255,
+      "name": "Western Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 256,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 257,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 258,
+      "name": "Central Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 259,
+      "name": "Ul'dah - Steps of Nald",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 260,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 261,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 262,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 263,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 264,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 265,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 266,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 267,
+      "name": "Western Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 268,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 269,
+      "name": "Western Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 270,
+      "name": "Central Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 271,
+      "name": "Central Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 272,
+      "name": "Middle La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 273,
+      "name": "Western Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 274,
+      "name": "Ul'dah - Steps of Nald",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 275,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 276,
+      "name": "Hall of Summoning",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 277,
+      "name": "East Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 278,
+      "name": "Western Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 279,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 280,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 281,
+      "name": "The Whorleater",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 282,
+      "name": "Private Cottage - Mist",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 283,
+      "name": "Private House - Mist",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 284,
+      "name": "Private Mansion - Mist",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 285,
+      "name": "Middle La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 286,
+      "name": "Rhotano Sea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 287,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 288,
+      "name": "Rhotano Sea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 289,
+      "name": "East Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 290,
+      "name": "East Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 291,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 292,
+      "name": "Bowl of Embers",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 293,
+      "name": "The Navel",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 294,
+      "name": "The Howling Eye",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 295,
+      "name": "Bowl of Embers",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 296,
+      "name": "The Navel",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 297,
+      "name": "The Howling Eye",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 298,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 299,
+      "name": "Mor Dhona",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 300,
+      "name": "Mor Dhona",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 301,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 302,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 303,
+      "name": "East Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 304,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 305,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 306,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 307,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 308,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 309,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 310,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 311,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 312,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 313,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 314,
+      "name": "Central Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 315,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 316,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 317,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 318,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 319,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 320,
+      "name": "Central Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 321,
+      "name": "North Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 322,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 323,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 324,
+      "name": "North Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 325,
+      "name": "Outer La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 326,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 327,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 328,
+      "name": "Upper La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 329,
+      "name": "The Wanderer's Palace",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 330,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 331,
+      "name": "The Howling Eye",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 335,
+      "name": "Mor Dhona",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 338,
+      "name": "Eorzean Subterrane",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 339,
+      "name": "Mist",
+      "intendedUse": 13,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 340,
+      "name": "The Lavender Beds",
+      "intendedUse": 13,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 341,
+      "name": "The Goblet",
+      "intendedUse": 13,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 342,
+      "name": "Private Cottage - The Lavender Beds",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 343,
+      "name": "Private House - The Lavender Beds",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 344,
+      "name": "Private Mansion - The Lavender Beds",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 345,
+      "name": "Private Cottage - The Goblet",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 346,
+      "name": "Private House - The Goblet",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 347,
+      "name": "Private Mansion - The Goblet",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 348,
+      "name": "Porta Decumana",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 349,
+      "name": "Copperbell Mines",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 350,
+      "name": "Haukke Manor",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 351,
+      "name": "The Rising Stones",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 353,
+      "name": "Kugane Ohashi",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 354,
+      "name": "The Dancing Plague",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 355,
+      "name": "Dalamud's Shadow",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 356,
+      "name": "The Outer Coil",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 357,
+      "name": "Central Decks",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 358,
+      "name": "The Holocharts",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 359,
+      "name": "The Whorleater",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 360,
+      "name": "Halatali",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 361,
+      "name": "Hullbreaker Isle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 362,
+      "name": "Brayflox's Longstop",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 363,
+      "name": "The Lost City of Amdapor",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 364,
+      "name": "Thornmarch",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 365,
+      "name": "Stone Vigil",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 366,
+      "name": "Griffin Crossing",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 367,
+      "name": "The Sunken Temple of Qarn",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 368,
+      "name": "The Weeping Saint",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 369,
+      "name": "Hall of the Bestiarii",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 370,
+      "name": "Main Bridge",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 372,
+      "name": "Syrcus Tower",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 373,
+      "name": "The Tam-Tara Deepcroft",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 374,
+      "name": "The Striking Tree",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 375,
+      "name": "The Striking Tree",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 376,
+      "name": "Carteneau Flats: Borderland Ruins",
+      "intendedUse": 18,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 377,
+      "name": "Akh Afah Amphitheatre",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 378,
+      "name": "Akh Afah Amphitheatre",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 379,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 380,
+      "name": "Dalamud's Shadow",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 381,
+      "name": "The Outer Coil",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 382,
+      "name": "Central Decks",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 383,
+      "name": "The Holocharts",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 384,
+      "name": "Private Chambers - Mist",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 385,
+      "name": "Private Chambers - The Lavender Beds",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 386,
+      "name": "Private Chambers - The Goblet",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 387,
+      "name": "Sastasha",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 388,
+      "name": "Chocobo Square",
+      "intendedUse": 23,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 389,
+      "name": "Chocobo Square",
+      "intendedUse": 20,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 390,
+      "name": "Chocobo Square",
+      "intendedUse": 20,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 391,
+      "name": "Chocobo Square",
+      "intendedUse": 20,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 392,
+      "name": "Sanctum of the Twelve",
+      "intendedUse": 22,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 393,
+      "name": "Sanctum of the Twelve",
+      "intendedUse": 22,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 394,
+      "name": "South Shroud",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 395,
+      "name": "Intercessory",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 396,
+      "name": "Amdapor Keep",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 403,
+      "name": "Ala Mhigo",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 404,
+      "name": "Limsa Lominsa Lower Decks",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 405,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 406,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 407,
+      "name": "Rhotano Sea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 408,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 409,
+      "name": "Limsa Lominsa Upper Decks",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 410,
+      "name": "Northern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 411,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 412,
+      "name": "Upper La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 413,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 414,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 415,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 417,
+      "name": "Chocobo Square",
+      "intendedUse": 20,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 420,
+      "name": "Neverreap",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 423,
+      "name": "Company Workshop - Mist",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 424,
+      "name": "Company Workshop - The Goblet",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 425,
+      "name": "Company Workshop - The Lavender Beds",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 426,
+      "name": "The Chrysalis",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 427,
+      "name": "Saint Endalim's Scholasticate",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 428,
+      "name": "Seat of the Lord Commander",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 429,
+      "name": "Cloud Nine",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 430,
+      "name": "The Fractal Continuum",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 431,
+      "name": "Seal Rock",
+      "intendedUse": 18,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 432,
+      "name": "Thok ast Thok",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 433,
+      "name": "Fortemps Manor",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 434,
+      "name": "Dusk Vigil",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 436,
+      "name": "The Limitless Blue",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 437,
+      "name": "Singularity Reactor",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 439,
+      "name": "The Lightfeather Proving Grounds",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 440,
+      "name": "Ruling Chamber",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 442,
+      "name": "The Fist of the Father",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 443,
+      "name": "The Cuff of the Father",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 444,
+      "name": "The Arm of the Father",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 445,
+      "name": "The Burden of the Father",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 446,
+      "name": "Thok ast Thok",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 447,
+      "name": "The Limitless Blue",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 448,
+      "name": "Singularity Reactor",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 449,
+      "name": "The Fist of the Father",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 450,
+      "name": "The Cuff of the Father",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 451,
+      "name": "The Arm of the Father",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 452,
+      "name": "The Burden of the Father",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 453,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 454,
+      "name": "Upper La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 455,
+      "name": "The Sea of Clouds",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 456,
+      "name": "Ruling Chamber",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 457,
+      "name": "Akh Afah Amphitheatre",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 458,
+      "name": "Foundation",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 459,
+      "name": "Azys Lla",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 460,
+      "name": "Halatali",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 461,
+      "name": "The Sea of Clouds",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 462,
+      "name": "Sacrificial Chamber",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 463,
+      "name": "Matoya's Cave",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 464,
+      "name": "The Dravanian Forelands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 465,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 466,
+      "name": "Upper La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 467,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 468,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 469,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 470,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 471,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 472,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 473,
+      "name": "South Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 474,
+      "name": "Limsa Lominsa Upper Decks",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 475,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 476,
+      "name": "The Dravanian Hinterlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 477,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 479,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 480,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 481,
+      "name": "The Dravanian Forelands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 482,
+      "name": "The Dravanian Forelands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 483,
+      "name": "Northern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 484,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 485,
+      "name": "The Dravanian Hinterlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 486,
+      "name": "Outer La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 487,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 488,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 489,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 490,
+      "name": "Hullbreaker Isle",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 491,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 492,
+      "name": "The Sea of Clouds",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 493,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 494,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 495,
+      "name": "Lower La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 496,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 497,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 498,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 499,
+      "name": "The Pillars",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 500,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 501,
+      "name": "The Churning Mists",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 502,
+      "name": "Carteneau Flats: Borderland Ruins",
+      "intendedUse": 9,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 503,
+      "name": "The Dravanian Hinterlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 504,
+      "name": "The Eighteenth Floor",
+      "intendedUse": 32,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 505,
+      "name": "Alexander",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 506,
+      "name": "Chocobo Square",
+      "intendedUse": 25,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 507,
+      "name": "Central Azys Lla",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 508,
+      "name": "Void Ark",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 509,
+      "name": "The Gilded Araya",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 510,
+      "name": "Pharos Sirius",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 511,
+      "name": "Saint Mocianne's Arboretum",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 512,
+      "name": "The Diadem",
+      "intendedUse": 26,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 513,
+      "name": "The Vault",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 514,
+      "name": "The Diadem",
+      "intendedUse": 26,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 515,
+      "name": "The Diadem",
+      "intendedUse": 26,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 517,
+      "name": "Containment Bay S1T7",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 519,
+      "name": "The Lost City of Amdapor",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 520,
+      "name": "The Fist of the Son",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 521,
+      "name": "The Cuff of the Son",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 522,
+      "name": "The Arm of the Son",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 523,
+      "name": "The Burden of the Son",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 524,
+      "name": "Containment Bay S1T7",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 529,
+      "name": "The Fist of the Son",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 530,
+      "name": "The Cuff of the Son",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 531,
+      "name": "The Arm of the Son",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 532,
+      "name": "The Burden of the Son",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 533,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 534,
+      "name": "Twin Adder Barracks",
+      "intendedUse": 30,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 535,
+      "name": "Flame Barracks",
+      "intendedUse": 30,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 536,
+      "name": "Maelstrom Barracks",
+      "intendedUse": 30,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 537,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 538,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 539,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 540,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 541,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 542,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 543,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 544,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 545,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 546,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 547,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 548,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 549,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 550,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 551,
+      "name": "The Fold",
+      "intendedUse": 27,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 552,
+      "name": "Western La Noscea",
+      "intendedUse": 27,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 553,
+      "name": "Alexander",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 554,
+      "name": "The Fields of Glory",
+      "intendedUse": 18,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 556,
+      "name": "The Weeping City of Mhach",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 557,
+      "name": "Hullbreaker Isle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 558,
+      "name": "The Aquapolis",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 559,
+      "name": "Steps of Faith",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 560,
+      "name": "Aetherochemical Research Facility",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 561,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 562,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 563,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 564,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 565,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 566,
+      "name": "Steps of Faith",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 567,
+      "name": "The Parrock",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 568,
+      "name": "Leofard's Chambers",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 569,
+      "name": "Steps of Faith",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 570,
+      "name": "The Palace of the Dead",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 571,
+      "name": "Haunted Manor",
+      "intendedUse": 34,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 573,
+      "name": "Topmast Apartment Lobby",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 574,
+      "name": "Lily Hills Apartment Lobby",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 575,
+      "name": "Sultana's Breath Apartment Lobby",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 576,
+      "name": "Containment Bay P1T6",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 577,
+      "name": "Containment Bay P1T6",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 578,
+      "name": "The Great Gubal Library",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 579,
+      "name": "The Battlehall",
+      "intendedUse": 35,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 580,
+      "name": "Eyes of the Creator",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 581,
+      "name": "Breath of the Creator",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 582,
+      "name": "Heart of the Creator",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 583,
+      "name": "Soul of the Creator",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 584,
+      "name": "Eyes of the Creator",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 585,
+      "name": "Breath of the Creator",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 586,
+      "name": "Heart of the Creator",
+      "intendedUse": 16,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 587,
+      "name": "Soul of the Creator",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 588,
+      "name": "Heart of the Creator",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 589,
+      "name": "Chocobo Square",
+      "intendedUse": 25,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 590,
+      "name": "Chocobo Square",
+      "intendedUse": 25,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 591,
+      "name": "Chocobo Square",
+      "intendedUse": 25,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 592,
+      "name": "Bowl of Embers",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 593,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 594,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 595,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 596,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 597,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 598,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 599,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 600,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 601,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 602,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 603,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 604,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 605,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 606,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 607,
+      "name": "The Palace of the Dead",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 608,
+      "name": "Topmast Apartment",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 609,
+      "name": "Lily Hills Apartment",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 610,
+      "name": "Sultana's Breath Apartment",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 611,
+      "name": "Frondale's Home for Friendless Foundlings",
+      "intendedUse": 32,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 616,
+      "name": "Shisui of the Violet Tides",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 617,
+      "name": "Sohm Al",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 623,
+      "name": "Bardam's Mettle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 624,
+      "name": "The Diadem",
+      "intendedUse": 38,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 625,
+      "name": "The Diadem",
+      "intendedUse": 38,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 626,
+      "name": "The Sirensong Sea",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 627,
+      "name": "Dun Scaith",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 629,
+      "name": "Bokairo Inn",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 633,
+      "name": "Carteneau Flats: Borderland Ruins",
+      "intendedUse": 29,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 634,
+      "name": "Yanxia",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 636,
+      "name": "Omega Control",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 637,
+      "name": "Containment Bay Z1T9",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 638,
+      "name": "Containment Bay Z1T9",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 639,
+      "name": "Ruby Bazaar Offices",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 640,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 641,
+      "name": "Shirogane",
+      "intendedUse": 13,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 647,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 648,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 649,
+      "name": "Private Cottage - Shirogane",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 650,
+      "name": "Private House - Shirogane",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 651,
+      "name": "Private Mansion - Shirogane",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 652,
+      "name": "Private Chambers - Shirogane",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 653,
+      "name": "Company Workshop - Shirogane",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 654,
+      "name": "Kobai Goten Apartment Lobby",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 655,
+      "name": "Kobai Goten Apartment",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 656,
+      "name": "The Diadem",
+      "intendedUse": 26,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 657,
+      "name": "The Ruby Sea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 658,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 659,
+      "name": "Rhalgr's Reach",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 660,
+      "name": "Doma Castle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 661,
+      "name": "Castrum Abania",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 662,
+      "name": "Kugane Castle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 663,
+      "name": "The Temple of the Fist",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 664,
+      "name": "Kugane",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 665,
+      "name": "Kugane",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 666,
+      "name": "Ul'dah - Steps of Thal",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 667,
+      "name": "Kugane",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 668,
+      "name": "Eastern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 669,
+      "name": "Southern Thanalan",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 670,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 671,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 672,
+      "name": "Mor Dhona",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 673,
+      "name": "Sohm Al",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 674,
+      "name": "The Blessed Treasury",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 675,
+      "name": "Western La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 676,
+      "name": "The Great Gubal Library",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 677,
+      "name": "The Blessed Treasury",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 678,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 679,
+      "name": "The Royal Airship Landing",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 680,
+      "name": "The <Emphasis>Misery</Emphasis>",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 681,
+      "name": "The House of the Fierce",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 682,
+      "name": "The Doman Enclave",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 683,
+      "name": "The First Altar of Djanan Qhat",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 684,
+      "name": "The Lochs",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 685,
+      "name": "Yanxia",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 686,
+      "name": "The Lochs",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 687,
+      "name": "The Lochs",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 688,
+      "name": "The Azim Steppe",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 689,
+      "name": "Ala Mhigo",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 690,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 691,
+      "name": "Deltascape V1.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 692,
+      "name": "Deltascape V2.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 693,
+      "name": "Deltascape V3.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 694,
+      "name": "Deltascape V4.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 695,
+      "name": "Deltascape V1.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 696,
+      "name": "Deltascape V2.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 697,
+      "name": "Deltascape V3.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 698,
+      "name": "Deltascape V4.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 699,
+      "name": "Coerthas Central Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 700,
+      "name": "Foundation",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 701,
+      "name": "Seal Rock",
+      "intendedUse": 9,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 702,
+      "name": "Aetherochemical Research Facility",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 703,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 704,
+      "name": "Dalamud's Shadow",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 705,
+      "name": "Ul'dah - Steps of Thal",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 706,
+      "name": "Ul'dah - Steps of Thal",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 707,
+      "name": "The Weeping City of Mhach",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 708,
+      "name": "Rhotano Sea",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 709,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 710,
+      "name": "Kugane",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 711,
+      "name": "The Ruby Sea",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 712,
+      "name": "The Lost Canals of Uznair",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 713,
+      "name": "The Azim Steppe",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 714,
+      "name": "Bardam's Mettle",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 715,
+      "name": "The Churning Mists",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 716,
+      "name": "The Peaks",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 717,
+      "name": "Wolves' Den Pier",
+      "intendedUse": 29,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 718,
+      "name": "The Azim Steppe",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 719,
+      "name": "Emanation",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 720,
+      "name": "Emanation",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 721,
+      "name": "Amdapor Keep",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 722,
+      "name": "The Lost City of Amdapor",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 723,
+      "name": "The Azim Steppe",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 724,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 725,
+      "name": "The Lost Canals of Uznair",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 726,
+      "name": "The Ruby Sea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 727,
+      "name": "The Royal Menagerie",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 728,
+      "name": "Mordion Gaol",
+      "intendedUse": 40,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 729,
+      "name": "Astragalos",
+      "intendedUse": 39,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 730,
+      "name": "Transparency",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 731,
+      "name": "The Drowned City of Skalla",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 732,
+      "name": "Eureka Anemos",
+      "intendedUse": 41,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 733,
+      "name": "The Binding Coil of Bahamut",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 734,
+      "name": "The Royal City of Rabanastre",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 735,
+      "name": "The <Emphasis>Prima Vista</Emphasis> Tiring Room",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 736,
+      "name": "The <Emphasis>Prima Vista</Emphasis> Bridge",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 737,
+      "name": "Royal Palace",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 738,
+      "name": "The Resonatorium",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 739,
+      "name": "The Doman Enclave",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 740,
+      "name": "The Royal Menagerie",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 741,
+      "name": "Sanctum of the Twelve",
+      "intendedUse": 34,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 742,
+      "name": "Hells' Lid",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 743,
+      "name": "The Fractal Continuum",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 744,
+      "name": "Kienkan",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 746,
+      "name": "The Jade Stoa",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 748,
+      "name": "Sigmascape V1.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 749,
+      "name": "Sigmascape V2.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 750,
+      "name": "Sigmascape V3.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 751,
+      "name": "Sigmascape V4.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 752,
+      "name": "Sigmascape V1.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 753,
+      "name": "Sigmascape V2.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 754,
+      "name": "Sigmascape V3.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 755,
+      "name": "Sigmascape V4.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 756,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 757,
+      "name": "The Ruby Sea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 758,
+      "name": "The Jade Stoa",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 760,
+      "name": "The Fringes",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 761,
+      "name": "The Great Hunt",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 762,
+      "name": "The Great Hunt",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 763,
+      "name": "Eureka Pagos",
+      "intendedUse": 41,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 764,
+      "name": "Reisen Temple",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 768,
+      "name": "The Swallow's Compass",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 769,
+      "name": "The Burn",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 770,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 771,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 772,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 773,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 774,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 775,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 776,
+      "name": "The Ridorana Lighthouse",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 777,
+      "name": "Ultimacy",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 778,
+      "name": "Castrum Fluminis",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 779,
+      "name": "Castrum Fluminis",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 780,
+      "name": "Heaven-on-High",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 781,
+      "name": "Reisen Temple Road",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 782,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 783,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 784,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 785,
+      "name": "Heaven-on-High",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 786,
+      "name": "Castrum Fluminis",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 787,
+      "name": "The Ridorana Cataract",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 788,
+      "name": "Saint Mocianne's Arboretum",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 789,
+      "name": "The Burn",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 790,
+      "name": "Ul'dah - Steps of Nald",
+      "intendedUse": 43,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 791,
+      "name": "Hidden Gorge",
+      "intendedUse": 39,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 792,
+      "name": "The Fall of Belah'dia",
+      "intendedUse": 44,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 793,
+      "name": "The Ghimlyt Dark",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 794,
+      "name": "The Shifting Altars of Uznair",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 795,
+      "name": "Eureka Pyros",
+      "intendedUse": 41,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 796,
+      "name": "Blue Sky",
+      "intendedUse": 45,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 797,
+      "name": "The Azim Steppe",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 798,
+      "name": "Psiscape V1.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 799,
+      "name": "Psiscape V2.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 800,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 801,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 802,
+      "name": "Psiscape V1.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 803,
+      "name": "Psiscape V2.0",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 804,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 805,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 806,
+      "name": "Kugane Ohashi",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 807,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 808,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 809,
+      "name": "Haunted Manor",
+      "intendedUse": 32,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 810,
+      "name": "Hells' Kier",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 811,
+      "name": "Hells' Kier",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 812,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 821,
+      "name": "Dohn Mheg",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 822,
+      "name": "Mt. Gulg",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 823,
+      "name": "The Qitana Ravel",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 824,
+      "name": "The Wreath of Snakes",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 825,
+      "name": "The Wreath of Snakes",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 826,
+      "name": "The Orbonne Monastery",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 827,
+      "name": "Eureka Hydatos",
+      "intendedUse": 41,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 828,
+      "name": "The <Emphasis>Prima Vista</Emphasis> Tiring Room",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 829,
+      "name": "Eorzean Alliance Headquarters",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 830,
+      "name": "The Ghimlyt Dark",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 831,
+      "name": "The Manderville Tables",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 832,
+      "name": "The Gold Saucer",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 833,
+      "name": "The Howling Eye",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 834,
+      "name": "The Howling Eye",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 836,
+      "name": "Malikah's Well",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 837,
+      "name": "Holminster Switch",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 838,
+      "name": "Amaurot",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 839,
+      "name": "East Shroud",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 840,
+      "name": "The Twinning",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 841,
+      "name": "Akadaemia Anyder",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 842,
+      "name": "The Syrcus Trench",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 843,
+      "name": "The Pendants Personal Suite",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 844,
+      "name": "The Ocular",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 845,
+      "name": "The Dancing Plague",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 846,
+      "name": "The Crown of the Immaculate",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 847,
+      "name": "The Dying Gasp",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 848,
+      "name": "The Crown of the Immaculate",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 849,
+      "name": "The Core",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 850,
+      "name": "The Halo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 851,
+      "name": "The Nereus Trench",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 852,
+      "name": "Atlas Peak",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 853,
+      "name": "The Core",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 854,
+      "name": "The Halo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 855,
+      "name": "The Nereus Trench",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 856,
+      "name": "Atlas Peak",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 857,
+      "name": "The Core",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 858,
+      "name": "The Dancing Plague",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 859,
+      "name": "The Confessional of Toupasa the Elder",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 860,
+      "name": "Amh Araeng",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 861,
+      "name": "Lakeland",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 862,
+      "name": "Lakeland",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 863,
+      "name": "Eulmore",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 864,
+      "name": "Kholusia",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 865,
+      "name": "Old Gridania",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 866,
+      "name": "Coerthas Western Highlands",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 867,
+      "name": "Eastern La Noscea",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 868,
+      "name": "The Peaks",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 869,
+      "name": "Il Mheg",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 870,
+      "name": "Kholusia",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 871,
+      "name": "The Rak'tika Greatwood",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 872,
+      "name": "Amh Araeng",
+      "intendedUse": 9,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 873,
+      "name": "The Dancing Plague",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 874,
+      "name": "The Rak'tika Greatwood",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 875,
+      "name": "The Rak'tika Greatwood",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 876,
+      "name": "The Nabaath Mines",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 877,
+      "name": "Lakeland",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 878,
+      "name": "The Empty",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 879,
+      "name": "The Dungeons of Lyhe Ghiah",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 880,
+      "name": "The Crown of the Immaculate",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 881,
+      "name": "The Dying Gasp",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 882,
+      "name": "The Copied Factory",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 884,
+      "name": "The Grand Cosmos",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 885,
+      "name": "The Dying Gasp",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 886,
+      "name": "The Firmament",
+      "intendedUse": 21,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 887,
+      "name": "Liminal Space",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 888,
+      "name": "Onsal Hakair",
+      "intendedUse": 18,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 889,
+      "name": "Lyhe Mheg",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 890,
+      "name": "Lyhe Mheg",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 891,
+      "name": "Lyhe Mheg",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 892,
+      "name": "Lyhe Mheg",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 893,
+      "name": "The Imperial Palace",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 894,
+      "name": "Lyhe Mheg",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 895,
+      "name": "Excavation Tunnels",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 896,
+      "name": "The Copied Factory",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 897,
+      "name": "Cinder Drift",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 898,
+      "name": "Anamnesis Anyder",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 899,
+      "name": "The Falling City of Nym",
+      "intendedUse": 44,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 900,
+      "name": "The <Emphasis>Endeavor</Emphasis>",
+      "intendedUse": 46,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 901,
+      "name": "The Diadem",
+      "intendedUse": 47,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 902,
+      "name": "The Gandof Thunder Plains",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 903,
+      "name": "Ashfall",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 904,
+      "name": "The Halo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 905,
+      "name": "Great Glacier",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 906,
+      "name": "The Gandof Thunder Plains",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 907,
+      "name": "Ashfall",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 908,
+      "name": "The Halo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 909,
+      "name": "Great Glacier",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 911,
+      "name": "Cid's Memory",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 912,
+      "name": "Cinder Drift",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 913,
+      "name": "Transmission Control",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 914,
+      "name": "Trial's Threshold",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 915,
+      "name": "Gangos",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 916,
+      "name": "The Heroes' Gauntlet",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 917,
+      "name": "The Puppets' Bunker",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 918,
+      "name": "Anamnesis Anyder",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 919,
+      "name": "Terncliff",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 920,
+      "name": "Bozjan Southern Front",
+      "intendedUse": 48,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 921,
+      "name": "Frondale's Home for Friendless Foundlings",
+      "intendedUse": 40,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 922,
+      "name": "The Seat of Sacrifice",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 923,
+      "name": "The Seat of Sacrifice",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 924,
+      "name": "The Shifting Oubliettes of Lyhe Ghiah",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 925,
+      "name": "Terncliff Bay",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 926,
+      "name": "Terncliff Bay",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 928,
+      "name": "The Puppets' Bunker",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 929,
+      "name": "The Diadem",
+      "intendedUse": 47,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 931,
+      "name": "The Seat of Sacrifice",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 932,
+      "name": "The Tempest",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 933,
+      "name": "Matoya's Relict",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 934,
+      "name": "Castrum Marinum Drydocks",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 935,
+      "name": "Castrum Marinum Drydocks",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 936,
+      "name": "Delubrum Reginae",
+      "intendedUse": 52,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 937,
+      "name": "Delubrum Reginae",
+      "intendedUse": 53,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 938,
+      "name": "Paglth'an",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 939,
+      "name": "The Diadem",
+      "intendedUse": 47,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 940,
+      "name": "The Battlehall",
+      "intendedUse": 50,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 941,
+      "name": "The Battlehall",
+      "intendedUse": 51,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 942,
+      "name": "Sphere of Naught",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 943,
+      "name": "Laxan Loft",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 944,
+      "name": "Bygone Gaol",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 945,
+      "name": "The Garden of Nowhere",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 946,
+      "name": "Sphere of Naught",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 947,
+      "name": "Laxan Loft",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 948,
+      "name": "Bygone Gaol",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 949,
+      "name": "The Garden of Nowhere",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 950,
+      "name": "G-Savior Deck",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 951,
+      "name": "G-Savior Deck",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 952,
+      "name": "The Tower of Zot",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 954,
+      "name": "The Navel",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 955,
+      "name": "The Last Trace",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 964,
+      "name": "The Last Trace",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 965,
+      "name": "The Empty",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 966,
+      "name": "The Tower at Paradigm's Breach",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 967,
+      "name": "Castrum Marinum Drydocks",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 968,
+      "name": "Medias Res",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 969,
+      "name": "The Tower of Babil",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 970,
+      "name": "Vanaspati",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 971,
+      "name": "Lemures Headquarters",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 973,
+      "name": "The Dead Ends",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 974,
+      "name": "Ktisis Hyperboreia",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 975,
+      "name": "Zadnor",
+      "intendedUse": 48,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 976,
+      "name": "Smileton",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 977,
+      "name": "Carteneau Flats: Borderland Ruins",
+      "intendedUse": 29,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 978,
+      "name": "The Aitiascope",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 979,
+      "name": "Empyreum",
+      "intendedUse": 13,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 980,
+      "name": "Private Cottage - Empyreum",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 981,
+      "name": "Private House - Empyreum",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 982,
+      "name": "Private Mansion - Empyreum",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 983,
+      "name": "Private Chambers - Empyreum",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 984,
+      "name": "Company Workshop - Empyreum",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 985,
+      "name": "Ingleside Apartment Lobby",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 986,
+      "name": "The Stigma Dreamscape",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 987,
+      "name": "Main Hall",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 988,
+      "name": "",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 989,
+      "name": "",
+      "intendedUse": 7,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 990,
+      "name": "Andron",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 991,
+      "name": "G-Savior Deck",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 992,
+      "name": "The Dark Inside",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 993,
+      "name": "The Dark Inside",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 994,
+      "name": "The Phantoms' Feast",
+      "intendedUse": 34,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 995,
+      "name": "The Mothercrystal",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 996,
+      "name": "The Mothercrystal",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 997,
+      "name": "The Final Day",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 998,
+      "name": "The Final Day",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 999,
+      "name": "Ingleside Apartment",
+      "intendedUse": 14,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1000,
+      "name": "The Excitatron 6000",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1001,
+      "name": "Strategy Room",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1002,
+      "name": "The Gates of Pandæmonium",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1003,
+      "name": "The Gates of Pandæmonium",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1004,
+      "name": "The Stagnant Limbo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1005,
+      "name": "The Stagnant Limbo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1006,
+      "name": "The Fervid Limbo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1007,
+      "name": "The Fervid Limbo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1008,
+      "name": "The Sanguine Limbo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1009,
+      "name": "The Sanguine Limbo",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1010,
+      "name": "Magna Glacies",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1011,
+      "name": "Garlemald",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1012,
+      "name": "Magna Glacies",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1013,
+      "name": "Beyond the Stars",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1014,
+      "name": "Elpis",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1015,
+      "name": "Central Shroud",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1016,
+      "name": "Sastasha",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1017,
+      "name": "The Swallow's Compass",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1018,
+      "name": "The Vault",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1019,
+      "name": "The Peaks",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1020,
+      "name": "Cutter's Cry",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1021,
+      "name": "Dusk Vigil",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1022,
+      "name": "Saint Mocianne's Arboretum",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1023,
+      "name": "The Dravanian Forelands",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1024,
+      "name": "The Nethergate",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1025,
+      "name": "The Gates of Pandæmonium",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1026,
+      "name": "Beyond the Stars",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1027,
+      "name": "Ultima Thule",
+      "intendedUse": 54,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1028,
+      "name": "The Dark Inside",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1029,
+      "name": "The Final Day",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1030,
+      "name": "The Mothercrystal",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1031,
+      "name": "Propylaion",
+      "intendedUse": 54,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1032,
+      "name": "The Palaistra",
+      "intendedUse": 28,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1033,
+      "name": "The Volcanic Heart",
+      "intendedUse": 28,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1034,
+      "name": "Cloud Nine",
+      "intendedUse": 28,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1036,
+      "name": "Sastasha",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1037,
+      "name": "The Tam-Tara Deepcroft",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1038,
+      "name": "Copperbell Mines",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1039,
+      "name": "The Thousand Maws of Toto-Rak",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1040,
+      "name": "Haukke Manor",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1041,
+      "name": "Brayflox's Longstop",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1042,
+      "name": "Stone Vigil",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1043,
+      "name": "Castrum Meridianum",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1044,
+      "name": "The Praetorium",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1045,
+      "name": "Bowl of Embers",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1046,
+      "name": "The Navel",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1047,
+      "name": "The Howling Eye",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1048,
+      "name": "Porta Decumana",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1049,
+      "name": "Western Thanalan",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1050,
+      "name": "Alzadaal's Legacy",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1051,
+      "name": "The Tower of Babil",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1052,
+      "name": "The Porta Decumana",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1053,
+      "name": "The Porta Decumana",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1054,
+      "name": "Aglaia",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1055,
+      "name": "Unnamed Island",
+      "intendedUse": 49,
+      "reason": "housing"
+    },
+    {
+      "territoryId": 1056,
+      "name": "Alzadaal's Legacy",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1057,
+      "name": "Restricted Archives",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1058,
+      "name": "The Palaistra",
+      "intendedUse": 37,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1059,
+      "name": "The Volcanic Heart",
+      "intendedUse": 37,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1060,
+      "name": "Cloud Nine",
+      "intendedUse": 37,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1061,
+      "name": "The Omphalos",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1062,
+      "name": "Snowcloak",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1063,
+      "name": "The Keeper of the Lake",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1064,
+      "name": "Sohm Al",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1065,
+      "name": "The Aery",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1066,
+      "name": "The Vault",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1067,
+      "name": "Thornmarch",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1068,
+      "name": "Steps of Faith",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1069,
+      "name": "The Sil'dihn Subterrane",
+      "intendedUse": 4,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1070,
+      "name": "The Fell Court of Troia",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1071,
+      "name": "Storm's Crown",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1072,
+      "name": "Storm's Crown",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1073,
+      "name": "Elysion",
+      "intendedUse": 56,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1075,
+      "name": "Another Sil'dihn Subterrane",
+      "intendedUse": 57,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1076,
+      "name": "Another Sil'dihn Subterrane",
+      "intendedUse": 58,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1077,
+      "name": "Zero's Domain",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1078,
+      "name": "Meghaduta Guest Chambers",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1079,
+      "name": "The Aitiascope",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1081,
+      "name": "The Caustic Purgatory",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1082,
+      "name": "The Caustic Purgatory",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1083,
+      "name": "The Pestilent Purgatory",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1084,
+      "name": "The Pestilent Purgatory",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1085,
+      "name": "The Hollow Purgatory",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1086,
+      "name": "The Hollow Purgatory",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1087,
+      "name": "Stygian Insenescence Cells",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1088,
+      "name": "Stygian Insenescence Cells",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1089,
+      "name": "The Fell Court of Troia",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1091,
+      "name": "The Fell Court of Troia",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1092,
+      "name": "Storm's Crown",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1093,
+      "name": "Stygian Insenescence Cells",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1094,
+      "name": "Sneaky Hollow",
+      "intendedUse": 32,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1095,
+      "name": "Mount Ordeals",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1096,
+      "name": "Mount Ordeals",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1097,
+      "name": "Lapis Manalis",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1098,
+      "name": "Sylphstep",
+      "intendedUse": 44,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1099,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1100,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1101,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1102,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1103,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1104,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1105,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1106,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1107,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1108,
+      "name": "Eureka Orthos",
+      "intendedUse": 31,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1109,
+      "name": "The Great Gubal Library",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1110,
+      "name": "Aetherochemical Research Facility",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1111,
+      "name": "The Antitower",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1112,
+      "name": "Sohr Khai",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1113,
+      "name": "Xelphatol",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1114,
+      "name": "Baelsar's Wall",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1115,
+      "name": "The Tower of Babil",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1116,
+      "name": "The Clockwork Castletown",
+      "intendedUse": 28,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1117,
+      "name": "The Clockwork Castletown",
+      "intendedUse": 37,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1118,
+      "name": "Euphrosyne",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1119,
+      "name": "Lapis Manalis",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1120,
+      "name": "Garlemald",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1122,
+      "name": "The Interdimensional Rift",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1123,
+      "name": "The Shifting Gymnasion Agonon",
+      "intendedUse": 33,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1124,
+      "name": "Eureka Orthos",
+      "intendedUse": 12,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1125,
+      "name": "Khadga",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1126,
+      "name": "The Aetherfont",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1136,
+      "name": "The Gilded Araya",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1137,
+      "name": "Mount Rokkon",
+      "intendedUse": 4,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1138,
+      "name": "The Red Sands",
+      "intendedUse": 28,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1139,
+      "name": "The Red Sands",
+      "intendedUse": 37,
+      "reason": "pvp"
+    },
+    {
+      "territoryId": 1140,
+      "name": "The Voidcast Dais",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1141,
+      "name": "The Voidcast Dais",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1142,
+      "name": "The Sirensong Sea",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1143,
+      "name": "Bardam's Mettle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1144,
+      "name": "Doma Castle",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1145,
+      "name": "Castrum Abania",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1146,
+      "name": "Ala Mhigo",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1147,
+      "name": "The Aetherial Slough",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1148,
+      "name": "The Aetherial Slough",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1149,
+      "name": "The Dæmons' Nest",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1150,
+      "name": "The Dæmons' Nest",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1151,
+      "name": "The Chamber of Fourteen",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1152,
+      "name": "The Chamber of Fourteen",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1153,
+      "name": "Ascension",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1154,
+      "name": "Ascension",
+      "intendedUse": 17,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1155,
+      "name": "Another Mount Rokkon",
+      "intendedUse": 57,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1156,
+      "name": "Another Mount Rokkon",
+      "intendedUse": 58,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1158,
+      "name": "The Dæmons' Nest",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1159,
+      "name": "The Voidcast Dais",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1160,
+      "name": "Senatus",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1161,
+      "name": "Estinien's Chambers",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1162,
+      "name": "The Red Moon",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1163,
+      "name": "The <Emphasis>Endeavor</Emphasis>",
+      "intendedUse": 46,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1164,
+      "name": "The Lunar Subterrane",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1165,
+      "name": "Blunderville",
+      "intendedUse": 59,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1166,
+      "name": "The Memory of Embers",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1167,
+      "name": "Ihuykatumu",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1168,
+      "name": "The Abyssal Fracture",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1169,
+      "name": "The Abyssal Fracture",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1170,
+      "name": "Sunperch",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1171,
+      "name": "Earthen Sky Hideout",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1172,
+      "name": "The Drowned City of Skalla",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1173,
+      "name": "The Burn",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1174,
+      "name": "The Ghimlyt Dark",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1176,
+      "name": "Aloalo Island",
+      "intendedUse": 4,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1177,
+      "name": "The Aetherfont",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1178,
+      "name": "Thaleia",
+      "intendedUse": 8,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1179,
+      "name": "Another Aloalo Island",
+      "intendedUse": 57,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1180,
+      "name": "Another Aloalo Island",
+      "intendedUse": 58,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1181,
+      "name": "The Abyssal Fracture",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1182,
+      "name": "Thaleia",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1183,
+      "name": "The Gilded Araya",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1184,
+      "name": "The Lunar Subterrane",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1193,
+      "name": "Worqor Zormor",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1194,
+      "name": "The Skydeep Cenote",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1195,
+      "name": "Worqor Lar Dor",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1196,
+      "name": "Worqor Lar Dor",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1197,
+      "name": "Blunderville Square",
+      "intendedUse": 23,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1198,
+      "name": "Vanguard",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1199,
+      "name": "Alexandria",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1200,
+      "name": "Summit of Everkeep",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1201,
+      "name": "Summit of Everkeep",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1202,
+      "name": "Interphos",
+      "intendedUse": 10,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1203,
+      "name": "Tender Valley",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1204,
+      "name": "Strayborough",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1205,
+      "name": "The For'ard Cabins",
+      "intendedUse": 2,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1206,
+      "name": "Main Deck",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1207,
+      "name": "The Backroom",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1208,
+      "name": "Origenics",
+      "intendedUse": 3,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1210,
+      "name": "Sunperch",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1211,
+      "name": "Yak T'el",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1212,
+      "name": "Yak T'el",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1213,
+      "name": "Solution Nine",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1214,
+      "name": "The Sea of Clouds",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1215,
+      "name": "Brayflox's Longstop",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1216,
+      "name": "Bardam's Mettle",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1217,
+      "name": "Ala Mhigo",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1218,
+      "name": "Khadga",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1219,
+      "name": "Vanguard",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1220,
+      "name": "Summit of Everkeep",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1221,
+      "name": "Interphos",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1222,
+      "name": "Skydeep Cenote Inner Chamber",
+      "intendedUse": 15,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1233,
+      "name": "Manor Basement",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1234,
+      "name": "Dreamlike Palace",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1235,
+      "name": "Central Thanalan",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    },
+    {
+      "territoryId": 1236,
+      "name": "Southern Thanalan",
+      "intendedUse": 29,
+      "reason": "not a normal public city or overworld zone"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import struct
 import sys
 
 from assemble_scene import read_layout, matrix, multiply, identity
+from world_catalog import map_root
 
 ROOT = Path(__file__).resolve().parent
 DEST = ROOT / "assembled"
@@ -40,13 +41,34 @@ def transform(v,m):
     x,y,z=v
     return (m[0]*x+m[4]*y+m[8]*z+m[12],m[1]*x+m[5]*y+m[9]*z+m[13],m[2]*x+m[6]*y+m[10]*z+m[14])
 
+def grounded_seed(triangles):
+    """Choose an actual broad, upward-facing collision triangle, never origin."""
+    cells={}
+    for offset in range(0,len(triangles),9):
+        ax,ay,az,bx,by,bz,cx,cy,cz=triangles[offset:offset+9]
+        ux,uy,uz=bx-ax,by-ay,bz-az;vx,vy,vz=cx-ax,cy-ay,cz-az
+        nx,ny,nz=uy*vz-uz*vy,uz*vx-ux*vz,ux*vy-uy*vx
+        length=math.sqrt(nx*nx+ny*ny+nz*nz)
+        if length==0 or abs(ny)/length < .82:continue
+        area=length*.5
+        if area < .25:continue
+        point=((ax+bx+cx)/3,(ay+by+cy)/3,(az+bz+cz)/3)
+        key=(round(point[0]/12),round(point[2]/12))
+        score=area*(abs(ny)/length)**2
+        total,best,best_point=cells.get(key,(0,0,None))
+        cells[key]=(total+score,max(best,score),point if score>best else best_point)
+    if not cells:raise RuntimeError("No broad upward-facing collision surface for spawn")
+    _,(_,_,point)=max(cells.items(),key=lambda item:(item[1][0],item[1][1]))
+    return [round(value,4) for value in point]
+
 def build(scene, destination=DEST, exports=ROOT/"exports"):
     root=Path(exports)/scene
+    catalog_root=map_root(exports,scene)
     triangles=array.array("f");failures=[];terrain_count=0
     def append(mesh,m):
         for face in mesh:
             for vertex in face:triangles.extend(transform(vertex,m))
-    for path in root.glob("bg/ffxiv/*/twn/*/collision/tr*.pcb"):
+    for path in (catalog_root/"collision").glob("tr*.pcb"):
         try: append(pcb_triangles(path),identity());terrain_count+=1
         except Exception as e:failures.append({"file":str(path),"error":str(e)})
     groups=collections.defaultdict(list);cache={};seen=set()
@@ -61,7 +83,9 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
                 for layer in cache[asset]:
                     for child in layer["objects"]:expand(child,m,(*chain,asset))
             except Exception as e:failures.append({"file":asset,"error":str(e)})
-    for layer in read_layout(next(root.glob("bg/ffxiv/*/twn/*/level/bg.lgb"))):
+    bg=catalog_root/"level/bg.lgb"
+    if not bg.is_file():raise FileNotFoundError(f"{scene}: catalog bg layout was not exported: {bg}")
+    for layer in read_layout(bg):
         if layer["festival"]:continue
         for item in layer["objects"]:expand(item,identity())
     for asset,instances in groups.items():
@@ -72,7 +96,16 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
     destination=Path(destination)/scene/"collision.bin"
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("wb") as f:triangles.tofile(f)
-    report={"scene":scene,"terrainChunks":terrain_count,"instancedCollisionModels":len(groups),"triangles":len(triangles)//9,"bytes":len(triangles)*4,"errors":failures}
+    scene_path=destination.with_name("scene.json")
+    scene_data=json.loads(scene_path.read_text(encoding="utf-8"))
+    if scene_data.get("aetheryte"):
+        scene_data["spawn"]=scene_data["aetheryte"]
+        scene_data["spawnSource"]={"kind":"aetheryte-layout"}
+    else:
+        scene_data["spawn"]=grounded_seed(triangles)
+        scene_data["spawnSource"]={"kind":"collision-flat-surface","triangleCount":len(triangles)//9}
+    scene_path.write_text(json.dumps(scene_data,separators=(",",":")),encoding="utf-8")
+    report={"scene":scene,"terrainChunks":terrain_count,"instancedCollisionModels":len(groups),"triangles":len(triangles)//9,"bytes":len(triangles)*4,"spawn":scene_data["spawn"],"errors":failures}
     destination.with_name("collision-report.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
     print(json.dumps(report),flush=True)
     if failures: raise RuntimeError(f"{scene}: collision conversion failed; see collision-report.json")
@@ -81,4 +114,4 @@ if __name__=="__main__":
     requested=[arg for arg in sys.argv[1:] if not arg.startswith("--")]
     output=Path(next((arg.split("=",1)[1] for arg in sys.argv[1:] if arg.startswith("--destination=")), DEST))
     exports=Path(next((arg.split("=",1)[1] for arg in sys.argv[1:] if arg.startswith("--exports=")), ROOT/"exports"))
-    for scene in requested or ["gridania","limsa"]:build(scene,output,exports)
+    for scene in requested:build(scene,output,exports)

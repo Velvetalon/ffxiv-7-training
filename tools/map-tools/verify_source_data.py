@@ -7,9 +7,10 @@ import math
 from pathlib import Path
 import re
 import struct
+from world_catalog import aetheryte_visual, map_root, scene_ids
 
 ROOT = Path(__file__).resolve().parent
-SCENES = ("gridania", "limsa")
+SCENES = scene_ids()
 
 def u32(data, offset):
     return struct.unpack_from("<I", data, offset)[0]
@@ -63,9 +64,9 @@ def trs(item):
     result[12:15] = item["position"]
     return result
 
-def expected_matrices(source):
+def expected_matrices(source, scene):
     manifest = json.loads((source / "manifest.json").read_text(encoding="utf-8"))
-    main = next(item for item in manifest["layouts"] if item["type"] == "Aetheryte")
+    main = next((item for item in manifest["layouts"] if item["type"] == "Aetheryte"), None)
     groups, shared = collections.defaultdict(list), {}
     def visit(item, parent, trail=()):
         asset = item.get("asset", "")
@@ -76,7 +77,7 @@ def expected_matrices(source):
             shared.setdefault(asset, read_layout(source / asset))
             for layer in shared[asset]:
                 for child in layer["objects"]: visit(child, world, trail + (asset,))
-    bg = next(source.glob("bg/ffxiv/*/twn/*/level/bg.lgb"))
+    bg = map_root(source.parent, scene) / "level/bg.lgb"
     for layer in read_layout(bg):
         if layer["festival"] == 0 and not re.search(r"(?:festival|season|event|halloween|christmas)", layer["name"], re.I):
             for item in layer["objects"]: visit(item, identity())
@@ -85,8 +86,10 @@ def expected_matrices(source):
             matrix = identity(); point = item["translation"]
             matrix[12:15] = [point["X"], point["Y"], point["Z"]]
             groups[item["model"]].append(matrix)
-    visit({"kind": 6, "asset": "bgcommon/world/aet/shared/for_bg/sgbg_w_aet_001_01a.sgb",
-           "position": [main["translation"][axis] for axis in ("X", "Y", "Z")], "rotation": [0, 0, 0], "scale": [1, 1, 1]}, identity())
+    visual=aetheryte_visual(source)
+    if main and visual:
+        visit({"kind": 6, "asset": visual,
+               "position": [main["translation"][axis] for axis in ("X", "Y", "Z")], "rotation": [0, 0, 0], "scale": [1, 1, 1]}, identity())
     return {asset: list({tuple(round(value, 4) for value in matrix): matrix for matrix in matrices}.values())
             for asset, matrices in groups.items() if (source / f"{asset}.glb").is_file()}
 
@@ -128,17 +131,18 @@ def audit_uvs(source, release):
                     release_accessor = release_doc["meshes"][raw_doc["meshes"].index(mesh)]["primitives"][mesh["primitives"].index(primitive)]["attributes"][semantic]
                     values = list(floats(raw_doc, raw_bin, accessor))
                     released = list(floats(release_doc, release_bin, release_accessor))
-                    if values != released: raise AssertionError(f"Numeric attribute mismatch: {model['asset']} {semantic}")
+                    if any(a != b and not (math.isnan(a) and math.isnan(b)) for source_value, target_value in zip(values, released) for a, b in zip(source_value, target_value)): raise AssertionError(f"Numeric attribute mismatch: {model['asset']} {semantic}")
                     stat = output["attributes"].setdefault(semantic, {"primitives": 0, "vertices": 0, "min": [float("inf")] * len(values[0]), "max": [float("-inf")] * len(values[0])})
                     stat["primitives"] += 1; stat["vertices"] += len(values)
+                    stat["sourceNonFiniteComponents"] = stat.get("sourceNonFiniteComponents", 0) + sum(not math.isfinite(component) for value in values for component in value)
                     for value in values:
-                        stat["min"] = [min(a, b) for a, b in zip(stat["min"], value)]
-                        stat["max"] = [max(a, b) for a, b in zip(stat["max"], value)]
+                        stat["min"] = [min(a, b) if math.isfinite(b) else a for a, b in zip(stat["min"], value)]
+                        stat["max"] = [max(a, b) if math.isfinite(b) else a for a, b in zip(stat["max"], value)]
     return output
 
 def audit_scene(scene, exports, release):
     source = exports / scene
-    expected = expected_matrices(source)
+    expected = expected_matrices(source, scene)
     actual = {model["asset"]: model["matrices"] for model in json.loads((release / scene / "scene.json").read_text(encoding="utf-8"))["models"]}
     if set(expected) != set(actual): raise AssertionError(f"{scene}: model asset sets differ ({len(expected)} expected, {len(actual)} actual)")
     max_error = 0.0; instances = 0

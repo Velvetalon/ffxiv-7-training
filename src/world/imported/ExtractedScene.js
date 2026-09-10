@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ClientMaterials } from './ClientMaterials.js';
+import { repairRenderAttributes } from './GeometryAttributes.js';
 
 export async function loadExtractedScene(id, onProgress = () => {}) {
   const root = `${import.meta.env.BASE_URL}extracted/`;
@@ -26,6 +27,7 @@ export async function loadExtractedScene(id, onProgress = () => {}) {
       const primitives = [];
       gltf.scene.traverse(node => { if (node.isMesh) primitives.push(node); });
       for (const primitive of primitives) {
+        repairRenderAttributes(primitive.geometry);
         const path = primitive.userData.materialPath || primitive.parent?.userData.materialPath;
         if (primitive.geometry.attributes.uv1) {
           const colors = primitive.geometry.attributes.color;

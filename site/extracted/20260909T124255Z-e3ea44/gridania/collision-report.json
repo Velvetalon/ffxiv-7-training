@@ -1,0 +1,13 @@
+{
+  "scene": "gridania",
+  "terrainChunks": 173,
+  "instancedCollisionModels": 213,
+  "triangles": 98518,
+  "bytes": 3546648,
+  "spawn": [
+    32.94235,
+    2.695013,
+    30.03289
+  ],
+  "errors": []
+}

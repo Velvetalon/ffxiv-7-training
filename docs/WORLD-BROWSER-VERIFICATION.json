@@ -1,0 +1,854 @@
+{
+  "date": "2026-09-09",
+  "runKey": "0030534e2ae808f8",
+  "release": "20260909T124255Z-e3ea44",
+  "siteEntryHtmlSha256": "b148a02865cebb149f9f7195f53e0810c6e65ae0e4f63ac8a7e1bf60187a1288",
+  "catalogCount": 65,
+  "verifiedZoneCount": 65,
+  "zones": [
+    {
+      "id": "s1t1",
+      "models": 743,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "limsa",
+      "models": 771,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1t1",
+      "models": 560,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 7,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1t2",
+      "models": 625,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 6,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "gridania",
+      "models": 699,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "f1t2",
+      "models": 857,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "s1f1",
+      "models": 416,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "s1f2",
+      "models": 722,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "s1f3",
+      "models": 1099,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "s1f4",
+      "models": 753,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "s1f5",
+      "models": 768,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1f1",
+      "models": 908,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1f2",
+      "models": 737,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 6,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1f3",
+      "models": 960,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 3,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1f4",
+      "models": 790,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "w1f5",
+      "models": 554,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "f1f1",
+      "models": 875,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "f1f2",
+      "models": 800,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "f1f3",
+      "models": 814,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 3,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "f1f4",
+      "models": 673,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "r1f1",
+      "models": 1060,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "l1f1",
+      "models": 949,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "s1f6",
+      "models": 966,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "r2f1",
+      "models": 851,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "d2f1",
+      "models": 929,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "d2f2",
+      "models": 768,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "d2f3",
+      "models": 749,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "a2f1",
+      "models": 508,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 3,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "a2f2",
+      "models": 683,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "r2t1",
+      "models": 502,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 5,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "r2t2",
+      "models": 529,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 6,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "d2t1",
+      "models": 763,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "g3f1",
+      "models": 619,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "e3f1",
+      "models": 916,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 3,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "e3f2",
+      "models": 826,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "g3f2",
+      "models": 712,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 3,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "g3f3",
+      "models": 893,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "e3f3",
+      "models": 681,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "e3t1",
+      "models": 807,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "g3t1",
+      "models": 565,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "e3ec",
+      "models": 727,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4f1",
+      "models": 896,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 4,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4f2",
+      "models": 910,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4f3",
+      "models": 840,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4f4",
+      "models": 682,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4f5",
+      "models": 675,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4f6",
+      "models": 471,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4t1",
+      "models": 902,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n4t2",
+      "models": 724,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "k5f1",
+      "models": 723,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "m5f1",
+      "models": 855,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "m5f2",
+      "models": 909,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "u5f1",
+      "models": 1062,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "u5f2",
+      "models": 515,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "n5f1",
+      "models": 463,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "k5t1",
+      "models": 914,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "m5t1",
+      "models": 706,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "y6t1",
+      "models": 927,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "x6t1",
+      "models": 1052,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 1,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "y6f1",
+      "models": 704,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "y6f2",
+      "models": 1511,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "y6f3",
+      "models": 971,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "x6f1",
+      "models": 1028,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "x6f2",
+      "models": 789,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 2,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "id": "x6f3",
+      "models": 1438,
+      "imageBoundsMatch": true,
+      "connectionsChecked": 0,
+      "glError": 0,
+      "failedRequests": 0,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    }
+  ],
+  "representative": {
+    "city": {
+      "label": "city",
+      "status": "pass",
+      "source": "s1t1",
+      "connection": "exit:2210360",
+      "target": "s1f2",
+      "sourceState": {
+        "sceneId": "s1t1",
+        "loading": false,
+        "loadError": null
+      },
+      "ready": {
+        "moved": true,
+        "nearby": "exit:2210360",
+        "sceneId": "s1t1"
+      },
+      "targetState": {
+        "sceneId": "s1f2",
+        "loading": false,
+        "loadError": null
+      },
+      "arrival": {
+        "sceneId": "s1f2",
+        "loading": false,
+        "endpointId": "exit:2443382",
+        "targetPoint": [
+          -41.87274932861328,
+          71.95353991604894,
+          116.22380065917969
+        ],
+        "distance": 0,
+        "floor": {
+          "height": 71.95353991604894
+        }
+      },
+      "requestCounts": {
+        "total": 2393,
+        "responses": 2393,
+        "models": 1465,
+        "textures": 888,
+        "textureResponses": 888,
+        "collisionRequests": 2,
+        "collisionResponses": 2,
+        "failed": []
+      },
+      "pageErrors": [],
+      "consoleErrors": []
+    },
+    "outdoor": {
+      "label": "outdoor",
+      "status": "pass",
+      "source": "s1f1",
+      "connection": "exit:2464045",
+      "target": "limsa",
+      "sourceState": {
+        "sceneId": "s1f1",
+        "loading": false,
+        "loadError": null
+      },
+      "ready": {
+        "moved": true,
+        "nearby": "exit:2464045",
+        "sceneId": "s1f1"
+      },
+      "targetState": {
+        "sceneId": "limsa",
+        "loading": false,
+        "loadError": null
+      },
+      "arrival": {
+        "sceneId": "limsa",
+        "loading": false,
+        "endpointId": "exit:3876614",
+        "targetPoint": [
+          51.08121109008789,
+          20,
+          -0.1533323973417282
+        ],
+        "distance": 0,
+        "floor": {
+          "height": 20
+        }
+      },
+      "requestCounts": {
+        "total": 2058,
+        "responses": 2058,
+        "models": 1187,
+        "textures": 831,
+        "textureResponses": 831,
+        "collisionRequests": 2,
+        "collisionResponses": 2,
+        "failed": []
+      },
+      "pageErrors": [],
+      "consoleErrors": []
+    },
+    "expansion": {
+      "label": "expansion",
+      "status": "pass",
+      "source": "r2f1",
+      "connection": "exit:5866084",
+      "target": "r2t1",
+      "sourceState": {
+        "sceneId": "r2f1",
+        "loading": false,
+        "loadError": null
+      },
+      "ready": {
+        "moved": true,
+        "nearby": "exit:5866084",
+        "sceneId": "r2f1"
+      },
+      "targetState": {
+        "sceneId": "r2t1",
+        "loading": false,
+        "loadError": null
+      },
+      "arrival": {
+        "sceneId": "r2t1",
+        "loading": false,
+        "endpointId": "exit:5866176",
+        "targetPoint": [
+          -179.46409606933594,
+          15.993999481201172,
+          -50.38618087768555
+        ],
+        "distance": 0,
+        "floor": {
+          "height": 15.993999481201172
+        }
+      },
+      "requestCounts": {
+        "total": 2369,
+        "responses": 2369,
+        "models": 1353,
+        "textures": 976,
+        "textureResponses": 976,
+        "collisionRequests": 2,
+        "collisionResponses": 2,
+        "failed": []
+      },
+      "pageErrors": [],
+      "consoleErrors": []
+    },
+    "unpaired": {
+      "label": "unpaired",
+      "status": "pass",
+      "source": "f1f4",
+      "connection": "exit:1356461",
+      "target": "f1f1",
+      "sourceState": {
+        "sceneId": "f1f4",
+        "loading": false,
+        "loadError": null
+      },
+      "ready": {
+        "moved": true,
+        "nearby": "exit:1356461",
+        "sceneId": "f1f4"
+      },
+      "targetState": {
+        "sceneId": "f1f1",
+        "loading": false,
+        "loadError": null
+      },
+      "arrival": {
+        "sceneId": "f1f1",
+        "loading": false,
+        "targetPoint": [
+          -500.4834899902344,
+          72.71653885737813,
+          -333.0362854003906
+        ],
+        "distance": 0,
+        "floor": {
+          "height": 72.71653885737813
+        }
+      },
+      "requestCounts": {
+        "total": 2514,
+        "responses": 2513,
+        "models": 1548,
+        "textures": 926,
+        "textureResponses": 926,
+        "collisionRequests": 2,
+        "collisionResponses": 2,
+        "failed": []
+      },
+      "pageErrors": [],
+      "consoleErrors": []
+    }
+  },
+  "releaseReady": true
+}

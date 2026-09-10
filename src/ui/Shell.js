@@ -34,6 +34,7 @@ $('#app').innerHTML = `
     <button id="area-open" class="area-button">${icon('map')}<span>地区地图</span></button>
   </aside>
   <div id="scene-title" class="scene-title"><span></span><h2></h2><small></small></div>
+  <div id="connection-prompt" class="connection-prompt hidden"><span>${icon('send')}<b id="connection-name"></b></span><button id="connection-travel" class="command" data-connection-travel=""><kbd>F</kbd>进入</button></div>
   <div id="feedback" role="status" aria-live="polite"></div>
   <div id="floating-damage" aria-hidden="true"></div>
   <div id="casting" class="casting hidden"><div><span id="cast-name"></span><span id="cast-time"></span></div><div class="cast-track"><span id="cast-fill"></span></div></div>

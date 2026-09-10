@@ -12,6 +12,7 @@ import struct
 import sys
 
 from PIL import Image
+from world_catalog import aetheryte_visual, exported_path, map_root, metadata, scene as catalog_scene
 
 ROOT = Path(__file__).resolve().parent
 EXPORTS = ROOT / "exports"
@@ -81,14 +82,47 @@ def texture_png(path, destination):
     fmt = u32(data, 4)
     width,height,depth = struct.unpack_from("<HHH", data, 8)
     offset = u32(data, 28)
-    code = {0x3420:b"DXT1",0x3430:b"DXT3",0x3431:b"DXT5",0x6432:b"DX10"}.get(fmt)
-    if not code:raise ValueError(f"Unknown TEX format {fmt:x}")
-    # Pillow's native DDS decoder supports BC1/2/3/7.
-    header = [124,0x00081007,height,width, max(1,(width+3)//4)*max(1,(height+3)//4)*(8 if code==b"DXT1" else 16),0,1] + [0]*11
-    header += [32,4,int.from_bytes(code,"little"),0,0,0,0,0,0x1000,0,0,0,0]
-    dds = b"DDS "+struct.pack("<31I",*header)
-    if code==b"DX10":dds+=struct.pack("<5I",98,3,0,1,0)
-    image=Image.open(io.BytesIO(dds+data[offset:])).convert("RGBA")
+    if offset <= 0 or offset >= len(data):raise ValueError(f"Invalid TEX surface offset {offset}")
+    pixels=data[offset:]
+    raw_bytes={0x1130:1,0x1131:1,0x1132:1,0x1133:1,0x1240:2,0x1440:2,0x1441:2,0x1450:4,0x1451:4}
+    if fmt in raw_bytes:
+        required=width*height*raw_bytes[fmt]
+        if len(pixels)<required:raise ValueError(f"Truncated TEX format {fmt:x}: {len(pixels)} < {required}")
+        pixels=pixels[:required]
+        if fmt==0x1130: # L8_UNORM
+            image=Image.frombytes("L",(width,height),pixels).convert("RGBA")
+        elif fmt==0x1131: # A8_UNORM
+            alpha=Image.frombytes("L",(width,height),pixels)
+            image=Image.merge("RGBA",(Image.new("L",alpha.size,255),)*3+(alpha,))
+        elif fmt in (0x1132,0x1133): # R8_UNORM / R8_UINT
+            red=Image.frombytes("L",(width,height),pixels)
+            image=Image.merge("RGBA",(red,Image.new("L",red.size),Image.new("L",red.size),Image.new("L",red.size,255)))
+        elif fmt==0x1240: # R8G8_UNORM
+            image=Image.frombytes("LA",(width,height),pixels)
+            red,green=image.split();image=Image.merge("RGBA",(red,green,Image.new("L",red.size),Image.new("L",red.size,255)))
+        elif fmt==0x1450: # B8G8R8A8_UNORM
+            image=Image.frombytes("RGBA",(width,height),pixels,"raw","BGRA")
+        elif fmt==0x1451: # B8G8R8X8_UNORM
+            image=Image.frombytes("RGBA",(width,height),pixels,"raw","BGRX")
+        else:
+            values=struct.unpack("<"+"H"*(width*height),pixels)
+            if fmt==0x1440: # B4G4R4A4_UNORM
+                rgba=bytes(channel for value in values for channel in (((value>>8)&15)*17,((value>>4)&15)*17,(value&15)*17,((value>>12)&15)*17))
+            else: # B5G5R5A1_UNORM
+                rgba=bytes(channel for value in values for channel in (((value>>10)&31)*255//31,((value>>5)&31)*255//31,(value&31)*255//31,255 if value&0x8000 else 0))
+            image=Image.frombytes("RGBA",(width,height),rgba)
+    else:
+        code = {0x3420:b"DXT1",0x3430:b"DXT3",0x3431:b"DXT5",0x6432:b"DX10"}.get(fmt)
+        if not code:raise ValueError(f"Unknown TEX format {fmt:x}")
+        block_bytes=8 if code==b"DXT1" else 16
+        required=max(1,(width+3)//4)*max(1,(height+3)//4)*block_bytes
+        if len(pixels)<required:raise ValueError(f"Truncated TEX format {fmt:x}: {len(pixels)} < {required}")
+        # Pillow's native DDS decoder supports BC1/2/3/7.
+        header = [124,0x00081007,height,width,required,0,1] + [0]*11
+        header += [32,4,int.from_bytes(code,"little"),0,0,0,0,0,0x1000,0,0,0,0]
+        dds = b"DDS "+struct.pack("<31I",*header)
+        if code==b"DX10":dds+=struct.pack("<5I",98,3,0,1,0)
+        image=Image.open(io.BytesIO(dds+pixels[:required])).convert("RGBA")
     image.thumbnail((1024,1024))
     destination.parent.mkdir(parents=True,exist_ok=True)
     image.save(destination)
@@ -152,12 +186,15 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
     source=Path(exports)/scene
     target=Path(destination)/scene
     target.mkdir(parents=True,exist_ok=True)
+    catalog=catalog_scene(scene)
     manifest=json.loads((source/"manifest.json").read_text())
-    bg=next(source.glob("bg/ffxiv/*/twn/*/level/bg.lgb"))
+    root=map_root(exports,scene)
+    bg=root/"level/bg.lgb"
+    if not bg.is_file():raise FileNotFoundError(f"{scene}: catalog bg layout was not exported: {bg}")
     layers=read_layout(bg)
     (ROOT/f"{scene}-layers.json").write_text(json.dumps([{k:v for k,v in l.items() if k!="objects"}|{"count":len(l["objects"])} for l in layers],ensure_ascii=False,indent=2),encoding="utf-8")
     groups=collections.defaultdict(list)
-    errors=[];shared_cache={}; layer_stats=[]
+    errors=[];limitations=[];shared_cache={}; layer_stats=[]
     def expand(item,parent,chain=()):
         asset=item.get("asset","")
         transform=multiply(parent,matrix(item))
@@ -179,11 +216,16 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
     for item in manifest["layouts"]:
         if item["type"]=="TerrainPlate":
             t=identity();p=item["translation"];t[12:15]=[p["X"],p["Y"],p["Z"]];groups[item["model"]].append(t)
-    # The main aetheryte is a game-object placement, outside the decorative BG layer.
-    main_aetheryte=next(item for item in manifest["layouts"] if item["type"]=="Aetheryte")
-    expand({"kind":6,"asset":"bgcommon/world/aet/shared/for_bg/sgbg_w_aet_001_01a.sgb",
-            "position":[main_aetheryte["translation"][k] for k in ["X","Y","Z"]],
-            "rotation":[0,0,0],"scale":[1,1,1]},identity())
+    # Aetherytes are absent in many overworld maps. When present, include the
+    # shared visual; safe placement is finalized from collision after baking.
+    main_aetheryte=next((item for item in manifest["layouts"] if item["type"]=="Aetheryte"),None)
+    visual=aetheryte_visual(source)
+    if main_aetheryte and visual:
+        expand({"kind":6,"asset":visual,
+                "position":[main_aetheryte["translation"][k] for k in ["X","Y","Z"]],
+                "rotation":[0,0,0],"scale":[1,1,1]},identity())
+    elif main_aetheryte:
+        limitations.append("Aetheryte layout has no uniquely exported visual shared group; no generic crystal was injected.")
     # Avoid duplicate placements that appear in multiple layout layers.
     for key,values in groups.items():
         seen=set();unique=[]
@@ -225,26 +267,29 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
         for sample in record["samplers"]:
             sample["path"]=record["textures"][sample["index"]] if sample["index"] < len(record["textures"]) else None
             sample["map"]=texture_map.get(sample["path"])
-    map_textures=list(source.glob("ui/map/*/*/*_m.tex"))
-    if map_textures:texture_png(map_textures[0],target/"map.png")
-    aetheryte=next(item["translation"] for item in manifest["layouts"] if item["type"]=="Aetheryte")
-    place_file=ROOT/"research/PlaceName-7.0.csv"
+    map_texture=exported_path(exports,scene,catalog["mapTexture"])
+    if not map_texture.is_file():raise FileNotFoundError(f"{scene}: catalog map texture was not exported: {catalog['mapTexture']}")
+    texture_png(map_texture,target/"map.png")
+    aetheryte=([main_aetheryte["translation"][k] for k in ["X","Y","Z"]] if main_aetheryte else None)
+    place_file=ROOT/"data/PlaceName-7.0.csv"
+    if not place_file.exists():place_file=ROOT/"research/PlaceName-7.0.csv"
     names={}
     if place_file.exists():
         with place_file.open(encoding="utf-8-sig") as stream:
             rows=list(csv.reader(stream))
         names={int(row[0]):row[1] for row in rows[3:] if row[0].isdigit()}
     landmarks=[];seen_places=set()
-    plan=next(source.glob("bg/ffxiv/*/twn/*/level/planmap.lgb"))
-    for entry in read_layout(plan):
-        for item in entry["objects"]:
-            if item["kind"]!=43:continue
-            place=item["placeSpot"] or item["placeBlock"]
-            if not place or place in seen_places:continue
-            seen_places.add(place)
-            x,y,z=item["position"]
-            landmarks.append({"id":str(place),"name":names.get(place,str(place)),"x":x,"y":y,"z":z,"type":"landmark"})
-    report={"sourceVersion":manifest["gameVersion"],"scene":scene,"aetheryte":[aetheryte[k] for k in ["X","Y","Z"]],"models":models,"materials":materials,"layers":layer_stats,"errors":errors,"source":"Local installed client, read-only SqPack export","sharedGroups":len(shared_cache),"landmarks":landmarks}
+    plan=root/"level/planmap.lgb"
+    if plan.is_file():
+        for entry in read_layout(plan):
+            for item in entry["objects"]:
+                if item["kind"]!=43:continue
+                place=item["placeSpot"] or item["placeBlock"]
+                if not place or place in seen_places:continue
+                seen_places.add(place)
+                x,y,z=item["position"]
+                landmarks.append({"id":str(place),"name":names.get(place,str(place)),"x":x,"y":y,"z":z,"type":"landmark"})
+    report={"sourceVersion":manifest["gameVersion"],"scene":scene,**metadata(scene),"mapTexture":catalog["mapTexture"],"aetheryte":aetheryte,"spawn":aetheryte,"connections":[],"models":models,"materials":materials,"layers":layer_stats,"errors":errors,"limitations":[*manifest.get("limitations",[]),*limitations],"source":"Local installed client, read-only SqPack export","sharedGroups":len(shared_cache),"landmarks":landmarks}
     (target/"scene.json").write_text(json.dumps(report,separators=(",",":")),encoding="utf-8")
     print(json.dumps({"scene":scene,"models":len(models),"instances":sum(len(m["matrices"]) for m in models),"textures":len(texture_map),"materials":len(materials),"sharedGroups":len(shared_cache),"errors":len(errors),"examples":errors[:5]}),flush=True)
     if errors: raise RuntimeError(f"{scene}: {len(errors)} assembly errors; see scene.json")
@@ -253,4 +298,4 @@ if __name__=="__main__":
     requested=[arg for arg in sys.argv[1:] if not arg.startswith("--")]
     destination=Path(next((arg.split("=",1)[1] for arg in sys.argv[1:] if arg.startswith("--destination=")), DEST))
     exports=Path(next((arg.split("=",1)[1] for arg in sys.argv[1:] if arg.startswith("--exports=")), EXPORTS))
-    for scene in requested or ["gridania","limsa"]:assemble(scene,destination,exports)
+    for scene in requested:assemble(scene,destination,exports)

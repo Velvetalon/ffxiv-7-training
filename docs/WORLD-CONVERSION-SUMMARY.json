@@ -1,0 +1,663 @@
+{
+  "maps": 65,
+  "totals": {
+    "models": 51794,
+    "instances": 523489,
+    "materials": 18853,
+    "collisionTriangles": 54850891,
+    "connections": 145,
+    "errors": 0
+  },
+  "scenes": [
+    {
+      "id": "s1t1",
+      "name": "利姆萨·罗敏萨上层甲板",
+      "models": 743,
+      "instances": 6787,
+      "materials": 239,
+      "collisionTriangles": 223705,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "limsa",
+      "name": "利姆萨·罗敏萨下层甲板",
+      "models": 771,
+      "instances": 7024,
+      "materials": 253,
+      "collisionTriangles": 227082,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "w1t1",
+      "name": "乌尔达哈现世回廊",
+      "models": 560,
+      "instances": 4837,
+      "materials": 127,
+      "collisionTriangles": 77234,
+      "connections": 7,
+      "errors": 0
+    },
+    {
+      "id": "w1t2",
+      "name": "乌尔达哈来生回廊",
+      "models": 625,
+      "instances": 5951,
+      "materials": 112,
+      "collisionTriangles": 123182,
+      "connections": 6,
+      "errors": 0
+    },
+    {
+      "id": "gridania",
+      "name": "格里达尼亚新街",
+      "models": 699,
+      "instances": 2452,
+      "materials": 147,
+      "collisionTriangles": 98518,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "f1t2",
+      "name": "格里达尼亚旧街",
+      "models": 857,
+      "instances": 6202,
+      "materials": 236,
+      "collisionTriangles": 209760,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "s1f1",
+      "name": "中拉诺西亚",
+      "models": 416,
+      "instances": 3853,
+      "materials": 209,
+      "collisionTriangles": 368461,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "s1f2",
+      "name": "拉诺西亚低地",
+      "models": 722,
+      "instances": 7824,
+      "materials": 314,
+      "collisionTriangles": 447560,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "s1f3",
+      "name": "东拉诺西亚",
+      "models": 1099,
+      "instances": 8937,
+      "materials": 388,
+      "collisionTriangles": 477701,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "s1f4",
+      "name": "西拉诺西亚",
+      "models": 753,
+      "instances": 9001,
+      "materials": 442,
+      "collisionTriangles": 457341,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "s1f5",
+      "name": "拉诺西亚高地",
+      "models": 768,
+      "instances": 6610,
+      "materials": 240,
+      "collisionTriangles": 507104,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "w1f1",
+      "name": "西萨纳兰",
+      "models": 908,
+      "instances": 7758,
+      "materials": 246,
+      "collisionTriangles": 751195,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "w1f2",
+      "name": "中萨纳兰",
+      "models": 737,
+      "instances": 7164,
+      "materials": 261,
+      "collisionTriangles": 355637,
+      "connections": 6,
+      "errors": 0
+    },
+    {
+      "id": "w1f3",
+      "name": "东萨纳兰",
+      "models": 960,
+      "instances": 8000,
+      "materials": 322,
+      "collisionTriangles": 747983,
+      "connections": 3,
+      "errors": 0
+    },
+    {
+      "id": "w1f4",
+      "name": "南萨纳兰",
+      "models": 790,
+      "instances": 7929,
+      "materials": 244,
+      "collisionTriangles": 814698,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "w1f5",
+      "name": "北萨纳兰",
+      "models": 554,
+      "instances": 4683,
+      "materials": 171,
+      "collisionTriangles": 483108,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "f1f1",
+      "name": "黑衣森林中央林区",
+      "models": 875,
+      "instances": 7019,
+      "materials": 331,
+      "collisionTriangles": 626600,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "f1f2",
+      "name": "黑衣森林东部林区",
+      "models": 800,
+      "instances": 7771,
+      "materials": 366,
+      "collisionTriangles": 740756,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "f1f3",
+      "name": "黑衣森林南部林区",
+      "models": 814,
+      "instances": 8612,
+      "materials": 314,
+      "collisionTriangles": 618595,
+      "connections": 3,
+      "errors": 0
+    },
+    {
+      "id": "f1f4",
+      "name": "黑衣森林北部林区",
+      "models": 673,
+      "instances": 8517,
+      "materials": 240,
+      "collisionTriangles": 408973,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "r1f1",
+      "name": "库尔札斯中央高地",
+      "models": 1060,
+      "instances": 7169,
+      "materials": 300,
+      "collisionTriangles": 2518888,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "l1f1",
+      "name": "摩杜纳",
+      "models": 949,
+      "instances": 7328,
+      "materials": 285,
+      "collisionTriangles": 675440,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "s1f6",
+      "name": "拉诺西亚外地",
+      "models": 966,
+      "instances": 7455,
+      "materials": 260,
+      "collisionTriangles": 610798,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "r2f1",
+      "name": "Coerthas Western Highlands",
+      "models": 851,
+      "instances": 6040,
+      "materials": 344,
+      "collisionTriangles": 1548630,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "d2f1",
+      "name": "The Dravanian Forelands",
+      "models": 929,
+      "instances": 6477,
+      "materials": 190,
+      "collisionTriangles": 1007296,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "d2f2",
+      "name": "The Dravanian Hinterlands",
+      "models": 768,
+      "instances": 8739,
+      "materials": 244,
+      "collisionTriangles": 1085926,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "d2f3",
+      "name": "The Churning Mists",
+      "models": 749,
+      "instances": 7578,
+      "materials": 257,
+      "collisionTriangles": 993469,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "a2f1",
+      "name": "The Sea of Clouds",
+      "models": 508,
+      "instances": 6359,
+      "materials": 214,
+      "collisionTriangles": 988335,
+      "connections": 3,
+      "errors": 0
+    },
+    {
+      "id": "a2f2",
+      "name": "Azys Lla",
+      "models": 683,
+      "instances": 10045,
+      "materials": 206,
+      "collisionTriangles": 1145122,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "r2t1",
+      "name": "Foundation",
+      "models": 502,
+      "instances": 3212,
+      "materials": 138,
+      "collisionTriangles": 109656,
+      "connections": 5,
+      "errors": 0
+    },
+    {
+      "id": "r2t2",
+      "name": "The Pillars",
+      "models": 529,
+      "instances": 3947,
+      "materials": 168,
+      "collisionTriangles": 84876,
+      "connections": 6,
+      "errors": 0
+    },
+    {
+      "id": "d2t1",
+      "name": "Idyllshire",
+      "models": 763,
+      "instances": 4891,
+      "materials": 266,
+      "collisionTriangles": 92584,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "g3f1",
+      "name": "The Fringes",
+      "models": 619,
+      "instances": 9556,
+      "materials": 463,
+      "collisionTriangles": 1558266,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "e3f1",
+      "name": "The Ruby Sea",
+      "models": 916,
+      "instances": 8677,
+      "materials": 370,
+      "collisionTriangles": 1366732,
+      "connections": 3,
+      "errors": 0
+    },
+    {
+      "id": "e3f2",
+      "name": "Yanxia",
+      "models": 826,
+      "instances": 8282,
+      "materials": 370,
+      "collisionTriangles": 1172171,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "g3f2",
+      "name": "The Peaks",
+      "models": 712,
+      "instances": 8034,
+      "materials": 298,
+      "collisionTriangles": 1298743,
+      "connections": 3,
+      "errors": 0
+    },
+    {
+      "id": "g3f3",
+      "name": "The Lochs",
+      "models": 893,
+      "instances": 14619,
+      "materials": 322,
+      "collisionTriangles": 1656367,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "e3f3",
+      "name": "The Azim Steppe",
+      "models": 681,
+      "instances": 6252,
+      "materials": 274,
+      "collisionTriangles": 1289230,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "e3t1",
+      "name": "Kugane",
+      "models": 807,
+      "instances": 4461,
+      "materials": 324,
+      "collisionTriangles": 152484,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "g3t1",
+      "name": "Rhalgr's Reach",
+      "models": 565,
+      "instances": 3154,
+      "materials": 272,
+      "collisionTriangles": 152335,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "e3ec",
+      "name": "The Doman Enclave",
+      "models": 727,
+      "instances": 3828,
+      "materials": 339,
+      "collisionTriangles": 93390,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "n4f1",
+      "name": "Lakeland",
+      "models": 896,
+      "instances": 8826,
+      "materials": 360,
+      "collisionTriangles": 876802,
+      "connections": 4,
+      "errors": 0
+    },
+    {
+      "id": "n4f2",
+      "name": "Kholusia",
+      "models": 910,
+      "instances": 10035,
+      "materials": 300,
+      "collisionTriangles": 932117,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "n4f3",
+      "name": "Amh Araeng",
+      "models": 840,
+      "instances": 6605,
+      "materials": 194,
+      "collisionTriangles": 1129098,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "n4f4",
+      "name": "Il Mheg",
+      "models": 682,
+      "instances": 6783,
+      "materials": 275,
+      "collisionTriangles": 1018628,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "n4f5",
+      "name": "The Rak'tika Greatwood",
+      "models": 675,
+      "instances": 7092,
+      "materials": 355,
+      "collisionTriangles": 1178336,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "n4f6",
+      "name": "The Tempest",
+      "models": 471,
+      "instances": 4856,
+      "materials": 264,
+      "collisionTriangles": 800142,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "n4t1",
+      "name": "The Crystarium",
+      "models": 902,
+      "instances": 7537,
+      "materials": 285,
+      "collisionTriangles": 181427,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "n4t2",
+      "name": "Eulmore",
+      "models": 724,
+      "instances": 5145,
+      "materials": 341,
+      "collisionTriangles": 101981,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "k5f1",
+      "name": "Labyrinthos",
+      "models": 723,
+      "instances": 7482,
+      "materials": 321,
+      "collisionTriangles": 910950,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "m5f1",
+      "name": "Thavnair",
+      "models": 855,
+      "instances": 15820,
+      "materials": 354,
+      "collisionTriangles": 729211,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "m5f2",
+      "name": "Garlemald",
+      "models": 909,
+      "instances": 7765,
+      "materials": 331,
+      "collisionTriangles": 969881,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "u5f1",
+      "name": "Mare Lamentorum",
+      "models": 1062,
+      "instances": 8211,
+      "materials": 276,
+      "collisionTriangles": 1570786,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "u5f2",
+      "name": "Ultima Thule",
+      "models": 515,
+      "instances": 7190,
+      "materials": 310,
+      "collisionTriangles": 719998,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "n5f1",
+      "name": "Elpis",
+      "models": 463,
+      "instances": 6112,
+      "materials": 199,
+      "collisionTriangles": 645674,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "k5t1",
+      "name": "Old Sharlayan",
+      "models": 914,
+      "instances": 7638,
+      "materials": 338,
+      "collisionTriangles": 164791,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "m5t1",
+      "name": "Radz-at-Han",
+      "models": 706,
+      "instances": 7224,
+      "materials": 258,
+      "collisionTriangles": 91505,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "y6t1",
+      "name": "Tuliyollal",
+      "models": 927,
+      "instances": 11778,
+      "materials": 370,
+      "collisionTriangles": 431224,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "x6t1",
+      "name": "Solution Nine",
+      "models": 1052,
+      "instances": 13780,
+      "materials": 367,
+      "collisionTriangles": 193669,
+      "connections": 1,
+      "errors": 0
+    },
+    {
+      "id": "y6f1",
+      "name": "Urqopacha",
+      "models": 704,
+      "instances": 16257,
+      "materials": 395,
+      "collisionTriangles": 2117005,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "y6f2",
+      "name": "Kozama'uka",
+      "models": 1511,
+      "instances": 16393,
+      "materials": 443,
+      "collisionTriangles": 1311125,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "y6f3",
+      "name": "Yak T'el",
+      "models": 971,
+      "instances": 17375,
+      "materials": 487,
+      "collisionTriangles": 2477409,
+      "connections": 0,
+      "errors": 0
+    },
+    {
+      "id": "x6f1",
+      "name": "Shaaloani",
+      "models": 1028,
+      "instances": 11827,
+      "materials": 343,
+      "collisionTriangles": 1035136,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "x6f2",
+      "name": "Heritage Found",
+      "models": 789,
+      "instances": 14559,
+      "materials": 194,
+      "collisionTriangles": 6112039,
+      "connections": 2,
+      "errors": 0
+    },
+    {
+      "id": "x6f3",
+      "name": "Living Memory",
+      "models": 1438,
+      "instances": 14165,
+      "materials": 387,
+      "collisionTriangles": 786026,
+      "connections": 0,
+      "errors": 0
+    }
+  ]
+}

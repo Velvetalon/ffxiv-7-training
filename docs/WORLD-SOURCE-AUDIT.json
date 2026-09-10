@@ -1,0 +1,4898 @@
+{
+  "a2f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "9f48578ff42a2ebd3458599543b39ee1c2c2836579e104cfa2ceb9f98e30dc99",
+    "models": 508,
+    "instances": 6359,
+    "maxMatrixAbsError": 2.842170943040401e-14,
+    "uv": {
+      "models": 508,
+      "byteExact": 508,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3028,
+          "vertices": 1118647,
+          "min": [
+            -41.0625,
+            -89.3125
+          ],
+          "max": [
+            136.125,
+            51.40625
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3008,
+          "vertices": 1114048,
+          "min": [
+            -100.5625,
+            -52.03125
+          ],
+          "max": [
+            53.21875,
+            40.4375
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1165,
+          "vertices": 452514,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "a2f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "3df330308f0da09ea6f7e7b84cfbea8e14a23790328d77a564db48ca3902411e",
+    "models": 683,
+    "instances": 10045,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 683,
+      "byteExact": 683,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2785,
+          "vertices": 1726458,
+          "min": [
+            -100.0,
+            -84.625
+          ],
+          "max": [
+            47.65625,
+            31.734375
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2776,
+          "vertices": 1723493,
+          "min": [
+            -36.75,
+            -85.8125
+          ],
+          "max": [
+            46.96875,
+            32.125
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1340,
+          "vertices": 589350,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 5,
+          "vertices": 3882,
+          "min": [
+            -9.2421875,
+            -4.4453125
+          ],
+          "max": [
+            8.0,
+            10.3203125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 5,
+          "vertices": 3882,
+          "min": [
+            -9.2421875,
+            -4.4453125
+          ],
+          "max": [
+            8.0,
+            10.3203125
+          ]
+        }
+      }
+    }
+  },
+  "d2f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "268ee946f4c1bde4de289ed7a70430c92a23fa8d97cc538c37022f6e0e190795",
+    "models": 929,
+    "instances": 6477,
+    "maxMatrixAbsError": 1.8917489449932212e-10,
+    "uv": {
+      "models": 929,
+      "byteExact": 929,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3231,
+          "vertices": 940962,
+          "min": [
+            -121.75,
+            -120.875
+          ],
+          "max": [
+            126.5625,
+            128.75
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3053,
+          "vertices": 939813,
+          "min": [
+            -96.6875,
+            -111.0
+          ],
+          "max": [
+            111.25,
+            153.0
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2603,
+          "vertices": 737763,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 3905,
+          "min": [
+            -11.15625,
+            -11.1796875
+          ],
+          "max": [
+            15.6875,
+            16.3125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 3905,
+          "min": [
+            -12.3515625,
+            -9.7734375
+          ],
+          "max": [
+            15.6875,
+            16.234375
+          ]
+        }
+      }
+    }
+  },
+  "d2f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "e603652650340927f75a798bcbf82338eb4df939ee2ecc137ab3cb6e73b1f388",
+    "models": 768,
+    "instances": 8739,
+    "maxMatrixAbsError": 2.4653185875522787e-06,
+    "uv": {
+      "models": 768,
+      "byteExact": 768,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3940,
+          "vertices": 1024349,
+          "min": [
+            -101.5625,
+            -227.25
+          ],
+          "max": [
+            168.25,
+            174.75
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3904,
+          "vertices": 1019606,
+          "min": [
+            -98.625,
+            -157.75
+          ],
+          "max": [
+            136.5,
+            117.625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1891,
+          "vertices": 440525,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 44,
+          "vertices": 7873,
+          "min": [
+            -11.96875,
+            -27.796875
+          ],
+          "max": [
+            14.359375,
+            25.609375
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 44,
+          "vertices": 7873,
+          "min": [
+            -11.96875,
+            -12.875
+          ],
+          "max": [
+            9.7734375,
+            5.1484375
+          ]
+        }
+      }
+    }
+  },
+  "d2f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "444a425cb206c1f619b64b938f0cc0bb74fc8663865183f0e8f0cf1a0615cfba",
+    "models": 749,
+    "instances": 7578,
+    "maxMatrixAbsError": 1.7484556000744886e-07,
+    "uv": {
+      "models": 749,
+      "byteExact": 749,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 4124,
+          "vertices": 1386003,
+          "min": [
+            -138.125,
+            -419.25
+          ],
+          "max": [
+            213.125,
+            211.5
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 4111,
+          "vertices": 1385482,
+          "min": [
+            -177.75,
+            -225.375
+          ],
+          "max": [
+            88.0625,
+            104.625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 3899,
+          "vertices": 1261725,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "d2t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "e4383338a6e74152d16e3bb9d3b67ad2556f40240d296e81053b8b2edd47ea2e",
+    "models": 763,
+    "instances": 4891,
+    "maxMatrixAbsError": 1.4511783941184575e-08,
+    "uv": {
+      "models": 763,
+      "byteExact": 763,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2342,
+          "vertices": 792920,
+          "min": [
+            -126.875,
+            -142.625
+          ],
+          "max": [
+            580.0,
+            173.5
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2331,
+          "vertices": 781321,
+          "min": [
+            -104.5625,
+            -80.6875
+          ],
+          "max": [
+            157.125,
+            255.625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 765,
+          "vertices": 246909,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 8,
+          "vertices": 1296,
+          "min": [
+            -11.96875,
+            -12.6953125
+          ],
+          "max": [
+            6.44140625,
+            5.08984375
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 8,
+          "vertices": 1296,
+          "min": [
+            -11.96875,
+            -12.6953125
+          ],
+          "max": [
+            6.44140625,
+            5.08984375
+          ]
+        }
+      }
+    }
+  },
+  "e3ec": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "447738af7715717046edfc2fe16ff527ba9c0d85996fb6ee453f3d6a143f82f3",
+    "models": 727,
+    "instances": 3828,
+    "maxMatrixAbsError": 4.661083221435547e-05,
+    "uv": {
+      "models": 727,
+      "byteExact": 727,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2517,
+          "vertices": 1477103,
+          "min": [
+            -280.25,
+            -471.5
+          ],
+          "max": [
+            337.5,
+            159.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2498,
+          "vertices": 1476463,
+          "min": [
+            -277.5,
+            -471.5
+          ],
+          "max": [
+            332.5,
+            94.5625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 995,
+          "vertices": 491352,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 8,
+          "vertices": 7433,
+          "min": [
+            -43.9375,
+            -156.875
+          ],
+          "max": [
+            180.25,
+            57.25
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 8,
+          "vertices": 7433,
+          "min": [
+            -29.671875,
+            -156.875
+          ],
+          "max": [
+            180.25,
+            31.40625
+          ]
+        }
+      }
+    }
+  },
+  "e3f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "e3c8555fd2df283cc26fbaf240cbb104dcefaa54f0e8a2e052140ef9d1c53ad0",
+    "models": 916,
+    "instances": 8677,
+    "maxMatrixAbsError": 7.105427357601002e-15,
+    "uv": {
+      "models": 916,
+      "byteExact": 916,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3814,
+          "vertices": 1338639,
+          "min": [
+            -183.0,
+            -210.75
+          ],
+          "max": [
+            188.0,
+            113.9375
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3805,
+          "vertices": 1331418,
+          "min": [
+            -183.0,
+            -220.75
+          ],
+          "max": [
+            223.0,
+            216.875
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2094,
+          "vertices": 859884,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "e3f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "7191cce9493f2fb6d35117193d0bbef06a915eadf1aa5fad7469d66214b7c756",
+    "models": 826,
+    "instances": 8282,
+    "maxMatrixAbsError": 1.52587890625e-05,
+    "uv": {
+      "models": 826,
+      "byteExact": 826,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3873,
+          "vertices": 1345649,
+          "min": [
+            -482.5,
+            -1318.0
+          ],
+          "max": [
+            499.5,
+            911.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3867,
+          "vertices": 1344333,
+          "min": [
+            -277.5,
+            -471.5
+          ],
+          "max": [
+            405.0,
+            390.5
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2190,
+          "vertices": 623026,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 16,
+          "vertices": 11697,
+          "min": [
+            -43.9375,
+            -7.4453125
+          ],
+          "max": [
+            6.98046875,
+            51.625
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 16,
+          "vertices": 11697,
+          "min": [
+            -29.671875,
+            -8.2265625
+          ],
+          "max": [
+            2.1953125,
+            41.375
+          ]
+        }
+      }
+    }
+  },
+  "e3f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "b18cb99b687dda93441b1ff15ea4ad8f596e4019e9ee65c8fcef465f7d3eee60",
+    "models": 681,
+    "instances": 6252,
+    "maxMatrixAbsError": 4.575879120061188e-10,
+    "uv": {
+      "models": 681,
+      "byteExact": 681,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2607,
+          "vertices": 1154902,
+          "min": [
+            -332.0,
+            -119.5625
+          ],
+          "max": [
+            168.125,
+            188.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2600,
+          "vertices": 1154374,
+          "min": [
+            -372.75,
+            -450.75
+          ],
+          "max": [
+            196.5,
+            187.75
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1415,
+          "vertices": 829151,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 3949,
+          "min": [
+            -10.0625,
+            -15.5078125
+          ],
+          "max": [
+            7.6875,
+            17.890625
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 3949,
+          "min": [
+            -10.0546875,
+            -25.96875
+          ],
+          "max": [
+            7.6875,
+            18.03125
+          ]
+        }
+      }
+    }
+  },
+  "e3t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "92b78a23c84a8a6741e9343e382a97cb19b69362ebfc43ed088cfe7180b8d95a",
+    "models": 807,
+    "instances": 4461,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 807,
+      "byteExact": 807,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2706,
+          "vertices": 1042730,
+          "min": [
+            -41.09375,
+            -23.65625
+          ],
+          "max": [
+            42.09375,
+            17.953125
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2692,
+          "vertices": 1041142,
+          "min": [
+            -14.53125,
+            -14.0390625
+          ],
+          "max": [
+            13.359375,
+            13.0
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1432,
+          "vertices": 447575,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 240,
+          "min": [
+            -1.650390625,
+            -1.0703125
+          ],
+          "max": [
+            0.57373046875,
+            4.828125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 240,
+          "min": [
+            -2.193359375,
+            -1.6591796875
+          ],
+          "max": [
+            0.57373046875,
+            4.828125
+          ]
+        }
+      }
+    }
+  },
+  "f1f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "ed09f3124b0f417b7ed259dbb84d5bac744be52ddc264e8cc49f288d716d1a58",
+    "models": 875,
+    "instances": 7019,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 875,
+      "byteExact": 875,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3006,
+          "vertices": 1420833,
+          "min": [
+            -51.3125,
+            -71.0
+          ],
+          "max": [
+            69.9375,
+            142.625
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2967,
+          "vertices": 1419715,
+          "min": [
+            -55.1875,
+            -66.125
+          ],
+          "max": [
+            78.625,
+            76.0
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1164,
+          "vertices": 588542,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 49,
+          "vertices": 3268,
+          "min": [
+            -10.4296875,
+            -24.984375
+          ],
+          "max": [
+            7.6953125,
+            17.96875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 49,
+          "vertices": 3268,
+          "min": [
+            0.8935546875,
+            -25.78125
+          ],
+          "max": [
+            16.4375,
+            11.0390625
+          ]
+        }
+      }
+    }
+  },
+  "f1f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "a396c4c2992b3ca17474742fe3b774bec95f5bf547c7d46782279626d2cab756",
+    "models": 800,
+    "instances": 7771,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 800,
+      "byteExact": 800,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2921,
+          "vertices": 1468531,
+          "min": [
+            -49.0,
+            -49.25
+          ],
+          "max": [
+            102.9375,
+            49.875
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2906,
+          "vertices": 1467778,
+          "min": [
+            -31.703125,
+            -47.0
+          ],
+          "max": [
+            70.375,
+            37.375
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1267,
+          "vertices": 902232,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 416,
+          "min": [
+            -0.328369140625,
+            -8.75
+          ],
+          "max": [
+            1.5595703125,
+            8.6640625
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 416,
+          "min": [
+            -0.328369140625,
+            -8.75
+          ],
+          "max": [
+            2.5078125,
+            8.6640625
+          ]
+        }
+      }
+    }
+  },
+  "f1f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "9ed6d76f9b372b4fd4d0e50cd07e6e2da0f8f4ee4cff6f590399dcaa846c4829",
+    "models": 814,
+    "instances": 8612,
+    "maxMatrixAbsError": 7.105427357601002e-15,
+    "uv": {
+      "models": 814,
+      "byteExact": 814,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3118,
+          "vertices": 1127070,
+          "min": [
+            -41.46875,
+            -55.03125
+          ],
+          "max": [
+            50.40625,
+            50.8125
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3104,
+          "vertices": 1125604,
+          "min": [
+            -37.0,
+            -55.03125
+          ],
+          "max": [
+            50.40625,
+            44.8125
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1394,
+          "vertices": 604378,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 171,
+          "vertices": 6657,
+          "min": [
+            -35.21875,
+            -19.1875
+          ],
+          "max": [
+            9.71875,
+            44.8125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 171,
+          "vertices": 6657,
+          "min": [
+            -35.21875,
+            -19.1875
+          ],
+          "max": [
+            9.71875,
+            44.8125
+          ]
+        }
+      }
+    }
+  },
+  "f1f4": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "09936cc8764deab23b1a6af276feedbac254157c5471ceba36417f6b828998da",
+    "models": 673,
+    "instances": 8517,
+    "maxMatrixAbsError": 1.4210854715202004e-14,
+    "uv": {
+      "models": 673,
+      "byteExact": 673,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2010,
+          "vertices": 736198,
+          "min": [
+            -44.8125,
+            -67.5625
+          ],
+          "max": [
+            78.75,
+            62.5
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2006,
+          "vertices": 736002,
+          "min": [
+            -54.90625,
+            -54.4375
+          ],
+          "max": [
+            71.75,
+            40.6875
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1200,
+          "vertices": 424362,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 830,
+          "min": [
+            -23.203125,
+            -67.5625
+          ],
+          "max": [
+            15.7265625,
+            13.671875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 830,
+          "min": [
+            -23.203125,
+            -67.5625
+          ],
+          "max": [
+            15.7265625,
+            13.671875
+          ]
+        }
+      }
+    }
+  },
+  "f1t2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "9a9b887f8fb5dd14bbd84f20bdfd636dffa9dd3ecfb89a13ae71d4f6592c338a",
+    "models": 857,
+    "instances": 6202,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 857,
+      "byteExact": 857,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2372,
+          "vertices": 943778,
+          "min": [
+            -50.71875,
+            -31.09375
+          ],
+          "max": [
+            34.65625,
+            45.75
+          ],
+          "sourceNonFiniteComponents": 6
+        },
+        "TEXCOORD_1": {
+          "primitives": 2332,
+          "vertices": 942906,
+          "min": [
+            -30.09375,
+            -31.0
+          ],
+          "max": [
+            32.8125,
+            46.28125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 920,
+          "vertices": 189288,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 28,
+          "vertices": 2042,
+          "min": [
+            -1.654296875,
+            -12.0
+          ],
+          "max": [
+            1.287109375,
+            0.908203125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 28,
+          "vertices": 2042,
+          "min": [
+            -1.103515625,
+            -10.125
+          ],
+          "max": [
+            2.384765625,
+            0.67724609375
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "g3f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "a4717b48fa52adf3a8ddabf98b206526b864338918e846a640399f3899ba34ad",
+    "models": 619,
+    "instances": 9556,
+    "maxMatrixAbsError": 3.552713678800501e-15,
+    "uv": {
+      "models": 619,
+      "byteExact": 619,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3344,
+          "vertices": 1071616,
+          "min": [
+            -157.375,
+            -189.5
+          ],
+          "max": [
+            171.625,
+            64.25
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3326,
+          "vertices": 1071223,
+          "min": [
+            -93.25,
+            -187.875
+          ],
+          "max": [
+            81.5625,
+            57.75
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1076,
+          "vertices": 289143,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 5,
+          "vertices": 2069,
+          "min": [
+            -7.05859375,
+            -187.875
+          ],
+          "max": [
+            10.8203125,
+            16.78125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 5,
+          "vertices": 2069,
+          "min": [
+            -7.33984375,
+            -187.875
+          ],
+          "max": [
+            10.8203125,
+            18.453125
+          ]
+        }
+      }
+    }
+  },
+  "g3f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "ef2f88edc2c08d1af06df53888528fe50132edd0e5b8341680a81a0734afc51c",
+    "models": 712,
+    "instances": 8034,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 712,
+      "byteExact": 712,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2820,
+          "vertices": 1159022,
+          "min": [
+            -225.5,
+            -78.0625
+          ],
+          "max": [
+            66.4375,
+            66.625
+          ],
+          "sourceNonFiniteComponents": 40
+        },
+        "TEXCOORD_1": {
+          "primitives": 2792,
+          "vertices": 1157360,
+          "min": [
+            -225.5,
+            -30.4375
+          ],
+          "max": [
+            66.4375,
+            49.9375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 718,
+          "vertices": 231799,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 18,
+          "vertices": 1792,
+          "min": [
+            -2.96484375,
+            -3.19921875
+          ],
+          "max": [
+            4.33984375,
+            9.578125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 18,
+          "vertices": 1792,
+          "min": [
+            -2.96484375,
+            -3.19921875
+          ],
+          "max": [
+            4.33984375,
+            9.578125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "g3f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "e9262a60dea29f4e4488527dc29a26b39e09214f54564e9a9be60d016a4525c5",
+    "models": 893,
+    "instances": 14619,
+    "maxMatrixAbsError": 5.0067901611328125e-06,
+    "uv": {
+      "models": 893,
+      "byteExact": 893,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3641,
+          "vertices": 1256784,
+          "min": [
+            -91.4375,
+            -82.6875
+          ],
+          "max": [
+            431.0,
+            261.75
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3620,
+          "vertices": 1252179,
+          "min": [
+            -64.4375,
+            -61.25
+          ],
+          "max": [
+            80.1875,
+            76.5625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 965,
+          "vertices": 240294,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "g3t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "14ea60cbd82e66c5c4fde3368adfa485891103d99ad2561ac28238a73469859a",
+    "models": 565,
+    "instances": 3154,
+    "maxMatrixAbsError": 7.105427357601002e-15,
+    "uv": {
+      "models": 565,
+      "byteExact": 565,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1172,
+          "vertices": 1321723,
+          "min": [
+            -60.375,
+            -43.4375
+          ],
+          "max": [
+            96.0625,
+            42.625
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 1169,
+          "vertices": 1321648,
+          "min": [
+            -60.375,
+            -38.78125
+          ],
+          "max": [
+            96.0625,
+            34.28125
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 328,
+          "vertices": 348568,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 17,
+          "vertices": 2378,
+          "min": [
+            -9.6796875,
+            -14.8984375
+          ],
+          "max": [
+            14.65625,
+            23.6875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 17,
+          "vertices": 2378,
+          "min": [
+            -9.6796875,
+            -14.8984375
+          ],
+          "max": [
+            16.15625,
+            23.6875
+          ]
+        }
+      }
+    }
+  },
+  "gridania": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "38931a480a4a6f28fa707e808851adef05991cf88f76b86636a45e7c8515ad70",
+    "models": 699,
+    "instances": 2452,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 699,
+      "byteExact": 699,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1862,
+          "vertices": 651983,
+          "min": [
+            -77.25,
+            -31.09375
+          ],
+          "max": [
+            56.28125,
+            26.453125
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 1793,
+          "vertices": 651205,
+          "min": [
+            -48.53125,
+            -33.0625
+          ],
+          "max": [
+            52.71875,
+            25.5
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 677,
+          "vertices": 84410,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 5,
+          "vertices": 487,
+          "min": [
+            0.0175323486328125,
+            -11.859375
+          ],
+          "max": [
+            2.427734375,
+            1.8447265625
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 5,
+          "vertices": 487,
+          "min": [
+            0.1329345703125,
+            -12.25
+          ],
+          "max": [
+            3.30859375,
+            1.453125
+          ]
+        }
+      }
+    }
+  },
+  "k5f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "68928c3c96da5b791ab38003609573a71ee7b1983c6574b9dc6020b18a28e826",
+    "models": 723,
+    "instances": 7482,
+    "maxMatrixAbsError": 2.562789066973979e-07,
+    "uv": {
+      "models": 723,
+      "byteExact": 723,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3146,
+          "vertices": 1016800,
+          "min": [
+            -157.625,
+            -78.5
+          ],
+          "max": [
+            140.375,
+            66.4375
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3140,
+          "vertices": 1016655,
+          "min": [
+            -115.0,
+            -96.25
+          ],
+          "max": [
+            110.0625,
+            97.25
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 811,
+          "vertices": 241913,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 8,
+          "vertices": 4435,
+          "min": [
+            -19.453125,
+            -67.125
+          ],
+          "max": [
+            79.125,
+            41.96875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 8,
+          "vertices": 4435,
+          "min": [
+            -36.75,
+            -107.25
+          ],
+          "max": [
+            53.59375,
+            75.375
+          ]
+        }
+      }
+    }
+  },
+  "l1f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "cc8f7315fdece4d5e154df957abc41749320cb905750d2e472faabb382116d53",
+    "models": 949,
+    "instances": 7328,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 949,
+      "byteExact": 949,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 4607,
+          "vertices": 1369788,
+          "min": [
+            -90.0,
+            -136.75
+          ],
+          "max": [
+            108.75,
+            56.4375
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 4554,
+          "vertices": 1367552,
+          "min": [
+            -90.125,
+            -114.75
+          ],
+          "max": [
+            102.3125,
+            45.90625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 3252,
+          "vertices": 800183,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 14,
+          "vertices": 1042,
+          "min": [
+            -1.216796875,
+            -0.71240234375
+          ],
+          "max": [
+            2.576171875,
+            5.6015625
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 14,
+          "vertices": 1042,
+          "min": [
+            -1.216796875,
+            -1.33984375
+          ],
+          "max": [
+            2.19921875,
+            5.6015625
+          ]
+        }
+      }
+    }
+  },
+  "limsa": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "2b8e7212d76ae6964c1c2469d9f11b34132a9bd14d9a58ec3f407c509a8197b7",
+    "models": 771,
+    "instances": 7024,
+    "maxMatrixAbsError": 2.220446049250313e-16,
+    "uv": {
+      "models": 771,
+      "byteExact": 771,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2871,
+          "vertices": 1243532,
+          "min": [
+            -104.0625,
+            -177.75
+          ],
+          "max": [
+            57.375,
+            76.0625
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2858,
+          "vertices": 1232318,
+          "min": [
+            -65.75,
+            -82.5625
+          ],
+          "max": [
+            56.1875,
+            68.5625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1037,
+          "vertices": 320314,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 6,
+          "vertices": 1007,
+          "min": [
+            -1.23046875,
+            -10.75
+          ],
+          "max": [
+            2.099609375,
+            1.9873046875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 6,
+          "vertices": 1007,
+          "min": [
+            -1.23046875,
+            -10.75
+          ],
+          "max": [
+            2.099609375,
+            1.9873046875
+          ]
+        }
+      }
+    }
+  },
+  "m5f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "2133a236782e259eb12d4442c0d2ee183980fe99b0cd4e4c32a946cbe20d002e",
+    "models": 855,
+    "instances": 15820,
+    "maxMatrixAbsError": 2.09808349609375e-05,
+    "uv": {
+      "models": 855,
+      "byteExact": 855,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3355,
+          "vertices": 1770557,
+          "min": [
+            -244.625,
+            -245.25
+          ],
+          "max": [
+            208.0,
+            191.75
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3344,
+          "vertices": 1769573,
+          "min": [
+            -207.875,
+            -182.625
+          ],
+          "max": [
+            202.125,
+            125.875
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1323,
+          "vertices": 480657,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 1102,
+          "min": [
+            -18.90625,
+            -280.5
+          ],
+          "max": [
+            15.1796875,
+            30.1875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 1102,
+          "min": [
+            0.8994140625,
+            -32.96875
+          ],
+          "max": [
+            15.1796875,
+            35.375
+          ]
+        }
+      }
+    }
+  },
+  "m5f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "341e2576b4da45c2ce7a7ab25d7c6b544c5616d89894af965e222fc5fdf4bf69",
+    "models": 909,
+    "instances": 7765,
+    "maxMatrixAbsError": 1.4210854715202004e-14,
+    "uv": {
+      "models": 909,
+      "byteExact": 909,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 4108,
+          "vertices": 1052592,
+          "min": [
+            -116.0,
+            -269.75
+          ],
+          "max": [
+            153.125,
+            115.375
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 4103,
+          "vertices": 1052308,
+          "min": [
+            -354.0,
+            -269.75
+          ],
+          "max": [
+            230.5,
+            591.0
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2062,
+          "vertices": 581939,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "n4f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "5c1a9d904c9f7b2c9336d9773402901769d54dd09f57ee44d4d8d3b510501492",
+    "models": 896,
+    "instances": 8826,
+    "maxMatrixAbsError": 4.57763671875e-05,
+    "uv": {
+      "models": 896,
+      "byteExact": 896,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3802,
+          "vertices": 1458521,
+          "min": [
+            -124.5,
+            -104.8125
+          ],
+          "max": [
+            130.625,
+            109.5
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3788,
+          "vertices": 1456272,
+          "min": [
+            -86.125,
+            -67.6875
+          ],
+          "max": [
+            340.25,
+            56.625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1779,
+          "vertices": 625873,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 653,
+          "min": [
+            -0.418212890625,
+            -1.4189453125
+          ],
+          "max": [
+            1.849609375,
+            2.419921875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 653,
+          "min": [
+            -0.418212890625,
+            -1.4189453125
+          ],
+          "max": [
+            1.849609375,
+            2.419921875
+          ]
+        }
+      }
+    }
+  },
+  "n4f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "9c424ea409af1027d6454bd6e830689a88dd3d17d54fc0535ae77f32088b2532",
+    "models": 910,
+    "instances": 10035,
+    "maxMatrixAbsError": 4.887580871582031e-05,
+    "uv": {
+      "models": 910,
+      "byteExact": 910,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3373,
+          "vertices": 923221,
+          "min": [
+            -133.375,
+            -106.8125
+          ],
+          "max": [
+            134.625,
+            114.125
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3365,
+          "vertices": 920848,
+          "min": [
+            -247.0,
+            -106.875
+          ],
+          "max": [
+            247.125,
+            206.25
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2529,
+          "vertices": 568003,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 3,
+          "vertices": 2120,
+          "min": [
+            -0.87841796875,
+            -15.4375
+          ],
+          "max": [
+            1.396484375,
+            6.828125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 3,
+          "vertices": 2120,
+          "min": [
+            -2.27734375,
+            -5.1953125
+          ],
+          "max": [
+            1.5810546875,
+            6.7734375
+          ]
+        }
+      }
+    }
+  },
+  "n4f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "6617f24c45c47cdaa9918ce4cdac0b34556748d364e28d353403712b9deeeb7c",
+    "models": 840,
+    "instances": 6605,
+    "maxMatrixAbsError": 6.148290293265708e-08,
+    "uv": {
+      "models": 840,
+      "byteExact": 840,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2695,
+          "vertices": 837221,
+          "min": [
+            -73.6875,
+            -66.0625
+          ],
+          "max": [
+            63.34375,
+            62.46875
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2689,
+          "vertices": 837061,
+          "min": [
+            -43.40625,
+            -38.71875
+          ],
+          "max": [
+            50.4375,
+            41.875
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2292,
+          "vertices": 720071,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "n4f4": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "4153ceebe874740cb64842897ebb6f44ea53e856c4eb331bc54bbaedc1926a1b",
+    "models": 682,
+    "instances": 6783,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 682,
+      "byteExact": 682,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2941,
+          "vertices": 1129044,
+          "min": [
+            -177.75,
+            -111.0625
+          ],
+          "max": [
+            205.25,
+            133.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2938,
+          "vertices": 1127822,
+          "min": [
+            -259.25,
+            -124.75
+          ],
+          "max": [
+            301.0,
+            153.75
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1599,
+          "vertices": 696381,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 3,
+          "vertices": 4045,
+          "min": [
+            -14.578125,
+            -60.03125
+          ],
+          "max": [
+            21.765625,
+            72.375
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 3,
+          "vertices": 4045,
+          "min": [
+            -14.578125,
+            -60.03125
+          ],
+          "max": [
+            21.765625,
+            72.375
+          ]
+        }
+      }
+    }
+  },
+  "n4f5": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "f290b5460e57a83c3c8e843357189558183b07a652bc7da81f935726626ce7bd",
+    "models": 675,
+    "instances": 7092,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 675,
+      "byteExact": 675,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2466,
+          "vertices": 1307531,
+          "min": [
+            -168.25,
+            -256.0
+          ],
+          "max": [
+            403.25,
+            359.25
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2454,
+          "vertices": 1306660,
+          "min": [
+            -188.5,
+            -256.0
+          ],
+          "max": [
+            113.0,
+            206.5
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1194,
+          "vertices": 685521,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 5,
+          "vertices": 5155,
+          "min": [
+            -3.14453125,
+            -14.0703125
+          ],
+          "max": [
+            1.74609375,
+            13.640625
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 5,
+          "vertices": 5155,
+          "min": [
+            -3.14453125,
+            -14.0703125
+          ],
+          "max": [
+            1.74609375,
+            13.640625
+          ]
+        }
+      }
+    }
+  },
+  "n4f6": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "12173a6dc4edd3ee36a5c4560e61f02747a6fccb72f669fd5e8bc21d38cacfec",
+    "models": 471,
+    "instances": 4856,
+    "maxMatrixAbsError": 2.0074496660527075e-06,
+    "uv": {
+      "models": 471,
+      "byteExact": 471,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1438,
+          "vertices": 1177815,
+          "min": [
+            -291.75,
+            -571.0
+          ],
+          "max": [
+            230.875,
+            129.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 1421,
+          "vertices": 1175723,
+          "min": [
+            -196.75,
+            -194.25
+          ],
+          "max": [
+            269.75,
+            424.0
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 612,
+          "vertices": 425161,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 274,
+          "min": [
+            -2.658203125,
+            -1.54296875
+          ],
+          "max": [
+            3.12109375,
+            6.23046875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 274,
+          "min": [
+            -2.658203125,
+            -1.54296875
+          ],
+          "max": [
+            3.12109375,
+            6.23046875
+          ]
+        }
+      }
+    }
+  },
+  "n4t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "981fb6a7a6a1eefc0d8c362c3bac95c9235c250202a05b8173b164d770d43049",
+    "models": 902,
+    "instances": 7537,
+    "maxMatrixAbsError": 1.4901218037266517e-09,
+    "uv": {
+      "models": 902,
+      "byteExact": 902,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2591,
+          "vertices": 2099862,
+          "min": [
+            -61.34375,
+            -98.0625
+          ],
+          "max": [
+            75.75,
+            102.625
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2588,
+          "vertices": 2099818,
+          "min": [
+            -50.90625,
+            -35.4375
+          ],
+          "max": [
+            36.125,
+            35.46875
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 181,
+          "vertices": 134516,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 7,
+          "vertices": 442,
+          "min": [
+            -5.55859375,
+            -6.9609375
+          ],
+          "max": [
+            6.7890625,
+            6.26953125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 7,
+          "vertices": 442,
+          "min": [
+            -5.55859375,
+            -6.9609375
+          ],
+          "max": [
+            6.7890625,
+            6.26953125
+          ]
+        }
+      }
+    }
+  },
+  "n4t2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "c56d4feec47431d792428445ed02d9608892d8e0fea6ad79b0d7b774b366f4da",
+    "models": 724,
+    "instances": 5145,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 724,
+      "byteExact": 724,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2106,
+          "vertices": 1477584,
+          "min": [
+            -41.28125,
+            -92.25
+          ],
+          "max": [
+            51.125,
+            36.3125
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 2100,
+          "vertices": 1473207,
+          "min": [
+            -32.125,
+            -18.625
+          ],
+          "max": [
+            29.734375,
+            33.5625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 303,
+          "vertices": 139993,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 261,
+          "min": [
+            -1.755859375,
+            -8.3828125
+          ],
+          "max": [
+            2.79296875,
+            -2.294921875
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 261,
+          "min": [
+            -2.482421875,
+            -4.54296875
+          ],
+          "max": [
+            1.5810546875,
+            -0.223876953125
+          ]
+        }
+      }
+    }
+  },
+  "r1f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "3893d801eef5d1fd5423b15d0366d2e31184e7f8b66a91a1ec9be236d91feb70",
+    "models": 1060,
+    "instances": 7169,
+    "maxMatrixAbsError": 1.7490594001887728e-07,
+    "uv": {
+      "models": 1060,
+      "byteExact": 1060,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3899,
+          "vertices": 2079989,
+          "min": [
+            -127.125,
+            -105.3125
+          ],
+          "max": [
+            142.375,
+            103.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3530,
+          "vertices": 2074830,
+          "min": [
+            -114.875,
+            -105.3125
+          ],
+          "max": [
+            115.3125,
+            96.0625
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 2084,
+          "vertices": 1113395,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 22,
+          "vertices": 1695,
+          "min": [
+            -0.467529296875,
+            -3.58984375
+          ],
+          "max": [
+            1.623046875,
+            11.8125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 22,
+          "vertices": 1695,
+          "min": [
+            -1.99609375,
+            -3.130859375
+          ],
+          "max": [
+            3.00390625,
+            12.2578125
+          ]
+        }
+      }
+    }
+  },
+  "r2f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "98999847cfc86e9e3b29c210052b6718079d54cd52da108f4f93b509e69362fc",
+    "models": 851,
+    "instances": 6040,
+    "maxMatrixAbsError": 2.9171771199834606e-06,
+    "uv": {
+      "models": 851,
+      "byteExact": 851,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3019,
+          "vertices": 1462837,
+          "min": [
+            -93.1875,
+            -124.875
+          ],
+          "max": [
+            122.9375,
+            142.75
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 3013,
+          "vertices": 1462291,
+          "min": [
+            -80.9375,
+            -56.5
+          ],
+          "max": [
+            48.25,
+            51.375
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1933,
+          "vertices": 996385,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "TEXCOORD_2": {
+          "primitives": 176,
+          "vertices": 22547,
+          "min": [
+            -16.25,
+            -9.796875
+          ],
+          "max": [
+            12.078125,
+            10.5703125
+          ]
+        },
+        "TEXCOORD_3": {
+          "primitives": 176,
+          "vertices": 22547,
+          "min": [
+            -11.8203125,
+            -14.8515625
+          ],
+          "max": [
+            11.65625,
+            17.421875
+          ]
+        }
+      }
+    }
+  },
+  "r2t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "8971755bd75ad9edda9d4e2c055500d846e2d8410711f2973c32703e0c8370e0",
+    "models": 502,
+    "instances": 3212,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 502,
+      "byteExact": 502,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1346,
+          "vertices": 650741,
+          "min": [
+            -29.78125,
+            -16.359375
+          ],
+          "max": [
+            84.75,
+            29.0
+          ]
+        },
+        "TEXCOORD_1": {
+          "primitives": 1343,
+          "vertices": 650686,
+          "min": [
+            -71.125,
+            -81.5
+          ],
+          "max": [
+            13.5625,
+            21.421875
+          ]
+        },
+        "COLOR_0": {
+          "primitives": 1099,
+          "vertices": 528657,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "r2t2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "eeaa56287c1a327ae4e57907aac8999b8fda9c8233dafe2d605500260ad80c70",
+    "models": 529,
+    "instances": 3947,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 529,
+      "byteExact": 529,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1439,
+          "vertices": 678512,
+          "min": [
+            -177.625,
+            -54.25
+          ],
+          "max": [
+            124.5625,
+            73.5625
+          ],
+          "sourceNonFiniteComponents": 4
+        },
+        "TEXCOORD_1": {
+          "primitives": 1435,
+          "vertices": 678427,
+          "min": [
+            -1.0,
+            -0.0606689453125
+          ],
+          "max": [
+            17.328125,
+            7.3046875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1061,
+          "vertices": 480688,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 3,
+          "vertices": 92,
+          "min": [
+            -0.67529296875,
+            -0.0606689453125
+          ],
+          "max": [
+            0.5673828125,
+            1.232421875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 3,
+          "vertices": 92,
+          "min": [
+            -0.67529296875,
+            -0.0606689453125
+          ],
+          "max": [
+            0.5673828125,
+            1.232421875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "51efff68cae98445574b7df2025e668af7118f3c64913260af45291ee2bcde85",
+    "models": 416,
+    "instances": 3853,
+    "maxMatrixAbsError": 2.220446049250313e-16,
+    "uv": {
+      "models": 416,
+      "byteExact": 416,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1661,
+          "vertices": 1059541,
+          "min": [
+            -140.375,
+            -138.625
+          ],
+          "max": [
+            184.375,
+            97.875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 1659,
+          "vertices": 1055866,
+          "min": [
+            -64.0625,
+            -138.125
+          ],
+          "max": [
+            105.1875,
+            63.25
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 998,
+          "vertices": 476379,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 2366,
+          "min": [
+            -1.5859375,
+            -11.265625
+          ],
+          "max": [
+            1.4013671875,
+            -0.0173187255859375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 2366,
+          "min": [
+            -1.03125,
+            -10.875
+          ],
+          "max": [
+            1.9560546875,
+            -0.0173187255859375
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "4a168bd30bc41376ae33dfd6f30052fe6ce2dd22314919e56278cc1cb490fd07",
+    "models": 722,
+    "instances": 7824,
+    "maxMatrixAbsError": 1.734443398904162e-07,
+    "uv": {
+      "models": 722,
+      "byteExact": 722,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2977,
+          "vertices": 1167560,
+          "min": [
+            -91.25,
+            -130.625
+          ],
+          "max": [
+            96.8125,
+            82.8125
+          ],
+          "sourceNonFiniteComponents": 16
+        },
+        "TEXCOORD_1": {
+          "primitives": 2971,
+          "vertices": 1163986,
+          "min": [
+            -41.90625,
+            -102.5
+          ],
+          "max": [
+            96.9375,
+            59.28125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2583,
+          "vertices": 909392,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 7,
+          "vertices": 374,
+          "min": [
+            -4.125,
+            -6.43359375
+          ],
+          "max": [
+            1.1142578125,
+            4.078125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 7,
+          "vertices": 374,
+          "min": [
+            -4.125,
+            -6.43359375
+          ],
+          "max": [
+            1.1142578125,
+            4.078125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "ef25efdeb031e7da3e4aa066d3611e34688fc9606cfe99767c47ceee7fa07ea2",
+    "models": 1099,
+    "instances": 8937,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 1099,
+      "byteExact": 1099,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3772,
+          "vertices": 1179582,
+          "min": [
+            -396.25,
+            -1119.0
+          ],
+          "max": [
+            510.5,
+            250.875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3767,
+          "vertices": 1178000,
+          "min": [
+            -396.25,
+            -1119.0
+          ],
+          "max": [
+            510.5,
+            250.875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 3219,
+          "vertices": 865577,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 652,
+          "min": [
+            1.519918441772461e-05,
+            -10.3125
+          ],
+          "max": [
+            9.78125,
+            9.3515625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 652,
+          "min": [
+            1.519918441772461e-05,
+            -10.3125
+          ],
+          "max": [
+            9.78125,
+            9.3515625
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1f4": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "c6ce2fddfc9138c389e38e59e2f8d25b104468bb177759dff3d9c8696d209de4",
+    "models": 753,
+    "instances": 9001,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 753,
+      "byteExact": 753,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3221,
+          "vertices": 1605375,
+          "min": [
+            -69.4375,
+            -91.5625
+          ],
+          "max": [
+            80.3125,
+            97.875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3202,
+          "vertices": 1601628,
+          "min": [
+            -51.5,
+            -52.78125
+          ],
+          "max": [
+            73.125,
+            52.03125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1228,
+          "vertices": 618839,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1f5": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "e8f9e73c8c9a9dcd38854965d67b2492ffdcf6cebb0ae8245942394921b5f438",
+    "models": 768,
+    "instances": 6610,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 768,
+      "byteExact": 768,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2337,
+          "vertices": 1223721,
+          "min": [
+            -61.59375,
+            -53.03125
+          ],
+          "max": [
+            86.75,
+            56.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2325,
+          "vertices": 1221733,
+          "min": [
+            -62.15625,
+            -57.5625
+          ],
+          "max": [
+            86.8125,
+            56.78125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1129,
+          "vertices": 638789,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 1055,
+          "min": [
+            -9.2421875,
+            -9.0078125
+          ],
+          "max": [
+            21.96875,
+            29.515625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 1055,
+          "min": [
+            -9.15625,
+            -9.0078125
+          ],
+          "max": [
+            22.046875,
+            29.265625
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1f6": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "7f677eddc54716f29b14af6ffca8d98a0f14908572a774eae1c7e718bacbbeda",
+    "models": 966,
+    "instances": 7455,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 966,
+      "byteExact": 966,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2919,
+          "vertices": 1453117,
+          "min": [
+            -61.6875,
+            -62.875
+          ],
+          "max": [
+            82.0625,
+            53.3125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2477,
+          "vertices": 1444888,
+          "min": [
+            -62.1875,
+            -38.71875
+          ],
+          "max": [
+            53.5,
+            82.6875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1131,
+          "vertices": 537558,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "s1t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "25e78656a839566bbdd47afde8f7cddf57d2116da9d78550753f7207189bdee0",
+    "models": 743,
+    "instances": 6787,
+    "maxMatrixAbsError": 6.115750483814963e-07,
+    "uv": {
+      "models": 743,
+      "byteExact": 743,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2950,
+          "vertices": 1349122,
+          "min": [
+            -104.0625,
+            -177.75
+          ],
+          "max": [
+            57.375,
+            76.0625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2941,
+          "vertices": 1341623,
+          "min": [
+            -65.75,
+            -82.5625
+          ],
+          "max": [
+            56.1875,
+            68.5625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1072,
+          "vertices": 329894,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 6,
+          "vertices": 969,
+          "min": [
+            -1.23046875,
+            -10.75
+          ],
+          "max": [
+            2.099609375,
+            1.9873046875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 6,
+          "vertices": 969,
+          "min": [
+            -1.23046875,
+            -10.75
+          ],
+          "max": [
+            2.099609375,
+            1.9873046875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "9a59fb90604b69dd94dedc7b1d2b12c92332441fa528f2ef7ef326dbe8b65d24",
+    "models": 908,
+    "instances": 7758,
+    "maxMatrixAbsError": 1.1444091796875e-05,
+    "uv": {
+      "models": 908,
+      "byteExact": 908,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2689,
+          "vertices": 1016473,
+          "min": [
+            -68.9375,
+            -202.0
+          ],
+          "max": [
+            138.125,
+            91.6875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2672,
+          "vertices": 1014825,
+          "min": [
+            -69.5,
+            -203.75
+          ],
+          "max": [
+            194.5,
+            93.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2251,
+          "vertices": 820825,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 7,
+          "vertices": 231,
+          "min": [
+            -1.359375,
+            -2.689453125
+          ],
+          "max": [
+            1.3076171875,
+            7.19140625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 7,
+          "vertices": 231,
+          "min": [
+            -0.25537109375,
+            -2.2421875
+          ],
+          "max": [
+            2.412109375,
+            7.63671875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "6de485aa6414830c1125ed811e50efbb164b8fe4c78f7fb3d84525771798eccf",
+    "models": 737,
+    "instances": 7164,
+    "maxMatrixAbsError": 2.220446049250313e-16,
+    "uv": {
+      "models": 737,
+      "byteExact": 737,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2858,
+          "vertices": 1002204,
+          "min": [
+            -99.4375,
+            -133.5
+          ],
+          "max": [
+            162.375,
+            172.25
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2856,
+          "vertices": 1002149,
+          "min": [
+            -76.875,
+            -137.75
+          ],
+          "max": [
+            188.0,
+            176.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2312,
+          "vertices": 787420,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 1105,
+          "min": [
+            -4.2265625,
+            -1.1982421875
+          ],
+          "max": [
+            5.53125,
+            5.95703125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 1105,
+          "min": [
+            -4.2265625,
+            -1.1982421875
+          ],
+          "max": [
+            5.53125,
+            5.95703125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "1dc1c6b3baa1aa854e80972a443aae11ff9e44c5c4449e719815b66b8cc170d8",
+    "models": 960,
+    "instances": 8000,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 960,
+      "byteExact": 960,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3347,
+          "vertices": 1022387,
+          "min": [
+            -91.375,
+            -30.0
+          ],
+          "max": [
+            32.78125,
+            32.65625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3165,
+          "vertices": 1020125,
+          "min": [
+            -93.3125,
+            -29.984375
+          ],
+          "max": [
+            41.78125,
+            30.984375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2791,
+          "vertices": 798940,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 5,
+          "vertices": 833,
+          "min": [
+            -2.86328125,
+            -1.5234375
+          ],
+          "max": [
+            0.298828125,
+            2.744140625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 5,
+          "vertices": 833,
+          "min": [
+            -2.86328125,
+            -1.5234375
+          ],
+          "max": [
+            0.298828125,
+            2.744140625
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1f4": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "8faa630310145ed54bedf9401af223076fedc021951cbb2d4be8a9d7c94930b8",
+    "models": 790,
+    "instances": 7929,
+    "maxMatrixAbsError": 7.105427357601002e-15,
+    "uv": {
+      "models": 790,
+      "byteExact": 790,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2752,
+          "vertices": 1228938,
+          "min": [
+            -75.0625,
+            -64.3125
+          ],
+          "max": [
+            129.5,
+            56.5
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2617,
+          "vertices": 1227052,
+          "min": [
+            -117.0,
+            -74.6875
+          ],
+          "max": [
+            157.625,
+            105.125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2351,
+          "vertices": 1045248,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 28,
+          "vertices": 1444,
+          "min": [
+            -1.7998046875,
+            -5.70703125
+          ],
+          "max": [
+            2.689453125,
+            8.0703125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 28,
+          "vertices": 1444,
+          "min": [
+            -18.296875,
+            -13.34375
+          ],
+          "max": [
+            16.515625,
+            13.1953125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1f5": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "8f8cbe97057fff3b27d8d9ac36c4610b936bf388b913d041e8abcf8d558f318e",
+    "models": 554,
+    "instances": 4683,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 554,
+      "byteExact": 554,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1607,
+          "vertices": 510044,
+          "min": [
+            -44.90625,
+            -110.0625
+          ],
+          "max": [
+            58.84375,
+            63.28125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 1544,
+          "vertices": 509157,
+          "min": [
+            -37.9375,
+            -124.5625
+          ],
+          "max": [
+            42.46875,
+            56.625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 967,
+          "vertices": 297674,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 30,
+          "vertices": 1951,
+          "min": [
+            -0.046783447265625,
+            -1.51171875
+          ],
+          "max": [
+            2.7890625,
+            1.650390625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 30,
+          "vertices": 1951,
+          "min": [
+            0.0721435546875,
+            -1.4677734375
+          ],
+          "max": [
+            1.404296875,
+            1.3251953125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "f41625aca6615a1d8af32635f6272a5b8a4a7d677aff6ee8b3334cd197f4f2b3",
+    "models": 560,
+    "instances": 4837,
+    "maxMatrixAbsError": 5.458486711518162e-07,
+    "uv": {
+      "models": 560,
+      "byteExact": 560,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1808,
+          "vertices": 708041,
+          "min": [
+            -20.984375,
+            -27.328125
+          ],
+          "max": [
+            19.109375,
+            19.9375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 1802,
+          "vertices": 707537,
+          "min": [
+            -8.640625,
+            -10.234375
+          ],
+          "max": [
+            8.890625,
+            6.75
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 695,
+          "vertices": 276462,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 4,
+          "vertices": 437,
+          "min": [
+            -0.1051025390625,
+            0.485595703125
+          ],
+          "max": [
+            0.576171875,
+            1.1513671875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 4,
+          "vertices": 437,
+          "min": [
+            -0.1051025390625,
+            0.485595703125
+          ],
+          "max": [
+            0.576171875,
+            1.1513671875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "w1t2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "9ba3659652190229c703cf90f99d7daac09cd9ebce699cbad33ac234d3d2ec8f",
+    "models": 625,
+    "instances": 5951,
+    "maxMatrixAbsError": 2.3209441021854182e-07,
+    "uv": {
+      "models": 625,
+      "byteExact": 625,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 1817,
+          "vertices": 760099,
+          "min": [
+            -20.984375,
+            -27.328125
+          ],
+          "max": [
+            81.0,
+            37.6875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 1810,
+          "vertices": 759373,
+          "min": [
+            -8.640625,
+            -10.234375
+          ],
+          "max": [
+            8.890625,
+            6.75
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 690,
+          "vertices": 285942,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            0.6470588445663452,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 3,
+          "vertices": 362,
+          "min": [
+            -0.1051025390625,
+            0.485595703125
+          ],
+          "max": [
+            0.576171875,
+            0.98486328125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 3,
+          "vertices": 362,
+          "min": [
+            -0.1051025390625,
+            0.485595703125
+          ],
+          "max": [
+            0.576171875,
+            0.98486328125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "k5t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "2e113673e3ef8e8575d273b95ad9122b1c18ae1e642d69a9795f330e9b9b7eca",
+    "models": 914,
+    "instances": 7638,
+    "maxMatrixAbsError": 2.842170943040401e-14,
+    "uv": {
+      "models": 914,
+      "byteExact": 914,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3271,
+          "vertices": 1568829,
+          "min": [
+            -71.9375,
+            -197.125
+          ],
+          "max": [
+            107.875,
+            49.25
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3241,
+          "vertices": 1567308,
+          "min": [
+            -34.0625,
+            -57.90625
+          ],
+          "max": [
+            56.25,
+            38.125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 292,
+          "vertices": 129375,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 3,
+          "vertices": 784,
+          "min": [
+            0.1612548828125,
+            -2.7421875
+          ],
+          "max": [
+            14.09375,
+            3.146484375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 3,
+          "vertices": 784,
+          "min": [
+            0.51806640625,
+            -2.7421875
+          ],
+          "max": [
+            14.09375,
+            3.365234375
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "m5t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "90b597830164ab60936a36e1c020e003c3a673b3a00cd0ca832d00175f4e5a70",
+    "models": 706,
+    "instances": 7224,
+    "maxMatrixAbsError": 9.5367431640625e-06,
+    "uv": {
+      "models": 706,
+      "byteExact": 706,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2926,
+          "vertices": 1340784,
+          "min": [
+            -110.6875,
+            -39.75
+          ],
+          "max": [
+            106.875,
+            45.90625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2916,
+          "vertices": 1337997,
+          "min": [
+            -110.6875,
+            -29.703125
+          ],
+          "max": [
+            37.0,
+            30.609375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 229,
+          "vertices": 116092,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 13,
+          "vertices": 1269,
+          "min": [
+            -3.98046875,
+            -12.6796875
+          ],
+          "max": [
+            3.205078125,
+            14.2421875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 13,
+          "vertices": 1269,
+          "min": [
+            -3.98046875,
+            -12.6796875
+          ],
+          "max": [
+            3.205078125,
+            14.2421875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "n5f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "ff95adacd28f77c8722f31a1f06834e8ce23c423da0a8e6398d6e09005597062",
+    "models": 463,
+    "instances": 6112,
+    "maxMatrixAbsError": 8.881784197001252e-16,
+    "uv": {
+      "models": 463,
+      "byteExact": 463,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2752,
+          "vertices": 811766,
+          "min": [
+            -118.9375,
+            -122.75
+          ],
+          "max": [
+            105.5625,
+            49.09375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2745,
+          "vertices": 811364,
+          "min": [
+            -119.0625,
+            -55.09375
+          ],
+          "max": [
+            65.0,
+            48.34375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 842,
+          "vertices": 207423,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 4,
+          "vertices": 1711,
+          "min": [
+            -1.6328125,
+            -17.359375
+          ],
+          "max": [
+            3.685546875,
+            24.921875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 4,
+          "vertices": 1711,
+          "min": [
+            -1.6328125,
+            -17.359375
+          ],
+          "max": [
+            3.685546875,
+            24.921875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "u5f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "09ed77e9af9f992a58cc21793503d9025fe32b3bbcbdc08c21ce2509f9bac5c7",
+    "models": 1062,
+    "instances": 8211,
+    "maxMatrixAbsError": 4.880605391122117e-05,
+    "uv": {
+      "models": 1062,
+      "byteExact": 1062,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3877,
+          "vertices": 1131296,
+          "min": [
+            -57.75,
+            -92.3125
+          ],
+          "max": [
+            70.125,
+            35.6875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3875,
+          "vertices": 1131215,
+          "min": [
+            -38.53125,
+            -56.53125
+          ],
+          "max": [
+            46.625,
+            19.15625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 3498,
+          "vertices": 865272,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 3,
+          "vertices": 775,
+          "min": [
+            -6.65625,
+            -10.9453125
+          ],
+          "max": [
+            7.69921875,
+            10.3671875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 3,
+          "vertices": 775,
+          "min": [
+            -5.28515625,
+            -14.7578125
+          ],
+          "max": [
+            10.7734375,
+            17.28125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "u5f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "f254a0687baa559bb9fefa236c950571c037946296b0a38c157c7c8e4600d8d9",
+    "models": 515,
+    "instances": 7190,
+    "maxMatrixAbsError": 3.0523537134286016e-05,
+    "uv": {
+      "models": 515,
+      "byteExact": 515,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 2269,
+          "vertices": 1409944,
+          "min": [
+            -118.625,
+            -127.625
+          ],
+          "max": [
+            126.375,
+            114.0625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 2266,
+          "vertices": 1409100,
+          "min": [
+            -142.75,
+            -98.625
+          ],
+          "max": [
+            135.25,
+            52.46875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1123,
+          "vertices": 729001,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "x6f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "bf2f5ceae188503c80c39caa1d21e8c4ba8f0f7a624350714045bdaf952e3f30",
+    "models": 1028,
+    "instances": 11827,
+    "maxMatrixAbsError": 5.684341886080802e-14,
+    "uv": {
+      "models": 1028,
+      "byteExact": 1028,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 4143,
+          "vertices": 1188399,
+          "min": [
+            -347.75,
+            -165.75
+          ],
+          "max": [
+            272.75,
+            204.125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 4138,
+          "vertices": 1188262,
+          "min": [
+            -181.5,
+            -130.875
+          ],
+          "max": [
+            166.375,
+            189.25
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2078,
+          "vertices": 376856,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 610,
+          "min": [
+            -1.40625,
+            -3.02734375
+          ],
+          "max": [
+            3.009765625,
+            3.1796875
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 610,
+          "min": [
+            -1.40625,
+            -3.02734375
+          ],
+          "max": [
+            3.009765625,
+            3.1796875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "x6f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "54fc1d8e86b32280c4208910574db896b595e12f0e985c7375c9fd1826754875",
+    "models": 789,
+    "instances": 14559,
+    "maxMatrixAbsError": 5.501707835264824e-05,
+    "uv": {
+      "models": 789,
+      "byteExact": 789,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3513,
+          "vertices": 1293818,
+          "min": [
+            -104.9375,
+            -58.375
+          ],
+          "max": [
+            92.5,
+            58.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3499,
+          "vertices": 1293551,
+          "min": [
+            -53.125,
+            -48.5
+          ],
+          "max": [
+            54.96875,
+            47.59375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2829,
+          "vertices": 836474,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "x6f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "f6ce167671fa84867319ad599af74e97c0007b095da41e065d1dfb330686d894",
+    "models": 1438,
+    "instances": 14165,
+    "maxMatrixAbsError": 8.940696716307403e-07,
+    "uv": {
+      "models": 1438,
+      "byteExact": 1438,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 5292,
+          "vertices": 4741258,
+          "min": [
+            -663.5,
+            -158.375
+          ],
+          "max": [
+            615.0,
+            159.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 5278,
+          "vertices": 4739823,
+          "min": [
+            -107.375,
+            -68.0625
+          ],
+          "max": [
+            107.375,
+            41.90625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 967,
+          "vertices": 465131,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 2,
+          "vertices": 1196,
+          "min": [
+            -1.41015625,
+            -3.18359375
+          ],
+          "max": [
+            6.6328125,
+            4.5703125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 2,
+          "vertices": 1196,
+          "min": [
+            -1.41015625,
+            -3.18359375
+          ],
+          "max": [
+            6.6328125,
+            4.5703125
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "x6t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "173faa02b45181c7ae460441d8a8b21a048b63dc7d7e0f822638f72138161727",
+    "models": 1052,
+    "instances": 13780,
+    "maxMatrixAbsError": 7.632783461986037e-05,
+    "uv": {
+      "models": 1052,
+      "byteExact": 1052,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3940,
+          "vertices": 3359589,
+          "min": [
+            -441.5,
+            -1507.0
+          ],
+          "max": [
+            1874.0,
+            118.3125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3934,
+          "vertices": 3359268,
+          "min": [
+            -52.53125,
+            -10.6875
+          ],
+          "max": [
+            29.71875,
+            34.03125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 414,
+          "vertices": 352473,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "y6f1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "63dee73ec7439ca6b0b0fc5886b2bdc457de5574aaa8cfaa4b851f667e3aeb9a",
+    "models": 704,
+    "instances": 16257,
+    "maxMatrixAbsError": 1.1368683772161603e-13,
+    "uv": {
+      "models": 704,
+      "byteExact": 704,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3591,
+          "vertices": 1838704,
+          "min": [
+            -164.125,
+            -238.375
+          ],
+          "max": [
+            873.0,
+            108.0625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3579,
+          "vertices": 1834186,
+          "min": [
+            -187.5,
+            -116.625
+          ],
+          "max": [
+            232.0,
+            155.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1760,
+          "vertices": 879768,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 5,
+          "vertices": 3080,
+          "min": [
+            -2.654296875,
+            -2.5859375
+          ],
+          "max": [
+            2.998046875,
+            4.390625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 5,
+          "vertices": 3080,
+          "min": [
+            -2.654296875,
+            -2.5859375
+          ],
+          "max": [
+            2.998046875,
+            4.390625
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "y6f2": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "3ac95d1959d61abaa4daca9f0f965885676facb7f37df9d45e864515f612bc1b",
+    "models": 1511,
+    "instances": 16393,
+    "maxMatrixAbsError": 6.103515625e-05,
+    "uv": {
+      "models": 1511,
+      "byteExact": 1511,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 5468,
+          "vertices": 2402021,
+          "min": [
+            -118.0,
+            -137.25
+          ],
+          "max": [
+            165.875,
+            184.5
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 5464,
+          "vertices": 2401969,
+          "min": [
+            -138.625,
+            -166.125
+          ],
+          "max": [
+            196.75,
+            136.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 2783,
+          "vertices": 1447905,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 7,
+          "vertices": 5701,
+          "min": [
+            -102.4375,
+            -96.6875
+          ],
+          "max": [
+            80.6875,
+            136.375
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 7,
+          "vertices": 5701,
+          "min": [
+            -102.4375,
+            -96.6875
+          ],
+          "max": [
+            80.6875,
+            136.375
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "y6f3": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "56be39b7a8d556d71f03ec95c3c284d4169880f9ac1a6097f51795c8915ac1e6",
+    "models": 971,
+    "instances": 17375,
+    "maxMatrixAbsError": 5.912780818562169e-05,
+    "uv": {
+      "models": 971,
+      "byteExact": 971,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 4299,
+          "vertices": 2994273,
+          "min": [
+            -396.5,
+            -212.5
+          ],
+          "max": [
+            143.125,
+            242.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 4272,
+          "vertices": 2993286,
+          "min": [
+            -362.5,
+            -289.5
+          ],
+          "max": [
+            130.25,
+            104.0625
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 1905,
+          "vertices": 1593634,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  },
+  "y6t1": {
+    "result": "pass",
+    "runId": "20260909T124255Z-e3ea44",
+    "manifestSha256": "51f93c7b6d21fe8c081b0bbf1b0fd0127796753600562d558924f416829686fe",
+    "models": 927,
+    "instances": 11778,
+    "maxMatrixAbsError": 4.440892098500626e-16,
+    "uv": {
+      "models": 927,
+      "byteExact": 927,
+      "attributes": {
+        "TEXCOORD_0": {
+          "primitives": 3018,
+          "vertices": 3230561,
+          "min": [
+            -1132.0,
+            -191.75
+          ],
+          "max": [
+            215.25,
+            530.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_1": {
+          "primitives": 3010,
+          "vertices": 3228783,
+          "min": [
+            -1132.0,
+            -191.75
+          ],
+          "max": [
+            51.3125,
+            530.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "COLOR_0": {
+          "primitives": 461,
+          "vertices": 424305,
+          "min": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_2": {
+          "primitives": 1,
+          "vertices": 6899,
+          "min": [
+            -2.30078125,
+            -0.5615234375
+          ],
+          "max": [
+            10.6171875,
+            1.1689453125
+          ],
+          "sourceNonFiniteComponents": 0
+        },
+        "TEXCOORD_3": {
+          "primitives": 1,
+          "vertices": 6899,
+          "min": [
+            -0.11322021484375,
+            -0.265380859375
+          ],
+          "max": [
+            8.3828125,
+            0.873046875
+          ],
+          "sourceNonFiniteComponents": 0
+        }
+      }
+    }
+  }
+}

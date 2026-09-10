@@ -9,11 +9,11 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Model = Meddle.Utils.Export.Model;
 
 var jsonOptions = new JsonSerializerOptions { WriteIndented = true, IncludeFields = true };
-var targets = new Dictionary<string, (int territory, string root)>
-{
-    ["gridania"] = (132, "bg/ffxiv/fst_f1/twn/f1t1"),
-    ["limsa"] = (129, "bg/ffxiv/sea_s1/twn/s1t2"),
-};
+var catalogPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "world-catalog.json"));
+using var catalog = JsonDocument.Parse(File.ReadAllText(catalogPath));
+var targets = catalog.RootElement.GetProperty("scenes").EnumerateArray().ToDictionary(
+    entry => entry.GetProperty("id").GetString()!,
+    entry => (territory: entry.GetProperty("territoryId").GetInt32(), root: entry.GetProperty("root").GetString()!));
 Global.Logger = NullLogger.Instance;
 try
 {
@@ -23,8 +23,9 @@ try
         MapExtract — read-only FFXIV asset inspection
           targets
           probe <client-root>
-          extract-map <client-root> <gridania|limsa> <output-directory>
-          collision-map <client-root> <gridania|limsa> <output-directory>
+          probe-catalog <client-root>
+          extract-map <client-root> <catalog-scene-id> <output-directory>
+          collision-map <client-root> <catalog-scene-id> <output-directory>
           raw <client-root> <virtual-path> <output-file>
           model <extracted.mdl> <output.glb>
           model-folder <export-directory>
@@ -77,6 +78,17 @@ try
         Console.WriteLine(JsonSerializer.Serialize(report, jsonOptions));
         return 0;
     }
+    if (args[0] == "probe-catalog")
+    {
+        var report = targets.Select(pair => new {
+            id = pair.Key, territoryId = pair.Value.territory, root = pair.Value.root,
+            bg = pack.FileExists($"{pair.Value.root}/level/bg.lgb", out _),
+            terrain = pack.FileExists($"{pair.Value.root}/bgplate/terrain.tera", out _),
+            collision = pack.FileExists($"{pair.Value.root}/collision/list.pcb", out _),
+        }).ToArray();
+        Console.WriteLine(JsonSerializer.Serialize(new { gameVersion = version, scenes = report }, jsonOptions));
+        return report.All(row => row.bg && row.terrain && row.collision) ? 0 : 2;
+    }
     if (args[0] == "raw")
     {
         var file = pack.GetFile(args[2]) ?? throw new FileNotFoundException(args[2]);
@@ -106,7 +118,7 @@ try
         return 0;
     }
     if (args[0] != "extract-map" || args.Length < 4) throw new ArgumentException("Invalid command. Use --help.");
-    if (!targets.TryGetValue(args[2], out var zone)) throw new ArgumentException("Map must be gridania or limsa.");
+    if (!targets.TryGetValue(args[2], out var zone)) throw new ArgumentException("Map must be an id from world-catalog.json.");
     var output = Path.GetFullPath(args[3]); Directory.CreateDirectory(output);
     var pending = new Queue<string>(Seeds(zone.root));
     var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -114,7 +126,7 @@ try
     while (pending.TryDequeue(out var path))
     {
         if (!seen.Add(path)) continue;
-        if (seen.Count > 15000) throw new InvalidOperationException("Dependency limit reached. Inspect the partial export before continuing.");
+        if (seen.Count > 100000) throw new InvalidOperationException("Dependency limit reached. Inspect the partial export before continuing.");
         var file = pack.GetFile(path);
         if (file == null) { missing.Add(path); continue; }
         var data = file.File.RawData.ToArray();
@@ -161,7 +173,7 @@ try
         }
         catch (Exception error) { errors.Add(new { path, error = error.Message }); }
     }
-    var manifest = new { map = args[2], territoryId = zone.territory, gameVersion = version, exportedAtUtc = DateTime.UtcNow, exported, layouts, missing, errors, limitations = new[] { "Geometry-only GLB; raw material/texture retained.", "Shared-group nesting and collision conversion still need scene-specific validation.", "Not a claim of exact 7.0 data unless the installed client version is 7.0." } };
+    var manifest = new { map = args[2], root = zone.root, territoryId = zone.territory, gameVersion = version, exportedAtUtc = DateTime.UtcNow, exported, layouts, missing, errors, limitations = new[] { "Geometry-only GLB; raw material/texture retained.", "Shared-group nesting and collision conversion still need scene-specific validation.", "Not a claim of exact 7.0 data unless the installed client version is 7.0." } };
     File.WriteAllText(Path.Combine(output, "manifest.json"), JsonSerializer.Serialize(manifest, jsonOptions));
     Console.WriteLine($"Exported {exported.Count} files, {layouts.Count} layout entries, {errors.Count} conversion errors.");
     return exported.Count == 0 ? 2 : 0;

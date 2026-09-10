@@ -1,8 +1,8 @@
 # 以太演武场 · Aetheryte
 
-基于 Three.js 的《最终幻想 XIV》7.0 / 100 级单机职业循环练习器。首批职业为白魔法师、绘灵法师、钐镰客；首批地区为格里达尼亚新街与利姆萨·罗敏萨下层甲板。
+基于 Three.js 的《最终幻想 XIV》7.0 / 100 级单机职业循环练习器。职业为白魔法师、绘灵法师、钐镰客；大世界范围覆盖 47 个户外区域与 18 个城市、公共据点。
 
-保留第三人称 3D、自由镜头、即时技能战斗与 FF14 式操作。仓库包含两座城市的模型、摆放、贴图和碰撞快照，以及可直接部署的 `site/` 成品。资源均使用相对路径，支持部署在 `/ff14-web/` 等子目录。角色和木人仍为练习器模型，技能图标来源见 [ICON-SOURCES.md](docs/ICON-SOURCES.md)。
+保留第三人称 3D、自由镜头、即时技能战斗与 FF14 式操作。世界清单覆盖 65 个区域，沿用客户端原始模型、摆放、贴图和碰撞，通过 145 条源数据指定的区域连接衔接；远方区域也可使用传送菜单进入。资源均使用相对路径，支持部署在 `/ff14-web/` 等子目录。角色和木人仍为练习器模型，技能图标来源见 [ICON-SOURCES.md](docs/ICON-SOURCES.md)。
 
 当前提供本地单人练习模式，未实现多人联网服务。真实地图的版本、导入结果与材质边界见 [CLIENT-MAPS.md](docs/CLIENT-MAPS.md)；手工回退版本见 [TERRAIN-REFERENCES.md](docs/TERRAIN-REFERENCES.md)。威力统计不是装备面板下的实际 DPS，规则边界见 [RULES.md](docs/RULES.md)。
 
@@ -48,9 +48,10 @@ npm run verify
 npm run verify:camera
 npm run verify:terrain
 npm run verify:extracted
+npm run verify:world
 ```
 
-`build` 输出到 `dist/`；发布前运行 `npm run release` 更新随仓库提交的 `site/`。构建仅复制当前激活的两张地图，不复制旧的重建版本。通过 HTTP 访问，不能直接双击 `index.html` 使用 ES 模块。
+`build` 输出到 `dist/`；发布前运行 `npm run release` 更新随仓库提交的 `site/`。构建复制当前激活清单中的全部地图，不复制旧的重建版本。通过 HTTP 访问，不能直接双击 `index.html` 使用 ES 模块。可使用 `?scene=f1f1` 等参数直接进入已开放地区。
 
 ## 操作
 
@@ -68,6 +69,7 @@ npm run verify:extracted
 | 第二行技能 | Shift + 对应按键 |
 | 其他技能 | 技能栏右侧上下箭头翻页 |
 | 传送 / 地图 / 技能一览 | T / M / P |
+| 从区域出口进入相邻地图 | 靠近蓝色出口标记后按 F，或点击提示 |
 | 操作指南 | H / 顶栏问号 |
 | 关闭窗口 / 中断传送 / 取消目标 | Esc |
 
@@ -89,7 +91,9 @@ npm run verify:extracted
 
 ## 场景与扩展
 
-传送窗口展示**当前场景注册表中的全部目的地**，现有两个。传送咏唱 5 秒；移动会打断，交战中需要先重置。新增场景注册后可进入同一传送和地图体系。
+传送窗口展示**当前激活清单中的全部目的地**，支持按地区筛选与搜索。传送咏唱 5 秒；移动会打断，交战中需要先重置。相邻区域可从地图窗口找到出口，靠近后按 F 切换；出生位置来自对应入口并经过碰撞地面验证。没有直接出口记录的区域仍可从传送菜单抵达。
+
+区域清单、实际连接的来源、完整重建命令和验证边界见 [OVERWORLD.md](docs/OVERWORLD.md)。各区域保留自己的源坐标，通过区域切换连接；并未把不同区域的局部原点强行叠放为一张无缝地图。
 
 设计按职责划分：
 
@@ -112,4 +116,4 @@ npm run verify:extracted
 
 新增职业、场景、NPC、怪物的开发说明见 [ARCHITECTURE.md](docs/ARCHITECTURE.md)。模块之间的接口见 [CONTRACT.md](docs/CONTRACT.md)。
 
-当前两张地图的部署快照保存在 `public/extracted/bundled/`，随本私有仓库及 `site/` 提交。原始客户端、解包中间文件、历史重建版本和服务器凭据不在 Git 中。可选离线重建工具源码在 `tools/map-tools/`，不影响服务器直接启动。图标与地图清单保留实际来源和版本；角色与场景美术可继续替换，战斗引擎保持独立。
+完整世界的部署快照保存在 `public/extracted/world/`，由 `active.json` 指定当前版本；`bundled/` 保留此前城市快照。发布包使用逐像素验证的无损贴图编码与逐字节验证的碰撞压缩。原始客户端、解包中间文件、历史暂存版本和服务器凭据不在 Git 中。可选离线重建工具源码在 `tools/map-tools/`，不影响服务器直接启动。

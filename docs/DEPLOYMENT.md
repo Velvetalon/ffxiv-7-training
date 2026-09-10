@@ -1,6 +1,6 @@
 # 部署与拉取后直接运行
 
-仓库同时保存源码、当前两张地图资源快照和预构建的 `site/`。运行成品不需要安装 FF14、解包资源或安装 npm 依赖。
+仓库同时保存源码、完整世界资源快照和预构建的 `site/`。运行成品不需要安装 FF14、解包资源或安装 npm 依赖。当前世界范围为 65 个区域，资源较大，首次拉取和首次载入需要一定时间。
 
 ## 直接启动
 
@@ -56,10 +56,11 @@ npm ci
 npm run verify
 npm run verify:camera
 npm run verify:extracted
+npm run verify:world
 npm run release
 ```
 
-构建只复制 `public/extracted/active.json` 指向的当前两张地图，并把输出清单中的资源目录改成相对路径。旧重建版本不进入成品。
+构建只复制 `public/extracted/active.json` 指向的全部地图，并把输出清单中的资源目录改成包含发布版本号的相对路径。旧重建版本不进入成品，跨版本资源不会混用浏览器缓存。
 
 提交源码和更新后的 `site/` 后，服务器拉取新版本即可继续使用 `npm start`。生产环境采用独立发布目录并保留上一版本，校验通过后再切换；回滚时切回旧目录。
 

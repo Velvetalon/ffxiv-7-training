@@ -1,5 +1,5 @@
 import { createCombat, JOBS } from './combat/index.js';
-import { World, SCENES } from './world/index.js';
+import { World, SCENES, loadSceneCatalog } from './world/index.js';
 import { $, escape, formatNumber } from './ui/dom.js';
 import { drawMap as renderMap } from './ui/Minimap.js';
 import { SkillAudio } from './audio/SkillAudio.js';
@@ -18,23 +18,30 @@ let feedbackTimeout;
 const skillAudio = new SkillAudio(settings);
 let fps = 60;
 let mobileMovement = null;
+let sceneTransition = false;
 
 mountShell(JOBS);
+try { await loadSceneCatalog(); } catch (error) { console.warn('Scene catalog:', error); }
+const requestedScene = new URLSearchParams(window.location.search).get('scene');
+currentScene = SCENES.some(scene => scene.id === requestedScene)
+  ? requestedScene : SCENES.find(scene => scene.id === 'gridania')?.id || SCENES[0].id;
 
 const combat = createCombat('WHM');
 const training = new TrainingDirector(combat);
 const hotbar = new Hotbar(combat, JOBS);
 const world = new World($('#world'), {
+  initialScene: currentScene,
   onTarget: () => {},
   onInteract: (npc) => openDialogue(npc),
   onMove: () => { if (teleportController.cast) teleportController.cancel(); },
   onLoading: (progress,error) => {
     const screen=$('#loading');
     screen.classList.toggle('loaded',progress===1||!!error);
-    screen.querySelector('p').textContent=error||`正在载入客户端地图 ${Math.round((progress||0)*100)}%`;
-    if(error)toast(`客户端地图未载入：${error}`);
+    screen.querySelector('p').textContent=error||`正在载入地区 ${Math.round((progress||0)*100)}%`;
+    if(error)toast(`地区载入失败：${error}`);
   },
-  onSceneReady: id => { sceneTitle(id); hud.invalidate(); },
+  onSceneReady: id => { if (id === currentScene) { sceneTitle(id); hud.invalidate(); } },
+  onConnection: connection => travelConnection(connection),
 });
 world.setJob('WHM');
 world.setQuality(settings.quality);
@@ -108,6 +115,7 @@ function reset() {
 
 function sceneTitle(id) {
   const scene = SCENES.find(item => item.id === id);
+  if (!scene) return;
   $('#scene-name').textContent = scene.name;
   $('#scene-region').textContent = scene.region;
   $('#scene-en').textContent = scene.en;
@@ -121,22 +129,59 @@ function sceneTitle(id) {
 }
 
 function teleport(id, immediate = false) {
+  if (sceneTransition || world.loading) { toast('地区正在载入'); return { ok: false, reason: '地区正在载入' }; }
+  if (world.loadError && !world.isImported && id === currentScene) return finishTeleport(id);
   return teleportController.start(id, immediate);
 }
-function finishTeleport(id) {
-  closeModal();
+async function finishTeleport(id, entry = {}) {
+  if (sceneTransition || world.loading) return { ok: false, reason: '地区正在载入' };
+  if (!SCENES.some(scene => scene.id === id)) return { ok: false, reason: '目标地区尚未开放' };
+  sceneTransition = true;
+  teleportController.cancel();
   combat.reset();
   training.reset();
-  currentScene = id;
-  world.setScene(id);
-  world.setJob(combat.getState().jobId);
-  if (combat.getState().jobId === 'RPR') world.moveToDummy();
-  world.targetNearest();
-  sceneTitle(id);
-  hud.invalidate();
-  hotbar.reset();
-  playSound('buff');
-  return { ok: true };
+  world.clearFields();
+  world.clearReturnGate();
+  try {
+    const success = await world.setScene(id, entry);
+    if (success !== true) return { ok: false, reason: world.loadError || '地区载入失败，请重试' };
+    currentScene = id;
+    world.targetNearest();
+    sceneTitle(id);
+    hud.invalidate();
+    hotbar.reset();
+    closeModal();
+    playSound('buff');
+    return { ok: true };
+  } catch (error) {
+    toast(error.message || '地区载入失败，请重试');
+    return { ok: false, reason: error.message || '地区载入失败，请重试' };
+  } finally {
+    sceneTransition = false;
+  }
+}
+
+function findConnection(id) {
+  return world.getConnections?.().find(connection => connection.id === id) || null;
+}
+
+function travelConnection(connection) {
+  if (sceneTransition || world.loading) { toast('地区正在载入'); return { ok: false }; }
+  if (combat.getState().inCombat) { toast('战斗中无法穿越区域出口，请先重置练习'); return { ok: false }; }
+  if (!world.canUseConnection(connection?.id)) { toast('请靠近区域出口后再进入'); return { ok: false }; }
+  const target = SCENES.find(scene => scene.id === connection.targetScene);
+  if (!target) { toast('该出口的目标地区尚未开放'); return { ok: false }; }
+  return finishTeleport(target.id, { arrivalConnection: connection.targetConnection || connection.arrivalConnection, arrival: connection.arrival, entryFrom: currentScene });
+}
+
+function updateConnectionPrompt() {
+  const prompt = $('#connection-prompt');
+  const connection = world.getNearbyConnection?.();
+  const target = connection && SCENES.find(scene => scene.id === connection.targetScene);
+  prompt.classList.toggle('hidden', !connection || !target || world.loading || sceneTransition);
+  if (!connection || !target) return;
+  $('#connection-name').textContent = `${connection.name || '区域出口'} · ${target.name}`;
+  $('#connection-travel').dataset.connectionTravel = connection.id;
 }
 
 function renderCombat() { hud.render(); hotbar.render(); }
@@ -161,8 +206,15 @@ function saveSettings() {
 saveSettings();
 
 document.addEventListener('click', (event) => {
+  const connectionTravel = event.target.closest('[data-connection-travel]');
+  if (connectionTravel) {
+    const connection = findConnection(connectionTravel.dataset.connectionTravel);
+    if (connection) travelConnection(connection);
+    return;
+  }
   const landmark = event.target.closest('[data-landmark]');
   if (landmark) {
+    if (world.loading) { toast('地区正在载入'); return; }
     if (combat.getState().inCombat) { toast('请先重置练习再快速前往'); return; }
     if (world.goToLandmark(landmark.dataset.landmark)) closeModal();
     return;
@@ -184,7 +236,7 @@ document.addEventListener('click', (event) => {
   const region = event.target.closest('[data-region]');
   if (region) {
     document.querySelectorAll('[data-region]').forEach(button => button.classList.toggle('selected', button === region));
-    document.querySelectorAll('[data-scene-region]').forEach(button => button.hidden = region.dataset.region !== 'all' && button.dataset.sceneRegion !== region.dataset.region);
+    filterTeleportDestinations();
   }
   const quality = event.target.closest('[data-quality]');
   if (quality) {
@@ -210,6 +262,7 @@ $('#encounter-toggle').addEventListener('click', () => $('.encounter').classList
 document.addEventListener('input', (event) => {
   const { id, value, checked } = event.target;
   if (id === 'skill-search') document.querySelectorAll('[data-search]').forEach(row => row.hidden = !row.dataset.search.includes(value.toLowerCase()));
+  if (id === 'teleport-search') filterTeleportDestinations();
   if (id === 'sound-toggle') { settings.sound = checked; saveSettings(); }
   if (id === 'volume') { settings.volume = Number(value); saveSettings(); }
   if (id === 'hud-scale') { settings.scale = Number(value); $('#hud-scale-output').textContent = `${value}%`; saveSettings(); }
@@ -217,6 +270,14 @@ document.addEventListener('input', (event) => {
   if (id === 'control-mode') { settings.controlMode = value; world.setControlMode(value); saveSettings(); }
   if (id === 'healing-pressure') training.setEnabled(checked);
 });
+function filterTeleportDestinations() {
+  const term = $('#teleport-search')?.value.trim().toLowerCase() || '';
+  const region = document.querySelector('[data-region].selected')?.dataset.region || 'all';
+  document.querySelectorAll('[data-scene-region]').forEach(button => {
+    const matchesRegion = region === 'all' || button.dataset.sceneRegion === region;
+    button.hidden = !matchesRegion || !button.dataset.sceneSearch.includes(term);
+  });
+}
 document.addEventListener('pointerover', (event) => {
   const action = event.target.closest('[data-action]');
   if (action && !dialogs.active) hotbar.showTooltip(action.dataset.action);
@@ -241,6 +302,11 @@ document.addEventListener('keydown', (event) => {
   }
   if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName) || dialogs.active) return;
   if (event.altKey || event.ctrlKey || event.metaKey) return;
+  if (event.code === 'KeyF') {
+    const connection = world.getNearbyConnection?.();
+    if (connection) { event.preventDefault(); travelConnection(connection); }
+    return;
+  }
   const actionId = hotbar.keyAction(event);
   if (actionId) { event.preventDefault(); useAction(actionId); }
   if (event.code === 'KeyH') openHelp();
@@ -301,7 +367,7 @@ function frame(now) {
   mapElapsed += dt;
   frameElapsed += dt;
   frameCount++;
-  if (uiElapsed >= 0.065) { renderCombat(); uiElapsed = 0; }
+  if (uiElapsed >= 0.065) { renderCombat(); updateConnectionPrompt(); uiElapsed = 0; }
   if (mapElapsed >= 0.2) { drawMap($('#minimap')); if (dialogs.active === 'map-modal') drawMap($('#area-map-canvas'), true); mapElapsed = 0; }
   if (frameElapsed >= 1) {
     fps = Math.round(frameCount / frameElapsed);
