@@ -20,7 +20,10 @@
     "benchmark:assets": "node scripts/benchmark-assets.mjs",
     "regress:maps": "node scripts/regress-maps.mjs",
     "regress:select": "node scripts/assets/select-regression-maps.mjs",
-    "regress:summary": "node scripts/assets/summarize-regression.mjs"
+    "regress:summary": "node scripts/assets/summarize-regression.mjs",
+    "validate-fast": "node scripts/validate-fast.mjs",
+    "validate-smoke": "node scripts/validate-smoke.mjs",
+    "validate-map": "node scripts/validate-map.mjs"
   },
   "dependencies": {
     "lucide": "^0.468.0",

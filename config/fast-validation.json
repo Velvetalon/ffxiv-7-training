@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "smoke": {
+    "timeoutMs": 30000,
+    "concurrency": 2
+  },
+  "representative": {
+    "timeoutMs": 30000,
+    "observeMs": 1500
+  },
+  "representatives": [
+    {
+      "id": "gridania",
+      "reason": "Ordinary city, movement and camera reference."
+    },
+    {
+      "id": "x6f2",
+      "reason": "Large complex map and large collision data."
+    },
+    {
+      "id": "y6f1",
+      "reason": "Resource-heavy outdoor map with varied materials and lighting."
+    },
+    {
+      "id": "d2t1",
+      "reason": "Historical cross-map resource-lifetime failure."
+    }
+  ]
+}
