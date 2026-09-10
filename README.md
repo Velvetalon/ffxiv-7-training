@@ -117,3 +117,11 @@ npm run verify:world
 新增职业、场景、NPC、怪物的开发说明见 [ARCHITECTURE.md](docs/ARCHITECTURE.md)。模块之间的接口见 [CONTRACT.md](docs/CONTRACT.md)。
 
 完整世界的部署快照保存在 `public/extracted/world/`，由 `active.json` 指定当前版本；`bundled/` 保留此前城市快照。发布包使用逐像素验证的无损贴图编码与逐字节验证的碰撞压缩。原始客户端、解包中间文件、历史暂存版本和服务器凭据不在 Git 中。可选离线重建工具源码在 `tools/map-tools/`，不影响服务器直接启动。
+
+## 统一资源加载与打包
+
+地图资源现在可通过统一 AssetRuntime 从 COS/CDN 的内容哈希资源包加载，支持引用去重、优先级调度、取消与重试、浏览器缓存、近区先加载及后台完整贴图恢复。构建期工具输出引用图、空间资源包和版本清单；后续角色、动画、音频、坐骑与 VFX 可复用相同协议。
+
+使用步骤见 [ASSET-PIPELINE-QUICKSTART.md](docs/ASSET-PIPELINE-QUICKSTART.md)，模块设计见 [ASSET-PIPELINE.md](docs/ASSET-PIPELINE.md)，实测口径及结果见 [ASSET-PERFORMANCE.md](docs/ASSET-PERFORMANCE.md)。
+
+CDN 模式的 `site/` 是不含大型地图资源的小型站点，需要可用的 `/ff14-assets/ticket` 签名接口和网络。需要独立本地运行时，按 Quickstart 构建包含资源包的成品；原始解包资源模式仍可通过清除相关构建环境变量恢复。

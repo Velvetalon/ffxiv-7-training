@@ -406,12 +406,13 @@ export function addBanners(group, x, z, count = 3) {
 export function disposeObject(root) {
   const textures = new Set();
   root.traverse?.((node) => {
-    node.geometry?.dispose();
+    if (node.isInstancedMesh) node.dispose();
+    if (!node.geometry?.userData?.assetRuntimeOwned) node.geometry?.dispose();
     if (!node.material) return;
     const materials = Array.isArray(node.material) ? node.material : [node.material];
     materials.forEach((value) => {
-      for (const item of Object.values(value)) if (item?.isTexture && item.userData.sceneOwned) textures.add(item);
-      for (const texture of value.userData.ownedTextures || []) textures.add(texture);
+      for (const item of Object.values(value)) if (item?.isTexture && item.userData.sceneOwned && !item.userData.assetRuntimeOwned) textures.add(item);
+      for (const texture of value.userData.ownedTextures || []) if (!texture.userData.assetRuntimeOwned) textures.add(texture);
       if (!value.userData.sharedWorldMaterial) value.dispose?.();
     });
   });

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-10",
+  "stage": "local-artifact-only",
+  "sourceVersion": {
+    "activeCatalogRunId": "20260909T124255Z-e3ea44",
+    "activeCatalogPath": "public/extracted/active.json",
+    "sourceGraph": {
+      "schemaVersion": 1,
+      "sha256": "3d5e341b3a2765c687fe6128aa34224901af0950533005eec51301b0a123f3e8"
+    },
+    "baseLocalityReleaseId": "20260909T124255Z-e3ea44",
+    "gitCommit": "4ab7d5e5efe376101c5f55a0dfb749368320dee1"
+  },
+  "coverage": {
+    "catalogMaps": 65,
+    "directedConnections": 145,
+    "uniqueResources": 91435,
+    "binaryResourceSlices": 75547,
+    "binaryResourceSliceSha256Verified": true
+  },
+  "preview": {
+    "sourceTextures": 23558,
+    "previewCoveredTextures": 23558,
+    "release": "work/asset-performance/packed-all-preview-fixed"
+  },
+  "collision": {
+    "chunkedMaps": 44,
+    "legacyOnlyMapsAtOrBelow4MiBGzip": 21,
+    "losslessChunks": 43138,
+    "release": "work/asset-performance/packed-all-final"
+  },
+  "localRelease": {
+    "directory": "work/asset-performance/packed-all-final",
+    "releaseId": "20260909T124255Z-e3ea44-preview128",
+    "catalog": "catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3b5f5a59f3baf99.json",
+    "catalogSha256": "5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3b5f5a59f3baf99",
+    "publishFiles": 8114,
+    "manifestReferencesVerified": true
+  },
+  "pending": {
+    "browserAcceptance": true,
+    "productionPublication": true
+  }
+}

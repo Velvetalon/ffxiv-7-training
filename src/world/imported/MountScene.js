@@ -116,7 +116,7 @@ export function mountEncounter(world, loaded, navigation, encounter = prepareEnc
     id:world.sceneId,
     bounds:{minX:positionBounds.min.x,maxX:positionBounds.max.x,minZ:positionBounds.min.z,maxZ:positionBounds.max.z},
     landmarks,roads:[],surfaces:[],water:[],
-    image:`${loaded.base}map.png`,
+    image: loaded.mapImageUrl || (loaded.map ? null : `${loaded.base}map.png`),
     imageBounds:loaded.manifest.imageBounds || mapImageBounds(loaded.manifest.scene),
     sourceVersion:loaded.manifest.sourceVersion,
   };

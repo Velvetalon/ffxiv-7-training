@@ -16,6 +16,8 @@ import { FollowCamera } from './camera/FollowCamera.js';
 import { SCENES } from './scenes.js';
 import { connectionDistance, findArrival, mountConnections, nearestConnection } from './imported/ZoneConnections.js';
 import { loadCollision } from './imported/CollisionData.js';
+import { GpuTimer } from '../assets/GpuTimer.js';
+import { assetProfiler } from '../assets/AssetProfiler.js';
 
 const contextTarget = new THREE.Vector3();
 const contextPlayer = new THREE.Vector3();
@@ -28,6 +30,7 @@ export class World {
     this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
     this.followCamera = new FollowCamera(this.camera);
     this.renderer = createRenderer(canvas);
+    this.gpuTimer = new GpuTimer(this.renderer, timing => assetProfiler.resource('gpu-execution', timing));
     this.registry = new EntityRegistry();
     this.sceneRoot = new THREE.Group();
     this.effectsRoot = new THREE.Group();
@@ -72,6 +75,11 @@ export class World {
     if (this.loading) return this.requestedSceneId === id ? this.loadPromise : Promise.resolve(false);
     if (!SCENES.some(scene => scene.id === id)) throw new Error(`Unknown world scene: ${id}`);
     this.requestedSceneId = id;
+    this.loadPromise = this.loadClientScene(id, entry);
+    return this.loadPromise;
+  }
+
+  buildFallback(id) {
     const builder = SCENE_BUILDERS[id];
     if (!this.layout && builder) {
       this.clearScene();
@@ -104,29 +112,53 @@ export class World {
       this.followCamera.reset();
       this.updateCamera(0);
     }
-    this.loadPromise = this.loadClientScene(id, entry);
-    return this.loadPromise;
   }
 
   async loadClientScene(id, entry = {}) {
     const request = this.loadRequest = (this.loadRequest || 0) + 1;
+    assetProfiler.begin(id, { request, entry });
     this.loading = true; this.loadError = null;
     this.input.setEnabled(false);
     this.callbacks.onLoading?.(0);
-    let loaded, navigation;
+    let loaded, navigation, navigationTask;
     try {
-      loaded = await loadExtractedScene(id,progress=>{if(request===this.loadRequest)this.callbacks.onLoading?.(progress*0.9);});
-      const collision=await loadCollision(loaded.base,loaded.manifest);
-      if(request!==this.loadRequest){disposeObject(loaded.group);return false;}
-      navigation=new MeshNavigation(collision);
+      loaded = await loadExtractedScene(id,progress=>{
+        if(request===this.loadRequest && this.loading)this.callbacks.onLoading?.(progress*0.9);
+      }, {
+        entry, renderer: this.renderer,
+        onManifest: (base, manifest) => {
+          navigationTask = (async () => {
+            assetProfiler.mark('collision:load:start', { sceneId: id });
+            const collision = await loadCollision(base, manifest);
+            assetProfiler.mark('collision:load:complete', { sceneId: id, bytes: manifest.collisionBytes });
+            assetProfiler.mark('bvh:start', { sceneId: id });
+            const result = await MeshNavigation.create(collision);
+            assetProfiler.mark('bvh:complete', { sceneId: id });
+            return result;
+          })();
+          // Observe failures immediately even while models are still in flight.
+          navigationTask.catch(() => {});
+        },
+      });
+      navigationTask = loaded.navigationTask || navigationTask;
+      navigation = await navigationTask;
+      if(request!==this.loadRequest){
+        disposeObject(loaded.group);
+        loaded.release?.();
+        if (!navigation.assetRuntimeOwned) navigation.dispose();
+        return false;
+      }
       const encounter=prepareEncounter(loaded.manifest,navigation);
       const arrival=findArrival(loaded.manifest,navigation,entry);
       this.clearReturnGate();
+      assetProfiler.mark('instantiate:start', { sceneId: id, meshes: loaded.group.children.length });
       this.clearScene();
+      this.assetScene = loaded.release ? loaded : null;
       this.sceneId=id;
       this.navigation=navigation;
       this.sceneRoot=loaded.group;
       this.layout=mountEncounter(this,loaded,navigation,encounter);
+      loaded.layout = this.layout;
       mountConnections(this.sceneRoot,loaded.manifest.connections || []);
       this.scene.add(this.sceneRoot);
       this.water=[];this.crystals=[];this.architecture=[];this.landmarkLabels=[];
@@ -161,12 +193,18 @@ export class World {
       this.requestedSceneId=null;
       this.callbacks.onLoading?.(1);
       this.callbacks.onSceneReady?.(id);
+      assetProfiler.mark('input:enabled', { sceneId: id });
+      loaded.startStreaming?.(this.renderer);
+      if (!loaded.startStreaming) assetProfiler.mark('fully-loaded', { sceneId: id });
       return true;
     } catch(error) {
+      loaded?.release?.();
+      if (navigationTask && !navigation) navigationTask.then(value => { if (!value.assetRuntimeOwned) value.dispose(); }).catch(() => {});
       if(loaded && loaded.group!==this.sceneRoot)disposeObject(loaded.group);
-      if(navigation && navigation!==this.navigation)navigation.dispose();
+      if(navigation && navigation!==this.navigation && !navigation.assetRuntimeOwned)navigation.dispose();
       if(request!==this.loadRequest)return false;
       this.loading=false;this.loadError=error.message;
+      if (!this.layout) this.buildFallback(id);
       this.requestedSceneId=null;
       this.input.setEnabled(Boolean(this.navigation));
       this.callbacks.onLoading?.(null,error.message);
@@ -219,7 +257,18 @@ export class World {
     });
     this.effects.update(elapsed);
     this.updateCamera(elapsed);
+    const cpuSubmitStartedAt = performance.now();
+    const firstImportedFrame = this.isImported && !this.loading && !assetProfiler.active?.firstRender && assetProfiler.active?.sceneId === this.sceneId;
+    const gpuToken = firstImportedFrame ? this.gpuTimer.begin({ sceneId: this.sceneId, phase: 'first-imported-render' }) : null;
     this.renderer.render(this.scene, this.camera);
+    this.gpuTimer.end(gpuToken);
+    this.gpuTimer.poll();
+    if (firstImportedFrame) {
+      assetProfiler.resource('gpu-timer-capability', { available: Boolean(this.gpuTimer.extension) });
+      assetProfiler.cpuSubmit({ sceneId: this.sceneId, durationMs: performance.now() - cpuSubmitStartedAt });
+      assetProfiler.firstRendered({ sceneId: this.sceneId, calls: this.renderer.info.render.calls });
+      assetProfiler.mark('engine-interactive', { sceneId: this.sceneId, source: 'imported-frame-submitted-input-enabled' });
+    }
   }
 
   resize(width, height) {
@@ -306,6 +355,9 @@ export class World {
     const direction = new THREE.Vector3(Math.sin(this.player.rotation.y), 0, Math.cos(this.player.rotation.y));
     if (kind === 'backward') direction.negate();
     const origin = this.player.position.clone();
+    if (this.assetScene?.streaming && !this.assetScene.canMoveTo(origin.clone().addScaledVector(direction, requested))) {
+      return { ok: false, moved: 0, reason: '前方地区仍在载入' };
+    }
     this.navigation.move(this.player.position,direction.x*requested,direction.z*requested);
     const moved = origin.distanceTo(this.player.position);
     if (moved > 0.02) this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
@@ -342,13 +394,16 @@ export class World {
 
   dispose() {
     this.loadRequest=(this.loadRequest||0)+1;
-    this.navigation?.dispose?.();
+    if (!this.navigation?.assetRuntimeOwned) this.navigation?.dispose?.();
     this.input.dispose();
     this.effects.clear();
     this.clearReturnGate();
     this.scene.remove(this.sceneRoot, this.player);
     disposeObject(this.sceneRoot);
+    this.assetScene?.release();
+    this.assetScene = null;
     disposeObject(this.player);
+    this.gpuTimer.dispose();
     this.renderer.dispose();
   }
 
@@ -360,10 +415,12 @@ export class World {
 
   clearScene() {
     this.effects.clear();
-    this.navigation?.dispose?.();
+    if (!this.navigation?.assetRuntimeOwned) this.navigation?.dispose?.();
     if (!this.sceneRoot) return;
     this.scene.remove(this.sceneRoot);
     disposeObject(this.sceneRoot);
+    this.assetScene?.release();
+    this.assetScene = null;
   }
 
   updateMovement(dt) {
@@ -380,6 +437,10 @@ export class World {
         -Math.cos(this.azimuth) * forward - Math.sin(this.azimuth) * right,
       ).normalize();
       const offset = direction.clone().multiplyScalar((sprint ? 8.5 : 5.4) * this.movementSpeed * dt);
+      if (this.assetScene?.streaming && !this.assetScene.canMoveTo(this.player.position.clone().add(offset))) {
+        this.moving = false;
+        return;
+      }
       const y = this.player.position.y;
       this.navigation.move(this.player.position, offset.x, offset.z);
       if (this.jumpVelocity) this.player.position.y = y;
@@ -481,6 +542,17 @@ export class World {
     if (this.loading) return false;
     const landmark = this.layout.landmarks.find(item => item.id === id);
     if (!landmark) return false;
+    if (this.assetScene?.streaming && !this.assetScene.canMoveTo(new THREE.Vector3(landmark.x, landmark.y || 0, landmark.z))) {
+      const scene = this.assetScene;
+      const restore = this.input.enabled;
+      this.input.setEnabled(false);
+      return scene.prepareLocation({ x: landmark.x, y: landmark.y || 0, z: landmark.z }).then(() => {
+        if (this.assetScene !== scene) return false;
+        return this.goToLandmark(id);
+      }).finally(() => {
+        if (this.assetScene === scene) this.setInputEnabled(restore);
+      });
+    }
     const point = this.navigation.nearestWalkable(landmark.x, landmark.z + (landmark.type==='connection' ? 0 : (landmark.d || 0) / 2 + 2),25,landmark.y);
     if (!point) return false;
     this.player.position.set(point.x, point.y ?? this.navigation.surfaceAt(point.x, point.z)?.height ?? 0, point.z);

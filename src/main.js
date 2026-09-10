@@ -11,6 +11,7 @@ import { Hotbar } from './ui/Hotbar.js';
 import { createDialogs } from './ui/Dialogs.js';
 import { createHud } from './ui/Hud.js';
 import './style.css';
+import { assetProfiler } from './assets/AssetProfiler.js';
 
 const settings = loadSettings();
 let currentScene = SCENES[0].id;
@@ -216,7 +217,11 @@ document.addEventListener('click', (event) => {
   if (landmark) {
     if (world.loading) { toast('地区正在载入'); return; }
     if (combat.getState().inCombat) { toast('请先重置练习再快速前往'); return; }
-    if (world.goToLandmark(landmark.dataset.landmark)) closeModal();
+    const result = world.goToLandmark(landmark.dataset.landmark);
+    if (result?.then) {
+      toast('正在载入目的地附近区域');
+      result.then(moved => { if (moved) closeModal(); }).catch(error => toast(`目的地载入失败：${error.message}`));
+    } else if (result) closeModal();
     return;
   }
   if (event.target.closest('#training-hit')) {
@@ -351,6 +356,13 @@ function frame(now) {
   const dt = Math.min((now - last) / 1000, 0.1);
   last = now;
   world.update(dt);
+  if (!world.loading && world.isImported && assetProfiler.active?.firstRender && !assetProfiler.active?.interactive) {
+    const overlay = getComputedStyle($('#loading'));
+    if (overlay.visibility === 'hidden' && Number(overlay.opacity) <= 0.01 && world.input.enabled) {
+      assetProfiler.mark('first-visible-render', { sceneId: world.sceneId });
+      assetProfiler.interactive({ sceneId: world.sceneId, source: 'visible-imported-frame-input-enabled' });
+    }
+  }
   const ctx = context();
   combat.tick(dt, ctx);
   training.update(dt);

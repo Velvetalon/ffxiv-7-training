@@ -1,14 +1,36 @@
 import * as THREE from 'three';
 import { MeshBVH, CENTER } from 'three-mesh-bvh';
+import { GenerateMeshBVHWorker } from 'three-mesh-bvh/worker';
 
 const down = new THREE.Vector3(0, -1, 0);
+let worker;
+let workerQueue = Promise.resolve();
 export class MeshNavigation {
-  constructor(positions) {
-    this.geometry = new THREE.BufferGeometry();
-    this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  static async create(positions) {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const build = workerQueue.catch(() => {}).then(async () => {
+      worker ||= new GenerateMeshBVHWorker();
+      return worker.generate(geometry, { strategy: CENTER, targetLeafSize: 12 });
+    });
+    workerQueue = build;
+    try {
+      const bvh = await build;
+      return new MeshNavigation(null, { geometry, bvh });
+    } catch (error) {
+      geometry.dispose();
+      worker?.dispose();
+      worker = null;
+      throw error;
+    }
+  }
+
+  constructor(positions, prepared) {
+    this.geometry = prepared?.geometry || new THREE.BufferGeometry();
+    if (!prepared) this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     this.geometry.computeBoundingBox();
     this.bounds = this.geometry.boundingBox.clone();
-    this.bvh = new MeshBVH(this.geometry, { strategy: CENTER, targetLeafSize: 12 });
+    this.bvh = prepared?.bvh || new MeshBVH(this.geometry, { strategy: CENTER, targetLeafSize: 12 });
     this.ray = new THREE.Ray();
     this.height = 0;
   }
