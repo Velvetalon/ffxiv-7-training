@@ -1,0 +1,16 @@
+.sandbox-panel{position:absolute;z-index:35;top:76px;right:20px;width:min(310px,calc(100% - 24px));max-height:calc(100% - 96px);overflow:auto;background:#13252bf5;border:1px solid #72959180;border-radius:4px;color:#e8eee6;box-shadow:0 8px 24px #0005}
+.sandbox-panel>header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #72959150}
+.sandbox-panel h2{font-size:15px;margin:0}
+.sandbox-panel h3{font-size:12px;margin:0 0 10px;color:#b9d4c8}
+.sandbox-panel section{padding:14px;border-bottom:1px solid #72959140}
+.sandbox-panel label{display:flex;align-items:center;gap:8px;margin:9px 0;font-size:12px}
+.sandbox-panel label>span{flex-shrink:0}
+.sandbox-panel select{min-width:0;max-width:100%;flex:1;background:#20373b;border:1px solid #668e8380;border-radius:3px;color:inherit;padding:6px}
+.sandbox-panel output{display:block;font-size:11px;color:#b7cbc4;overflow-wrap:anywhere}
+.sandbox-panel input[type=range]{min-width:0;width:120px;flex:1}
+.sandbox-panel input[type=checkbox]{margin-left:auto}
+.sandbox-file{position:relative;width:100%;justify-content:center;cursor:pointer}
+.sandbox-file input{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer}
+.sandbox-commands{display:flex;gap:8px;flex-wrap:wrap}
+.sandbox-panel button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:700px){.sandbox-panel{top:64px;right:12px;max-height:calc(100% - 80px)}}

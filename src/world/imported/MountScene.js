@@ -91,6 +91,7 @@ export function mountEncounter(world, loaded, navigation, encounter = prepareEnc
   const [x,y,z] = loaded.manifest.aetheryte || loaded.manifest.spawn;
   navigation.height = spawn.y;
   const register = (id,name,type,object,point,dialogue) => {
+    if (type === 'npc') object = world.createCharacterRuntime(id, object, name).root;
     object.position.set(point.x,point.y,point.z);
     loaded.group.add(object);
     world.registry.register({id,name,type,object,baseY:point.y,hp:100,level:100,dialogue});

@@ -1,11 +1,10 @@
 import * as THREE from 'three';
 import { createCharacter } from './actors.js';
-import { ActorAnimation } from './animation.js';
 import { animateCrystals, animateWater, disposeObject } from './assets.js';
 import { EffectSystem } from './effects.js';
 import { EntityRegistry } from './entities.js';
 import { InputController } from './input.js';
-import { createRenderer, addLighting, setQuality } from './renderer.js';
+import { createRenderer, setQuality } from './renderer.js';
 import { SCENE_BUILDERS } from './scenes/index.js';
 import { getLayout } from './terrain/layouts.js';
 import { Navigation } from './terrain/Navigation.js';
@@ -17,6 +16,13 @@ import { SCENES } from './scenes.js';
 import { connectionDistance, findArrival, mountConnections, nearestConnection } from './imported/ZoneConnections.js';
 import { loadCollision } from './imported/CollisionData.js';
 import { GpuTimer } from '../assets/GpuTimer.js';
+import { WorldTime, EnvironmentRuntime, createEnvironmentLights } from './environment/index.js';
+import { CharacterRuntime } from '../character/CharacterRuntime.js';
+import { MountRuntime } from '../character/MountRuntime.js';
+import { ActionRuntime } from '../character/ActionRuntime.js';
+import { SkillDefinitions } from '../character/SkillDefinitions.js';
+import { ACTIONS } from '../combat/data.js';
+import { mapAssetRuntime } from '../assets/MapAssets.js';
 import { assetProfiler } from '../assets/AssetProfiler.js';
 
 const contextTarget = new THREE.Vector3();
@@ -30,15 +36,21 @@ export class World {
     this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
     this.followCamera = new FollowCamera(this.camera);
     this.renderer = createRenderer(canvas);
+    this.worldTime = new WorldTime({ hour: (Date.now() / 175000) % 24 });
+    this.environment = new EnvironmentRuntime({ zoneId: initialScene });
+    this.environmentLights = null;
     this.gpuTimer = new GpuTimer(this.renderer, timing => assetProfiler.resource('gpu-execution', timing));
     this.registry = new EntityRegistry();
     this.sceneRoot = new THREE.Group();
     this.effectsRoot = new THREE.Group();
     this.scene.add(this.sceneRoot, this.effectsRoot);
     this.effects = new EffectSystem(this.effectsRoot);
-    this.player = createCharacter('WHM');
+    this.characters = new Map();
+    this.skillDefinitions = new SkillDefinitions(Object.values(ACTIONS).flat());
+    this.character = this.createCharacterRuntime('player', createCharacter('WHM'));
+    this.player = this.character.root;
     this.scene.add(this.player);
-    this.actorAnimation = new ActorAnimation(this.player);
+    this.mount = new MountRuntime(this.character);
     this.spawn = new THREE.Vector3();
     this.sceneId = initialScene;
     this.jobId = 'WHM';
@@ -98,7 +110,7 @@ export class World {
       builder(this, this.sceneRoot);
       this.scene.background = new THREE.Color(this.fogColor);
       this.scene.fog = new THREE.Fog(this.fogColor, 65, 260);
-      addLighting(this.sceneRoot, id);
+      this.mountEnvironment(id);
       setQuality(this.renderer, this.sceneRoot, this.quality);
       this.player.position.copy(this.spawn);
       this.player.rotation.y = Math.PI;
@@ -169,7 +181,7 @@ export class World {
       this.scene.fog=new THREE.Fog(this.scene.background,180,650);
       this.camera.far=Math.max(650,navigation.bounds.getSize(new THREE.Vector3()).length());
       this.camera.updateProjectionMatrix();
-      addLighting(this.sceneRoot,id);
+      this.mountEnvironment(id);
       setQuality(this.renderer,this.sceneRoot,this.quality);
       this.azimuth=this.trainingAzimuth ?? 0.1;
       this.player.rotation.y=this.azimuth+Math.PI;
@@ -189,6 +201,7 @@ export class World {
         this.followCamera.reset();
       } else if(this.jobId==='RPR')this.moveToDummy();
       this.jumpVelocity=0;
+      if (this.mount.state.isMounted) this.mount.state.movementMode = 'ground';
       this.loading=false;this.input.setEnabled(true);
       this.requestedSceneId=null;
       this.callbacks.onLoading?.(1);
@@ -229,15 +242,8 @@ export class World {
   }
 
   setJob(id) {
-    const position = this.player.position.clone();
-    const rotation = this.player.rotation.y;
-    this.scene.remove(this.player);
-    disposeObject(this.player);
-    this.player = createCharacter(id);
-    this.player.position.copy(position);
-    this.player.rotation.y = rotation;
-    this.scene.add(this.player);
-    this.actorAnimation.setPlayer(this.player);
+    if (this.character.source === 'procedural' && !this.mount.state.isMounted) this.character.setModel(createCharacter(id));
+    this.character.applyState({ jobId: id });
     this.jobId = id;
     this.clearReturnGate();
     this.clearFields();
@@ -247,15 +253,24 @@ export class World {
     const elapsed = Math.min(Math.max(dt || 0, 0), 0.08);
     this.time += elapsed;
     this.updateMovement(elapsed);
-    this.actorAnimation.update(elapsed, this.moving, this.time);
+    if (!this.mount.state.isMounted) this.character.state.movement = this.moving ? this.input.axes().sprint ? 'run' : 'walk' : 'idle';
+    for (const character of this.characters.values()) {
+      character.update(elapsed, this.time);
+      character.actions.update(elapsed);
+    }
     animateWater(this.water, this.time);
     animateCrystals(this.crystals, this.time, elapsed);
     for (const building of this.architecture || []) if (building.userData.wheel) building.userData.wheel.rotation.z += elapsed * 0.18;
     for (const label of this.landmarkLabels || []) label.visible = label.position.distanceTo(this.player.position) < 36;
-    this.registry.values().forEach((entity, index) => {
-      if (entity.type === 'npc') entity.object.position.y = (entity.baseY || 0) + Math.sin(this.time * 1.65 + index * 1.7) * 0.025;
-    });
     this.effects.update(elapsed);
+    this.worldTime.advance(dt);
+    if (this.environmentLights) {
+      const environment = this.environment.apply(this.scene, this.renderer, this.environmentLights, this.worldTime.snapshot());
+      const sun = this.environmentLights.sun;
+      sun.target.position.copy(this.player.position);
+      sun.position.copy(this.player.position).addScaledVector(environment.sunDirection, 80);
+      sun.target.updateMatrixWorld(true);
+    }
     this.updateCamera(elapsed);
     const cpuSubmitStartedAt = performance.now();
     const firstImportedFrame = this.isImported && !this.loading && !assetProfiler.active?.firstRender && assetProfiler.active?.sceneId === this.sceneId;
@@ -276,6 +291,42 @@ export class World {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false);
+  }
+
+  mountEnvironment(id) {
+    this.environment.setZone(id);
+    this.environment.setSourceSamples(this.environment.profile.samples || []);
+    this.environmentLights = createEnvironmentLights(this.environment.profile);
+    this.environmentLights.rig.add(this.environmentLights.sun.target);
+    this.sceneRoot.add(this.environmentLights.rig);
+  }
+
+  createCharacterRuntime(id, model, name = '') {
+    const character = new CharacterRuntime({ id, name, model, assetRuntime: mapAssetRuntime });
+    character.actions = new ActionRuntime(character, {
+      definitions: this.skillDefinitions,
+      effects: this.effects,
+      audio: this.audio,
+      targetPosition: () => this.registry.get(character.state.targetId)?.object.position || character.root.position,
+    });
+    this.characters.set(id, character);
+    if (this.npcDefinition) {
+      character.loadDefinition(this.npcDefinition, this.npcDefinition.appearance).catch(error => {
+        if (this.characters.get(id) === character) console.warn('NPC character resource:', error.message);
+      });
+    }
+    return character;
+  }
+
+  setNpcDefinition(definition) {
+    this.npcDefinition = definition;
+    return Promise.all([...this.characters.values()].filter(character => character !== this.character).map(character =>
+      character.loadDefinition(definition, definition.appearance)));
+  }
+
+  setAudioRuntime(audio) {
+    this.audio = audio;
+    for (const character of this.characters.values()) character.actions.audio = audio;
   }
 
   getContext() {
@@ -367,11 +418,11 @@ export class World {
   effect(event) {
     if (event?.type === 'field') {
       this.effects.placeField(event, this.player.position);
-      this.actorAnimation.trigger(event, this.jobId);
+      this.character.actions.apply(event);
       return;
     }
-    this.effects.play(event, this.target?.object.position || this.player.position, this.jobId);
-    this.actorAnimation.trigger(event, this.jobId);
+    this.character.state.targetId = this.target?.id || null;
+    this.character.actions.apply(event);
   }
 
   clearFields() {
@@ -402,7 +453,9 @@ export class World {
     disposeObject(this.sceneRoot);
     this.assetScene?.release();
     this.assetScene = null;
-    disposeObject(this.player);
+    this.mount.dispose();
+    for (const character of this.characters.values()) character.dispose();
+    this.characters.clear();
     this.gpuTimer.dispose();
     this.renderer.dispose();
   }
@@ -415,6 +468,11 @@ export class World {
 
   clearScene() {
     this.effects.clear();
+    for (const [id, character] of this.characters) {
+      if (character === this.character) continue;
+      character.dispose();
+      this.characters.delete(id);
+    }
     if (!this.navigation?.assetRuntimeOwned) this.navigation?.dispose?.();
     if (!this.sceneRoot) return;
     this.scene.remove(this.sceneRoot);
@@ -428,34 +486,35 @@ export class World {
       this.moving = false;
       return;
     }
-    const { forward, right, sprint } = this.input.axes();
+    const { forward, right, sprint, ascend, descend } = this.input.axes();
+    const direction = new THREE.Vector3(
+      -Math.sin(this.azimuth) * forward + Math.cos(this.azimuth) * right,
+      0,
+      -Math.cos(this.azimuth) * forward - Math.sin(this.azimuth) * right,
+    ).normalize();
     this.moving = Boolean(forward || right);
-    if (this.moving) {
-      const direction = new THREE.Vector3(
-        -Math.sin(this.azimuth) * forward + Math.cos(this.azimuth) * right,
-        0,
-        -Math.cos(this.azimuth) * forward - Math.sin(this.azimuth) * right,
-      ).normalize();
-      const offset = direction.clone().multiplyScalar((sprint ? 8.5 : 5.4) * this.movementSpeed * dt);
-      if (this.assetScene?.streaming && !this.assetScene.canMoveTo(this.player.position.clone().add(offset))) {
-        this.moving = false;
-        return;
-      }
-      const y = this.player.position.y;
-      this.navigation.move(this.player.position, offset.x, offset.z);
-      if (this.jumpVelocity) this.player.position.y = y;
-      this.player.rotation.y = this.input.isLooking ? this.azimuth + Math.PI : Math.atan2(direction.x, direction.z);
+    if (this.mount.state.isMounted) {
+      this.mount.step(dt, { direction, ascend, descend }, this.navigation);
+      if (this.moving) this.player.rotation.y = this.input.isLooking ? this.azimuth + Math.PI : Math.atan2(direction.x, direction.z);
+      this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
+      return;
+    }
+    const result = this.character.movement.step({
+      direction, sprint, jump: this.input.consumeJump(),
+      heading: this.input.isLooking ? this.azimuth + Math.PI : undefined,
+    }, this.navigation, dt, {
+      speedMultiplier: this.movementSpeed,
+      isReady: point => !this.assetScene?.streaming || this.assetScene.canMoveTo(point),
+    });
+    this.moving = result.moving;
+    if (result.changed) {
       this.introFocus = 0;
       this.callbacks.onMove?.({ x: this.player.position.x, z: this.player.position.z });
     }
-    const floor = this.navigation.surfaceAt(this.player.position.x, this.player.position.z)?.height ?? this.player.position.y;
-    if (this.jumpVelocity || this.input.consumeJump()) {
-      if (!this.jumpVelocity && this.player.position.y <= floor + 0.001) this.jumpVelocity = 6.2;
-      this.jumpVelocity -= 18 * dt;
-      this.player.position.y = Math.max(floor, this.player.position.y + this.jumpVelocity * dt);
-      if (this.player.position.y === floor) this.jumpVelocity = 0;
-    }
   }
+
+  get jumpVelocity() { return this.character.movement.verticalVelocity; }
+  set jumpVelocity(value) { this.character.movement.verticalVelocity = value; }
 
   isBlocked(x, z) {
     if (this.navigation) return !this.navigation.isWalkable(x, z);
@@ -481,8 +540,8 @@ export class World {
 
   adjustCamera(dx, dy, wheel = 0) {
     this.azimuth -= dx * 0.007;
-    this.polar = THREE.MathUtils.clamp(this.polar + dy * 0.006, 0.56, 1.42);
-    this.zoom = THREE.MathUtils.clamp(this.zoom + wheel * 0.012, 4.5, 45);
+    this.polar = THREE.MathUtils.clamp(this.polar + dy * 0.006, 0.05, Math.PI - 0.05);
+    this.zoom = THREE.MathUtils.clamp(this.zoom * Math.exp(wheel * 0.0015), 2, 60);
     this.introFocus = 0;
     if (this.input.isLooking) this.player.rotation.y = this.azimuth + Math.PI;
   }
@@ -514,9 +573,11 @@ export class World {
       this.returnGate.group.rotation.y += dt * 1.7;
       if (this.returnGate.expiresAt && this.time >= this.returnGate.expiresAt) this.clearReturnGate();
     }
-    const polar = this.cameraMode === 'follow' ? 1.12 : this.polar;
-    const distance = this.cameraMode === 'follow' ? Math.min(this.zoom, 10.5) : this.zoom;
-    this.followCamera.update(this.player, { azimuth: this.azimuth, polar, distance, navigation: this.isImported ? this.navigation : null }, dt);
+    const head = this.mount.state.isMounted && this.character.model?.getObjectByName('j_kao');
+    const focusHeight = head
+      ? Math.max(0.3, head.getWorldPosition(new THREE.Vector3()).y - this.player.position.y)
+      : this.mount.state.isMounted ? this.mount.definition.cameraHeightWorld || 2.5 : 1.45;
+    this.followCamera.update(this.player, { azimuth: this.azimuth, polar: this.polar, distance: this.zoom, focusHeight, navigation: this.isImported ? this.navigation : null }, dt);
   }
 
   pick(event) {

@@ -21,3 +21,8 @@ public/extracted/*
 !public/extracted/bundled/**
 !public/extracted/world/
 !public/extracted/world/**
+tools/character-tools/bin/
+tools/character-tools/obj/
+tools/audio-tools/bin/
+tools/audio-tools/obj/
+public/sandbox/audio/

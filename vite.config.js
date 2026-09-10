@@ -13,7 +13,42 @@ function selectedPublicAssets() {
       const source = path.join(config.root, 'public');
       const destination = path.resolve(config.root, config.build.outDir);
       for (const item of await fs.readdir(source)) {
-        if (item !== 'extracted') await fs.cp(path.join(source, item), path.join(destination, item), { recursive: true });
+        if (!['extracted', 'sandbox'].includes(item)) await fs.cp(path.join(source, item), path.join(destination, item), { recursive: true });
+      }
+      const externalSandboxRelease = Boolean(process.env.SANDBOX_RELEASE_DIR);
+      const sandboxRoot = path.resolve(process.env.SANDBOX_RELEASE_DIR || path.join(source, 'sandbox'));
+      const sandboxPublishPath = path.join(sandboxRoot, 'publish-manifest.json');
+      let sandboxPublish;
+      try {
+        sandboxPublish = JSON.parse(await fs.readFile(sandboxPublishPath, 'utf8'));
+      } catch (error) {
+        throw new Error(`Sandbox release is missing publish-manifest.json: ${sandboxPublishPath}`, { cause: error });
+      }
+      if (!Array.isArray(sandboxPublish.files) || !sandboxPublish.entry) {
+        throw new Error(`Sandbox publish manifest is incomplete: ${sandboxPublishPath}`);
+      }
+      const sandboxDestination = path.join(destination, 'sandbox');
+      await fs.mkdir(sandboxDestination, { recursive: true });
+      const sandboxCdn = process.env.SANDBOX_CDN === '1';
+      const manifestName = sandboxCdn ? 'manifest.cdn.json' : (externalSandboxRelease ? sandboxPublish.entry : 'manifest.json');
+      const manifestSource = path.join(sandboxRoot, manifestName);
+      try {
+        await fs.copyFile(manifestSource, path.join(sandboxDestination, 'manifest.json'));
+      } catch (error) {
+        throw new Error(`Sandbox manifest is missing: ${manifestSource}`, { cause: error });
+      }
+      if (!sandboxCdn) {
+        const files = externalSandboxRelease
+          ? sandboxPublish.files.filter(item => item.path !== sandboxPublish.entry)
+          : Object.values(JSON.parse(await fs.readFile(manifestSource, 'utf8')).bundles || {}).map(bundle => ({ path: bundle.url }));
+        for (const item of files) {
+          if (!item || typeof item.path !== 'string' || path.isAbsolute(item.path) || item.path.split(/[\\/]/).includes('..')) {
+            throw new Error(`Sandbox asset path is unsafe: ${item?.path}`);
+          }
+          const target = path.join(sandboxDestination, item.path);
+          await fs.mkdir(path.dirname(target), { recursive: true });
+          await fs.copyFile(path.join(sandboxRoot, item.path), target);
+        }
       }
       const extracted = path.join(source, 'extracted');
       const active = JSON.parse(await fs.readFile(path.join(extracted, 'active.json'), 'utf8'));

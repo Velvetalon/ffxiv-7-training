@@ -52,7 +52,7 @@ export class InputController {
   axes() {
     const forward = Number(this.keys.has('KeyW') || this.keys.has('ArrowUp')) - Number(this.keys.has('KeyS') || this.keys.has('ArrowDown'));
     const right = Number(this.keys.has('KeyD') || this.keys.has('KeyE') || this.keys.has('ArrowRight')) - Number(this.keys.has('KeyA') || this.keys.has('KeyQ') || this.keys.has('ArrowLeft'));
-    return { forward, right, sprint: this.keys.has('ShiftLeft') || this.keys.has('ShiftRight') };
+    return { forward, right, sprint: this.keys.has('ShiftLeft') || this.keys.has('ShiftRight'), ascend: Number(this.keys.has('Space')), descend: Number(this.keys.has('KeyX')) };
   }
 
   consumeJump() {
@@ -83,7 +83,7 @@ export class InputController {
       return;
     }
     if (event.code === 'Escape') this.releaseLook();
-    if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'].includes(event.code)) {
+    if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'KeyX', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'].includes(event.code)) {
       event.preventDefault();
       this.keys.add(event.code);
     }

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <!-- Pass -p:LuminaRoot=<community Lumina checkout> when invoking this tool. -->
+    <LuminaRoot Condition="'$(LuminaRoot)' == ''">$(MSBuildProjectDirectory)\..\..\..\FFXIV-MapTools\Lumina</LuminaRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ScdExtract.cs" />
+    <ProjectReference Include="$(LuminaRoot)\src\Lumina\Lumina.csproj" />
+  </ItemGroup>
+</Project>

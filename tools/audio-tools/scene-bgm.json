@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "territory": "tools/map-tools/data/TerritoryType-7.0.csv (BGM column)",
+    "bgmSituation": "client EXH/EXD BGMSituation",
+    "bgm": "client EXH/EXD BGM"
+  },
+  "scenes": {
+    "gridania": {
+      "territoryId": 132,
+      "bgmSituationId": 1003,
+      "bgmId": 6,
+      "scdPath": "music/ffxiv/BGM_Town_Gri_Day.scd",
+      "status": "Confirmed: client SCD dataType 26 HCA decoded by VFXEditor VGAudioCli"
+    },
+    "limsa": {
+      "territoryId": 129,
+      "bgmSituationId": 1020,
+      "bgmId": 25,
+      "scdPath": "music/ffxiv/BGM_Town_Lim_Day.scd",
+      "status": "Confirmed: client SCD dataType 6 Ogg Vorbis decoded by Lumina"
+    },
+    "w1t1": {
+      "territoryId": 130,
+      "bgmSituationId": 1035,
+      "bgmId": 44,
+      "scdPath": "music/ffxiv/BGM_Town_Uru_Day.scd",
+      "status": "Confirmed: client SCD dataType 6 Ogg Vorbis decoded by Lumina"
+    }
+  }
+}

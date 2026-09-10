@@ -26,10 +26,17 @@ export class AssetRuntime {
 
   configure(manifest, base, resolveUrl) {
     if (manifest.schemaVersion !== 1) throw new Error('Unsupported asset manifest');
-    this.registry.addManifest(manifest);
+    const resolvedBase = new URL(base, globalThis.location?.href || 'http://localhost/').href;
+    const resources = Object.fromEntries(Object.entries(manifest.resources).map(([id, record]) => [
+      id, record.url ? { ...record, url: new URL(record.url, resolvedBase).href } : record,
+    ]));
+    const bundles = Object.fromEntries(Object.entries(manifest.bundles || {}).map(([id, bundle]) => [
+      id, { ...bundle, url: new URL(bundle.url, resolvedBase).href },
+    ]));
+    this.registry.addManifest({ ...manifest, resources });
     this.manifest = manifest;
-    Object.assign(this.bundleRecords, manifest.bundles);
-    this.base = new URL(base, globalThis.location?.href || 'http://localhost/').href;
+    Object.assign(this.bundleRecords, bundles);
+    this.base = resolvedBase;
     if (resolveUrl) this.resolveUrl = resolveUrl;
   }
 

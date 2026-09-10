@@ -1,8 +1,8 @@
 import { createCombat, JOBS } from './combat/index.js';
 import { World, SCENES, loadSceneCatalog } from './world/index.js';
-import { $, escape, formatNumber } from './ui/dom.js';
+import { $, escape, formatNumber, icon, iconify } from './ui/dom.js';
 import { drawMap as renderMap } from './ui/Minimap.js';
-import { SkillAudio } from './audio/SkillAudio.js';
+import { AudioRuntime } from './audio/AudioRuntime.js';
 import { TeleportController } from './core/TeleportController.js';
 import { TrainingDirector } from './core/TrainingDirector.js';
 import { loadSettings, saveSettings as persistSettings } from './core/Settings.js';
@@ -12,11 +12,16 @@ import { createDialogs } from './ui/Dialogs.js';
 import { createHud } from './ui/Hud.js';
 import './style.css';
 import { assetProfiler } from './assets/AssetProfiler.js';
+import { initializeHudLayout } from './ui/layout/index.js';
+import { SandboxAssets } from './assets/SandboxAssets.js';
+import { SandboxPanel } from './ui/SandboxPanel.js';
+import { parseFfxivCharaDat } from './character/appearance/FfxivCharaDat.js';
 
 const settings = loadSettings();
 let currentScene = SCENES[0].id;
 let feedbackTimeout;
-const skillAudio = new SkillAudio(settings);
+const sandboxAssets = new SandboxAssets();
+const audio = new AudioRuntime(sandboxAssets.runtime, settings, { getManifest: () => sandboxAssets.manifest });
 let fps = 60;
 let mobileMovement = null;
 let sceneTransition = false;
@@ -50,7 +55,11 @@ world.setControlMode(settings.controlMode);
 world.setScene(currentScene);
 world.targetNearest();
 
-const playSound = (type, jobId) => skillAudio.play(type, jobId);
+world.setAudioRuntime(audio);
+const playSound = type => {
+  const soundId = sandboxAssets.manifest?.uiSounds?.[type];
+  if (soundId) void audio.playAction(soundId);
+};
 const teleportController = new TeleportController({
   scenes: SCENES,
   getSceneId: () => currentScene,
@@ -65,6 +74,59 @@ const hud = createHud({ combat, world, jobs: JOBS, getTeleportCast: () => telepo
 
 const dialogs = createDialogs({ world, combat, scenes: SCENES, settings, getSceneId: () => currentScene, getTargetCount: () => targetCount, hotbar, training });
 const { openTeleport, openBook, openSettings, openMap, openDialogue, openHelp, closeModal } = dialogs;
+const hudLayout = initializeHudLayout({
+  root: $('#app'),
+  onEditingChange: editing => world.setInputEnabled(!editing && !dialogs.active),
+});
+const sandboxPanel = new SandboxPanel({
+  root: $('#app'), world, onError: toast,
+  onAppearance: async file => {
+    if (world.mount.state.isMounted && !world.mount.dismount()) throw new Error('请先降落再切换外观');
+    const appearance = parseFfxivCharaDat(await file.arrayBuffer());
+    await sandboxAssets.initialize();
+    const definition = sandboxAssets.getCharacter(appearance);
+    if (!definition) throw new Error('此种族或外观部件尚未包含在资源目录中');
+    await world.character.loadDefinition(definition, appearance);
+    sandboxPanel.setAppearance(appearance);
+    sandboxPanel.setAssets({ animations: [...world.character.animation.clips.keys()], mounts: sandboxAssets.mounts });
+  },
+  onAnimation: state => world.character.animation.play(state, { loop: false, restart: true }),
+  onMount: async id => {
+    if (world.mount.state.isMounted) {
+      if (!world.mount.dismount()) throw new Error('请先降落再下坐骑');
+    } else {
+      const definition = sandboxAssets.mounts.find(item => item.id === id);
+      if (!definition) throw new Error('坐骑资源尚未就绪');
+      await world.mount.mount(definition);
+    }
+  },
+});
+const sandboxButton = document.createElement('button');
+sandboxButton.id = 'sandbox-open';
+sandboxButton.className = 'icon-button';
+sandboxButton.title = '角色与世界';
+sandboxButton.setAttribute('aria-label', '角色与世界');
+sandboxButton.innerHTML = icon('user-round-cog');
+$('#hud-layout-open').before(sandboxButton);
+iconify(sandboxButton);
+sandboxButton.addEventListener('click', () => sandboxPanel.toggle());
+world.sandboxReady = world.loadPromise.then(async success => {
+  if (!success) return;
+  await sandboxAssets.initialize();
+  world.skillDefinitions.merge(sandboxAssets.skills);
+  const appearance = sandboxAssets.manifest.defaultAppearance;
+  const definition = sandboxAssets.getCharacter(appearance);
+  if (!definition) throw new Error('角色资源目录为空或缺少对应外观');
+  await world.character.loadDefinition(definition, appearance);
+  await world.setNpcDefinition(definition);
+  if (appearance) sandboxPanel.setAppearance(appearance);
+  sandboxPanel.setAssets({ animations: [...world.character.animation.clips.keys()], mounts: sandboxAssets.mounts });
+  await audio.playScene(world.sceneId);
+}).catch(error => {
+  world.sandboxError = error.message;
+  console.warn('Sandbox asset initialization:', error.message);
+  toast(`角色资源载入失败：${error.message}`);
+});
 
 function toast(message) {
   const node = $('#feedback');
@@ -153,6 +215,7 @@ async function finishTeleport(id, entry = {}) {
     hotbar.reset();
     closeModal();
     playSound('buff');
+    void audio.playScene(id);
     return { ok: true };
   } catch (error) {
     toast(error.message || '地区载入失败，请重试');
@@ -203,6 +266,7 @@ function downloadLog() {
 
 function saveSettings() {
   persistSettings(settings);
+  audio.setSettings?.(settings);
 }
 saveSettings();
 
@@ -253,11 +317,17 @@ document.addEventListener('click', (event) => {
   if (event.target.closest('.modal-close') || event.target.id === 'modal-layer') closeModal();
 });
 $('#app').addEventListener('contextmenu', event => event.preventDefault());
-$('#teleport-open').addEventListener('click', openTeleport);
-$('#book-open').addEventListener('click', () => openBook());
-$('#settings-open').addEventListener('click', openSettings);
-$('#help-open').addEventListener('click', openHelp);
-$('#area-open').addEventListener('click', openMap);
+const showDialog = callback => () => {
+  hudLayout.close();
+  sandboxPanel.close();
+  callback();
+};
+$('#teleport-open').addEventListener('click', showDialog(openTeleport));
+$('#book-open').addEventListener('click', showDialog(() => openBook()));
+$('#settings-open').addEventListener('click', showDialog(openSettings));
+$('#hud-layout-open').addEventListener('click', () => { closeModal(); sandboxPanel.close(); hudLayout.toggle(); });
+$('#help-open').addEventListener('click', showDialog(openHelp));
+$('#area-open').addEventListener('click', showDialog(openMap));
 $('#reset').addEventListener('click', reset);
 $('#reposition').addEventListener('click', () => { world.moveToDummy(); world.targetNearest(); });
 $('#target-nearest').addEventListener('click', () => world.targetNearest());
@@ -291,6 +361,7 @@ document.addEventListener('pointerout', (event) => {
   if (event.target.closest('[data-action]') && !event.relatedTarget?.closest('[data-action]')) hotbar.hideTooltip();
 });
 document.addEventListener('keydown', (event) => {
+  if (hudLayout.isEditing) return;
   if (event.key === 'Tab' && dialogs.active) {
     const controls = [...$('#modal-layer').querySelectorAll('button:not([disabled]),input,select')].filter(node => node.offsetParent !== null);
     const next = event.shiftKey ? controls.at(-1) : controls[0];
@@ -370,8 +441,7 @@ function frame(now) {
   teleportController.update(dt, ctx.moving);
   for (const event of combat.drainEvents()) {
     if (event.type === 'move') world.moveSkill({ ...event, gateDuration: event.saveReturn ? 10 : 0 });
-    else world.effect(event);
-    if (event.type === 'hit' || event.type === 'heal' || event.type === 'buff') playSound(event.type, event.jobId || combat.getState().jobId);
+    world.effect(event);
     if (event.type === 'error') toast(event.reason || `${event.name || '技能'}：咏唱中断`);
     showDamage(event);
   }
@@ -379,16 +449,16 @@ function frame(now) {
   mapElapsed += dt;
   frameElapsed += dt;
   frameCount++;
-  if (uiElapsed >= 0.065) { renderCombat(); updateConnectionPrompt(); uiElapsed = 0; }
+  if (uiElapsed >= 0.065) { renderCombat(); updateConnectionPrompt(); if (sandboxPanel.isOpen) sandboxPanel.update(); uiElapsed = 0; }
   if (mapElapsed >= 0.2) { drawMap($('#minimap')); if (dialogs.active === 'map-modal') drawMap($('#area-map-canvas'), true); mapElapsed = 0; }
   if (frameElapsed >= 1) {
     fps = Math.round(frameCount / frameElapsed);
     $('#render-stats').textContent = `${fps} FPS`;
-    const eorzeaMinutes = Math.floor(Date.now() / (175 / 60 * 1000)) % 1440;
+    const eorzeaMinutes = Math.floor(world.worldTime.hour * 60);
     $('#eorzea-time').textContent = `ET ${String(Math.floor(eorzeaMinutes / 60)).padStart(2, '0')}:${String(eorzeaMinutes % 60).padStart(2, '0')}`;
     frameCount = 0; frameElapsed = 0;
   }
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__APP__ = { world, combat, training, useAction, switchJob, teleport, reset, openTeleport, openBook, closeModal, SCENES, JOBS, getContext: context, getFPS: () => fps };
+window.__APP__ = { world, combat, training, useAction, switchJob, teleport, reset, openTeleport, openBook, closeModal, SCENES, JOBS, sandbox: { assets: sandboxAssets, audio, panel: sandboxPanel, hudLayout }, getContext: context, getFPS: () => fps };

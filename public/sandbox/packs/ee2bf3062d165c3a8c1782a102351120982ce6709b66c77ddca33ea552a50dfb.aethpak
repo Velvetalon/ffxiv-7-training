@@ -1,0 +1,68 @@
+AETHPAK1{
+  "schemaVersion": 1,
+  "actionId": 16535,
+  "actionTimelineId": 7127,
+  "actionTimelineKey": "ability/cnj_white/abl016",
+  "tmbPath": "chara/action/ability/cnj_white/abl016.tmb",
+  "tmbBytes": 1050,
+  "events": [
+    {
+      "entry": "C010",
+      "id": 11,
+      "timeFrames": 0,
+      "kind": "animation",
+      "path": "cbbm_abl235.pap"
+    },
+    {
+      "entry": "C012",
+      "id": 12,
+      "timeFrames": 0,
+      "kind": "vfx",
+      "path": "vfx/common/eff/cmab_shoot1c.avfx"
+    },
+    {
+      "entry": "C012",
+      "id": 13,
+      "timeFrames": 0,
+      "kind": "vfx",
+      "path": "vfx/action/ab_cnj016/eff/abi_cnj016c0h.avfx"
+    },
+    {
+      "entry": "C063",
+      "id": 14,
+      "timeFrames": 0,
+      "kind": "sound",
+      "path": "sound/vfx/ability/SE_VFX_Abi_Whm_LilyRange_c.scd",
+      "soundIndex": 0,
+      "loop": 1,
+      "interrupt": 0,
+      "soundPositionFlags": 5,
+      "bindId": 71,
+      "unknownPosition": 0
+    },
+    {
+      "entry": "C012",
+      "id": 17,
+      "timeFrames": 9,
+      "kind": "vfx",
+      "path": "vfx/action/ab_cnj016/eff/abi_cnj016t0h.avfx"
+    },
+    {
+      "entry": "C063",
+      "id": 18,
+      "timeFrames": 9,
+      "kind": "sound",
+      "path": "sound/vfx/ability/SE_VFX_Abi_Whm_LilyRange_mt.scd",
+      "soundIndex": 0,
+      "loop": 1,
+      "interrupt": 0,
+      "soundPositionFlags": 5,
+      "bindId": 71,
+      "unknownPosition": 0
+    }
+  ],
+  "timeUnit": {
+    "stored": "TMB frame",
+    "browserSecondsAt30Fps": "timeFrames / 30"
+  }
+}

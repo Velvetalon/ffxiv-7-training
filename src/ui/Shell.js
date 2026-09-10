@@ -8,7 +8,7 @@ $('#app').innerHTML = `
   <header class="topbar">
     <div class="brand"><span class="brand-mark">${icon('diamond')}</span><div><h1>以太演武场</h1><small>A E T H E R Y T E</small></div><span class="version">7.0</span></div>
     <nav class="job-switch" aria-label="职业">${JOBS.map(j => `<button data-job="${j.id}" title="${j.name}" aria-label="切换${j.name}">${icon(j.id === 'WHM' ? 'flower-2' : j.id === 'PCT' ? 'paintbrush' : 'swords')}<span>${escape(j.name)}</span><small>${j.id}</small></button>`).join('')}</nav>
-    <div class="top-actions"><button id="teleport-open" class="command">${icon('orbit')}<span>传送</span></button><button id="book-open" class="icon-button" title="技能一览" aria-label="技能一览">${icon('book-open')}</button><button id="help-open" class="icon-button" title="演武指南" aria-label="演武指南">${icon('circle-help')}</button><button id="settings-open" class="icon-button" title="设置" aria-label="设置">${icon('settings-2')}</button></div>
+    <div class="top-actions"><button id="teleport-open" class="command">${icon('orbit')}<span>传送</span></button><button id="book-open" class="icon-button" title="技能一览" aria-label="技能一览">${icon('book-open')}</button><button id="hud-layout-open" class="icon-button" title="HUD 布局" aria-label="HUD 布局">${icon('panels-top-left')}</button><button id="help-open" class="icon-button" title="演武指南" aria-label="演武指南">${icon('circle-help')}</button><button id="settings-open" class="icon-button" title="设置" aria-label="设置">${icon('settings-2')}</button></div>
   </header>
   <section class="target-frame" id="target-frame">
     <div class="target-title"><span class="target-type">${icon('crosshair')}<b>Lv.100</b></span><strong id="target-name">训练木人</strong><span id="target-distance">8.0 y</span></div>

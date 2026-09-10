@@ -108,6 +108,7 @@ export class ClientMaterials {
     const foliage = /(?:tre[ea]|leaf|grass|shiba|kus[ae]|plant)/i.test(path || '');
     const color = record.diffuseColor || [1, 1, 1];
     const emissive = record.emissiveColor || [0, 0, 0];
+    const emissiveMap = map && hasSourceEmission(record) && !record.emissiveMap ? map : null;
     const normalScale = record.normalScale ?? 1;
     const material = new THREE.MeshPhysicalMaterial({
       map, normalMap, normalScale: new THREE.Vector2(normalScale, -normalScale),
@@ -115,6 +116,7 @@ export class ClientMaterials {
       specularColorMap: specularMap, specularIntensity: specularMap ? 0.45 : 0,
       color: map ? new THREE.Color(...color) : water ? '#6dabae' : '#abb4a9',
       emissive: new THREE.Color(...emissive),
+      emissiveMap,
       roughness: water ? 0.22 : 0.85, metalness: 0,
       side: (record.flags & 1) ? THREE.FrontSide : THREE.DoubleSide,
       vertexColors: vertexColor,
@@ -149,6 +151,10 @@ export class ClientMaterials {
     }
     return material;
   }
+}
+
+function hasSourceEmission(record) {
+  return Array.isArray(record.emissiveColor) && record.emissiveColor.some(value => Number.isFinite(value) && value > 0);
 }
 
 function runtimeHasFull(runtime, viewId, resourceId) {
