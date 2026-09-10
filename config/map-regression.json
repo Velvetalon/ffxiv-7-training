@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "smokeScenes": [
+    { "id": "gridania", "reason": "city arrival, navigation, and connection coverage" },
+    { "id": "limsa", "reason": "city material and dense instance coverage" },
+    { "id": "x6f2", "reason": "large collision streaming coverage" },
+    { "id": "y6f1", "reason": "largest source-scene byte coverage" },
+    { "id": "x6f3", "reason": "high model-complexity coverage" },
+    { "id": "r2f1", "reason": "multi-level historical-risk coverage" },
+    { "id": "a2f2", "reason": "zero-connection/no-edge coverage" },
+    { "id": "n4t2", "reason": "expansion-era map and large bootstrap coverage" }
+  ],
+  "baseline": {
+    "required": false,
+    "path": null
+  },
+  "thresholds": {
+    "coldFirstVisibleMs": 10000,
+    "coldTTIMs": 30000,
+    "warmTTIMs": 5000,
+    "relativeRegression": 0.2,
+    "minimumDeltaMs": 250,
+    "memoryAbsoluteBytes": 805306368,
+    "memoryRelativeRegression": 0.2,
+    "memoryMinimumDeltaBytes": 67108864
+  },
+  "modes": {
+    "daily": { "fullRequired": false, "includeSmoke": true },
+    "runtime": { "fullRequired": true, "includeSmoke": true },
+    "release": { "fullRequired": true, "includeSmoke": true }
+  }
+}

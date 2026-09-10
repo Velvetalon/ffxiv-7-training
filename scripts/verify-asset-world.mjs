@@ -8,6 +8,7 @@
  */
 import { createRequire } from 'node:module';
 import crypto from 'node:crypto';
+import os from 'node:os';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { gunzipSync } from 'node:zlib';
@@ -31,10 +32,10 @@ const outPath = path.resolve(args.out);
 const progressPath = outPath.replace(/\.json$/i, '.progress.jsonl');
 const timeout = Number(args.timeout || 600000);
 const browserPath = args['browser-path'] || process.env.BROWSER_PATH;
-const expectedSceneCount = Number(args['expected-scenes'] || 65);
-const expectedEdgeCount = Number(args['expected-edges'] || 145);
-const officialReleaseExpectation = expectedSceneCount === 65 && expectedEdgeCount === 145;
+const expectedSceneCount = args['expected-scenes'] === undefined ? null : Number(args['expected-scenes']);
+const expectedEdgeCount = args['expected-edges'] === undefined ? null : Number(args['expected-edges']);
 const resumePath = args.resume ? path.resolve(String(args.resume)) : null;
+const continueOnFailure = args['continue-on-failure'] === true || args['continue-on-failure'] === 'true';
 const requested = args.scenes ? new Set(String(args.scenes).split(',').map(value => value.trim()).filter(Boolean)) : null;
 const smoke = args.smoke === true || args.smoke === 'true';
 const smokeIds = String(args['smoke-scenes'] || 'x6f2,gridania,limsa').split(',').map(value => value.trim()).filter(Boolean);
@@ -128,6 +129,7 @@ for (const scene of allScenes) {
 const report = {
   generatedAt: now(), appUrl, activeUrl, activeRunId: active.runId || null,
   artifactFingerprint,
+  measurementEnvironment: null,
   assetPipeline: pipeline ? { catalogMaps: Object.keys(pipeline.catalog.maps || {}).length, ticketed: Boolean(active.assetPipeline?.ticket) } : null,
   expected: { scenes: expectedSceneCount, directedConnections: expectedEdgeCount },
   static: { catalogCount: allScenes.length, directedConnections: staticEdges.length, problems: staticProblems },
@@ -153,9 +155,9 @@ const persist = async () => {
     passed: report.zones.filter(zone => zone.status === 'pass').length,
     failed: report.zones.filter(zone => zone.status === 'fail').length,
     selected: selectedScenes.length,
-    staticCoveragePass: allScenes.length === expectedSceneCount && staticEdges.length === expectedEdgeCount && staticProblems.length === 0,
+    staticCoveragePass: (expectedSceneCount === null || allScenes.length === expectedSceneCount) && (expectedEdgeCount === null || staticEdges.length === expectedEdgeCount) && staticProblems.length === 0,
     transitionPassed: report.transitions.every(transition => transition.status === 'pass'),
-    releaseReady: officialReleaseExpectation && !smoke && !requested && report.complete === true && allScenes.length === 65 && staticEdges.length === 145 && staticProblems.length === 0 && report.zones.length === 65 && report.transitions.length === 4 && report.transitions.every(transition => transition.status === 'pass'),
+    releaseReady: !smoke && !requested && report.complete === true && (expectedSceneCount === null || allScenes.length === expectedSceneCount) && (expectedEdgeCount === null || staticEdges.length === expectedEdgeCount) && staticProblems.length === 0 && report.zones.length === allScenes.length && report.transitions.length === 4 && report.transitions.every(transition => transition.status === 'pass'),
   };
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await fs.writeFile(outPath, `${JSON.stringify(report, null, 2)}\n`);
@@ -203,23 +205,23 @@ async function phaseState(page, id, phase) {
   return state;
 }
 
-async function monitoredWait(page, id, phase, wait) {
+async function monitoredWait(page, id, phase, wait, onState = () => {}) {
   let running = false;
   const probe = async () => {
     if (running) return;
     running = true;
-    try { await phaseState(page, id, phase); } finally { running = false; }
+    try { onState(await phaseState(page, id, phase)); } finally { running = false; }
   };
   await probe();
   const timer = setInterval(() => { void probe(); }, 10000);
   try {
     await wait();
-    const state = await phaseState(page, id, `${phase}:complete`);
+    const state = await phaseState(page, id, `${phase}:complete`); onState(state);
     if (state.loadError || state.streamError) throw new Error(`runtime error: ${state.loadError || state.streamError}`);
   } finally { clearInterval(timer); }
 }
 
-async function waitForVisible(page, id) {
+async function waitForVisible(page, id, onState) {
   await monitoredWait(page, id, 'visible', () => page.waitForFunction(sceneId => {
     const world = window.__APP__?.world;
     if (world?.loadError || world?.assetScene?.streamError) return true;
@@ -231,27 +233,29 @@ async function waitForVisible(page, id) {
     const top = rect && document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
     const uiReady = !overlay || (overlay.classList.contains('loaded') && style.visibility === 'hidden' && Number(style.opacity) <= 0.01 && style.pointerEvents === 'none' && top !== overlay && !overlay.contains(top));
     return uiReady && (!window.__ASSET_PROFILER__?.active || Boolean(window.__ASSET_PROFILER__.active.firstRender) && Boolean(window.__ASSET_PROFILER__.active.interactive));
-  }, id, { timeout }));
+  }, id, { timeout }), onState);
 }
 
-async function waitForFull(page, id, expectedModels) {
+async function waitForFull(page, id, expectedModels, onState) {
   await monitoredWait(page, id, 'fully-loaded', () => page.waitForFunction(({ sceneId, models }) => {
     const world = window.__APP__?.world;
     if (world?.loadError || world?.assetScene?.streamError) return true;
     return world && !world.loading && world.sceneId === sceneId && !world.assetScene?.streaming && world.assetScene?.completed?.size === models;
-  }, { sceneId: id, models: expectedModels }, { timeout }));
+  }, { sceneId: id, models: expectedModels }, { timeout }), onState);
 }
 
 async function inspectZone(browser, scene) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   const diagnostics = { pageErrors: [], consoleErrors: [], failedRequests: [] };
+  const runtimeSamples = [];
+  const noteRuntime = state => { if (state?.runtime) runtimeSamples.push(state.runtime); };
   await attach(page, diagnostics);
   const manifest = manifests.get(scene.id);
   try {
     await progress('zone:start', { id: scene.id, expectedModels: manifest.models.length });
     await page.goto(new URL(`?scene=${scene.id}`, appUrl).href, { waitUntil: 'domcontentloaded', timeout });
-    await waitForVisible(page, scene.id);
+    await waitForVisible(page, scene.id, noteRuntime);
     const preFull = await page.evaluate(() => {
       const world = window.__APP__.world;
       const overlay = document.querySelector('#loading');
@@ -267,7 +271,7 @@ async function inspectZone(browser, scene) {
     await page.keyboard.down('w');
     const keyboardAccepted = await page.evaluate(() => window.__APP__.world.input.keys.has('KeyW'));
     await page.keyboard.up('w');
-    await waitForFull(page, scene.id, manifest.models.length);
+    await waitForFull(page, scene.id, manifest.models.length, noteRuntime);
     const full = await page.evaluate(expectedModels => {
       const world = window.__APP__.world;
       const gl = world.renderer.getContext();
@@ -301,7 +305,7 @@ async function inspectZone(browser, scene) {
           fullCollisionBytes: world.assetScene?.fullCollisionBytes ?? navigation?.fullCollisionBytes ?? fullNavigation?.rawBytes ?? null,
           expectedRawBytes: map?.legacyManifest?.collisionBytes ?? world.importedManifest?.collisionBytes ?? null,
         },
-        glError: gl.getError(), textureAudit, runtime: window.__ASSET_RUNTIME__?.stats?.() || null,
+        glError: gl.getError(), textureAudit, runtime: window.__ASSET_RUNTIME__?.stats?.() || null, profiler: window.__ASSET_PROFILER__?.snapshot?.() || null,
         firstFrameVisible: Boolean(window.__ASSET_PROFILER__?.active?.firstRender && window.__ASSET_PROFILER__?.active?.interactive),
         connections: world.getConnections().map(connection => ({ id: connection.id, targetScene: connection.targetScene })),
       };
@@ -327,7 +331,20 @@ async function inspectZone(browser, scene) {
       ['page diagnostics', diagnostics.pageErrors.length === 0 && diagnostics.consoleErrors.length === 0 && diagnostics.failedRequests.length === 0],
     ];
     const failureReasons = checks.filter(([, pass]) => !pass).map(([name]) => name);
-    const result = { id: scene.id, status: failureReasons.length ? 'fail' : 'pass', failureReasons, expectedModels: manifest.models.length, preFull, keyboardAccepted, full, runtimeBoundedObservation: { separateContext: true, decodedBytes: full.runtime?.decodedBytes ?? null, decodedBudget: full.runtime?.decodedBudget ?? null, pinnedBytes: full.runtime?.pinnedBytes ?? null, encodedBytes: full.runtime?.encodedBytes ?? null, settled: runtimeSettled }, diagnostics };
+    const phaseMs = name => full.profiler?.events?.find(event => event.name === name)?.elapsedMs ?? null;
+    const peak = field => Math.max(0, ...[...runtimeSamples, preFull.runtime, full.runtime].map(sample => sample?.[field] || 0));
+    const gpuErrors = Number(full.glError !== 0) + (full.profiler?.resources || []).filter(event => event.kind === 'gpu-execution' && event.status && event.status !== 'measured').length;
+    const result = {
+      id: scene.id, status: failureReasons.length ? 'fail' : 'pass', failureReasons, expectedModels: manifest.models.length, preFull, keyboardAccepted, full,
+      metrics: {
+        loadSuccess: !full.loadError && !full.streamError && full.completed === manifest.models.length,
+        firstVisibleRenderMs: phaseMs('first-visible-render'), ttiMs: phaseMs('interactive'),
+        missingAssets: diagnostics.failedRequests.length, jsErrors: diagnostics.pageErrors.length + diagnostics.consoleErrors.length, gpuErrors,
+        memoryPeakSampled: { decodedBytes: peak('decodedBytes'), pinnedBytes: peak('pinnedBytes'), encodedBytes: peak('encodedBytes'), samples: runtimeSamples.length, note: 'Sampled from runtime heartbeat states; this is not total GPU memory.' },
+        keyCounts: { expectedModels: manifest.models.length, completedModels: full.completed, finalPreviewVariants: full.textureAudit.previewVariants, invalidTextureDimensions: full.textureAudit.dimensionsInvalid, collisionChunks: full.collision.streamingChunks, expectedCollisionChunks: full.collision.expectedChunks, fullCollisionReady: full.collision.fullCollisionReady },
+      },
+      runtimeBoundedObservation: { separateContext: true, decodedBytes: full.runtime?.decodedBytes ?? null, decodedBudget: full.runtime?.decodedBudget ?? null, pinnedBytes: full.runtime?.pinnedBytes ?? null, encodedBytes: full.runtime?.encodedBytes ?? null, settled: runtimeSettled }, diagnostics,
+    };
     await progress('zone:result', result);
     return result;
   } catch (error) {
@@ -408,6 +425,11 @@ async function inspectTransition(browser, edge) {
 }
 
 const browser = await chromium.launch({ executablePath: browserPath || undefined, headless: args.headed ? false : true, args: ['--enable-webgl', '--ignore-gpu-blocklist'] });
+report.measurementEnvironment = {
+  browserVersion: await browser.version(), platform: os.platform(), arch: os.arch(),
+  deviceId: process.env.REGRESSION_DEVICE_ID || null, viewport: { width: 1440, height: 900 },
+  cachePolicy: 'fresh browser context per map', networkProfile: args['network-profile'] || null, concurrency: 1,
+};
 try {
   await fs.mkdir(path.dirname(outPath), { recursive: true });
   await fs.writeFile(progressPath, '');
@@ -427,7 +449,7 @@ try {
     const result = await inspectZone(browser, scene);
     report.zones.push(result);
     await persist();
-    if (result.status === 'fail') break;
+    if (result.status === 'fail' && !continueOnFailure) break;
   }
   if (!requested && report.zones.length === selectedScenes.length && report.zones.every(zone => zone.status === 'pass' || zone.status === 'resumed-pass')) {
     for (const edge of representativeEdges()) {

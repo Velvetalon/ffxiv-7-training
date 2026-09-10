@@ -2,6 +2,8 @@
 
 This document records the asset-load acceptance method and the September 10, 2026 measurements. It distinguishes a renderer submission from a user-visible first render so an internally ready scene is not reported as user-ready while the loading overlay still blocks input.
 
+Future validation scope and reporting follow [Regression / Validation Strategy](REGRESSION-VALIDATION-STRATEGY.md). Full regression is automated; agents inspect summaries and exceptions rather than every successful map.
+
 ## Reusable benchmark
 
 Use [benchmark-assets.mjs](../scripts/benchmark-assets.mjs):

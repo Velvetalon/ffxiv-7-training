@@ -17,7 +17,10 @@
     "verify:assets": "node scripts/assets/verify-runtime.mjs && node scripts/assets/verify-delivery.mjs",
     "assets:analyze": "node scripts/assets/reference-analyzer.mjs",
     "assets:bundle": "node scripts/assets/bundle-planner.mjs",
-    "benchmark:assets": "node scripts/benchmark-assets.mjs"
+    "benchmark:assets": "node scripts/benchmark-assets.mjs",
+    "regress:maps": "node scripts/regress-maps.mjs",
+    "regress:select": "node scripts/assets/select-regression-maps.mjs",
+    "regress:summary": "node scripts/assets/summarize-regression.mjs"
   },
   "dependencies": {
     "lucide": "^0.468.0",

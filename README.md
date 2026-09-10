@@ -124,4 +124,6 @@ npm run verify:world
 
 使用步骤见 [ASSET-PIPELINE-QUICKSTART.md](docs/ASSET-PIPELINE-QUICKSTART.md)，模块设计见 [ASSET-PIPELINE.md](docs/ASSET-PIPELINE.md)，实测口径及结果见 [ASSET-PERFORMANCE.md](docs/ASSET-PERFORMANCE.md)。
 
+后续修改统一遵循 [Regression / Validation Strategy](docs/REGRESSION-VALIDATION-STRATEGY.md)：日常按依赖图选择受影响地图并运行固定 Smoke Set，重大共享 Runtime 改动和发布执行脚本全量回归；Agent 只查看失败、回归与异常汇总。
+
 CDN 模式的 `site/` 是不含大型地图资源的小型站点，需要可用的 `/ff14-assets/ticket` 签名接口和网络。需要独立本地运行时，按 Quickstart 构建包含资源包的成品；原始解包资源模式仍可通过清除相关构建环境变量恢复。
