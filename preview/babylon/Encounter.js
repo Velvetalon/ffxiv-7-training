@@ -16,6 +16,20 @@ const LANDMARK_NAMES = {
   'Limsa Lominsa Aetheryte Plaza': '利姆萨以太广场',
   'Airship Landing': '飞艇坪',
   'Ferry Docks': '渡船码头',
+  "Figaga's Gift": '水车',
+  'The Knot': '圆坛',
+  'Blue Badger Gate': '蓝獾门',
+  'White Wolf Gate': '白狼门',
+  "East Hawkers' Alley": '东商人街',
+  "West Hawkers' Alley": '西商人街',
+  "Mealvaan's Gate": '秘术师行会',
+  'The Astalicia': '阿斯塔利西亚号',
+  'Bulwark Hall': '壁垒商会',
+  "Crow's Lift": '乌鸦升降机',
+  'Zephyr Gate': '和风陆门',
+  'Acorn Orchard': '橡果园',
+  "Hawkers' Round": '商人圆台',
+  'Lominsan Ferry Docks': '利姆萨渡船码头',
 };
 
 function descendants(root) {

@@ -128,7 +128,7 @@ export default defineConfig(({ command }) => {
         if (!importer || !source.startsWith('.')) return;
         const resolved = path.relative(repo, path.resolve(path.dirname(importer.split('?')[0]), source)).replaceAll('\\', '/');
         const replacement = engineRedirects.get(resolved);
-        if (replacement) return path.join(repo, replacement);
+        if (replacement) return path.join(repo, replacement).replaceAll('\\', '/');
       },
       transform(source, id) {
         // This entry always runs in a browser. Omit the shared module's Node

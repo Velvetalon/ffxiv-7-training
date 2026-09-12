@@ -45,8 +45,11 @@ async function collisionFloats(assets) {
 }
 
 async function resourceFloats(assets, resourceId, expectedTriangles = null, priority = 0) {
-  const bytes = byteView(await assets.load(resourceId, { priority }));
+  let bytes = byteView(await assets.load(resourceId, { priority }));
+  const metadata = assets.runtime.registry.get(resourceId).metadata || {};
+  if (metadata.encoding === 'gzip') bytes = new Uint8Array(await decompressGzip(bytes));
   if (bytes.byteLength % 36 !== 0) throw new Error(`Collision chunk ${resourceId} is not a triangle array`);
+  if (metadata.rawBytes && bytes.byteLength !== metadata.rawBytes) throw new Error(`Collision chunk ${resourceId} decoded byte count mismatch`);
   if (expectedTriangles && bytes.byteLength !== expectedTriangles * 36) {
     throw new Error(`Collision chunk ${resourceId} length mismatch`);
   }
@@ -99,7 +102,7 @@ export class Navigation {
     };
     this.octree = new Octree((triangle, block) => {
       if (intersectsBlock(triangle, block)) block.entries.push(triangle);
-    }, 24, 6);
+    }, 128, 4);
     this.octree.update(minimum, maximum, this.triangles);
   }
 

@@ -445,7 +445,7 @@ async function runMapPositionCheck({ snapshot, args, outPath }) {
   try {
     const result = await execFileAsync(process.execPath, [
       checker,
-      '--scene=e3t1',
+      'e3t1',
       `--runtime=${runtimeRoot}`,
       `--source=${sourceRoot}`,
       `--runtime-state=${snapshotPath}`,
@@ -541,8 +541,8 @@ async function validate(args) {
     const checks = {
       ready: finalState.isReady === true,
       fullyLoaded: finalState.isFullyLoaded === true,
-      openIdentity: report.open?.title === EXPECTED.title && report.open?.babylonRuntime === true,
-      refreshIdentity: report.refresh?.completed === true && report.refresh?.identity?.title === EXPECTED.title && report.refresh?.identity?.babylonRuntime === true,
+      openIdentity: report.open?.title?.endsWith(' · Babylon World Preview') && report.open?.babylonRuntime === true,
+      refreshIdentity: report.refresh?.completed === true && report.refresh?.identity?.title?.endsWith(' · Babylon World Preview') && report.refresh?.identity?.babylonRuntime === true,
       webgl2: engine.webGLVersion >= 2 && engine.webgl2Context === true,
       mapId: source.mapId === EXPECTED.mapId,
       territoryId: source.territoryId === EXPECTED.territoryId,

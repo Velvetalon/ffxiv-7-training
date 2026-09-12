@@ -15,6 +15,11 @@ function parseArgs(values) {
   for (let index = 0; index < values.length; index += 1) {
     const value = values[index];
     if (!value.startsWith('--')) continue;
+    const equal = value.indexOf('=');
+    if (equal !== -1) {
+      result[value.slice(2, equal)] = value.slice(equal + 1);
+      continue;
+    }
     const key = value.slice(2);
     const next = values[index + 1];
     if (next && !next.startsWith('--')) result[key] = next, index += 1;
