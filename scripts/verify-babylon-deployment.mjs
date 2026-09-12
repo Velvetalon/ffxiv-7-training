@@ -56,9 +56,13 @@ for (const match of preview.body.toString().matchAll(/href=["']([^"']+\.css)["']
   if (match[1].startsWith(base)) files.push(match[1].slice(base.length));
 }
 for (const name of await fs.readdir(path.join(source, 'assets'))) {
-  if (/^LodWorker-.*\.js$/.test(name)) files.push(`assets/${name}`);
+  if (/\.(?:js|css|wasm)$/.test(name)) files.push(`assets/${name}`);
 }
-const artifacts = await Promise.all(files.map(sameArtifact));
+const artifactFiles = [...new Set(files)].sort();
+const artifacts = [];
+for (let offset = 0; offset < artifactFiles.length; offset += 6) {
+  artifacts.push(...await Promise.all(artifactFiles.slice(offset, offset + 6).map(sameArtifact)));
+}
 const evidence = (response, identity) => {
   const { body, ...fields } = response;
   return { ...fields, ...identity };
@@ -75,5 +79,12 @@ const report = {
 const out = path.resolve(root, args.out || 'work/babylon-preview/deployment-proof.json');
 await fs.mkdir(path.dirname(out), { recursive: true });
 await fs.writeFile(out, JSON.stringify(report, null, 2));
-console.log(JSON.stringify({ ...report, artifacts: artifacts.map(item => ({ url: item.url, bytes: item.bytes, sha256: item.sha256 })), out }, null, 2));
+console.log(JSON.stringify({
+  ...report,
+  artifactCount: artifacts.length,
+  artifacts: artifacts.filter(item => /\/(?:build-info\.json|app-config\.json|(?:index|app|main|SceneLoader|LodWorker)-[^/]+\.(?:js|css))$/.test(item.url))
+    .map(item => ({ url: item.url, bytes: item.bytes, sha256: item.sha256 })),
+  checks: { total: checks.length, passed: checks.filter(check => check.pass).length, failures: checks.filter(check => !check.pass) },
+  out,
+}, null, 2));
 process.exitCode = report.status === 'PASS' ? 0 : 1;

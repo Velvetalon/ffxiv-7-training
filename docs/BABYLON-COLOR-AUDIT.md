@@ -1,4 +1,9 @@
-# Babylon Color Audit: Candidate, Not Visually Accepted
+# Babylon Color Audit: Historical Capped Attempt
+
+This document preserves the earlier stopped attempt and its source findings.
+The subsequent completed capture, measured results, release decision and
+deployment evidence are in [BABYLON-COLOR-CLOSURE.md](BABYLON-COLOR-CLOSURE.md).
+The status statements below describe the historical attempt, not the closure.
 
 ## Outcome
 

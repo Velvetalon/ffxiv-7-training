@@ -1,8 +1,10 @@
 # Babylon Materials, Environment And Color Diagnostics
 
-**Candidate status:** source/native numerical checks passed, but the capped
-pixel comparison did not produce valid foreground masks. These color changes
-are not deployed or visually accepted. See [BABYLON-COLOR-AUDIT.md](BABYLON-COLOR-AUDIT.md).
+**Color closure:** repaired pixel comparisons validate the shared correction
+on two source models and three whole-map views. Limsa remains an explicit
+whole-frame threshold exception, not a fourth passing color result.
+Acceptance, limitations and release evidence are recorded in
+[BABYLON-COLOR-CLOSURE.md](BABYLON-COLOR-CLOSURE.md).
 
 This document describes the isolated Babylon preview adapter for `e3t1`
 (Kugane, territory `628`). It is intentionally scoped to the v4 preview and
