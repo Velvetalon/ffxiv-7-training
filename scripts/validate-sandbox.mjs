@@ -404,7 +404,8 @@ async function probeSkills(page, timeoutMs) {
       await page.locator(`[data-action="${id}"]`).first().click();
       await page.waitForFunction(actionId => window.__APP__?.world?.character?.state?.actionId === actionId,
         id, { timeout: Math.min(timeoutMs, 6000) }).catch(() => {});
-      await sleep(550);
+      await page.waitForFunction(previous => (window.__sandboxActionSourceStarts || 0) > previous,
+        before, { timeout: Math.min(timeoutMs, 15000) }).catch(() => {});
       const after = await page.evaluate(actionId => {
         const app = window.__APP__;
         const definition = app.sandbox.assets.manifest?.skills?.[actionId] || {};
@@ -416,7 +417,7 @@ async function probeSkills(page, timeoutMs) {
           actionError: app.world.character.state.actionError || null,
           animationState,
           clipRegistered: Boolean(animationState && animation?.has(animationState)),
-          clipDuration: animationState ? Number(animation?.clip(animationState)?.duration || 0) : 0,
+          clipDuration: animationState ? Number(animation?.clip(animationState)?.getLength?.() ?? animation?.clip(animationState)?.duration ?? 0) : 0,
           starts: window.__sandboxActionSourceStarts || 0,
           soundId: definition.soundId || null,
           context: app.sandbox.audio.context?.state || null,

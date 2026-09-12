@@ -195,7 +195,7 @@ async function exerciseMain(page, checks, args, report) {
   await page.waitForFunction(target => {
     const p = window.__APP__?.world?.player?.position;
     return p && ['x', 'y', 'z'].every(axis => Math.abs(p[axis] - target[axis]) < 0.05);
-  }, point, { timeout: 5000 });
+  }, point, { timeout: args.timeout });
   const teleported = await page.evaluate(() => {
     const p = window.__APP__.world.player.position;
     return [p.x, p.y, p.z];
@@ -412,7 +412,7 @@ async function exerciseMain(page, checks, args, report) {
     await page.mouse.up({ button: 'right' });
   }
   await sleep(500);
-  const persistedBefore = await page.evaluate(() => ({ settings: JSON.parse(localStorage.getItem('aetheryte-settings') || '{}'), panel: window.__APP__.developer.panel.getState() }));
+  const persistedBefore = await page.evaluate(() => ({ settings: JSON.parse(localStorage.getItem(window.__APP__.world.engine ? 'aetheryte-babylon-settings' : 'aetheryte-settings') || '{}'), panel: window.__APP__.developer.panel.getState() }));
   await page.reload({ waitUntil: 'domcontentloaded' });
   const reloadWorldReady = await page.waitForFunction(id => {
     const world = window.__APP__?.world;
@@ -420,7 +420,7 @@ async function exerciseMain(page, checks, args, report) {
   }, 'limsa', { timeout: args.timeout }).then(() => true).catch(() => false);
   const panelRestored = await page.waitForFunction(() => window.__APP__?.developer?.panel?.isOpen && window.__APP__.developer.panel.getState().tab === 'environment' && window.__APP__.developer.overlay.isEnabled, null, { timeout: 10000 }).then(() => true).catch(() => false);
   const persistedAfter = await page.evaluate(() => ({
-    settings: JSON.parse(localStorage.getItem('aetheryte-settings') || '{}'),
+    settings: JSON.parse(localStorage.getItem(window.__APP__.world.engine ? 'aetheryte-babylon-settings' : 'aetheryte-settings') || '{}'),
     panel: window.__APP__.developer.panel.getState(),
     prefs: window.__APP__.developer.preferences.snapshot(),
   }));
