@@ -224,27 +224,30 @@ async function inspectCharacter(page) {
     const meshNames = [];
     const irisMaterials = [];
     const partMeshes = { hands: [], feet: [] };
-    model?.traverse?.(node => {
-      if (!node.isMesh) return;
+    const inspectMesh = node => {
+      const nativeMesh = typeof node.getTotalVertices === 'function';
+      if (nativeMesh ? !node.getTotalVertices() : !node.isMesh) return;
       meshes++;
-      if (node.isSkinnedMesh) {
+      if (node.isSkinnedMesh || (nativeMesh && node.skeleton)) {
         skinnedMeshes++;
         skeletonBones = Math.max(skeletonBones, node.skeleton?.bones?.length || 0);
       }
-      vertices += node.geometry?.attributes?.position?.count || 0;
+      vertices += nativeMesh ? node.getTotalVertices() : node.geometry?.attributes?.position?.count || 0;
       if (meshNames.length < 48) meshNames.push(node.name || '(unnamed)');
       const materials = Array.isArray(node.material) ? node.material : [node.material];
       for (const material of materials) {
         if (!material) continue;
-        const label = [node.name, material.name, material.userData?.role, material.userData?.shader,
+        const label = [node.name, material.name, material.metadata?.ffxivRole, material.userData?.role, material.userData?.shader,
           material.userData?.semantic, material.userData?.source].filter(Boolean).join(' ').toLowerCase();
-        if (/iris|iri/.test(label)) irisMaterials.push({ label: label.slice(0, 140), depthTest: material.depthTest !== false });
+        if (/iris|iri/.test(label)) irisMaterials.push({ label: label.slice(0, 140), depthTest: material.depthTest !== false && material.disableDepthWrite !== true });
         if (/hand|glov|arm|te_l|te_r|finger/.test(label)) partMeshes.hands.push(node.name || label.slice(0, 80));
         if (/foot|shoe|sho|asi_/.test(label)) partMeshes.feet.push(node.name || label.slice(0, 80));
       }
-    });
+    };
+    if (model?.getChildMeshes) model.getChildMeshes().forEach(inspectMesh);
+    else model?.traverse?.(inspectMesh);
     const appearance = character?.state?.appearance || null;
-    const modelScale = model?.scale?.toArray?.() || null;
+    const modelScale = model?.scaling?.asArray?.() || model?.scale?.toArray?.() || null;
     const runtimeDefinition = character?.definition?.appearanceBindings || null;
     const runtimeCompleteness = runtimeDefinition?.completeness || null;
     const animationStates = [...(character?.animation?.clips?.keys?.() || [])];
@@ -300,7 +303,7 @@ async function importDat(page, datPath, timeoutMs) {
       const world = window.__APP__.world;
       const appearance = world.character.state.appearance;
       const stateText = document.querySelector('[data-appearance-state]')?.textContent || '';
-      const scale = world.character.model?.scale?.toArray?.() || [];
+      const scale = world.character.model?.scaling?.asArray?.() || world.character.model?.scale?.toArray?.() || [];
       return {
         loadCalls: window.__sandboxDatLoadCalls || 0,
         source: appearance?.source?.format || null,
@@ -462,12 +465,19 @@ async function probeMount(page, timeoutMs) {
       null, { timeout: timeoutMs });
     const mounted = await page.evaluate(() => {
       const world = window.__APP__.world;
-      return { state: { ...world.mount.state }, position: world.player.position.toArray(), modelParent: world.character.model?.parent?.name || null };
+      const p = world.player.position;
+      return { state: { ...world.mount.state }, position: [p.x, p.y, p.z], modelParent: world.character.model?.parent?.name || null };
     });
     await clickCanvas(page, 0.5, 0.5);
-    const groundStart = await page.evaluate(() => window.__APP__.world.player.position.toArray());
+    const groundStart = await page.evaluate(() => {
+      const p = window.__APP__.world.player.position;
+      return [p.x, p.y, p.z];
+    });
     await page.keyboard.down('KeyW'); await sleep(420); await page.keyboard.up('KeyW');
-    const groundEnd = await page.evaluate(() => window.__APP__.world.player.position.toArray());
+    const groundEnd = await page.evaluate(() => {
+      const p = window.__APP__.world.player.position;
+      return [p.x, p.y, p.z];
+    });
     const groundMoved = Math.hypot(groundEnd[0] - groundStart[0], groundEnd[2] - groundStart[2]);
 
     await page.locator('[data-flight-toggle]').click();

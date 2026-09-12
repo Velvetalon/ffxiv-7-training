@@ -4,6 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev:babylon": "vite --config vite.babylon.config.js",
+    "build:babylon": "vite build --config vite.babylon.config.js",
+    "preview:babylon": "vite preview --config vite.babylon.config.js",
+    "validate:babylon": "node scripts/validate-babylon.mjs",
+    "validate-babylon": "node scripts/validate-babylon.mjs",
+    "benchmark:babylon": "node scripts/benchmark-babylon.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "release": "vite build --outDir site",
@@ -30,6 +36,9 @@
     "check-map-position": "node scripts/check-map-position.mjs"
   },
   "dependencies": {
+    "@babylonjs/core": "9.26.0",
+    "@babylonjs/loaders": "9.26.0",
+    "@babylonjs/materials": "9.26.0",
     "lucide": "^0.468.0",
     "meshoptimizer": "1.2.0",
     "three": "0.180.0",

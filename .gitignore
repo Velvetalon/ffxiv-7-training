@@ -1,6 +1,8 @@
 node_modules/
 __pycache__/
 dist/
+site-babylon-preview/
+site-babylon-preview-stale-*/
 work/
 *.log
 HUMAN_RESPONSE.md

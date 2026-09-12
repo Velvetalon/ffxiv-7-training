@@ -25,12 +25,16 @@ if (args.help) {
   --out PATH            Output directory (default work/fast-validation)
   --browser-path PATH   Browser executable
   --playwright-module-path PATH  Existing Playwright package.json
+  --engine=babylon --url=URL  Validate an already built isolated Babylon client
 
 Build/static checks -> once-per-core-version Smoke -> fixed representative checks.
 No deployment, asset conversion, screenshots, full streaming wait or stress test.`);
   process.exit(0);
 }
-const out = path.resolve(root, String(args.out || 'work/fast-validation'));
+const babylon = args.engine === 'babylon';
+if (babylon && !args.url) throw new Error('Babylon validation requires --url for the built preview.');
+const externalUrl = args.url ? new URL(String(args.url)).href : null;
+const out = path.resolve(root, String(args.out || (babylon ? 'work/fast-validation-babylon' : 'work/fast-validation')));
 if (out === root || !path.relative(root, out).startsWith(`work${path.sep}`)) {
   throw new Error('--out must be a dedicated directory under this project work/');
 }
@@ -52,20 +56,30 @@ async function sourceFiles(directory) {
   return result.sort();
 }
 const files = await sourceFiles(path.join(root, 'src'));
+if (babylon) files.push(...await sourceFiles(path.join(root, 'preview/babylon')));
 const buildHash = crypto.createHash('sha256');
 for (const file of [...files, path.join(root, 'index.html'), path.join(root, 'package.json')]) {
   buildHash.update(path.relative(root, file)); buildHash.update(await fs.readFile(file));
 }
 const buildFingerprint = buildHash.digest('hex');
-const core = files.filter(file => /[/\\]src[/\\](assets[/\\]|world[/\\]|main\.js$)/.test(file));
+const core = files.filter(file => /[/\\]src[/\\](assets[/\\]|world[/\\]|main\.js$)/.test(file) || (babylon && file.includes(`${path.sep}preview${path.sep}`)));
 const coreHash = crypto.createHash('sha256');
-for (const file of [...core, path.join(root, 'package.json'), path.join(root, 'vite.config.js'), path.join(root, 'config/fast-validation.json')]) {
+for (const file of [...core, path.join(root, 'package.json'), path.join(root, babylon ? 'vite.babylon.config.js' : 'vite.config.js'), path.join(root, 'config/fast-validation.json')]) {
   coreHash.update(path.relative(root, file)); coreHash.update(await fs.readFile(file));
 }
 const assetIdentity = assetRelease
   ? (JSON.parse(await fs.readFile(path.join(assetRelease, 'publish-manifest.json'), 'utf8'))).entry
   : await fs.readFile(path.join(root, 'public/extracted/active.json'), 'utf8');
 coreHash.update(assetIdentity);
+if (externalUrl) {
+  coreHash.update(externalUrl);
+  if (babylon) {
+    const response = await fetch(new URL('build-info.json', externalUrl));
+    const build = await response.json();
+    if (build.engine !== 'Babylon.js' || build.threeModules !== 0 || !build.sourceSha256) throw new Error('URL does not identify a built native Babylon client.');
+    coreHash.update(build.sourceSha256);
+  }
+}
 const fingerprint = coreHash.digest('hex');
 let previous;
 try { previous = JSON.parse(await fs.readFile(ledgerPath, 'utf8')); } catch {}
@@ -73,7 +87,7 @@ const sameCore = previous?.fingerprint === fingerprint;
 const runAll = Boolean(args['force-smoke']) || !sameCore;
 const retryIds = sameCore ? (previous.failures || []) : [];
 const plan = {
-  build: !args['skip-build'],
+  build: externalUrl ? 'already-built external URL' : !args['skip-build'],
   smoke: runAll ? 'all maps once' : retryIds.length ? `retry ${retryIds.length} failed/timeout maps only` : 'reuse previous passing all-map smoke',
   representatives: config.representatives.map(item => item.id),
   assetRelease, out,
@@ -95,15 +109,17 @@ async function staticCheck(script) {
 let server;
 const result = { schemaVersion: 1, startedAt: new Date().toISOString(), plan, fingerprint, status: 'RUNNING' };
 try {
-  if (args['skip-build']) {
+  if (!externalUrl && args['skip-build']) {
     const priorBuild = JSON.parse(await fs.readFile(buildStatePath, 'utf8').catch(() => '{}'));
     if (priorBuild.fingerprint !== buildFingerprint) throw new Error('Current source differs from the cached build; omit --skip-build.');
   }
-  await prepareLocalSite({ root, out: buildOut, assetRelease, skipBuild: Boolean(args['skip-build']) });
-  await fs.writeFile(buildStatePath, JSON.stringify({ fingerprint: buildFingerprint }));
+  if (!externalUrl) {
+    await prepareLocalSite({ root, out: buildOut, assetRelease, skipBuild: Boolean(args['skip-build']) });
+    await fs.writeFile(buildStatePath, JSON.stringify({ fingerprint: buildFingerprint }));
+  }
   await staticCheck('scripts/verify.mjs');
   await staticCheck('scripts/verify-camera.mjs');
-  server = await serveLocalSite({ root, out: buildOut, assetRelease });
+  server = externalUrl ? { url: externalUrl, close: async () => {} } : await serveLocalSite({ root, out: buildOut, assetRelease });
   const common = {
     url: server.url, timeoutMs: config.smoke.timeoutMs,
     browserPath: args['browser-path'], playwrightModulePath: args['playwright-module-path'],
@@ -126,7 +142,9 @@ try {
     smoke = { reused: true, reportPath: previous.report, counts: { maps: previous.allMapCount, pass: previous.allMapCount, fail: 0, timeout: 0 }, exceptions: [], totalMs: 0 };
   }
   result.smoke = smoke;
-  const validIds = new Set(Object.keys(JSON.parse(await fs.readFile(path.join(buildOut, 'extracted/active.json'), 'utf8')).scenes));
+  const active = externalUrl ? await (await fetch(new URL('extracted/active.json', externalUrl))).json()
+    : JSON.parse(await fs.readFile(path.join(buildOut, 'extracted/active.json'), 'utf8'));
+  const validIds = new Set(Object.keys(active.scenes));
   const missingRepresentatives = config.representatives.filter(item => !validIds.has(item.id));
   if (missingRepresentatives.length) throw new Error(`Representative maps are not in this catalog: ${missingRepresentatives.map(item => item.id).join(', ')}`);
   result.representatives = await runRepresentative({

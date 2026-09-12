@@ -191,7 +191,10 @@ async function exerciseMain(page, checks, args, report) {
     const p = window.__APP__?.world?.player?.position;
     return p && ['x', 'y', 'z'].every(axis => Math.abs(p[axis] - target[axis]) < 0.05);
   }, point, { timeout: 5000 });
-  const teleported = await page.evaluate(() => window.__APP__.world.player.position.toArray());
+  const teleported = await page.evaluate(() => {
+    const p = window.__APP__.world.player.position;
+    return [p.x, p.y, p.z];
+  });
   addCheck(checks, 'map-xyz-teleport', ['x', 'y', 'z'].every((axis, index) => Math.abs(teleported[index] - point[axis]) < 0.05), { point, teleported });
 
   // Character JSON/reload, plus an optional real DAT fixture supplied by the caller.

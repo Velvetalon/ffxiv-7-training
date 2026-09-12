@@ -86,9 +86,14 @@ async function probe(page, id) {
     const world = window.__APP__?.world;
     const overlay = document.querySelector('#loading');
     const style = overlay ? getComputedStyle(overlay) : null;
-    const calls = world?.renderer?.info?.render?.calls ?? 0;
-    const groupChildren = world?.sceneRoot?.children?.length ?? 0;
+    const calls = world?.engine?._drawCalls?.current ?? world?.renderer?.info?.render?.calls ?? 0;
+    const groupChildren = world?.sceneRoot?.getChildMeshes?.().length ?? world?.sceneRoot?.children?.length ?? 0;
     const overlayHidden = !overlay || (style.visibility === 'hidden' && Number(style.opacity) <= 0.01);
+    const native = Boolean(world?.engine && world?.scene?.getEngine?.() === world.engine);
+    const loader = world?.mapLoader;
+    const assets = world?.assetScene?.assets;
+    const sample = loader?.records?.find(record => record.instantiated && record.resourceId);
+    const nativeMapReady = !native || (assets?.mapId === sceneId && loader?.state?.instantiatedModels > 0 && loader?.state?.meshCount > 0);
     return {
       appReady: Boolean(world),
       targetScene: sceneId,
@@ -102,7 +107,22 @@ async function probe(page, id) {
       renderCalls: calls,
       overlayHidden,
       inputEnabled: world?.input?.enabled ?? null,
-      ready: Boolean(world && world.sceneId === sceneId && !world.loading && world.isImported && world.navigation && groupChildren > 0 && calls > 0 && overlayHidden),
+      evidence: native ? {
+        title: document.title,
+        displayName: document.querySelector('#scene-name')?.textContent || sceneId,
+        entryScript: document.querySelector('script[type="module"][src]')?.getAttribute('src') || null,
+        engine: 'Babylon.js',
+        engineVersion: world.engine.constructor.Version || null,
+        backend: `WebGL${world.engine.webGLVersion}`,
+        mapId: assets?.mapId || null,
+        manifest: assets?.manifestPath || null,
+        sampleResourceId: sample?.resourceId || null,
+        sampleVertices: sample?.template?.meshes?.[0]?.mesh?.getTotalVertices?.() || 0,
+        instantiatedModels: loader?.state?.instantiatedModels || 0,
+        meshes: loader?.state?.meshCount || 0,
+        sourcePlacements: loader?.state?.sourcePlacementCount || 0,
+      } : null,
+      ready: Boolean(world && world.sceneId === sceneId && !world.loading && world.isImported && world.navigation && groupChildren > 0 && calls > 0 && overlayHidden && nativeMapReady),
     };
   }, id);
 }
@@ -142,7 +162,23 @@ async function inspectAppearance(page) {
     let materials = 0;
     let texturedMaterials = 0;
     let loadedTextures = 0;
-    world?.sceneRoot?.traverse?.(node => {
+    const inspectNode = node => {
+      if (typeof node.getTotalVertices === 'function') {
+        if (!node.getTotalVertices()) return;
+        meshes++;
+        positionedMeshes++;
+        const list = node.material?.subMaterials || [node.material];
+        for (const material of list) {
+          if (!material) continue;
+          materials++;
+          const texture = material.albedoTexture || material.diffuseTexture;
+          if (texture) {
+            texturedMaterials++;
+            if (texture.isReady()) loadedTextures++;
+          }
+        }
+        return;
+      }
       if (!node.isMesh) return;
       meshes++;
       if ((node.geometry?.attributes?.position?.count || 0) > 0) positionedMeshes++;
@@ -154,7 +190,9 @@ async function inspectAppearance(page) {
           if (material.map.image?.width > 0 && material.map.image?.height > 0) loadedTextures++;
         }
       }
-    });
+    };
+    if (world?.sceneRoot?.getChildMeshes) world.sceneRoot.getChildMeshes().forEach(inspectNode);
+    else world?.sceneRoot?.traverse?.(inspectNode);
     return {
       sceneVisible: world?.scene?.visible !== false && world?.sceneRoot?.visible !== false && (world?.renderer?.info?.render?.calls || 0) > 0,
       meshes,
@@ -172,7 +210,8 @@ async function observeRepresentative(page, observeMs, deadline) {
   const observationStartedAt = Date.now();
   const before = await page.evaluate(() => {
     const world = window.__APP__.world;
-    return { position: world.player.position.toArray(), azimuth: world.azimuth, camera: world.camera.rotation.toArray() };
+    return { position: [world.player.position.x, world.player.position.y, world.player.position.z],
+      azimuth: world.azimuth, camera: [world.camera.rotation.x, world.camera.rotation.y, world.camera.rotation.z] };
   });
   await page.keyboard.down('KeyW');
   await within(sleep(Math.min(350, Math.max(100, observeMs))), deadline - Date.now());
@@ -183,7 +222,10 @@ async function observeRepresentative(page, observeMs, deadline) {
   }, before.position);
   let reverseDistance = null;
   if (moved <= 0.01) {
-    const reverseStart = await page.evaluate(() => window.__APP__.world.player.position.toArray());
+    const reverseStart = await page.evaluate(() => {
+      const p = window.__APP__.world.player.position;
+      return [p.x, p.y, p.z];
+    });
     await page.keyboard.down('KeyS');
     await within(sleep(Math.min(350, Math.max(100, observeMs))), deadline - Date.now());
     await page.keyboard.up('KeyS');
@@ -409,6 +451,12 @@ async function runValidation({ url, scenes, timeoutMs = 30000, concurrency = 2, 
     concurrency: representative ? 1 : Math.max(1, Number(concurrency) || 2),
     observeMs: representative ? Number(observeMs) || 1500 : null,
     manualReview,
+    results: results.map(result => ({
+      id: result.id, status: result.status, durationMs: result.durationMs,
+      reason: result.reason || null, message: result.message || null,
+      sceneId: result.bootstrap?.sceneId || null,
+      evidence: result.bootstrap?.evidence || null,
+    })).sort((a, b) => a.id.localeCompare(b.id)),
     ...summary,
   });
   return representative ? { ...summary, manualReview } : summary;
