@@ -1,0 +1,32 @@
+.render-debug-controls {
+  border-top: 1px solid #697778;
+  padding-top: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.render-debug-mode {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.render-debug-mode select {
+  min-width: 0;
+  width: 100%;
+  padding: 5px;
+  color: inherit;
+  background: #202b2a;
+  border: 1px solid #71827c;
+  border-radius: 3px;
+}
+.render-debug-flags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.render-debug-flags label { display: inline-flex; align-items: center; gap: 3px; }
+.render-debug-flags input { margin: 0; }
+.render-debug-flags button { width: 28px; height: 28px; padding: 5px; }
+.render-debug-flags svg { width: 16px; height: 16px; }

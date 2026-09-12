@@ -378,8 +378,21 @@ export class MaterialAdapter {
       material.invertNormalMapY = SOURCE_NORMAL_Y_INVERTED;
     }
 
-    const isSpecularGlossiness = Boolean(specular || record.specular || record.reflectivityTexture);
-    if (isSpecularGlossiness) {
+    const backgroundMask = family === 'background' && Boolean(specular);
+    const isSpecularGlossiness = !backgroundMask && Boolean(specular || record.specular || record.reflectivityTexture);
+    if (backgroundMask) {
+      // bg.shpk _s is channel data, not colored specular reflectance.
+      // G carries roughness; R/B specular masks have no proven PBR equivalent.
+      material.metallic = 0;
+      material.roughness = 1;
+      material.metallicTexture = specular.texture;
+      material.useRoughnessFromMetallicTextureGreen = true;
+      material.useRoughnessFromMetallicTextureAlpha = false;
+      material.useMetallnessFromMetallicTextureBlue = false;
+      material.useAmbientOcclusionFromMetallicTextureRed = false;
+      material.useMicroSurfaceFromReflectivityMapAlpha = false;
+      increment(this.stats.unsupported, 'bg-specular-mask-rb');
+    } else if (isSpecularGlossiness) {
       material.metallic = null;
       material.roughness = null;
       if (specular) material.reflectivityTexture = specular.texture;
@@ -454,7 +467,7 @@ export class MaterialAdapter {
     const textureSlots = [
       { property: 'albedoTexture', semantic: 'albedo', runtimePath: mapPath, sourcePath: channels.diffuse, uvScale: uvScales.albedo },
       { property: 'bumpTexture', semantic: 'normal', runtimePath: normalPath, sourcePath: channels.normal, uvScale: uvScales.normal, level: normalLevel },
-      { property: 'reflectivityTexture', semantic: 'specular', runtimePath: specularPath, sourcePath: channels.specular, uvScale: uvScales.specular },
+      { property: backgroundMask ? 'metallicTexture' : 'reflectivityTexture', semantic: 'specular', runtimePath: specularPath, sourcePath: channels.specular, uvScale: uvScales.specular },
       { property: 'emissiveTexture', semantic: 'emissive', runtimePath: recordRuntimePath(record, 'emissiveMap'), sourcePath: record.emissiveMap, uvScale: uvScales.albedo },
     ].filter(slot => slot.runtimePath);
     if (secondaryPlugin) textureSlots.push({ property: 'secondaryTexture', semantic: 'secondary', runtimePath: secondaryPath, sourcePath: channels.secondary, uvScale: uvScales.secondary });
@@ -464,7 +477,16 @@ export class MaterialAdapter {
       shader: record.shader,
       shaderFamily: family,
       flags: finite(record.flags, 0),
-      workflow: isSpecularGlossiness ? 'specular-glossiness' : 'metallic-roughness-fallback',
+      workflow: backgroundMask ? 'background-packed-mask-dielectric' : isSpecularGlossiness ? 'specular-glossiness' : 'metallic-roughness-fallback',
+      channelMapping: backgroundMask ? {
+        source: record.specular,
+        r: 'specular-mask-A-unmapped',
+        g: 'roughness',
+        b: 'specular-mask-B-unmapped',
+        a: 'unused',
+        metallic: 0,
+        specularTint: 'neutral-native-dielectric',
+      } : null,
       sourceNormalYInverted: SOURCE_NORMAL_Y_INVERTED,
       preview,
       channels,
@@ -477,6 +499,7 @@ export class MaterialAdapter {
     };
     if (secondaryNormalPath) material.metadata.ffxiv.unsupported.push('secondary-normal-blend');
     if (family === 'crystal') material.metadata.ffxiv.unsupported.push('crystal-envmap-effect');
+    if (backgroundMask) material.metadata.ffxiv.unsupported.push('bg-specular-mask-rb');
     material.name = `Kugane:${path}`;
     this.stats.created += 1;
     return material;

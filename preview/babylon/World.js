@@ -11,6 +11,7 @@ import {
 import BabylonAssets from './AssetBridge.js';
 import EnvironmentAdapter from './EnvironmentAdapter.js';
 import MaterialAdapter from './MaterialAdapter.js';
+import { DebugRenderMode } from './DebugRenderMode.js';
 import { createBabylonMapLoader } from './SceneLoader.js';
 import { Navigation } from './Navigation.js';
 import { EffectSystem } from './Effects.js';
@@ -201,6 +202,7 @@ export class World {
     this.importedManifest = null;
     this.environment = null;
     this.environmentAdapter = null;
+    this.renderDebug = null;
     this.time = 0;
     this.moving = false;
     this.azimuth = 0.05;
@@ -291,6 +293,8 @@ export class World {
       this.mapLoader = draft.loader;
       this.environmentAdapter = draft.environmentAdapter;
       this.environment = draft.environment;
+      this.environment.apply(true);
+      this.renderDebug = new DebugRenderMode({ scene: this.scene, environmentAdapter: this.environmentAdapter });
       this.importedManifest = draft.assets.legacy;
       this.isImported = true;
       this.preferredConnectionId = entry.arrivalConnection || null;
@@ -525,6 +529,7 @@ export class World {
     const firstImportedFrame = this.isImported && !this.loading && !assetProfiler.active?.firstRender && assetProfiler.active?.sceneId === this.sceneId;
     this.engine.beginFrame();
     try {
+      this.renderDebug?.apply();
       this.scene.render();
     } finally {
       this.engine.endFrame();
@@ -697,6 +702,8 @@ export class World {
   }
 
   clearScene() {
+    this.renderDebug?.dispose();
+    this.renderDebug = null;
     this.effects.clear();
     for (const [id, character] of [...this.characters]) {
       if (character === this.character) continue;

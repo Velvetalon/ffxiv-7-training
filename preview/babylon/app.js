@@ -10,6 +10,8 @@ import EnvironmentAdapter from './EnvironmentAdapter.js';
 import MaterialAdapter from './MaterialAdapter.js';
 import { createBabylonMapLoader } from './SceneLoader.js';
 import { deriveMapViewpoints } from './viewpoints.js';
+import { DebugRenderMode } from './DebugRenderMode.js';
+import { mountDebugRenderPanel } from './DebugRenderPanel.js';
 import './style.css';
 
 const TIME_LABELS = { day: 'Day', dusk: 'Dusk', night: 'Night' };
@@ -218,6 +220,9 @@ export async function startBabylonPreview({
       onDiagnostic: diagnostic => { api.stats.lastEnvironmentDiagnostic = diagnostic; },
     });
     await applyEnvironment(environmentAdapter);
+    const renderDebug = new DebugRenderMode({ scene, environmentAdapter });
+    api.renderDebug = renderDebug;
+    mountDebugRenderPanel(root.querySelector('.preview-controls'), () => renderDebug);
     const viewpoints = deriveMapViewpoints(legacy, { mapId: assets.mapId });
     const controls = createFreeFlyControls({
       camera,
@@ -291,6 +296,7 @@ export async function startBabylonPreview({
 
     let lastStatsAt = 0;
     engine.runRenderLoop(() => {
+      renderDebug.apply();
       scene.render();
       const now = performance.now();
       if (now - lastStatsAt < 250) return;

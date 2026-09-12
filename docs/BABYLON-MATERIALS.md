@@ -1,8 +1,14 @@
-# Babylon Kugane Materials And Environment
+# Babylon Materials, Environment And Color Diagnostics
+
+**Candidate status:** source/native numerical checks passed, but the capped
+pixel comparison did not produce valid foreground masks. These color changes
+are not deployed or visually accepted. See [BABYLON-COLOR-AUDIT.md](BABYLON-COLOR-AUDIT.md).
 
 This document describes the isolated Babylon preview adapter for `e3t1`
 (Kugane, territory `628`). It is intentionally scoped to the v4 preview and
-does not change the existing Three.js renderer.
+does not change the existing Three.js renderer. The shared adapters also serve
+the other maps. The color audit supersedes the earlier assumption that every
+field named `specular` contains RGB specular color.
 
 ## Source Inventory
 
@@ -13,14 +19,14 @@ The inventory below is computed from the pinned map manifest:
 | Source field | Count | Babylon treatment |
 | --- | ---: | --- |
 | Material records | 324 | One source record per material path; cached by path and available vertex channels. |
-| `bg.shpk` | 314 | Native `PBRMaterial`, source specular/glossiness workflow. |
+| `bg.shpk` | 314 | Native PBR dielectric with the packed `_s` map's G roughness channel; no RGB mask tint. |
 | `water.shpk` | 6 | Native PBR water approximation with source wave normal where available. |
 | `river.shpk` | 1 | Same native PBR approximation; river-specific flow/refraction remains unsupported. |
 | `bgprop.shpk` | 1 | Native PBR path. |
 | `crystal.shpk` | 2 | Native PBR with source emission; crystal environment effect remains unsupported. |
 | Diffuse channel | 317 | `albedoTexture`, sRGB/gamma-space texture. |
 | Normal channel | 317 | `bumpTexture`, source UV scale, explicit source Y inversion. |
-| Specular channel | 317 | `reflectivityTexture` in Babylon specular/glossiness mode. It is not relabeled as metallic/roughness. |
+| Historical `specular` field | 317 | For `bg.shpk`, `_s` is a packed mask, not RGB reflectivity. Other shader families retain their separate handling. |
 | Secondary diffuse | 13 | Local `MaterialPluginBase` hook using native PBR lighting, UV1 and `COLOR_0.a` blend weight. |
 | Secondary normal | 13 | Reported as unsupported; no old shader is copied into Babylon. |
 | Effect textures | 9 | Water waves are used as native bump input when mapped; crystal/environment effects are reported separately. |
@@ -49,13 +55,24 @@ owns the browser `Texture` objects and obtains only byte payloads from
 
 ### Workflow choice
 
-Kugane's source records expose `diffuse`, `normal`, and `specular` channels,
-not a glTF-style metallic/roughness texture. Babylon's `PBRMaterial` supports
-the specular/glossiness workflow by setting `metallic = null`, assigning
-`reflectivityTexture` and `reflectivityColor`, and using `microSurface`.
-The adapter therefore does not reinterpret the source `.s` image as a
-roughness map. The reflectivity alpha is allowed to provide glossiness through
-Babylon's native `useMicroSurfaceFromReflectivityMapAlpha` path.
+The serialized field name `specular` does not establish RGB reflectivity.
+For `bg.shpk`, `_s` contains independent channels: G is roughness; R/B are
+separate specular masks whose precise combination is not reproduced here.
+Sampled soil/grass/wood masks have very little blue and substantial green.
+Feeding those channels to RGB reflectivity introduces yellow/green specular tint.
+
+The background adapter uses native `PBRMaterial` with `metallic = 0`,
+`roughness = 1`, and the existing linear `_s` image in `metallicTexture`.
+Only green-channel roughness is enabled. Alpha roughness, blue metallic and
+red AO are explicitly disabled. Native neutral dielectric reflectance remains;
+no inverse filter or per-map compensation is applied. Albedo and normal
+resources are unchanged.
+
+This does not claim the source was authored in standard MR format: it is a
+native PBR implementation of the supported scalar channel. R/B behavior is
+retained in metadata and reported as `bg-specular-mask-rb`, not silently
+interpreted as color, AO or metallic. Other shader families are not forcibly
+remapped to this background workflow.
 
 Records without a specular channel use a conservative dielectric fallback
 (`metallic = 0`, `roughness = 0.82`) and are marked in the material metadata as
@@ -148,6 +165,53 @@ This is an explicit approximation and is not claimed to be the game's sky or
 cubemap parity. The adapter does not use Babylon's public playground/default
 environment as an unlabelled Kugane source. A future validated zone cubemap
 can be supplied through `setEnvironmentTexture(texture, { provenance })`.
+
+Spherical harmonics follow Babylon's normalization sequence: incident radiance
+to irradiance, then Lambertian radiance, then spherical polynomial. Babylon
+performs the rendering pre-scale when needed. The old adapter omitted the
+Lambertian `1/pi`: its uploaded coefficients were uniformly pi times the native
+cubemap reference. The corrected coefficients match that reference. This is
+an energy correction, not a green-channel filter.
+
+## Debug Render Modes
+
+The viewer controls and the full client's developer Environment tab expose:
+
+- `full`: final rendering with source settings.
+- `neutral`: canonical base material, white lights and neutral clear color,
+  without fog, IBL or image-processing effects.
+- `albedo`: unlit base/albedo view.
+- `albedo-normal`: neutral-light base/albedo plus normals.
+- `pbr-no-environment`: PBR/direct-light path without IBL, fog or image effects.
+
+Vertex color, AO and extra-color contributions can be disabled independently.
+Untouched switches inherit source settings; restoring a switch does not force
+vertex colors onto all meshes. Extra-color isolation includes base-color
+multipliers, emission, lightmaps and secondary diffuse.
+
+```js
+const debug = window.__BABYLON_PREVIEW__?.renderDebug
+  || window.__APP__.world.renderDebug;
+debug.setMode('neutral').apply();
+debug.setMode('full').setContributions({ vertexColors: false }).apply();
+const parameters = debug.dump();
+debug.setContributions({ vertexColors: null, ao: null, extraColor: null }).apply();
+```
+
+The controller restores original scene/material state and tracks streamed
+resource changes without re-dirtying stable PBR definitions every frame.
+
+The scoped audit extends the existing validator; it does not run all maps:
+
+```powershell
+node scripts/validate-babylon.mjs --color-audit --url=<preview-base-url> `
+  --label=before --maps=e3t1,limsa,gridania,d2t1 --out=work/color-audit
+```
+
+Before/after runs must share camera, viewport, time, sample ResourceIDs,
+material resolution and foreground masks. Lower raw green values alone do
+not prove hue correction: retain RGB/parameter dumps and compare
+brightness-normalized chroma.
 
 ## Diagnostics Contract
 

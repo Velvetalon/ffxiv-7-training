@@ -132,7 +132,7 @@ function buildSphericalPolynomial(state) {
   harmonics.addLight(state.moonVector, color(state.moonColor), Math.max(0.05, state.moonIntensity * 0.12));
   harmonics.scaleInPlace(Math.max(0.01, finite(state.ambientScale, 1)));
   harmonics.convertIncidentRadianceToIrradiance();
-  harmonics.preScaleForRendering();
+  harmonics.convertIrradianceToLambertianRadiance();
   return SphericalPolynomial.FromHarmonics(harmonics);
 }
 
@@ -428,6 +428,7 @@ export class EnvironmentAdapter {
         approximation: this.proceduralApproximation,
         intensity: this.iblIntensity,
         ready: Boolean(this.environmentTexture),
+        irradianceNormalization: 'incident-to-irradiance-to-lambertian-radiance',
       },
       shadows: {
         ...this.shadowConfig,

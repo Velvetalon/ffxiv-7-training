@@ -596,6 +596,30 @@ async function validate(args) {
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   usage();
+} else if (args['color-audit']) {
+  try {
+    const { runColorAudit } = await import('./validation/color-audit.mjs');
+    const result = await runColorAudit({
+      url: args.url || DEFAULT_URL,
+      out: args.out || path.join(REPO_ROOT, 'work', 'color-audit'),
+      label: args.label || 'before',
+      timeoutMs: numberOption(args.timeout, 120000),
+      settleMs: numberOption(args['settle-ms'], 250),
+      browserPath: args['browser-path'],
+      playwrightModulePath: args['playwright-module-path'],
+      headed: boolOption(args.headed, false),
+      ...(args.maps ? { maps: listOption(args.maps, []) } : {}),
+      captureLadder: !boolOption(args['skip-ladder'], false),
+    });
+    console.log(JSON.stringify({
+      status: result.status, reportPath: result.reportPath,
+      maps: result.maps.map(item => ({ mapId: item.mapId, status: item.status, errors: item.errors })),
+    }, null, 2));
+    process.exitCode = result.status === 'pass' ? 0 : 1;
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 2;
+  }
 } else {
   try {
     process.exitCode = await validate(args);
