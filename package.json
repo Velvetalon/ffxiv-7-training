@@ -9,6 +9,7 @@
     "preview:babylon": "vite preview --config vite.babylon.config.js",
     "validate:babylon": "node scripts/validate-babylon.mjs",
     "validate-babylon": "node scripts/validate-babylon.mjs",
+    "validate:visual-references": "node scripts/validate-visual-references.mjs",
     "benchmark:babylon": "node scripts/benchmark-babylon.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",

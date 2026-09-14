@@ -5,6 +5,8 @@ export const DEBUG_RENDER_MODES = Object.freeze([
   'neutral',
   'albedo',
   'albedo-normal',
+  'normal',
+  'lighting',
   'pbr-no-environment',
 ]);
 
@@ -245,7 +247,7 @@ export class DebugRenderMode {
     if (refreshMaterials) {
       this._captureMaterialBase(materials, meshes);
       this._restoreMaterialBase(materials, meshes);
-      if (sceneActive) this._applyMaterialMode(materials);
+      if (sceneActive) this._applyMaterialMode(materials, meshes);
       if (materialActive) this._applyContributions(materials, meshes);
       this._recordMaterialDebug(materialActive, materials, meshes);
     }
@@ -420,24 +422,30 @@ export class DebugRenderMode {
   }
 
   _applySceneMode(lights) {
-    this.scene.environmentTexture = null;
+    if (this.mode !== 'lighting') this.scene.environmentTexture = null;
     this.scene.fogEnabled = false;
     this._disableImageProcessing();
-    if (this.mode === 'neutral' || this.mode === 'albedo-normal') {
+    if (this.mode === 'neutral' || this.mode === 'albedo-normal' || this.mode === 'normal') {
       this.scene.clearColor = new Color4(0.5, 0.5, 0.5, 1);
       this._setNeutralLights(lights);
     }
   }
 
-  _applyMaterialMode(materials) {
+  _applyMaterialMode(materials, meshes) {
     for (const material of materials) this._applyMaterial(material);
+    if (this.mode === 'lighting') {
+      // Lighting diagnostics must expose source normal/PBR response without
+      // vertex-color contribution; an explicit contribution override can
+      // still opt back in below.
+      for (const mesh of meshes) mesh.useVertexColors = false;
+    }
   }
 
   _applyMaterial(material) {
     const isCanonical = this.mode === 'neutral' || this.mode === 'albedo' || this.mode === 'albedo-normal';
-    if (this.mode === 'albedo') material.unlit = true;
-    if (this.mode === 'neutral' || this.mode === 'albedo-normal') material.unlit = false;
-    if (this.mode !== 'full') material.environmentIntensity = 0;
+    if (this.mode === 'albedo' || this.mode === 'normal') material.unlit = true;
+    if (this.mode === 'neutral' || this.mode === 'albedo-normal' || this.mode === 'lighting') material.unlit = false;
+    if (this.mode !== 'full' && this.mode !== 'lighting') material.environmentIntensity = 0;
 
     if (isCanonical) {
       material.metallic = 0;
@@ -458,6 +466,44 @@ export class DebugRenderMode {
     if (this.mode === 'albedo') {
       material.directIntensity = 1;
       material.bumpTexture = null;
+    }
+
+    if (this.mode === 'normal') {
+      // Normal-map RGB is displayed as an unlit albedo. The source texture is
+      // restored by the normal debug transaction when the mode changes.
+      const normalTexture = material.bumpTexture;
+      material.unlit = true;
+      material.albedoColor = normalTexture ? new Color3(1, 1, 1) : new Color3(0.5, 0.5, 1);
+      material.albedoTexture = normalTexture || null;
+      material.bumpTexture = null;
+      material.metallic = 0;
+      material.roughness = 1;
+      material.microSurface = 1;
+      material.directIntensity = 1;
+      material.emissiveColor = new Color3(0, 0, 0);
+      material.emissiveTexture = null;
+      material.emissiveIntensity = 0;
+      material.ambientTexture = null;
+      material.ambientTextureStrength = 0;
+      material.ambientTextureImpactOnAnalyticalLights = 0;
+      this._disableSecondaryPlugin(material);
+    }
+
+    if (this.mode === 'lighting') {
+      // Keep the source lights and IBL, but remove surface color/emission
+      // inputs so the remaining image is a lighting-only PBR diagnostic.
+      material.albedoColor = new Color3(1, 1, 1);
+      material.albedoTexture = null;
+      material.emissiveColor = new Color3(0, 0, 0);
+      material.emissiveTexture = null;
+      material.emissiveIntensity = 0;
+      material.lightmapTexture = null;
+      material.useLightmapAsShadowmap = false;
+      material.ambientTexture = null;
+      material.ambientTextureStrength = 0;
+      material.ambientTextureImpactOnAnalyticalLights = 0;
+      material.useAmbientOcclusionFromMetallicTextureRed = false;
+      this._disableSecondaryPlugin(material);
     }
 
   }

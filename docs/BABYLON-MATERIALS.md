@@ -184,6 +184,8 @@ The viewer controls and the full client's developer Environment tab expose:
   without fog, IBL or image-processing effects.
 - `albedo`: unlit base/albedo view.
 - `albedo-normal`: neutral-light base/albedo plus normals.
+- `normal`: unlit diagnostic RGB view of the normal-map input, with fog, IBL and image processing disabled.
+- `lighting`: white-albedo PBR lighting-only view using source direct lights, IBL, normal maps, metallic/reflectivity maps, roughness/microSurface and source intensities; albedo/emissive/AO/lightmap/secondary-color textures and vertex colors are disabled, with fog and image processing disabled.
 - `pbr-no-environment`: PBR/direct-light path without IBL, fog or image effects.
 
 Vertex color, AO and extra-color contributions can be disabled independently.

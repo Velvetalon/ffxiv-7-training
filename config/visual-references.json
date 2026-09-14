@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "description": "Fixed diagnostic views for the Babylon visual reference harness. FOV is in Babylon radians; weather remains explicit unsupported until a runtime contract exists. References are tracked and hash-pinned.",
+  "resampling": {
+    "policy": "stretch-to-capture",
+    "aspectRatioTolerance": 0.005,
+    "imageSmoothingQuality": "high"
+  },
+  "resolution": {
+    "width": 1280,
+    "height": 720,
+    "deviceScaleFactor": 1
+  },
+  "views": [
+    {
+      "mapId": "e3t1",
+      "id": "kugane-castle",
+      "camera": {
+        "position": [
+          90.5219,
+          67,
+          92
+        ],
+        "target": [
+          164.5219,
+          22,
+          0
+        ],
+        "fov": 0.82
+      },
+      "worldTime": 12,
+      "weather": {
+        "status": "unsupported",
+        "provenance": "Babylon preview has no weather runtime contract"
+      },
+      "referenceImage": "references/visual/e3t1-kugane-castle.png",
+      "referenceKind": "babylon-baseline",
+      "referenceSha256": "03806b18fefb457e71642020d17c4f085d7161cde4c6d32676ec5fb53aeb5850",
+      "referenceProvenance": {
+        "kind": "babylon-capture",
+        "source": "current-build baseline refreshed by scripts/validate-visual-references.mjs",
+        "updatedAt": "2026-09-14T14:15:05.700Z",
+        "capture": {
+          "url": "http://127.0.0.1:5174/ff14-web-babylon-preview/?scene=e3t1&viewer=1&visualReference=1",
+          "resolution": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "fullLoad": true,
+          "lodEnabled": false
+        },
+        "producer": {
+          "sourceSha256": "d567221086f5c7e47dfdd04ceb91b98fc4104e46e343c546c15b72afea10aaef",
+          "engine": "Babylon.js",
+          "engineVersion": "9.26.0",
+          "mapCount": 65,
+          "manifestSha256": "52316bb1b17bc8b2af3b296afabd8ddcbd01b846c7aceb3d3c70327c4388024f",
+          "validatorSha256": "20605e34636905e7e82561507a3b709d31d2168339023a2c971ac259724ed222",
+          "buildInfo": {
+            "engine": "Babylon.js",
+            "engineVersion": "9.26.0",
+            "appBase": "/ff14-web-babylon-preview/",
+            "mapCount": 65,
+            "sourceSha256": "d567221086f5c7e47dfdd04ceb91b98fc4104e46e343c546c15b72afea10aaef",
+            "threeModules": 0,
+            "visualReferences": {
+              "schemaVersion": 1,
+              "manifestSha256": "52316bb1b17bc8b2af3b296afabd8ddcbd01b846c7aceb3d3c70327c4388024f",
+              "validatorSha256": "20605e34636905e7e82561507a3b709d31d2168339023a2c971ac259724ed222",
+              "views": 3,
+              "validator": "scripts/validate-visual-references.mjs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "mapId": "gridania",
+      "id": "new-gridania-aetheryte",
+      "camera": {
+        "position": [
+          63.4455,
+          24.4309,
+          60.3942
+        ],
+        "target": [
+          33.4455,
+          4.4309,
+          30.3942
+        ],
+        "fov": 0.82
+      },
+      "worldTime": 12,
+      "weather": {
+        "status": "unsupported",
+        "provenance": "Babylon preview has no weather runtime contract"
+      },
+      "referenceImage": "references/visual/gridania-game.jpg",
+      "referenceKind": "source-screenshot",
+      "referenceSha256": "ace29ba69c04d753658ef64be93784575c447268829a64fa4aaed71350c94bfe",
+      "referenceProvenance": {
+        "kind": "source-screenshot",
+        "source": "existing source screenshot; camera alignment approximate"
+      }
+    },
+    {
+      "mapId": "limsa",
+      "id": "limsa-octant",
+      "camera": {
+        "position": [
+          -53.9673,
+          40.778,
+          30.0744
+        ],
+        "target": [
+          -83.9673,
+          20.778,
+          0.0744
+        ],
+        "fov": 0.82
+      },
+      "worldTime": 12,
+      "weather": {
+        "status": "unsupported",
+        "provenance": "Babylon preview has no weather runtime contract"
+      },
+      "referenceImage": "references/visual/limsa-game.png",
+      "referenceKind": "source-screenshot",
+      "referenceSha256": "4ec1b08194979d64be67552f2ed1bbc04aec9f5cc6fd90a0f031a44a5604584d",
+      "referenceProvenance": {
+        "kind": "source-screenshot",
+        "source": "existing source screenshot; camera alignment approximate"
+      }
+    }
+  ]
+}

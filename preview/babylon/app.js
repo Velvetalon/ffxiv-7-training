@@ -164,6 +164,7 @@ export async function startBabylonPreview({
     isReady: false,
     isFullyLoaded: false,
     setViewpoint: () => false,
+    setCameraState: () => false,
     setTime: () => 'day',
     setLodEnabled: () => false,
     getRuntimeSnapshot: () => ({ meshes: [] }),
@@ -256,6 +257,17 @@ export async function startBabylonPreview({
     api.loader = loader;
     api.controls = controls;
     api.setViewpoint = name => controls.setViewpoint(name);
+    api.setCameraState = state => {
+      if (!state?.position || !state?.target) return false;
+      const position = Array.isArray(state.position) ? state.position : [state.position.x, state.position.y, state.position.z];
+      const target = Array.isArray(state.target) ? state.target : [state.target.x, state.target.y, state.target.z];
+      if (![...position, ...target].every(value => Number.isFinite(Number(value)))) return false;
+      camera.position.fromArray(position.map(Number));
+      camera.setTarget(new Vector3(...target.map(Number)));
+      if (Number.isFinite(Number(state.fov))) camera.fov = Number(state.fov);
+      api.stats.referenceView = state.id || null;
+      return true;
+    };
     api.setTime = time => {
       const applied = setTimeEnvironment(environmentAdapter, time);
       api.stats.time = applied.preset || applied.hour;

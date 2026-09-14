@@ -15,6 +15,16 @@ const catalogEntry = 'catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3
 const mapManifest = 'maps/e3t1/manifest_ab686a714791aad26083e35fe8348e409998a6b3c1d970342f9286f9bd0d33b4.json.gz';
 const active = readJson(path.join(repo, 'public/extracted/active.json'));
 const profiles = readJson(path.join(repo, 'src/world/environment/source-profiles.json'));
+const visualReferencesPath = path.join(repo, 'config/visual-references.json');
+const visualReferencesRaw = fs.readFileSync(visualReferencesPath);
+const visualReferences = JSON.parse(visualReferencesRaw);
+const visualReferencesSha256 = createHash('sha256').update(visualReferencesRaw).digest('hex');
+const visualValidatorPath = path.join(repo, 'scripts/validate-visual-references.mjs');
+const visualValidatorSha256 = createHash('sha256').update(fs.readFileSync(visualValidatorPath)).digest('hex');
+const runtimeVisualReferences = {
+  ...visualReferences,
+  views: visualReferences.views.map(({ referenceProvenance, ...view }) => view),
+};
 const engineRedirects = new Map([
   ['src/world/index.js', 'preview/babylon/WorldIndex.js'],
   ['src/assets/SandboxAssets.js', 'preview/babylon/SandboxAssets.js'],
@@ -38,8 +48,26 @@ function sourceFingerprint() {
   walk(path.join(repo, 'preview/babylon'));
   add(path.join(repo, 'package.json'));
   add(path.join(repo, 'vite.babylon.config.js'));
+  add(visualValidatorPath);
+  add(visualReferencesPath);
   return hash.digest('hex');
 }
+
+function createBuildInfo() {
+  return {
+    engine: 'Babylon.js', engineVersion: '9.26.0', appBase,
+    mapCount: Object.keys(active.scenes).length, sourceSha256: sourceFingerprint(), threeModules: 0,
+    visualReferences: {
+      schemaVersion: visualReferences.schemaVersion,
+      manifestSha256: visualReferencesSha256,
+      validatorSha256: visualValidatorSha256,
+      views: visualReferences.views.length,
+      validator: 'scripts/validate-visual-references.mjs',
+    },
+  };
+}
+
+const devBuildInfoText = JSON.stringify(createBuildInfo());
 
 export default defineConfig(({ command }) => {
   const local = command === 'serve' && Boolean(process.env.BABYLON_ASSET_DIR);
@@ -58,6 +86,9 @@ export default defineConfig(({ command }) => {
       ? { manifest: `${assetPrefix}${catalogEntry}`, base: assetPrefix }
       : { ticket: '/ff14-assets/ticket', base: 'https://img.yuluo.site/ff14-assets/v1/' },
     profile: profiles[defaultMapId],
+    // Runtime needs view/camera policy only. The tracked manifest remains the
+    // provenance source of truth and may contain private local capture URLs.
+    visualReferences: runtimeVisualReferences,
   };
   const configText = JSON.stringify(config);
   function configureDataServer(server) {
@@ -71,6 +102,11 @@ export default defineConfig(({ command }) => {
       if (url.pathname === `${appBase}extracted/active.json`) {
         response.setHeader('Content-Type', 'application/json');
         response.end(JSON.stringify(active));
+        return;
+      }
+      if (url.pathname === `${appBase}build-info.json` || url.pathname === '/build-info.json') {
+        response.setHeader('Content-Type', 'application/json');
+        response.end(devBuildInfoText);
         return;
       }
       const sandbox = url.pathname.startsWith(sandboxPrefix);
@@ -147,10 +183,7 @@ export default defineConfig(({ command }) => {
         if (threeImports.length) this.error(`Babylon preview imports the old engine: ${threeImports[0]}`);
         this.emitFile({ type: 'asset', fileName: 'app-config.json', source: configText });
         this.emitFile({ type: 'asset', fileName: 'extracted/active.json', source: JSON.stringify(active) });
-        this.emitFile({ type: 'asset', fileName: 'build-info.json', source: JSON.stringify({
-          engine: 'Babylon.js', engineVersion: '9.26.0', appBase,
-          mapCount: Object.keys(active.scenes).length, sourceSha256: sourceFingerprint(), threeModules: threeImports.length,
-        }) });
+        this.emitFile({ type: 'asset', fileName: 'build-info.json', source: JSON.stringify({ ...createBuildInfo(), threeModules: threeImports.length }) });
       },
       configureServer: configureDataServer,
       configurePreviewServer: configureDataServer,

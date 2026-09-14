@@ -12,6 +12,8 @@ export function mountDebugRenderPanel(host, getController) {
       <option value="neutral">Neutral</option>
       <option value="albedo">Albedo Only</option>
       <option value="albedo-normal">Albedo + Normal</option>
+      <option value="normal">Normal Map RGB</option>
+      <option value="lighting">Lighting Only</option>
       <option value="pbr-no-environment">PBR Without Environment</option>
     </select></label>
     <div class="render-debug-flags">

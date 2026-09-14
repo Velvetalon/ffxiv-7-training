@@ -8,7 +8,7 @@ import { loadPlaywright } from './browser.mjs';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const DEFAULT_OUT = path.join(REPO_ROOT, 'work', 'color-audit');
 const MAP_IDS = ['e3t1', 'limsa', 'gridania', 'd2t1'];
-const MODES = ['full', 'neutral', 'albedo', 'albedo-normal', 'pbr-no-environment'];
+const MODES = ['full', 'neutral', 'albedo', 'albedo-normal', 'normal', 'lighting', 'pbr-no-environment'];
 const E3T1_SAMPLES = [
   {
     id: 'building-290-placement-0', kind: 'building', modelIndex: 290, instanceIndex: 0,
