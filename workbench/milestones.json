@@ -150,8 +150,20 @@
         "evidence pack stores screenshots as separate PNG files next to evidence.json rather than embedding them"
       ]
     },
-    "S09": { "title": "影响分析与定向构建", "status": "READY", "dependencies": ["S03", "S04"] },
-    "S10": { "title": "工作台统一交互", "status": "BLOCKED", "dependencies": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"] },
+    "S09": {
+      "title": "影响分析与定向构建",
+      "status": "VERIFIED",
+      "dependencies": ["S03", "S04"],
+      "implementedIn": "scripts/workbench/impact.mjs (plan/apply/skip/rollback) + scripts/workbench/validate-impact.mjs",
+      "entry": "node scripts/workbench/impact.mjs --change='{\"type\":\"resource\",\"resourceId\":\"glb:sha256:...\"}' [--apply] [--rollback=FILE]",
+      "evidence": ["work/workbench/s09/s09-report-2026-09-15T19-20-17-655Z.json"],
+      "verification": "8/8 steps pass: real config change (extra visual-reference view) -> plan names the affected build artifact with extractionTriggered=false -> targeted rebuild changes visualReferences.manifestSha256 while mapCount/catalog stay identical -> identical input skips the rebuild -> rollback restores byte-identical hash; resource change dry-run names the containing bundle + bytes + representative stable addresses (repack execution honestly out of local scope); shared-code change escalates to 4 representative maps with medium confidence; golden case restores against the rebuilt artifact",
+      "knownGaps": [
+        "bundle repack execution and CDN publish are out of local scope (no extraction pipeline/credentials locally); resource plans are dry-run",
+        "code-impact analysis uses the explicit shared-file rules, not a real static dependency graph"
+      ]
+    },
+    "S10": { "title": "工作台统一交互", "status": "READY", "dependencies": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"] },
     "S11": { "title": "预览发布与版本回退", "status": "BLOCKED", "dependencies": ["S09", "S10"], "blockedReason": "发布需要 COS/CDN 凭据；凭据不在 Git 中，按计划记录阻塞并保留可部署产物" },
     "S12": { "title": "实际案例总闭环与交接", "status": "BLOCKED", "dependencies": ["S00-S11"] }
   }
