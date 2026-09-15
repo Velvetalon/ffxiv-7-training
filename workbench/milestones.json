@@ -42,7 +42,16 @@
       ],
       "next": "S01 统一程序化控制入口"
     },
-    "S01": { "title": "统一程序化控制入口", "status": "READY", "dependencies": ["S00"] },
+    "S01": {
+      "title": "统一程序化控制入口",
+      "status": "VERIFIED",
+      "dependencies": ["S00"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js + scripts/workbench/wb.mjs + scripts/workbench/validate-control.mjs",
+      "entry": "node scripts/workbench/wb.mjs --command=NAME [--args=JSON] [--follow] [--read-back=CMD] [--screenshot=FILE]",
+      "evidence": ["work/workbench/s01/s01-report-2026-09-15T17-38-54-452Z.json"],
+      "verification": "9/9 steps pass: camera/time set observed via rendered frame, state read-back, invalid map rejected then legal command works, stale-expectedEpoch rejected, map.switch followed across navigation with new sceneEpoch (e3t1→gridania via CDN dev server on 5173)",
+      "knownGaps": ["map.switch is navigation-based (viewer mode); S10 may revisit in-page switching for the full client"]
+    },
     "S02": { "title": "问题现场快照与恢复", "status": "READY", "dependencies": ["S01"] },
     "S03": { "title": "对象检查与资源溯源", "status": "READY", "dependencies": ["S01"] },
     "S04": { "title": "参数编辑与补丁落盘", "status": "BLOCKED", "dependencies": ["S02", "S03"], "blockedReason": "awaits S02+S03" },

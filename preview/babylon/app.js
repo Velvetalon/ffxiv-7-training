@@ -12,6 +12,7 @@ import { createBabylonMapLoader } from './SceneLoader.js';
 import { deriveMapViewpoints } from './viewpoints.js';
 import { DebugRenderMode } from './DebugRenderMode.js';
 import { mountDebugRenderPanel } from './DebugRenderPanel.js';
+import { createWorkbenchApi } from './WorkbenchApi.js';
 import './style.css';
 
 const TIME_LABELS = { day: 'Day', dusk: 'Dusk', night: 'Night' };
@@ -368,6 +369,9 @@ export async function startBabylonPreview({
       api.stats.stage = 'complete-with-errors';
       fullyLoaded.reject(error);
     });
+
+    api.workbench = createWorkbenchApi(api);
+    globalThis.__FF14_WORKBENCH__ = api.workbench;
 
     return api;
   } catch (error) {
