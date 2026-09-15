@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "recipe",
+  "recipeId": "ab-roughness-exposure",
+  "description": "A/B: two roughness candidates and one exposure candidate on the kugane-castle baseline. Metrics locate differences only; visual verdict is a human step.",
+  "camera": { "position": [90.5219, 67, 92], "target": [164.5219, 22, 0], "fov": 0.82, "id": "kugane-castle" },
+  "time": "day",
+  "candidates": [
+    {
+      "candidateId": "rough-035",
+      "overrides": [
+        { "scope": "instance", "stableAddress": "e3t1:118:0", "property": "roughness", "value": 0.35 }
+      ]
+    },
+    {
+      "candidateId": "rough-080",
+      "overrides": [
+        { "scope": "instance", "stableAddress": "e3t1:118:0", "property": "roughness", "value": 0.8 }
+      ]
+    },
+    {
+      "candidateId": "exposure-125",
+      "overrides": [
+        { "scope": "environment", "property": "exposure", "value": 1.25 }
+      ]
+    }
+  ]
+}

@@ -124,8 +124,20 @@
         "character/animation isolation not exercised in viewer mode (no character runtime in the map-only viewer); remains a full-client task"
       ]
     },
-    "S07": { "title": "场景配方与小范围 A/B 实验", "status": "READY", "dependencies": ["S02", "S04"] },
-    "S08": { "title": "异常摘要与证据包", "status": "BLOCKED", "dependencies": ["S03", "S07"] },
+    "S07": {
+      "title": "场景配方与小范围 A/B 实验",
+      "status": "VERIFIED",
+      "dependencies": ["S02", "S04"],
+      "implementedIn": "scripts/workbench/recipe.mjs (executor+CLI) + workbench/recipes/ab-roughness-exposure.json + scripts/workbench/validate-recipe.mjs",
+      "entry": "node scripts/workbench/recipe.mjs --recipe=workbench/recipes/ab-roughness-exposure.json",
+      "evidence": ["work/workbench/s07/s07-report-2026-09-15T18-31-27-570Z.json"],
+      "verification": "6/6 steps pass: committed 3-candidate A/B recipe (<=6 budget) executes with per-candidate screenshots+metrics; baseline verified restored after EVERY candidate (camera<0.05, exposure equal); illegal property candidate fails cleanly without polluting the next candidate; failure run still ends baselineRestored; visual conclusions marked PENDING-HUMAN-REVIEW",
+      "knownGaps": [
+        "no side-by-side composite image (report lists per-candidate screenshot paths instead)",
+        "metrics limited to fps/activeMeshes/exposure/time/camera; no pixel scoring by design"
+      ]
+    },
+    "S08": { "title": "异常摘要与证据包", "status": "READY", "dependencies": ["S03"] },
     "S09": { "title": "影响分析与定向构建", "status": "BLOCKED", "dependencies": ["S03", "S04", "S08"] },
     "S10": { "title": "工作台统一交互", "status": "BLOCKED", "dependencies": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"] },
     "S11": { "title": "预览发布与版本回退", "status": "BLOCKED", "dependencies": ["S09", "S10"], "blockedReason": "发布需要 COS/CDN 凭据；凭据不在 Git 中，按计划记录阻塞并保留可部署产物" },
