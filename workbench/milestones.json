@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-15T17:00:00Z",
+  "plan": "D:/OneDrive/codex/task/20260914/v3/ff14_babylon_workbench_infrastructure_plan.md",
+  "goldenMap": {
+    "id": "e3t1",
+    "name": "Kugane",
+    "territoryId": 628,
+    "baselineCase": "workbench/cases/e3t1-baseline.json"
+  },
+  "entryPoints": {
+    "doctor": "node scripts/workbench/doctor.mjs [--url=...]",
+    "fetchGoldenPack": "node scripts/workbench/fetch-golden-pack.mjs [--url=...] (one-time, ~300 MiB into work/babylon-golden-map)",
+    "baseline": "node scripts/workbench/baseline.mjs --url=http://127.0.0.1:5174/ff14-web-babylon-preview/ --full",
+    "devServerLocal": "BABYLON_ASSET_DIR=work/babylon-golden-map npm run dev:babylon  (port 5173 free; add --full for full-load gate)",
+    "devServerCdn": "npm run dev:babylon  (port 5173; dev ticket rewrite + img.yuluo.site proxy; CDN throttles repeated full loads)",
+    "playwright": "PLAYWRIGHT_MODULE_PATH=E:/Code/scp/node_modules/playwright ; browsers shared via %LOCALAPPDATA%/ms-playwright"
+  },
+  "environmentNotes": [
+    "Node 20.11.1 at E:/nodejs must be on PATH for npm lifecycle scripts (postinstall spawns cmd.exe).",
+    "The CDN only sends CORS headers for https://yuluo.site. Dev servers rewrite ticket URLs to same-origin via the middleware in vite.babylon.config.js (dev/preview only).",
+    "yuluo.site/ff14-assets/* serves the SPA, not assets; only img.yuluo.site serves versioned assets.",
+    "Repeated full-map streams over the CDN hit ECONNRESET throttling. Local mode via BABYLON_ASSET_DIR=work/babylon-golden-map fully loads e3t1 in ~11s and is the default for workbench loops.",
+    "Headless Chromium needs --use-gl=angle for GPU rendering (software WebGL renders at ~6 fps and stalls material upgrades).",
+    "Known pre-existing render quirks at kugane-castle baseline: floating stair/roof slabs over water planes, flat water shading; recorded, not fixed in this task."
+  ],
+  "stages": {
+    "S00": {
+      "title": "现状接入与真实基线",
+      "status": "VERIFIED",
+      "dependencies": [],
+      "implementedIn": "working tree (commit pending)",
+      "evidence": [
+        "work/workbench/doctor-2026-09-15T17-33-38-941Z.json",
+        "work/workbench/baseline/2026-09-15T17-30-28-564Z/",
+        "workbench/cases/e3t1-baseline.json"
+      ],
+      "verification": "doctor verdict healthy (9/9 checks); baseline e3t1 kugane-castle/day captured at stage=complete, 12114 meshes, 0 failures, 2 stable-address objects; visual review PASS (textured Kugane city, elevated view)",
+      "knownGaps": [
+        "developer-panel command bridge is wired for the Three.js world; the Babylon preview exposes __BABYLON_PREVIEW__ but not the structured command dispatch (S01 scope)",
+        "viewer mode has no in-page map switch; map change navigates the page (accepted for S01, revisit at S10)"
+      ],
+      "next": "S01 统一程序化控制入口"
+    },
+    "S01": { "title": "统一程序化控制入口", "status": "READY", "dependencies": ["S00"] },
+    "S02": { "title": "问题现场快照与恢复", "status": "READY", "dependencies": ["S01"] },
+    "S03": { "title": "对象检查与资源溯源", "status": "READY", "dependencies": ["S01"] },
+    "S04": { "title": "参数编辑与补丁落盘", "status": "BLOCKED", "dependencies": ["S02", "S03"], "blockedReason": "awaits S02+S03" },
+    "S05": { "title": "局部热更新与失败回退", "status": "BLOCKED", "dependencies": ["S04"] },
+    "S06": { "title": "单对象隔离实验室", "status": "BLOCKED", "dependencies": ["S02", "S03", "S04"] },
+    "S07": { "title": "场景配方与小范围 A/B 实验", "status": "BLOCKED", "dependencies": ["S02", "S04"] },
+    "S08": { "title": "异常摘要与证据包", "status": "BLOCKED", "dependencies": ["S03", "S07"] },
+    "S09": { "title": "影响分析与定向构建", "status": "BLOCKED", "dependencies": ["S03", "S04", "S08"] },
+    "S10": { "title": "工作台统一交互", "status": "BLOCKED", "dependencies": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"] },
+    "S11": { "title": "预览发布与版本回退", "status": "BLOCKED", "dependencies": ["S09", "S10"], "blockedReason": "发布需要 COS/CDN 凭据；凭据不在 Git 中，按计划记录阻塞并保留可部署产物" },
+    "S12": { "title": "实际案例总闭环与交接", "status": "BLOCKED", "dependencies": ["S00-S11"] }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "e3t1-baseline",
+  "kind": "case",
+  "createdAt": "2026-09-15T17:32:09.303Z",
+  "map": {
+    "id": "e3t1",
+    "name": "Kugane",
+    "territoryId": 628
+  },
+  "view": {
+    "id": "kugane-castle",
+    "camera": {
+      "position": [
+        90.5219,
+        67,
+        92
+      ],
+      "target": [
+        164.5219,
+        22,
+        0
+      ],
+      "fov": 0.82
+    }
+  },
+  "time": {
+    "preset": "day"
+  },
+  "objects": [
+    {
+      "stableAddress": "e3t1:118:0",
+      "sourceAsset": "bg/ex2/02_est_e3/common/bgparts/e300_aa_itm10.mdl",
+      "modelIndex": 118,
+      "sourceInstanceIndex": 0,
+      "resourceId": "glb:sha256:2ea8fb1ba0a43f6bcb85a2186aff9e797f8308e9db2f8b978d783b717bc5c2dd",
+      "meshName": "e3t1:118:0:17:-2:-2:positive"
+    },
+    {
+      "stableAddress": "e3t1:44:0",
+      "sourceAsset": "bg/ex2/02_est_e3/common/bgparts/e300_a0_itm76.mdl",
+      "modelIndex": 44,
+      "sourceInstanceIndex": 0,
+      "resourceId": "glb:sha256:9aeabdc217d87b68b92537d577a56ef75b271c543c2f025eae2912553a45db83",
+      "meshName": "e3t1:44:0:21:0:0:positive"
+    }
+  ],
+  "versions": {
+    "codeCommit": "9c5996c9d8a907ae7680f25dc91f37f2ccfdf45f",
+    "assetRunId": "20260909T124255Z-e3ea44",
+    "sourceSha256": "78a7d2f587fd269c5eacf8e21b95cecc3b1b70e944e2254eb7bcdf2db421163f",
+    "engine": "Babylon.js 9.26.0"
+  },
+  "capture": {
+    "stage": "complete",
+    "meshes": 12114,
+    "failures": 0,
+    "backend": "WebGL2",
+    "screenshot": "work\\workbench\\baseline\\2026-09-15T17-30-28-564Z\\e3t1-kugane-castle-day.png",
+    "stateReadBack": "work\\workbench\\baseline\\2026-09-15T17-30-28-564Z\\state.json"
+  }
+}

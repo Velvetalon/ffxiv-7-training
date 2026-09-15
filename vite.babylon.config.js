@@ -109,6 +109,35 @@ export default defineConfig(({ command }) => {
         response.end(devBuildInfoText);
         return;
       }
+      if (url.pathname === '/ff14-assets/ticket') {
+        // The CDN only returns CORS headers for the production origin, so
+        // browser runs outside https://yuluo.site cannot read signed asset
+        // URLs. Re-sign through the upstream ticket service, then rewrite the
+        // signed hosts to root-relative URLs served by this server's
+        // /ff14-assets proxy. Dev/preview servers only; builds keep the
+        // production ticket and CDN base untouched.
+        const upstream = `https://yuluo.site/ff14-assets/ticket${url.search}`;
+        const origin = `http://${request.headers.host || '127.0.0.1:5173'}`;
+        const chunks = [];
+        request.on('data', chunk => chunks.push(chunk));
+        request.on('end', async () => {
+          try {
+            const upstreamResponse = await fetch(upstream, {
+              method: request.method,
+              headers: request.headers['content-type'] ? { 'Content-Type': request.headers['content-type'] } : {},
+              body: ['GET', 'HEAD'].includes(request.method) ? undefined : Buffer.concat(chunks),
+            });
+            const text = await upstreamResponse.text();
+            response.statusCode = upstreamResponse.status;
+            response.setHeader('Content-Type', upstreamResponse.headers.get('content-type') || 'application/json');
+            response.end(text.replaceAll('https://img.yuluo.site/', `${origin}/`));
+          } catch (error) {
+            response.statusCode = 502;
+            response.end(`ticket rewrite failed: ${error?.message || error}`);
+          }
+        });
+        return;
+      }
       const sandbox = url.pathname.startsWith(sandboxPrefix);
       if (!local || (!sandbox && !url.pathname.startsWith(assetPrefix))) return next();
       if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405).end(); return; }
@@ -145,14 +174,17 @@ export default defineConfig(({ command }) => {
       host: '127.0.0.1',
       fs: { allow: [repo] },
       proxy: {
-        '/ff14-assets': { target: 'https://yuluo.site', changeOrigin: true, secure: true },
+        // Versioned assets live on the CDN host; the ticket service lives on
+        // yuluo.site and is intercepted by the dev middleware above before
+        // the proxy sees it.
+        '/ff14-assets': { target: 'https://img.yuluo.site', changeOrigin: true, secure: true },
         '/ff14-web/': { target: 'https://yuluo.site', changeOrigin: true, secure: true },
       },
     },
     preview: {
       host: '127.0.0.1',
       proxy: {
-        '/ff14-assets': { target: 'https://yuluo.site', changeOrigin: true, secure: true },
+        '/ff14-assets': { target: 'https://img.yuluo.site', changeOrigin: true, secure: true },
         '/ff14-web/': { target: 'https://yuluo.site', changeOrigin: true, secure: true },
       },
     },

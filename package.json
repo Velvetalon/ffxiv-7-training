@@ -34,7 +34,9 @@
     "validate-sandbox": "node scripts/validate-sandbox.mjs",
     "validate-developer": "node scripts/validate-developer.mjs",
     "content:scan": "node scripts/content-coverage.mjs",
-    "check-map-position": "node scripts/check-map-position.mjs"
+    "check-map-position": "node scripts/check-map-position.mjs",
+    "workbench:doctor": "node scripts/workbench/doctor.mjs",
+    "workbench:baseline": "node scripts/workbench/baseline.mjs"
   },
   "dependencies": {
     "@babylonjs/core": "9.26.0",
