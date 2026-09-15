@@ -560,6 +560,7 @@ export function createWorkbenchApi(api) {
           caseId,
           mapId: snapshot.map?.id ?? null,
           createdAt: snapshot.createdAt ?? null,
+          case: snapshot,
         })),
       },
     }),

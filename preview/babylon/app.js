@@ -12,6 +12,7 @@ import { createBabylonMapLoader } from './SceneLoader.js';
 import { deriveMapViewpoints } from './viewpoints.js';
 import { DebugRenderMode } from './DebugRenderMode.js';
 import { mountDebugRenderPanel } from './DebugRenderPanel.js';
+import { WorkbenchPanel } from './WorkbenchPanel.js';
 import { createWorkbenchApi } from './WorkbenchApi.js';
 import './style.css';
 
@@ -372,6 +373,15 @@ export async function startBabylonPreview({
 
     api.workbench = createWorkbenchApi(api);
     globalThis.__FF14_WORKBENCH__ = api.workbench;
+
+    // The unified workbench panel drives the same dispatch chain as scripts.
+    // A query flag keeps automated viewer captures clean.
+    if (!new URLSearchParams(location.search).has('noworkbench')) {
+      api.workbenchPanel = new WorkbenchPanel(api.workbench, {
+        onCloseStateChange: () => {},
+      });
+      api.workbenchPanel.mount(root);
+    }
 
     return api;
   } catch (error) {
