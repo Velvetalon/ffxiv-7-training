@@ -1,4 +1,4 @@
-import { Color3, ShaderMaterial } from '@babylonjs/core';
+import { Color3, Matrix, Quaternion, ShaderMaterial, Vector3 } from '@babylonjs/core';
 
 // Structured programmatic control surface over the Babylon preview.
 // Panel, scripts and browser automation call the same whitelist; no command
@@ -875,7 +875,11 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
       isolateState.wireframe = false;
 
       // Hide every enabled mesh except the isolated replacement. Meshes that
-      // were already disabled (streamed out etc.) are not recorded.
+      // were already disabled (streamed out etc.) are not recorded. Streaming
+      // is frozen during isolation: with the camera parked on the object the
+      // loader would otherwise stream the neighbourhood back in.
+      isolateState.savedSetCameraPosition = api.loader?.setCameraPosition || null;
+      if (api.loader) api.loader.setCameraPosition = () => {};
       for (const candidate of api.scene.meshes || []) {
         if (candidate === mesh) continue;
         if (!candidate.isEnabled()) continue;
@@ -886,15 +890,28 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
       // Neutral environment by default; the dependency change is reported.
       applyIsolateEnvironment('neutral');
 
-      const bounds = mesh.getHierarchyBoundingVectors?.();
-      const center = bounds ? bounds.min.add(bounds.max).scale(0.5) : mesh.getAbsolutePosition().clone();
-      const radius = bounds ? bounds.max.subtract(bounds.min).length() * 0.5 : 5;
+      // Camera: orbit rig around the object's world position. The freshly
+      // cloned replacement has a stale lazy world matrix, so read the centre
+      // from the recorded source world matrix instead.
+      const sourceWorld = entry.instanceMesh?.metadata?.ff14?.worldMatrix || mesh.getWorldMatrix().m;
+      const center = { x: sourceWorld[12], y: sourceWorld[13], z: sourceWorld[14] };
+      const master = mesh.sourceMesh || mesh;
+      master.computeWorldMatrix?.(true);
+      const radius = master.getBoundingInfo?.().boundingSphere.radius ?? 3;
       isolateState.orbitCenter = center;
       isolateState.orbitRadius = Math.max(radius * 3, 4);
       isolateState.orbitAngle = 0.7;
+      mesh.computeWorldMatrix?.(true);
       const orbit = orbitCameraPosition();
       api.setCameraState({ position: orbit, target: [center.x, center.y, center.z], fov: 0.82 });
       await waitForFrame();
+      // Cells queued before the freeze can still land: sweep once more.
+      for (const candidate of api.scene.meshes || []) {
+        if (candidate === mesh || candidate.isEnabled()) continue;
+        if (isolateState.disabledMeshes.includes(candidate)) continue;
+        candidate.setEnabled(false);
+        isolateState.disabledMeshes.push(candidate);
+      }
 
       const visibleMeshes = (api.scene.meshes || []).filter(candidate => candidate.isEnabled() && candidate.isVisible).length;
       return mutate(requestId, null, {
@@ -941,6 +958,10 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
 
     'isolate.exit': async requestId => {
       if (!isolateState.active) return reject(requestId, 'invalid-args', 'isolation not active');
+      if (isolateState.savedSetCameraPosition && api.loader) {
+        api.loader.setCameraPosition = isolateState.savedSetCameraPosition;
+      }
+      isolateState.savedSetCameraPosition = null;
       for (const mesh of isolateState.disabledMeshes) mesh.setEnabled(true);
       const disabledCount = isolateState.disabledMeshes.length;
       isolateState.disabledMeshes = [];
@@ -1299,19 +1320,23 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
     if (instanceMesh.sourceMesh) {
       // Instanced meshes always render the master's material, so a true
       // per-instance edit needs a real mesh that shares the geometry but owns
-      // its material. Clone the master, restore the instance transform, and
-      // hide the instance for as long as the override lives.
+      // its material. Clone the master, restore the instance transform from
+      // the recorded source world matrix (instance position may be zero with
+      // the transform baked into the instance), and hide the instance.
       const master = instanceMesh.sourceMesh;
       replacement = master.clone(`ffxiv-workbench-inst:${stableAddress}`);
-      replacement.position.copyFrom(instanceMesh.position);
-      if (instanceMesh.rotationQuaternion) {
-        replacement.rotationQuaternion = replacement.rotationQuaternion || replacement.rotationQuaternion.constructor.Zero();
-        replacement.rotationQuaternion.copyFrom(instanceMesh.rotationQuaternion);
-      } else {
-        replacement.rotation.copyFrom(instanceMesh.rotation);
-      }
-      replacement.scaling.copyFrom(instanceMesh.scaling);
-      replacement.parent = instanceMesh.parent;
+      const worldMatrix = Matrix.FromArray(instanceMesh.metadata?.ff14?.worldMatrix || instanceMesh.getWorldMatrix().m);
+      const scaling = new Vector3();
+      const rotation = new Quaternion();
+      const translation = new Vector3();
+      worldMatrix.decompose(scaling, rotation, translation);
+      replacement.scaling.copyFrom(scaling);
+      replacement.rotationQuaternion = rotation;
+      replacement.position.copyFrom(translation);
+      replacement.parent = null; // world-space placement; the decomposed matrix already includes the spatial cell transform
+      // Masters are typically invisible (only their instances render); the
+      // replacement must render on its own.
+      replacement.isVisible = true;
       replacement.metadata = {
         ...(replacement.metadata || {}),
         ff14: {

@@ -1,0 +1,12 @@
+{
+  "label": "s11-new-1789501696436",
+  "recordedAt": "2026-09-15T19:48:16.573Z",
+  "commit": "a2b8362a358dbe53b5591f7baa3a82dc57121b8f",
+  "buildId": "e32333924356b06c3bf6139addfb94e0f48235ee2c56f8aa8bdb9196d4ac9cb2",
+  "visualReferencesManifestSha256": "1ed17ebe9bc4af0617e90e9f69a8a0bd5ad3e9bfb44b25f39aeeda4d7c3eb5ba",
+  "mapCount": 65,
+  "engine": "Babylon.js 9.26.0",
+  "lockfileSha256": "21601208cf72b1bd59a2ada41f7c3a69a8b69794d734a938bb44a37fad187d83",
+  "indexSha256": "c079360856a9bffd7bd822d5a38e4b18145883fba2e371a6c141da89a6dd3e30",
+  "releaseId": "s11-new-1789501696436"
+}

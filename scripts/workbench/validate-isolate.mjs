@@ -84,17 +84,19 @@ async function main() {
     step('independent edit + undo', edit.status === 'ok' && editUndo.status === 'ok'
       && Math.abs(editUndo.data?.undone?.restoredTo - edit.data?.before) < 1e-6, { edit: edit.data, undo: editUndo.data });
 
-    // Exit isolation: scene and site restored.
+    // Exit isolation: scene and site restored. Background full-streaming may
+    // legitimately add instances during isolation, so the invariant is "nothing
+    // that was enabled got lost", not an exact count.
     const exited = await dispatch(page, 'isolate.exit');
     const siteAfter = await dispatch(page, 'state.read');
     const enabledMeshesAfter = await page.evaluate(() => globalThis.__BABYLON_PREVIEW__.scene.meshes.filter(mesh => mesh.isEnabled()).length);
     const cameraRestored = siteAfter.data?.camera?.position
       && Math.abs(siteAfter.data.camera.position[0] - 90.5219) < 0.05
       && Math.abs(siteAfter.data.camera.position[1] - 67) < 0.05;
-    const sceneRestored = Math.abs(enabledMeshesAfter - enabledMeshesBefore) <= 2;
+    const sceneRestored = enabledMeshesAfter >= enabledMeshesBefore && exited.data?.reEnabledMeshes > 0;
     step('exit restores scene and site', exited.status === 'ok'
       && sceneRestored && cameraRestored && siteAfter.data?.time === 'day', {
-      exited: exited.data, enabledMeshesBefore, enabledMeshesAfter, cameraRestored, time: siteAfter.data?.time,
+      exited: { reEnabledMeshes: exited.data?.reEnabledMeshes }, enabledMeshesBefore, enabledMeshesAfter, cameraRestored, time: siteAfter.data?.time,
     });
     const screenshot = path.join(OUT_DIR, 's06-restored-site.png');
     await page.screenshot({ path: screenshot, fullPage: false });
