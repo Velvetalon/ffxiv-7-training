@@ -4,17 +4,38 @@ import { DirectionalLight } from '@babylonjs/core/Lights/directionalLight.js';
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight.js';
 import { ShadowGenerator } from '@babylonjs/core/Lights/Shadows/shadowGenerator.js';
 import { PBRMaterial } from '@babylonjs/core/Materials/PBR/pbrMaterial.js';
+import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial.js';
+import { DynamicTexture } from '@babylonjs/core/Materials/Textures/dynamicTexture.js';
 import { RawCubeTexture } from '@babylonjs/core/Materials/Textures/rawCubeTexture.js';
 import { Texture } from '@babylonjs/core/Materials/Textures/texture.js';
 import { SphericalHarmonics, SphericalPolynomial } from '@babylonjs/core/Maths/sphericalPolynomial.js';
 import { Constants } from '@babylonjs/core/Engines/constants.js';
 import { Observable } from '@babylonjs/core/Misc/observable.js';
 import { Scene } from '@babylonjs/core/scene.js';
+import { Mesh } from '@babylonjs/core/Meshes/mesh.js';
+import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder.js';
 
 const PRESETS = Object.freeze({ day: 12, dusk: 17.5, night: 22 });
 const DEFAULT_IBL_SIZE = 4;
+// Output curve: FF14 decodes a ToneMapping channel per time keyframe, but its
+// renderer semantics are unknown (docs/ENVIRONMENT-SOURCES.md). The S2
+// experiment (work/lighting/s2) verified Babylon TONEMAPPING_STANDARD
+// (Khronos PBR neutral, type 0) at exposure 1.0: day highlight hard-clipping
+// disappears, dusk/night unchanged, no black crush. Marked APPROXIMATE — the
+// verified winner, not source-derived.
+const TONE_MAPPING_APPROX = { enabled: true, type: 0 /* TONEMAPPING_STANDARD */, exposure: 1.0, provenance: 'approximate-standard-tonemap' };
 const SHADOW_MAP_SIZE = 1536;
-const SHADOW_FRUSTUM_SIZE = 512;
+// S3: tighter frustum + lower darkness than the v1 defaults. Shadowed surfaces
+// keep ambient/IBL fill; 0.18 keeps contact structure without pure black.
+const SHADOW_FRUSTUM_SIZE = 384;
+const SHADOW_DARKNESS = 0.18;
+const SHADOW_BIAS = 0.0005;
+const SHADOW_NORMAL_BIAS = 0.012;
+// S4: the day veil diagnosis showed a constant hemispheric fill washing out
+// direct-sun modelling. The fill now yields to the sun for lit hours and
+// keeps full strength for night readability (INFERRED adapter calibration,
+// not a source equation).
+const AMBIENT_DAY_YIELD = 0.55;
 const SHADOW_MIN_Z = 0.5;
 const SHADOW_MAX_Z = 900;
 
@@ -186,9 +207,9 @@ export class EnvironmentAdapter {
       minZ: SHADOW_MIN_Z,
       maxZ: SHADOW_MAX_Z,
       filter: 'PCF-medium',
-      darkness: 0.35,
-      bias: 0.0005,
-      normalBias: 0.02,
+      darkness: SHADOW_DARKNESS,
+      bias: SHADOW_BIAS,
+      normalBias: SHADOW_NORMAL_BIAS,
       sourceEquation: 'browser-directional-light-approximation',
     });
   }
@@ -280,7 +301,12 @@ export class EnvironmentAdapter {
     lights.ambient.diffuse = ambientColor.add(extra);
     lights.ambient.specular = ambientColor.add(extra);
     lights.ambient.groundColor = state.fogColor.scale(0.45);
-    lights.ambient.intensity = this.ambientEngineIntensity * Math.max(0, finite(state.ambientScale, 1));
+    // S4 rebalance: the hemispheric fill yields to direct sun during lit hours
+    // (day veil fix) and keeps full strength at night for readability.
+    const sunStrength = clamp01(state.direct.sunIntensity / 1.4);
+    lights.ambient.intensity = this.ambientEngineIntensity
+      * Math.max(0, finite(state.ambientScale, 1))
+      * (1 - AMBIENT_DAY_YIELD * sunStrength);
 
     this.scene.fogEnabled = true;
     this.scene.fogMode = Scene.FOGMODE_LINEAR;
@@ -290,10 +316,61 @@ export class EnvironmentAdapter {
     this.scene.clearColor = new Color4(state.fogColor.r, state.fogColor.g, state.fogColor.b, 1);
     if (this.scene.imageProcessingConfiguration) {
       // ENVB toneMappingTimeSeconds is a time channel, not an exposure value.
-      this.scene.imageProcessingConfiguration.exposure = this.imageProcessingExposure;
+      // The display curve is the S2-verified approximate standard transform.
+      this.scene.imageProcessingConfiguration.exposure = TONE_MAPPING_APPROX.exposure;
+      this.scene.imageProcessingConfiguration.toneMappingEnabled = TONE_MAPPING_APPROX.enabled;
+      this.scene.imageProcessingConfiguration.toneMappingType = TONE_MAPPING_APPROX.type;
+      state.imageProcessing.approximation = TONE_MAPPING_APPROX.provenance;
     }
+    this._updateSkyDome(state);
     this._updateProceduralEnvironment(state);
     return state;
+  }
+
+  // S5 sky: a camera-locked gradient dome built from the same decoded state as
+  // the fog (horizon = fog colour with a sun-tinted glow, zenith = darkened
+  // fog colour). Source-colour-derived values, INFERRED vertical mapping.
+  _ensureSkyDome() {
+    if (this.skyDome) return this.skyDome;
+    const dome = MeshBuilder.CreateSphere('KuganeSkyDome', {
+      diameter: 4000, segments: 12, sideOrientation: Mesh.BACKSIDE,
+    }, this.scene);
+    const material = new StandardMaterial('KuganeSkyDomeMaterial', this.scene);
+    material.disableLighting = true;
+    material.backFaceCulling = false;
+    const gradient = new DynamicTexture('KuganeSkyGradient', { width: 4, height: 256 }, this.scene, false);
+    gradient.wrapU = Texture.CLAMP_ADDRESSMODE;
+    gradient.wrapV = Texture.CLAMP_ADDRESSMODE;
+    gradient.gammaSpace = true;
+    material.emissiveTexture = gradient;
+    material.diffuseColor = new Color3(0, 0, 0);
+    material.specularColor = new Color3(0, 0, 0);
+    dome.material = material;
+    dome.isPickable = false;
+    dome.applyFog = false;
+    dome.infiniteDistance = true;
+    dome.name = 'KuganeSkyDome';
+    this.skyDome = dome;
+    this.skyGradient = gradient;
+    return dome;
+  }
+
+  _updateSkyDome(state) {
+    this._ensureSkyDome();
+    const context = this.skyGradient.getContext();
+    const size = this.skyGradient.getSize();
+    const clamp01Color = source => new Color3(clamp01(source.r), clamp01(source.g), clamp01(source.b));
+    const horizon = clamp01Color(color(state.fogColor).add(color(state.sunColor).scale(0.3 * clamp01(state.direct.sunIntensity))));
+    const zenith = clamp01Color(color(state.fogColor).scale(0.42).add(color(state.moonColor).scale(0.08 * state.direct.moonIntensity)));
+    const gradientFill = context.createLinearGradient(0, 0, 0, size.height);
+    gradientFill.addColorStop(0, zenith.toHexString());
+    gradientFill.addColorStop(0.62, mix(zenith, horizon, 0.55).toHexString());
+    gradientFill.addColorStop(1, horizon.toHexString());
+    context.fillStyle = gradientFill;
+    context.fillRect(0, 0, size.width, size.height);
+    this.skyGradient.update(false);
+    state.sky = { horizon: horizon.toHexString(), zenith: zenith.toHexString(), provenance: 'source-colour-gradient (INFERRED vertical mapping)' };
+    return this.skyDome;
   }
 
   _applyShadows(state) {
@@ -318,9 +395,9 @@ export class EnvironmentAdapter {
     const generator = new ShadowGenerator(SHADOW_MAP_SIZE, light);
     generator.usePercentageCloserFiltering = true;
     generator.filteringQuality = ShadowGenerator.QUALITY_MEDIUM;
-    generator.darkness = 0.35;
-    generator.bias = 0.0005;
-    generator.normalBias = 0.02;
+    generator.darkness = SHADOW_DARKNESS;
+    generator.bias = SHADOW_BIAS;
+    generator.normalBias = SHADOW_NORMAL_BIAS;
     generator.transparencyShadow = false;
     this.shadowGenerator = generator;
     for (const caster of this.shadowCasters) this._attachShadowCaster(caster);
@@ -437,6 +514,7 @@ export class EnvironmentAdapter {
         ready: Boolean(this.shadowGenerator),
       },
       imageProcessing: state?.imageProcessing || { exposure: this.imageProcessingExposure, mapped: false },
+      sky: state?.sky || null,
       knownUnsupported: { ...this.unsupported },
     };
   }
@@ -448,6 +526,9 @@ export class EnvironmentAdapter {
     this.shadowCasters.clear();
     if (this.environmentTexture) this.environmentTexture.dispose();
     this.environmentTexture = null;
+    this.skyDome?.dispose?.();
+    this.skyDome = null;
+    this.skyGradient = null;
     for (const light of Object.values(this.lights || {})) light.dispose();
     this.lights = null;
   }
