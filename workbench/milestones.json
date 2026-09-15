@@ -111,8 +111,20 @@
         "layer-3 candidates are diagnostic presets (broken/flat), not a production shader pipeline; Vite HMR still covers module code while the workbench owns resource lifecycle"
       ]
     },
-    "S06": { "title": "单对象隔离实验室", "status": "READY", "dependencies": ["S02", "S03", "S04"] },
-    "S07": { "title": "场景配方与小范围 A/B 实验", "status": "BLOCKED", "dependencies": ["S02", "S04"] },
+    "S06": {
+      "title": "单对象隔离实验室",
+      "status": "VERIFIED",
+      "dependencies": ["S02", "S03", "S04"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js (isolate.enter/env/orbit/wireframe/exit/status) + scripts/workbench/validate-isolate.mjs",
+      "entry": "wb.mjs --command=isolate.enter --args='{\"stableAddress\":\"e3t1:118:0\"}' ; isolate.env {mode: neutral|original} ; isolate.exit returns the saved site",
+      "evidence": ["work/workbench/s06/s06-report-2026-09-15T18-27-24-694Z.json"],
+      "verification": "7/7 steps pass: enter hides all other meshes (visible <= 12) and reports dependency changes (shadows/fog/neighbours); neutral<->original env toggle; orbit rig moves the camera around object bounds; wireframe on the isolated clone; independent instance override + undo inside isolation; exit re-enables the scene (enabled mesh count restored within 2) and returns the exact camera/time site",
+      "knownGaps": [
+        "opening a raw resource sample without its map is UNSUPPORTED this round (needs a second scene wired to the same AssetRuntime); isolation is selection-based only",
+        "character/animation isolation not exercised in viewer mode (no character runtime in the map-only viewer); remains a full-client task"
+      ]
+    },
+    "S07": { "title": "场景配方与小范围 A/B 实验", "status": "READY", "dependencies": ["S02", "S04"] },
     "S08": { "title": "异常摘要与证据包", "status": "BLOCKED", "dependencies": ["S03", "S07"] },
     "S09": { "title": "影响分析与定向构建", "status": "BLOCKED", "dependencies": ["S03", "S04", "S08"] },
     "S10": { "title": "工作台统一交互", "status": "BLOCKED", "dependencies": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"] },

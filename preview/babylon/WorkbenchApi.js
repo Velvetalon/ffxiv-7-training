@@ -41,6 +41,12 @@ const COMMANDS = [
   'hot.updateMaterial',
   'hot.rollback',
   'hot.status',
+  'isolate.enter',
+  'isolate.env',
+  'isolate.orbit',
+  'isolate.wireframe',
+  'isolate.exit',
+  'isolate.status',
 ];
 
 const CASE_STORAGE_KEY = 'ff14-workbench-cases';
@@ -792,6 +798,119 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
       },
     }),
 
+    'isolate.enter': async (requestId, args) => {
+      if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
+      if (isolateState.active) return reject(requestId, 'unavailable', 'isolation already active; call isolate.exit first');
+      const stableAddress = String(args.stableAddress || '');
+      const entry = cloneForInstance(stableAddress);
+      if (!entry) return reject(requestId, 'invalid-args', `cannot isolate ${stableAddress}`);
+      const mesh = entry.replacement;
+
+      isolateState.active = true;
+      isolateState.target = stableAddress;
+      isolateState.savedCamera = cameraSnapshot();
+      isolateState.savedEnv = captureEnvironmentForIsolate();
+      isolateState.disabledMeshes = [];
+      isolateState.wireframe = false;
+
+      // Hide every enabled mesh except the isolated replacement. Meshes that
+      // were already disabled (streamed out etc.) are not recorded.
+      for (const candidate of api.scene.meshes || []) {
+        if (candidate === mesh) continue;
+        if (!candidate.isEnabled()) continue;
+        candidate.setEnabled(false);
+        isolateState.disabledMeshes.push(candidate);
+      }
+
+      // Neutral environment by default; the dependency change is reported.
+      applyIsolateEnvironment('neutral');
+
+      const bounds = mesh.getHierarchyBoundingVectors?.();
+      const center = bounds ? bounds.min.add(bounds.max).scale(0.5) : mesh.getAbsolutePosition().clone();
+      const radius = bounds ? bounds.max.subtract(bounds.min).length() * 0.5 : 5;
+      isolateState.orbitCenter = center;
+      isolateState.orbitRadius = Math.max(radius * 3, 4);
+      isolateState.orbitAngle = 0.7;
+      const orbit = orbitCameraPosition();
+      api.setCameraState({ position: orbit, target: [center.x, center.y, center.z], fov: 0.82 });
+      await waitForFrame();
+
+      const visibleMeshes = (api.scene.meshes || []).filter(candidate => candidate.isEnabled() && candidate.isVisible).length;
+      return mutate(requestId, null, {
+        target: stableAddress,
+        dependenciesChanged: {
+          shadows: 'isolation removes ground/shadow receivers',
+          fog: 'neutral rig disables map fog',
+          neighbours: 'all other meshes hidden',
+        },
+        visibleMeshes,
+        camera: cameraSnapshot(),
+      });
+    },
+
+    'isolate.env': async (requestId, args) => {
+      if (!isolateState.active) return reject(requestId, 'unavailable', 'isolation not active');
+      const mode = args.mode === 'original' ? 'original' : 'neutral';
+      const applied = applyIsolateEnvironment(mode);
+      if (!applied) return reject(requestId, 'unavailable', 'environment lights unavailable');
+      await waitForFrame();
+      return mutate(requestId, null, { env: mode });
+    },
+
+    'isolate.orbit': async (requestId, args) => {
+      if (!isolateState.active) return reject(requestId, 'unavailable', 'isolation not active');
+      isolateState.orbitAngle = Number.isFinite(Number(args.angle)) ? Number(args.angle) : isolateState.orbitAngle + Math.PI / 4;
+      if (Number.isFinite(Number(args.radius))) isolateState.orbitRadius = Math.max(1, Number(args.radius));
+      const orbit = orbitCameraPosition();
+      api.setCameraState({ position: orbit, target: [isolateState.orbitCenter.x, isolateState.orbitCenter.y, isolateState.orbitCenter.z] });
+      await waitForFrame();
+      return mutate(requestId, null, { angle: isolateState.orbitAngle, radius: isolateState.orbitRadius });
+    },
+
+    'isolate.wireframe': async (requestId, args) => {
+      if (!isolateState.active) return reject(requestId, 'unavailable', 'isolation not active');
+      const mesh = findObjectMesh(isolateState.target);
+      const material = mesh?.material;
+      if (!material) return reject(requestId, 'unavailable', 'isolated object has no material');
+      isolateState.wireframe = args.on === undefined ? !isolateState.wireframe : Boolean(args.on);
+      material.wireframe = isolateState.wireframe;
+      await waitForFrame();
+      return mutate(requestId, null, { wireframe: isolateState.wireframe });
+    },
+
+    'isolate.exit': async requestId => {
+      if (!isolateState.active) return reject(requestId, 'invalid-args', 'isolation not active');
+      for (const mesh of isolateState.disabledMeshes) mesh.setEnabled(true);
+      const disabledCount = isolateState.disabledMeshes.length;
+      isolateState.disabledMeshes = [];
+      const material = findObjectMesh(isolateState.target)?.material;
+      if (material && isolateState.wireframe) material.wireframe = false;
+      applyIsolateEnvironment('original');
+      if (isolateState.savedCamera) {
+        api.setCameraState({ position: isolateState.savedCamera.position, target: isolateState.savedCamera.target, fov: isolateState.savedCamera.fov });
+      }
+      isolateState.active = false;
+      const target = isolateState.target;
+      isolateState.target = null;
+      await waitForFrame();
+      return mutate(requestId, null, {
+        target,
+        reEnabledMeshes: disabledCount,
+        camera: cameraSnapshot(),
+        note: 'the isolation clone (and its overrides) stays available through override.*; dispose it via override.undo',
+      });
+    },
+
+    'isolate.status': requestId => build(requestId, 'ok', {
+      data: {
+        active: isolateState.active,
+        target: isolateState.target,
+        wireframe: isolateState.wireframe,
+        hiddenMeshes: isolateState.disabledMeshes.length,
+        resourceSampleOpen: 'UNSUPPORTED: opening a resource without its map requires a second scene; not available in this round',
+      },
+    }),
+
     'override.set': async (requestId, args) => {
       if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
       const property = String(args.property || '');
@@ -1192,6 +1311,75 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
     stateRevision += 1;
   }
 
+  // ---- Isolation lab (S06) ---------------------------------------------------
+  // One active isolation view at a time. The lab reuses the same scene and
+  // material mapping (no separate simplified materials): every other mesh is
+  // hidden, the camera orbits the object, and the environment can toggle
+  // between the map's own lighting and a neutral flat rig. Dependencies that
+  // change in isolation (shadows, fog, neighbours) are reported per enter().
+  const isolateState = {
+    active: false,
+    target: null,
+    savedCamera: null,
+    savedEnv: null,
+    disabledMeshes: [],
+    wireframe: false,
+    orbitAngle: 0,
+    orbitRadius: 0,
+    orbitCenter: null,
+  };
+
+  function isolateLights() {
+    const lights = api.environment?.ensureLights?.();
+    if (!lights?.sun || !lights?.ambient) return null;
+    return lights;
+  }
+
+  function orbitCameraPosition() {
+    const center = isolateState.orbitCenter;
+    if (!center) return null;
+    const { orbitAngle, orbitRadius } = isolateState;
+    return [
+      center.x + Math.cos(orbitAngle) * orbitRadius,
+      center.y + orbitRadius * 0.35,
+      center.z + Math.sin(orbitAngle) * orbitRadius,
+    ];
+  }
+
+  function captureEnvironmentForIsolate() {
+    const lights = isolateLights();
+    return {
+      exposure: api.scene?.imageProcessingConfiguration?.exposure ?? null,
+      fogEnabled: api.scene?.fogEnabled ?? null,
+      sunIntensity: lights?.sun?.intensity ?? null,
+      ambientIntensity: lights?.ambient?.intensity ?? null,
+      ambientDiffuse: lights?.ambient?.diffuse ? lights.ambient.diffuse.asArray() : null,
+    };
+  }
+
+  function applyIsolateEnvironment(mode) {
+    const lights = isolateLights();
+    if (!lights) return false;
+    if (mode === 'neutral') {
+      api.scene.fogEnabled = false;
+      lights.sun.intensity = 1.1;
+      lights.ambient.intensity = 0.7;
+      lights.ambient.diffuse.set(0.85, 0.85, 0.85);
+    } else {
+      const saved = isolateState.savedEnv;
+      if (!saved) return false;
+      api.scene.fogEnabled = saved.fogEnabled;
+      if (Number.isFinite(saved.sunIntensity)) lights.sun.intensity = saved.sunIntensity;
+      if (Number.isFinite(saved.ambientIntensity)) lights.ambient.intensity = saved.ambientIntensity;
+      if (saved.ambientDiffuse) lights.ambient.diffuse.set(saved.ambientDiffuse[0], saved.ambientDiffuse[1], saved.ambientDiffuse[2]);
+    }
+    return true;
+  }
+
+  // Candidate -> validate/compile -> confirm the target is unchanged ->
+  // replace -> dispose only workbench-exclusive resources. Failures keep the
+  // previous binding. Rapid successive updates: only the newest candidate
+  // lands; older ones abort through the generation counter.
   // ---- Hot update machinery (S05) -------------------------------------------
   // Candidate -> validate/compile -> confirm the target is unchanged ->
   // replace -> dispose only workbench-exclusive resources. Failures keep the
