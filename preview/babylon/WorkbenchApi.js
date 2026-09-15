@@ -20,6 +20,9 @@ const COMMANDS = [
   'animation.resume',
   'objects.locate',
   'objects.list',
+  'objects.pick',
+  'objects.inspect',
+  'resources.whoUses',
   'map.switch',
   'case.capture',
   'case.save',
@@ -154,6 +157,99 @@ export function createWorkbenchApi(api) {
     };
   }
 
+  function findObjectMesh(stableAddress) {
+    const [mapId, modelIndexPart, instancePart] = String(stableAddress || '').split(':');
+    const modelIndex = Number(modelIndexPart);
+    const sourceInstanceIndex = Number(instancePart);
+    if (!Number.isFinite(modelIndex) || !Number.isFinite(sourceInstanceIndex)) return null;
+    if (mapId && mapId !== api.mapId) return null;
+    const suffix = `:${modelIndex}:${sourceInstanceIndex}:`;
+    return (api.scene?.meshes || []).find(candidate => {
+      const meta = candidate?.metadata?.ff14;
+      return meta && meta.sourceInstanceIndex === sourceInstanceIndex && candidate.name.includes(suffix);
+    }) || null;
+  }
+
+  function registryRecord(resourceId) {
+    if (!resourceId) return null;
+    const registry = api.assets?.runtime?.registry;
+    const record = registry?.resources?.get?.(resourceId) || registry?.get?.(resourceId) || null;
+    return record ? { id: record.id || resourceId, type: record.type || null, size: record.size || 0, hash: record.hash || null } : { id: resourceId };
+  }
+
+  function textureProvenance(material) {
+    const slots = material?.metadata?.ffxiv?.textureSlots || [];
+    const provenance = [];
+    for (const slot of slots) {
+      const texture = material[slot.property];
+      const meta = texture?.metadata?.ffxiv || null;
+      provenance.push({
+        property: slot.property,
+        semantic: slot.semantic,
+        runtimePath: slot.runtimePath || meta?.runtimePath || null,
+        sourcePath: slot.sourcePath || meta?.sourcePath || null,
+        resourceId: meta?.resourceId || null,
+        fullResourceId: meta?.fullResourceId || null,
+        previewEncoding: meta?.preview ?? null,
+        gammaSpace: texture ? texture.gammaSpace : null,
+        uvScale: texture ? [texture.uScale ?? 1, texture.vScale ?? 1] : null,
+        dimensions: texture?.getSize ? Object.values(texture.getSize()).filter(Number.isFinite).slice(0, 2) : null,
+      });
+    }
+    return provenance;
+  }
+
+  function materialProvenance(material, records) {
+    if (!material) return null;
+    const meta = material.metadata?.ffxiv || null;
+    const channelMapping = meta?.channelMapping || null;
+    const finalParams = {
+      className: material.getClassName?.() || null,
+      albedoColor: material.albedoColor ? material.albedoColor.asArray().map(value => Number(value.toFixed(4))) : null,
+      metallic: Number.isFinite(material.metallic) ? material.metallic : null,
+      roughness: Number.isFinite(material.roughness) ? material.roughness : null,
+      transparencyMode: material.transparencyMode ?? null,
+      alphaCutOff: Number.isFinite(material.alphaCutOff) ? material.alphaCutOff : null,
+      useAlphaFromAlbedoTexture: material.useAlphaFromAlbedoTexture ?? null,
+      backFaceCulling: material.backFaceCulling ?? null,
+      twoSidedLighting: material.twoSidedLighting ?? null,
+      environmentIntensity: Number.isFinite(material.environmentIntensity) ? material.environmentIntensity : null,
+    };
+    const users = [];
+    for (const candidate of api.scene?.meshes || []) {
+      if (candidate.material !== material) continue;
+      const instance = candidate.metadata?.ff14;
+      if (!instance) continue;
+      const record = records.find(entry => entry.asset === instance.sourceAsset);
+      users.push(`${api.mapId}:${record?.index ?? '?'}:${instance.sourceInstanceIndex}`);
+      if (users.length >= 5) break;
+    }
+    return {
+      name: material.name || null,
+      ffxiv: meta ? {
+        materialPath: meta.materialPath,
+        shader: meta.shader,
+        shaderFamily: meta.shaderFamily,
+        workflow: meta.workflow,
+        flags: meta.flags,
+        channelSemantics: channelMapping || { note: 'UNKNOWN: no confirmed channel mapping for this workflow', r: 'UNKNOWN', g: 'UNKNOWN', b: 'UNKNOWN', a: 'UNKNOWN' },
+        sourceNormalYInverted: meta.sourceNormalYInverted ?? null,
+        previewEncoding: meta.preview ?? null,
+        unsupported: meta.unsupported || [],
+        alphaThreshold: meta.alphaThreshold ?? null,
+      } : { note: 'no ffxiv provenance metadata on material' },
+      textures: textureProvenance(material),
+      finalParams,
+      sharedBy: { instanceCount: users.length, representativeStableAddresses: users },
+    };
+  }
+
+  function meshMaterials(mesh) {
+    const material = mesh.material;
+    if (!material) return [];
+    return material.subMaterials ? material.subMaterials.filter(Boolean) : [material];
+  }
+
   const handlers = {
     'capabilities.query': requestId => build(requestId, 'ok', {
       data: {
@@ -226,20 +322,12 @@ export function createWorkbenchApi(api) {
       return mutate(requestId, null, { animationsEnabled: true, animatables: api.scene.getActiveAnimatables?.().length ?? 0 });
     },
 
-    'objects.locate': (requestId, args) => {
+    'objects.locate': (requestId, passedArgs) => {
       const records = api.loader?.records || [];
-      if (args.stableAddress || Number.isFinite(Number(args.modelIndex))) {
-        const [mapId, modelIndexPart, instancePart] = String(args.stableAddress || '').split(':');
-        const modelIndex = args.stableAddress ? Number(modelIndexPart) : Number(args.modelIndex);
-        const sourceInstanceIndex = args.stableAddress ? Number(instancePart) : Number(args.sourceInstanceIndex ?? 0);
-        if (api.mapId && mapId && mapId !== api.mapId) return reject(requestId, 'invalid-args', `address map ${mapId} != current ${api.mapId}`);
-        if (!Number.isFinite(modelIndex) || !Number.isFinite(sourceInstanceIndex)) return reject(requestId, 'invalid-args', 'stable address malformed');
-        const suffix = `:${modelIndex}:${sourceInstanceIndex}:`;
-        const mesh = (api.scene?.meshes || []).find(candidate => {
-          const meta = candidate?.metadata?.ff14;
-          return meta && candidate.name.includes(suffix) && meta.sourceInstanceIndex === sourceInstanceIndex;
-        }) || (api.scene?.meshes || []).find(candidate => candidate.name === `${api.mapId}:${modelIndex}:${sourceInstanceIndex}`);
-        if (!mesh) return build(requestId, 'ok', { data: { found: false, stableAddress: `${api.mapId}:${modelIndex}:${sourceInstanceIndex}` } });
+      if (passedArgs.stableAddress || Number.isFinite(Number(passedArgs.modelIndex))) {
+        const stableAddress = passedArgs.stableAddress || `${api.mapId}:${Number(passedArgs.modelIndex)}:${Number(passedArgs.sourceInstanceIndex ?? 0)}`;
+        const mesh = findObjectMesh(stableAddress);
+        if (!mesh) return build(requestId, 'ok', { data: { found: false, stableAddress } });
         return build(requestId, 'ok', { data: { found: true, object: objectRecord(mesh, records) } });
       }
       return reject(requestId, 'invalid-args', 'stableAddress or modelIndex required');
@@ -273,6 +361,102 @@ export function createWorkbenchApi(api) {
           mapId,
           navigateTo: next.href,
           note: 'viewer mode switches maps by navigation; wait for the new page ready gate',
+        },
+      });
+    },
+
+    'objects.pick': (requestId, args) => {
+      const x = Number(args.x);
+      const y = Number(args.y);
+      if (!Number.isFinite(x) || !Number.isFinite(y)) return reject(requestId, 'invalid-args', 'x and y screen coordinates required');
+      const records = api.loader?.records || [];
+      const pick = api.scene.pick(x, y, mesh => Boolean(mesh?.metadata?.ff14));
+      if (!pick?.hit || !pick.pickedMesh) {
+        return build(requestId, 'ok', { data: { hit: false } });
+      }
+      const record = objectRecord(pick.pickedMesh, records);
+      return build(requestId, 'ok', {
+        data: { hit: true, distance: Number(pick.distance?.toFixed(2)) || null, object: record },
+      });
+    },
+
+    'objects.inspect': (requestId, passedArgs) => {
+      const records = api.loader?.records || [];
+      let mesh = null;
+      if (passedArgs.stableAddress) {
+        mesh = findObjectMesh(passedArgs.stableAddress);
+        if (!mesh) return build(requestId, 'ok', { data: { found: false, stableAddress: passedArgs.stableAddress } });
+      } else if (Number.isFinite(Number(passedArgs.x)) && Number.isFinite(Number(passedArgs.y))) {
+        const pick = api.scene.pick(Number(passedArgs.x), Number(passedArgs.y), candidate => Boolean(candidate?.metadata?.ff14));
+        mesh = pick?.pickedMesh || null;
+        if (!mesh) return build(requestId, 'ok', { data: { hit: false } });
+      } else {
+        return reject(requestId, 'invalid-args', 'stableAddress or screen x/y required');
+      }
+
+      const meta = mesh.metadata.ff14;
+      const record = records.find(candidate => candidate.asset === meta.sourceAsset);
+      if (!record) return reject(requestId, 'unavailable', `loader record missing for ${meta.sourceAsset}`);
+      const resourceId = record.resourceId || null;
+      const parent = mesh.parent;
+      const materials = meshMaterials(mesh).map(material => materialProvenance(material, records));
+      return build(requestId, 'ok', {
+        data: {
+          instance: {
+            stableAddress: `${api.mapId}:${record.index}:${meta.sourceInstanceIndex}`,
+            meshName: mesh.name,
+            sourceAsset: meta.sourceAsset,
+            modelIndex: record.index,
+            sourceInstanceIndex: meta.sourceInstanceIndex,
+            spatialCell: meta.spatialCell ?? null,
+            determinantSign: meta.determinantSign ?? null,
+            worldMatrix: meta.worldMatrix || Array.from(mesh.getWorldMatrix().m),
+            sourceMatrix: meta.sourceMatrix || null,
+            parent: parent ? { name: parent.name, worldPosition: parent.position ? [parent.position.x, parent.position.y, parent.position.z].map(value => Number(value.toFixed(3))) : null } : null,
+            enabled: mesh.isEnabled(),
+          },
+          model: {
+            resourceId,
+            registry: registryRecord(resourceId),
+            contentHash: resourceId?.startsWith('glb:sha256:') ? resourceId.slice('glb:sha256:'.length) : null,
+            siblingPlacementCount: record.matrices?.length ?? 0,
+          },
+          geometry: {
+            totalVertices: mesh.getTotalVertices?.() ?? null,
+            subMeshes: mesh.subMeshes?.length ?? null,
+            hasUV: Boolean(mesh.isVerticesDataPresent?.('uv')),
+            hasUV2: Boolean(mesh.isVerticesDataPresent?.('uv2')),
+            hasVertexColor: Boolean(mesh.isVerticesDataPresent?.('color')),
+          },
+          materials,
+        },
+      });
+    },
+
+    'resources.whoUses': (requestId, passedArgs) => {
+      const resourceId = String(passedArgs.resourceId || '').trim();
+      if (!resourceId) return reject(requestId, 'invalid-args', 'resourceId required');
+      const records = api.loader?.records || [];
+      const modelUsers = [];
+      const materialUsers = [];
+      for (const record of records) {
+        if (record.resourceId === resourceId) {
+          modelUsers.push({ kind: 'model', count: record.matrices?.length ?? 0, sampleStableAddress: `${api.mapId}:${record.index}:0`, sourceAsset: record.asset });
+        }
+        const materialPaths = Array.isArray(record.materials) ? record.materials : [];
+        if (materialPaths.some(entry => (entry?.resourceId || entry) === resourceId)) {
+          materialUsers.push({ kind: 'material', sampleStableAddress: `${api.mapId}:${record.index}:0`, sourceAsset: record.asset });
+        }
+      }
+      const registry = registryRecord(resourceId);
+      const manifestMaterial = api.assets?.manifest?.materials?.[resourceId] ? { presentIn: 'manifest.materials' } : null;
+      return build(requestId, 'ok', {
+        data: {
+          resourceId,
+          registry,
+          uses: { modelInstances: modelUsers, materials: materialUsers, manifestMaterial },
+          totalModelPlacements: modelUsers.reduce((sum, entry) => sum + entry.count, 0),
+          representative: modelUsers.slice(0, 3),
         },
       });
     },

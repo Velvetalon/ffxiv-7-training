@@ -66,8 +66,23 @@
       "verification": "7/7 steps pass: capture (2 stable objects) -> save -> scramble (camera/night/pause) -> restore complete -> read-back matches; strict semantics reject stale assetRunId (version-mismatch); missing object address -> partial restore with explicit missing list; visual review confirms HUD camera/time identical to case",
       "knownGaps": ["cross-map restore (accepted + sessionStorage pending apply) implemented but exercised only implicitly; weather field is a placeholder until S04 adds real overrides"]
     },
-    "S03": { "title": "对象检查与资源溯源", "status": "READY", "dependencies": ["S01"] },
-    "S04": { "title": "参数编辑与补丁落盘", "status": "BLOCKED", "dependencies": ["S02", "S03"], "blockedReason": "awaits S02+S03" },
+    "S03": {
+      "title": "对象检查与资源溯源",
+      "status": "VERIFIED",
+      "dependencies": ["S01"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js (objects.pick/inspect, resources.whoUses) + scripts/workbench/validate-provenance.mjs",
+      "entry": "wb.mjs --command=objects.inspect --args='{\"stableAddress\":\"e3t1:118:0\"}' (or screen x/y); resources.whoUses --args='{\"resourceId\":\"glb:sha256:...\"}'",
+      "evidence": [
+        "work/workbench/s03/s03-report-2026-09-15T17-52-08-535Z.json",
+        "work/workbench/s03/provenance.json"
+      ],
+      "verification": "6/6 steps pass: full chain from stable address -> instance worldMatrix/spatialCell -> model resourceId+contentHash (33 sibling placements) -> material path/shader/workflow (bg.shpk, background-packed-mask-dielectric, confirmed channel semantics) -> texture slots (content-hash resourceIds, gamma flags, uv scales) -> Babylon final params; sibling instance same model different address/transform; stable address survives page reload; whoUses counts + representatives",
+      "knownGaps": [
+        "observed: albedo texture reports gammaSpace=linear in the current pipeline (albedo is a color channel); surfaced to the visual-replication task, not changed here",
+        "whoUses covers model instances and manifest.materials presence only; bundle-level reverse index comes with S09"
+      ]
+    },
+    "S04": { "title": "参数编辑与补丁落盘", "status": "READY", "dependencies": ["S02", "S03"] },
     "S05": { "title": "局部热更新与失败回退", "status": "BLOCKED", "dependencies": ["S04"] },
     "S06": { "title": "单对象隔离实验室", "status": "BLOCKED", "dependencies": ["S02", "S03", "S04"] },
     "S07": { "title": "场景配方与小范围 A/B 实验", "status": "BLOCKED", "dependencies": ["S02", "S04"] },
