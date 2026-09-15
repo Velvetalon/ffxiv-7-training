@@ -137,8 +137,20 @@
         "metrics limited to fps/activeMeshes/exposure/time/camera; no pixel scoring by design"
       ]
     },
-    "S08": { "title": "异常摘要与证据包", "status": "READY", "dependencies": ["S03"] },
-    "S09": { "title": "影响分析与定向构建", "status": "BLOCKED", "dependencies": ["S03", "S04", "S08"] },
+    "S08": {
+      "title": "异常摘要与证据包",
+      "status": "VERIFIED",
+      "dependencies": ["S03"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js (anomalies.list, faults.inject/clear, evidence.export) + scripts/workbench/validate-evidence.mjs",
+      "entry": "wb.mjs --command=anomalies.list ; faults.inject --args='{\"match\":\"<texture path>\"}' (page-local only) ; evidence.export --args='{\"evidenceId\":\"...\",\"caseId\":\"...\"}'",
+      "evidence": ["work/workbench/s08/s08-report-2026-09-15T18-53-19-827Z.json"],
+      "verification": "9/9 steps pass: page-local fault injection at the assets.texture boundary (bundle range URLs do not carry texture paths, so fetch wrapping alone never fires) makes a hot texture update fail safely (candidate-error, PBRMaterial kept); anomalies aggregate by kind+message with counts; evidence pack contains case + versions + anomalies + load timeline, screenshot refs only, no signed URLs; the case reproduces completely in a clean second page; faults.clear restores the normal flow (same update then succeeds)",
+      "knownGaps": [
+        "cache-hit visibility limited to aggregate counts (browser CacheStorage vs CDN split not observable in-page); GPU memory reported as UNKNOWN",
+        "evidence pack stores screenshots as separate PNG files next to evidence.json rather than embedding them"
+      ]
+    },
+    "S09": { "title": "影响分析与定向构建", "status": "READY", "dependencies": ["S03", "S04"] },
     "S10": { "title": "工作台统一交互", "status": "BLOCKED", "dependencies": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08"] },
     "S11": { "title": "预览发布与版本回退", "status": "BLOCKED", "dependencies": ["S09", "S10"], "blockedReason": "发布需要 COS/CDN 凭据；凭据不在 Git 中，按计划记录阻塞并保留可部署产物" },
     "S12": { "title": "实际案例总闭环与交接", "status": "BLOCKED", "dependencies": ["S00-S11"] }

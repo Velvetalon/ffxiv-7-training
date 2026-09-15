@@ -47,6 +47,10 @@ const COMMANDS = [
   'isolate.wireframe',
   'isolate.exit',
   'isolate.status',
+  'anomalies.list',
+  'faults.inject',
+  'faults.clear',
+  'evidence.export',
 ];
 
 const CASE_STORAGE_KEY = 'ff14-workbench-cases';
@@ -649,6 +653,61 @@ export function createWorkbenchApi(api) {
       });
     },
 
+    'anomalies.list': requestId => build(requestId, 'ok', {
+      data: {
+        anomalies: anomaliesSnapshot(),
+        totalKinds: anomalyLog.size,
+        injectedFault: { active: faultState.active, match: faultState.match, hits: faultState.hits },
+        note: 'aggregated by kind+message; at most 10 high-value entries; loader/resource failures folded in on demand',
+      },
+    }),
+
+    'faults.inject': (requestId, args) => {
+      const match = String(args.match || '').trim();
+      if (!match) return reject(requestId, 'invalid-args', 'match substring required');
+      if (match.length < 4) return reject(requestId, 'invalid-args', 'match too broad; use at least 4 characters');
+      if (!faultState.active) installFaultInterception();
+      faultState.active = true;
+      faultState.match = match;
+      faultState.mode = args.mode === 'status-503' ? 'status-503' : 'reject';
+      faultState.hits = 0;
+      recordAnomaly('fault-injected', `local test fault for ${match}`);
+      return mutate(requestId, null, { active: true, match, mode: faultState.mode, scope: 'this page only; faults.clear removes it' });
+    },
+
+    'faults.clear': requestId => {
+      const removed = faultState.active;
+      removeFaultInterception();
+      return mutate(requestId, null, { removed, hits: faultState.hits });
+    },
+
+    'evidence.export': async (requestId, args) => {
+      const snapshot = args.case || (args.caseId ? readStoredCases()[args.caseId] : null);
+      const assetFields = assetVersionFields(api);
+      const overrides = await dispatch('override.list', { requestId: `${requestId}:overrides` });
+      const evidence = {
+        schemaVersion: 1,
+        kind: 'evidence',
+        evidenceId: String(args.evidenceId || `evidence-${Date.now()}`),
+        createdAt: new Date().toISOString(),
+        mapId: api.mapId,
+        versions: {
+          assetRunId: assetFields.assetRunId,
+          mapManifest: assetFields.mapManifest,
+          engine: api.engine ? `Babylon.js ${api.engine.constructor.Version}` : null,
+          backend: api.engine ? `WebGL${api.engine.webGLVersion}` : null,
+          sceneEpoch,
+          stateRevision,
+        },
+        case: snapshot || null,
+        overrides: overrides.data?.applied || [],
+        anomalies: anomaliesSnapshot(),
+        loadTimeline: loadTimeline(),
+        exclusions: 'no game assets, credentials, signed URLs, absolute personal paths or DAT originals; screenshots are referenced by relative path only',
+      };
+      return build(requestId, 'ok', { data: { evidence, screenshots: 'captured by the CLI next to this file' } });
+    },
+
     'hot.updateMaterial': async (requestId, args) => {
       if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
       const stableAddress = String(args.stableAddress || '');
@@ -769,11 +828,12 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
       } catch (error) {
         // Texture load failure or shader construction error: keep the
         // previous binding and report the evidence.
-        if (change.kind === 'shader') { /* candidate already disposed below */ }
-        hotRecord(stableAddress, { summary: { kind: change.kind, status: 'candidate-error', message: error?.message || String(error) } });
+        const message = error?.message || String(error);
+        recordAnomaly('hot-candidate-error', `${change.kind}: ${message}`, message);
+        hotRecord(stableAddress, { summary: { kind: change.kind, status: 'candidate-error', message } });
         return build(requestId, 'failed', {
           errorCode: 'candidate-error',
-          data: { message: error?.message || String(error), material: mesh.material?.name, counts: hotCounts() },
+          data: { message, material: mesh.material?.name, counts: hotCounts() },
         });
       }
     },
@@ -1380,6 +1440,126 @@ void main(){ gl_FragColor = vec4(color, 1.0); }`,
   // replace -> dispose only workbench-exclusive resources. Failures keep the
   // previous binding. Rapid successive updates: only the newest candidate
   // lands; older ones abort through the generation counter.
+  // ---- Anomaly aggregation and evidence (S08) --------------------------------
+  const anomalyLog = new Map(); // key -> {kind,key,count,firstAt,lastAt,sample}
+  const MAX_ANOMALY_KINDS = 200;
+
+  function sanitizeText(text) {
+    // Never leak signed query strings into evidence.
+    return String(text ?? '').replace(/([?&])sign=[0-9a-fA-F]+&t=\d+/g, '$1sign=<stripped>').slice(0, 300);
+  }
+
+  function recordAnomaly(kind, rawKey, detail = null) {
+    const key = `${kind}:${sanitizeText(rawKey).slice(0, 160)}`;
+    const now = new Date().toISOString();
+    const entry = anomalyLog.get(key) || { kind, key: sanitizeText(rawKey), count: 0, firstAt: now, lastAt: now, sample: sanitizeText(detail) };
+    entry.count += 1;
+    entry.lastAt = now;
+    if (detail && !entry.sample) entry.sample = sanitizeText(detail);
+    anomalyLog.set(key, entry);
+    if (anomalyLog.size > MAX_ANOMALY_KINDS) {
+      anomalyLog.delete(anomalyLog.keys().next().value);
+    }
+  }
+
+  try {
+    window.addEventListener('error', event => recordAnomaly('page-error', event.message || 'unknown', `${event.filename || ''}:${event.lineno || ''}`));
+    window.addEventListener('unhandledrejection', event => recordAnomaly('unhandled-rejection', event.reason?.message || String(event.reason).slice(0, 160)));
+  } catch { /* listeners unavailable */ }
+
+  function collectLoaderAnomalies() {
+    const failures = api.loader?.state?.failures || [];
+    for (const failure of failures.slice(0, 64)) {
+      recordAnomaly('load-failure', failure?.message || failure?.resourceId || 'loader failure', JSON.stringify(failure).slice(0, 200));
+    }
+    for (const [resourceId, message] of (api.assets?.errors || new Map())) {
+      recordAnomaly('resource-error', `${resourceId}: ${message}`);
+    }
+  }
+
+  function anomaliesSnapshot() {
+    collectLoaderAnomalies();
+    return [...anomalyLog.values()]
+      .sort((a, b) => b.count - a.count || (a.firstAt < b.firstAt ? -1 : 1))
+      .slice(0, 10)
+      .map(entry => ({ ...entry, key: sanitizeText(entry.key) }));
+  }
+
+  function loadTimeline() {
+    const diagnostics = api.assets?.diagnostics?.() || {};
+    const loader = api.loader?.state || {};
+    return {
+      phase: diagnostics.phase || api.stats?.stage || null,
+      elapsedMs: Number.isFinite(diagnostics.elapsedMs) ? Math.round(diagnostics.elapsedMs) : null,
+      firstRenderMs: Number.isFinite(diagnostics.firstRenderMs) ? Math.round(diagnostics.firstRenderMs) : null,
+      interactiveMs: Number.isFinite(diagnostics.interactiveMs) ? Math.round(diagnostics.interactiveMs) : null,
+      fullyLoadedMs: Number.isFinite(diagnostics.fullyLoadedMs) ? Math.round(diagnostics.fullyLoadedMs) : null,
+      requests: diagnostics.requestCount ?? null,
+      downloadedBytes: diagnostics.downloadedBytes ?? null,
+      cacheHits: diagnostics.cacheHits ?? null,
+      cacheNote: 'cache hits aggregate browser CacheStorage and runtime memory; CDN vs browser split not observable here',
+      meshes: loader.meshCount ?? null,
+      instantiatedModels: loader.instantiatedModels ?? null,
+      failures: loader.failures?.length ?? null,
+      gpuMemory: 'UNKNOWN (not measurable in this environment)',
+    };
+  }
+
+  // Local fault injection for test keys only. Texture bytes come from packed
+  // bundle range requests, so the reliable interception point is the
+  // resource-access boundary (assets.texture); fetch/globalThis wrapping
+  // covers plain network calls. Never touches CDN objects; faults.clear
+  // removes everything.
+  const faultState = {
+    active: false, match: null, mode: 'reject', hits: 0,
+    originalFetch: null, originalFetcher: null, scheduler: null, originalTexture: null,
+  };
+  function installFaultInterception() {
+    const scheduler = api.assets?.runtime?.scheduler || null;
+    faultState.originalFetch = globalThis.fetch;
+    if (scheduler) {
+      faultState.scheduler = scheduler;
+      faultState.originalFetcher = scheduler.fetcher;
+      scheduler.fetcher = async (url, init) => {
+        if (faultState.active && String(url).includes(faultState.match)) {
+          faultState.hits += 1;
+          if (faultState.mode === 'reject') throw new TypeError(`workbench fault injection: request to ${sanitizeText(url)} failed`);
+          return new Response(JSON.stringify({ workbenchFault: true }), { status: 503, headers: { 'Content-Type': 'application/json' } });
+        }
+        return faultState.originalFetcher(url, init);
+      };
+    }
+    globalThis.fetch = async (input, init) => {
+      const url = typeof input === 'string' ? input : input?.url || String(input);
+      if (faultState.active && url.includes(faultState.match)) {
+        faultState.hits += 1;
+        if (faultState.mode === 'reject') throw new TypeError(`workbench fault injection: request to ${sanitizeText(url)} failed`);
+        return new Response(JSON.stringify({ workbenchFault: true }), { status: 503, headers: { 'Content-Type': 'application/json' } });
+      }
+      return faultState.originalFetch(input, init);
+    };
+    if (api.assets?.texture) {
+      faultState.originalTexture = api.assets.texture.bind(api.assets);
+      api.assets.texture = async (path, options) => {
+        if (faultState.active && String(path).includes(faultState.match)) {
+          faultState.hits += 1;
+          throw new TypeError(`workbench fault injection: texture ${sanitizeText(path)} unavailable`);
+        }
+        return faultState.originalTexture(path, options);
+      };
+    }
+  }
+  function removeFaultInterception() {
+    if (faultState.originalFetch) globalThis.fetch = faultState.originalFetch;
+    if (faultState.scheduler && faultState.originalFetcher) faultState.scheduler.fetcher = faultState.originalFetcher;
+    if (faultState.originalTexture && api.assets) api.assets.texture = faultState.originalTexture;
+    faultState.originalFetch = null;
+    faultState.originalFetcher = null;
+    faultState.scheduler = null;
+    faultState.originalTexture = null;
+    faultState.active = false;
+  }
+
   // ---- Hot update machinery (S05) -------------------------------------------
   // Candidate -> validate/compile -> confirm the target is unchanged ->
   // replace -> dispose only workbench-exclusive resources. Failures keep the
