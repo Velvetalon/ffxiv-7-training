@@ -1,3 +1,5 @@
+import { Color3, ShaderMaterial } from '@babylonjs/core';
+
 // Structured programmatic control surface over the Babylon preview.
 // Panel, scripts and browser automation call the same whitelist; no command
 // accepts arbitrary code strings. Every dispatch returns
@@ -36,6 +38,9 @@ const COMMANDS = [
   'patch.export',
   'patch.validate',
   'patch.import',
+  'hot.updateMaterial',
+  'hot.rollback',
+  'hot.status',
 ];
 
 const CASE_STORAGE_KEY = 'ff14-workbench-cases';
@@ -199,8 +204,8 @@ export function createWorkbenchApi(api) {
       provenance.push({
         property: slot.property,
         semantic: slot.semantic,
-        runtimePath: slot.runtimePath || meta?.runtimePath || null,
-        sourcePath: slot.sourcePath || meta?.sourcePath || null,
+        runtimePath: meta?.runtimePath || slot.runtimePath || null,
+        sourcePath: meta?.sourcePath || slot.sourcePath || null,
         resourceId: meta?.resourceId || null,
         fullResourceId: meta?.fullResourceId || null,
         previewEncoding: meta?.preview ?? null,
@@ -638,6 +643,155 @@ export function createWorkbenchApi(api) {
       });
     },
 
+    'hot.updateMaterial': async (requestId, args) => {
+      if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
+      const stableAddress = String(args.stableAddress || '');
+      if (!stableAddress) return reject(requestId, 'invalid-args', 'stableAddress required');
+      const change = args.change || {};
+      const beforeCounts = hotCounts();
+      const generationAtStart = hotState.generation;
+
+      // The target always operates on a workbench-exclusive clone so rollback
+      // can dispose freely and shared resources stay untouched.
+      const materialBefore = materialForAddress(stableAddress);
+      if (materialBefore.error) return reject(requestId, 'invalid-args', materialBefore.error);
+      let entry = cloneForInstance(stableAddress);
+      if (!entry) return reject(requestId, 'unavailable', 'could not establish an exclusive target');
+      const mesh = entry.replacement;
+      const baseMaterial = mesh.material; // workbench clone: exclusive
+      const previousMaterial = baseMaterial;
+
+      const applyShader = (addressForName, change) => {
+        if (change.preset === 'broken') {
+          const broken = new ShaderMaterial(`ffxiv-workbench-broken:${addressForName}`, api.scene, {
+            vertexSource: `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection;
+void main(){ gl_Position = worldViewProjection * vec4(position, 1.0); }`,
+            fragmentSource: `precision highp float; void main(){ gl_FragColor = vec4(1.0 ,; }`,
+          }, { attributes: ['position'], uniforms: ['worldViewProjection'] });
+          broken.metadata = { ffxiv: { workbenchCandidate: true } };
+          return { candidateMaterial: broken };
+        }
+        if (change.preset === 'flat') {
+          const flat = new ShaderMaterial(`ffxiv-workbench-flat:${addressForName}`, api.scene, {
+            vertexSource: `precision highp float; attribute vec3 position; uniform mat4 worldViewProjection;
+void main(){ gl_Position = worldViewProjection * vec4(position, 1.0); }`,
+            fragmentSource: `precision highp float; uniform vec3 color;
+void main(){ gl_FragColor = vec4(color, 1.0); }`,
+          }, { attributes: ['position'], uniforms: ['worldViewProjection', 'color'] });
+          flat.setColor3('color', new Color3(...(change.color || [0.8, 0.2, 0.2])));
+          flat.metadata = { ffxiv: { workbenchCandidate: true } };
+          return { candidateMaterial: flat };
+        }
+        return { error: "change.preset must be 'broken' or 'flat'" };
+      };
+
+      try {
+        let outcome = null;
+        let candidate = null;
+        if (change.kind === 'texture') {
+          // A copy of the clone so the previous binding stays untouched and
+          // rollback can restore it verbatim.
+          candidate = baseMaterial.clone(`ffxiv-workbench-candidate:${stableAddress}:${hotState.generation + 1}`);
+          candidate.metadata = {
+            ...(candidate.metadata || {}),
+            ffxiv: { ...(candidate.metadata?.ffxiv || {}), workbenchCandidate: true },
+          };
+          const semantic = String(change.slot || 'albedo');
+          const runtimePath = String(change.runtimePath || '');
+          if (!runtimePath) return reject(requestId, 'invalid-args', 'change.runtimePath required');
+          const property = semantic === 'albedo' ? 'albedoTexture' : semantic === 'normal' ? 'bumpTexture' : null;
+          if (!property) return reject(requestId, 'invalid-args', `unsupported slot: ${semantic}`);
+          const loaded = await api.materials.textureCache.load(runtimePath, semantic, { sourcePath: change.sourcePath || runtimePath });
+          candidate[property] = loaded.texture;
+          outcome = { candidateMaterial: candidate };
+        } else if (change.kind === 'shader') {
+          outcome = applyShader(stableAddress, change);
+          if (outcome.error) return reject(requestId, 'invalid-args', outcome.error);
+          candidate = outcome.candidateMaterial;
+        } else {
+          return reject(requestId, 'invalid-args', "change.kind must be 'texture' or 'shader'");
+        }
+
+        hotState.generation += 1;
+        if (hotState.generation !== generationAtStart + 1) {
+          disposeExclusiveMaterial(candidate);
+          if (outcome.candidateMaterial) disposeExclusiveMaterial(outcome.candidateMaterial);
+          return build(requestId, 'stale', { data: { note: 'superseded by a newer hot update' } });
+        }
+
+        const candidateMaterial = outcome.candidateMaterial || candidate;
+        const ready = await compileCandidate(candidateMaterial, mesh, Number(args.timeoutMs) || 4000);
+        if (!ready) {
+          if (outcome.candidateMaterial) {
+            // Compilation failed: keep the previous binding untouched.
+            disposeExclusiveMaterial(outcome.candidateMaterial);
+          }
+          hotRecord(stableAddress, { summary: { kind: change.kind, status: 'candidate-rejected' } });
+          return build(requestId, 'failed', {
+            errorCode: 'candidate-rejected',
+            data: { note: 'candidate never became ready; previous material kept', material: candidateMaterial.name, counts: hotCounts() },
+          });
+        }
+
+        mesh.material = candidateMaterial;
+        await waitForFrame();
+        // The replaced material stays alive on the rollback stack until it is
+        // rolled back or explicitly cleared; shared materials are never
+        // disposed here.
+        hotRecord(stableAddress, {
+          summary: {
+            kind: change.kind,
+            status: 'replaced',
+            material: candidateMaterial.name,
+            previousMaterial: previousMaterial?.name || null,
+            countsDelta: {
+              materials: hotCounts().materials - beforeCounts.materials,
+              textures: hotCounts().textures - beforeCounts.textures,
+            },
+          },
+          rollback: () => {
+            mesh.material = previousMaterial;
+            disposeExclusiveMaterial(candidateMaterial);
+          },
+        });
+        return mutate(requestId, null, {
+          target: stableAddress,
+          material: candidateMaterial.name,
+          previousMaterial: previousMaterial?.name || null,
+          counts: { before: beforeCounts, after: hotCounts() },
+        });
+      } catch (error) {
+        // Texture load failure or shader construction error: keep the
+        // previous binding and report the evidence.
+        if (change.kind === 'shader') { /* candidate already disposed below */ }
+        hotRecord(stableAddress, { summary: { kind: change.kind, status: 'candidate-error', message: error?.message || String(error) } });
+        return build(requestId, 'failed', {
+          errorCode: 'candidate-error',
+          data: { message: error?.message || String(error), material: mesh.material?.name, counts: hotCounts() },
+        });
+      }
+    },
+
+    'hot.rollback': async (requestId, args) => {
+      const stableAddress = String(args.stableAddress || '');
+      const stack = hotState.targets.get(stableAddress);
+      if (!stack?.length) return reject(requestId, 'invalid-args', `no hot-update history for ${stableAddress}`);
+      const current = stack.pop();
+      current.rollback?.();
+      await waitForFrame();
+      stateRevision += 1;
+      return mutate(requestId, null, { rolledBack: current.summary, remaining: stack.length });
+    },
+
+    'hot.status': requestId => build(requestId, 'ok', {
+      data: {
+        generation: hotState.generation,
+        last: hotState.last,
+        targets: [...hotState.targets.entries()].map(([target, stack]) => ({ target, depth: stack.length })),
+        counts: hotCounts(),
+      },
+    }),
+
     'override.set': async (requestId, args) => {
       if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
       const property = String(args.property || '');
@@ -1036,6 +1190,50 @@ export function createWorkbenchApi(api) {
     overrideState.applied.push(record);
     overrideState.redo.length = 0;
     stateRevision += 1;
+  }
+
+  // ---- Hot update machinery (S05) -------------------------------------------
+  // Candidate -> validate/compile -> confirm the target is unchanged ->
+  // replace -> dispose only workbench-exclusive resources. Failures keep the
+  // previous binding. Rapid successive updates: only the newest candidate
+  // lands; older ones abort through the generation counter.
+  const hotState = { generation: 0, targets: new Map(), last: null };
+
+  function hotCounts() {
+    return {
+      materials: api.scene?.materials?.length ?? 0,
+      textures: api.scene?.textures?.length ?? 0,
+      meshes: api.scene?.meshes?.length ?? 0,
+    };
+  }
+
+  function hotRecord(target, entry) {
+    let stack = hotState.targets.get(target);
+    if (!stack) {
+      stack = [];
+      hotState.targets.set(target, stack);
+    }
+    stack.push(entry);
+    hotState.last = { target, ...entry.summary, at: new Date().toISOString() };
+  }
+
+  function disposeExclusiveMaterial(material) {
+    // Never dispose shipped materials: they may be shared across instances
+    // and even maps. Only workbench-created candidates are exclusive.
+    if (material?.metadata?.ffxiv?.workbenchCandidate || material?.metadata?.ffxiv?.workbenchClone) {
+      material.dispose(false, true);
+      return true;
+    }
+    return false;
+  }
+
+  async function compileCandidate(candidate, mesh, timeoutMs) {
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+      if (candidate.isReady?.(mesh)) return true;
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    return Boolean(candidate.isReady?.(mesh));
   }
 
   // A cross-map restore stashes the case in sessionStorage before navigating;

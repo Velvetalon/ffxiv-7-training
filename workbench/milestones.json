@@ -98,8 +98,20 @@
         "environment overrides cover exposure/fog/ambient/sun only; saved presets layer (shared across sessions) is deferred until S07 recipes need it"
       ]
     },
-    "S05": { "title": "局部热更新与失败回退", "status": "READY", "dependencies": ["S04"] },
-    "S06": { "title": "单对象隔离实验室", "status": "BLOCKED", "dependencies": ["S02", "S03", "S04"] },
+    "S05": {
+      "title": "局部热更新与失败回退",
+      "status": "VERIFIED",
+      "dependencies": ["S04"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js (hot.updateMaterial/rollback/status) + scripts/workbench/validate-hot.mjs",
+      "entry": "wb.mjs --command=hot.updateMaterial --args='{\"stableAddress\":\"...\",\"change\":{\"kind\":\"texture\",\"slot\":\"albedo\",\"runtimePath\":\"textures/0051.webp\"}}' ; kinds: texture | shader(preset broken/flat); hot.rollback restores previous binding",
+      "evidence": ["work/workbench/s05/s05-report-2026-09-15T18-21-32-971Z.json"],
+      "verification": "8/8 steps pass: environment numeric change without any reload; texture-reference rebind on an isolated clone with rollback restoring the exact previous binding; deliberately broken shader candidate never becomes ready -> rejected (candidate-rejected) with the previous material still bound; valid flat ShaderMaterial replaces then rolls back; material/texture/mesh growth bounded (<=4/<=8/<=2) across all rounds; generation counter supersedes stale in-flight updates",
+      "knownGaps": [
+        "hot.updateMaterial has no generation collision test in the loop (needs concurrent dispatches); the guard is exercised only indirectly",
+        "layer-3 candidates are diagnostic presets (broken/flat), not a production shader pipeline; Vite HMR still covers module code while the workbench owns resource lifecycle"
+      ]
+    },
+    "S06": { "title": "单对象隔离实验室", "status": "READY", "dependencies": ["S02", "S03", "S04"] },
     "S07": { "title": "场景配方与小范围 A/B 实验", "status": "BLOCKED", "dependencies": ["S02", "S04"] },
     "S08": { "title": "异常摘要与证据包", "status": "BLOCKED", "dependencies": ["S03", "S07"] },
     "S09": { "title": "影响分析与定向构建", "status": "BLOCKED", "dependencies": ["S03", "S04", "S08"] },
