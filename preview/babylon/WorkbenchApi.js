@@ -21,7 +21,14 @@ const COMMANDS = [
   'objects.locate',
   'objects.list',
   'map.switch',
+  'case.capture',
+  'case.save',
+  'case.list',
+  'case.restore',
 ];
+
+const CASE_STORAGE_KEY = 'ff14-workbench-cases';
+const CASE_SCHEMA_VERSION = 1;
 
 function nextEpoch() {
   try {
@@ -37,6 +44,31 @@ function finiteVector(value) {
   const list = Array.isArray(value) ? value : [value?.x, value?.y, value?.z];
   const numbers = list.map(Number);
   return numbers.length === 3 && numbers.every(Number.isFinite) ? numbers : null;
+}
+
+function readStoredCases() {
+  try {
+    return JSON.parse(localStorage.getItem(CASE_STORAGE_KEY) || '{}');
+  } catch {
+    return {};
+  }
+}
+
+function writeStoredCases(cases) {
+  try {
+    localStorage.setItem(CASE_STORAGE_KEY, JSON.stringify(cases));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function assetVersionFields(api) {
+  const diagnostics = api.assets?.diagnostics?.() || {};
+  return {
+    assetRunId: diagnostics.assetVersion || null,
+    mapManifest: diagnostics.mapManifest || null,
+  };
 }
 
 export function createWorkbenchApi(api) {
@@ -244,10 +276,173 @@ export function createWorkbenchApi(api) {
         },
       });
     },
+
+    'case.capture': async (requestId, args) => {
+      if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
+      await waitForFrame();
+      const records = api.loader?.records || [];
+      const objectLimit = Math.min(Math.max(Number(args.objectLimit) || 2, 0), 50);
+      const objects = [];
+      const seen = new Set();
+      for (const mesh of api.scene?.meshes || []) {
+        const record = objectRecord(mesh, records);
+        if (!record || seen.has(record.stableAddress)) continue;
+        seen.add(record.stableAddress);
+        objects.push(record);
+        if (objects.length >= objectLimit) break;
+      }
+      let buildInfo = null;
+      try {
+        buildInfo = await fetch(new URL('build-info.json', location.href).href).then(response => response.json());
+      } catch { /* version detail stays null */ }
+      const canvas = api.engine?.getRenderingCanvas?.();
+      const assetFields = assetVersionFields(api);
+      const snapshot = {
+        schemaVersion: CASE_SCHEMA_VERSION,
+        kind: 'case',
+        caseId: String(args.caseId || `e3t1-${Date.now()}`),
+        createdAt: new Date().toISOString(),
+        map: {
+          id: api.mapId,
+          name: api.assets?.scene?.name || null,
+          territoryId: api.assets?.scene?.territoryId ?? null,
+          manifest: assetFields.mapManifest,
+        },
+        camera: cameraSnapshot(),
+        time: api.stats?.time ?? null,
+        objects,
+        debug: { renderMode: api.renderDebug?.mode ?? null },
+        quality: {
+          lodEnabled: api.loader?.state?.lod?.enabled ?? null,
+          animationsEnabled: api.scene ? api.scene.animationsEnabled : null,
+        },
+        browser: {
+          viewport: { width: window.innerWidth, height: window.innerHeight },
+          dpr: window.devicePixelRatio,
+          backend: api.engine ? `WebGL${api.engine.webGLVersion}` : null,
+        },
+        versions: {
+          ...assetFields,
+          engine: buildInfo ? `${buildInfo.engine} ${buildInfo.engineVersion}` : null,
+          sourceSha256: buildInfo?.sourceSha256 || null,
+          sceneEpoch,
+          stateRevision,
+        },
+      };
+      return build(requestId, 'ok', { data: { case: snapshot } });
+    },
+
+    'case.save': (requestId, args) => {
+      const snapshot = args.case || args.snapshot;
+      if (!snapshot?.caseId || snapshot.kind !== 'case') return reject(requestId, 'invalid-args', 'case.caseId and kind=recommended required');
+      const cases = readStoredCases();
+      cases[snapshot.caseId] = snapshot;
+      return writeStoredCases(cases)
+        ? build(requestId, 'ok', { data: { caseId: snapshot.caseId, stored: Object.keys(cases).length } })
+        : reject(requestId, 'unavailable', 'localStorage write failed');
+    },
+
+    'case.list': requestId => build(requestId, 'ok', {
+      data: {
+        cases: Object.entries(readStoredCases()).map(([caseId, snapshot]) => ({
+          caseId,
+          mapId: snapshot.map?.id ?? null,
+          createdAt: snapshot.createdAt ?? null,
+        })),
+      },
+    }),
+
+    'case.restore': async (requestId, args) => {
+      const snapshot = args.case || (args.caseId ? readStoredCases()[args.caseId] : null);
+      if (!snapshot?.map) return reject(requestId, 'invalid-args', 'case object or caseId required');
+      const semantics = args.semantics === 'strict' ? 'strict' : 'compatible';
+      if (snapshot.schemaVersion !== CASE_SCHEMA_VERSION) {
+        return reject(requestId, 'schema-unsupported', `case schema ${snapshot.schemaVersion}, supported ${CASE_SCHEMA_VERSION}`);
+      }
+      if (snapshot.map.id !== api.mapId) {
+        if (semantics === 'strict') return reject(requestId, 'map-mismatch', `case targets ${snapshot.map.id}, current ${api.mapId}`);
+        const maps = api.assets?.config?.maps || {};
+        if (!maps[snapshot.map.id]) return reject(requestId, 'map-unavailable', `map not in catalog: ${snapshot.map.id}`);
+        const next = new URL(location.href);
+        next.searchParams.set('scene', snapshot.map.id);
+        try { sessionStorage.setItem('ff14-workbench-pending-case', JSON.stringify(snapshot)); } catch { /* best effort */ }
+        return build(requestId, 'accepted', { data: { navigateTo: next.href, mapId: snapshot.map.id, semantics } });
+      }
+
+      const current = assetVersionFields(api);
+      const diffs = [];
+      for (const field of ['assetRunId', 'mapManifest']) {
+        if (snapshot.versions?.[field] && snapshot.versions[field] !== current[field]) {
+          diffs.push({ field, case: snapshot.versions[field], current: current[field] });
+        }
+      }
+      if (semantics === 'strict' && diffs.length) {
+        return build(requestId, 'failed', { errorCode: 'version-mismatch', data: { diffs } });
+      }
+
+      if (Number.isFinite(Number(snapshot.time)) || typeof snapshot.time === 'string') {
+        try { api.setTime(snapshot.time); } catch (error) {
+          return reject(requestId, 'invalid-args', `time restore failed: ${error.message}`);
+        }
+      }
+      if (snapshot.camera?.position && snapshot.camera?.target) {
+        const applied = api.setCameraState({
+          position: snapshot.camera.position,
+          target: snapshot.camera.target,
+          ...(Number.isFinite(Number(snapshot.camera.fov)) ? { fov: Number(snapshot.camera.fov) } : {}),
+          ...(snapshot.camera.referenceView ? { id: snapshot.camera.referenceView } : {}),
+        });
+        if (!applied) return reject(requestId, 'invalid-args', 'camera restore rejected');
+      }
+      if (snapshot.debug?.renderMode && api.renderDebug) {
+        try { api.renderDebug.setMode(snapshot.debug.renderMode); } catch { diffs.push({ field: 'debug.renderMode', case: snapshot.debug.renderMode, current: null }); }
+      }
+
+      await waitForFrame();
+      const missing = [];
+      const restored = [];
+      const records = api.loader?.records || [];
+      for (const object of snapshot.objects || []) {
+        const [mapId, modelIndexPart, instancePart] = String(object.stableAddress || '').split(':');
+        const modelIndex = Number(modelIndexPart);
+        const sourceInstanceIndex = Number(instancePart);
+        const suffix = `:${modelIndex}:${sourceInstanceIndex}:`;
+        const mesh = Number.isFinite(modelIndex) && Number.isFinite(sourceInstanceIndex)
+          ? (api.scene?.meshes || []).find(candidate => {
+            const meta = candidate?.metadata?.ff14;
+            return meta && meta.sourceInstanceIndex === sourceInstanceIndex
+              && (candidate.name.includes(suffix) || String(object.modelIndex) === modelIndexPart);
+          })
+          : null;
+        if (mesh) {
+          const record = objectRecord(mesh, records);
+          if (record && record.resourceId !== object.resourceId) {
+            diffs.push({ field: `object ${object.stableAddress} resourceId`, case: object.resourceId, current: record.resourceId });
+          }
+          restored.push(object.stableAddress);
+        } else {
+          missing.push(object.stableAddress);
+        }
+      }
+
+      const after = cameraSnapshot();
+      let cameraObserved = true;
+      if (snapshot.camera?.position) {
+        cameraObserved = Math.hypot(
+          after.position[0] - snapshot.camera.position[0],
+          after.position[1] - snapshot.camera.position[1],
+          after.position[2] - snapshot.camera.position[2],
+        ) <= 0.05;
+      }
+      const completeness = cameraObserved && missing.length === 0 ? 'complete' : 'partial';
+      stateRevision += 1;
+      return build(requestId, 'ok', {
+        data: { completeness, restored: restored.length, missing, diffs, camera: after },
+      });
+    },
   };
 
-  async function dispatch(command, args = {}) {
-    const requestId = String(args.requestId || `req-${stateRevision}-${Math.random().toString(36).slice(2, 8)}`);
+  async function dispatch(command, args = {}) {    const requestId = String(args.requestId || `req-${stateRevision}-${Math.random().toString(36).slice(2, 8)}`);
     if (dedupCache.has(requestId)) return { ...dedupCache.get(requestId), duplicate: true };
     const name = String(command || '').trim();
     if (!handlers[name]) {
@@ -267,11 +462,30 @@ export function createWorkbenchApi(api) {
     }
   }
 
+  // A cross-map restore stashes the case in sessionStorage before navigating;
+  // the next boot applies it once the preview is interactive.
+  let lastRestore = null;
+  try {
+    const pending = sessionStorage.getItem('ff14-workbench-pending-case');
+    if (pending) {
+      sessionStorage.removeItem('ff14-workbench-pending-case');
+      const bootstrap = () => {
+        if (api.isReady) {
+          lastRestore = dispatch('case.restore', { case: JSON.parse(pending), requestId: 'pending-case-restore' });
+        } else {
+          setTimeout(bootstrap, 500);
+        }
+      };
+      setTimeout(bootstrap, 500);
+    }
+  } catch { /* storage unavailable */ }
+
   return {
     dispatch,
     sceneEpoch,
     commands: COMMANDS,
     stateSnapshot,
+    get lastRestore() { return lastRestore; },
   };
 }
 

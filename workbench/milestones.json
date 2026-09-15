@@ -52,7 +52,20 @@
       "verification": "9/9 steps pass: camera/time set observed via rendered frame, state read-back, invalid map rejected then legal command works, stale-expectedEpoch rejected, map.switch followed across navigation with new sceneEpoch (e3t1→gridania via CDN dev server on 5173)",
       "knownGaps": ["map.switch is navigation-based (viewer mode); S10 may revisit in-page switching for the full client"]
     },
-    "S02": { "title": "问题现场快照与恢复", "status": "READY", "dependencies": ["S01"] },
+    "S02": {
+      "title": "问题现场快照与恢复",
+      "status": "VERIFIED",
+      "dependencies": ["S01"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js (case.capture/save/list/restore) + scripts/workbench/validate-case.mjs",
+      "entry": "wb.mjs --command=case.capture [--args='{\"caseId\":\"...\"}'] ; case.restore accepts {caseId} or inline {case} with optional semantics=strict|compatible",
+      "evidence": [
+        "work/workbench/s02/s02-report-2026-09-15T17-43-13-080Z.json",
+        "work/workbench/s02/case.json",
+        "work/workbench/s02/scrambled.png vs restored.png (visual PASS)"
+      ],
+      "verification": "7/7 steps pass: capture (2 stable objects) -> save -> scramble (camera/night/pause) -> restore complete -> read-back matches; strict semantics reject stale assetRunId (version-mismatch); missing object address -> partial restore with explicit missing list; visual review confirms HUD camera/time identical to case",
+      "knownGaps": ["cross-map restore (accepted + sessionStorage pending apply) implemented but exercised only implicitly; weather field is a placeholder until S04 adds real overrides"]
+    },
     "S03": { "title": "对象检查与资源溯源", "status": "READY", "dependencies": ["S01"] },
     "S04": { "title": "参数编辑与补丁落盘", "status": "BLOCKED", "dependencies": ["S02", "S03"], "blockedReason": "awaits S02+S03" },
     "S05": { "title": "局部热更新与失败回退", "status": "BLOCKED", "dependencies": ["S04"] },
