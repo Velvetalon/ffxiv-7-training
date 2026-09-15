@@ -490,7 +490,7 @@ async function validate(args) {
   let page;
   try {
     const { chromium } = await loadPlaywright(playwrightModulePath);
-    browser = await chromium.launch({ executablePath: browserPath || undefined, headless: !boolOption(args.headed, false), args: ['--enable-webgl', '--ignore-gpu-blocklist'] });
+    browser = await chromium.launch({ executablePath: browserPath || undefined, headless: !boolOption(args.headed, false), args: ['--enable-webgl', '--ignore-gpu-blocklist', '--use-gl=angle'] });
     context = await browser.newContext({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
     page = await context.newPage();
     page.setDefaultTimeout(timeoutMs);
