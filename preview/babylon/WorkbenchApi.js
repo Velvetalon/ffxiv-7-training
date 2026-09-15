@@ -28,10 +28,21 @@ const COMMANDS = [
   'case.save',
   'case.list',
   'case.restore',
+  'override.set',
+  'override.list',
+  'override.undo',
+  'override.redo',
+  'override.clear',
+  'patch.export',
+  'patch.validate',
+  'patch.import',
 ];
 
 const CASE_STORAGE_KEY = 'ff14-workbench-cases';
 const CASE_SCHEMA_VERSION = 1;
+const PATCH_SCHEMA_VERSION = 1;
+const ENVIRONMENT_PROPERTIES = ['exposure', 'fogNear', 'fogEnd', 'ambientIntensity', 'sunIntensity'];
+const MATERIAL_PROPERTIES = ['roughness', 'metallic', 'albedoColor'];
 
 function nextEpoch() {
   try {
@@ -158,6 +169,8 @@ export function createWorkbenchApi(api) {
   }
 
   function findObjectMesh(stableAddress) {
+    const cloned = overrideState.clones?.get(stableAddress);
+    if (cloned) return cloned.replacement;
     const [mapId, modelIndexPart, instancePart] = String(stableAddress || '').split(':');
     const modelIndex = Number(modelIndexPart);
     const sourceInstanceIndex = Number(instancePart);
@@ -624,6 +637,212 @@ export function createWorkbenchApi(api) {
         data: { completeness, restored: restored.length, missing, diffs, camera: after },
       });
     },
+
+    'override.set': async (requestId, args) => {
+      if (!api.isReady) return reject(requestId, 'unavailable', 'preview not interactive');
+      const property = String(args.property || '');
+      const value = args.value;
+      if (args.scope === 'environment') {
+        if (!ENVIRONMENT_PROPERTIES.includes(property)) return reject(requestId, 'invalid-args', `environment property must be one of ${ENVIRONMENT_PROPERTIES.join(', ')}`);
+        const number = Number(value);
+        if (!Number.isFinite(number) || number < 0) return reject(requestId, 'invalid-args', 'value must be a finite number >= 0');
+        const accessor = environmentAccessor(property);
+        const before = ensureEnvironmentOriginal(property);
+        accessor.write(number);
+        await waitForFrame();
+        const observed = accessor.read();
+        if (!Number.isFinite(observed) || Math.abs(observed - number) > Math.abs(number) * 0.01 + 1e-4) {
+          return reject(requestId, 'not-observed', `wrote ${number}, read back ${observed}`);
+        }
+        pushOverride({
+          scope: 'environment', property, before, after: number,
+          undo: () => accessor.write(before),
+          redo: () => accessor.write(number),
+        });
+        return mutate(requestId, null, { scope: 'environment', property, before, after: observed });
+      }
+
+      if (args.scope === 'instance' || args.scope === 'shared') {
+        const stableAddress = String(args.stableAddress || '');
+        if (!MATERIAL_PROPERTIES.includes(property)) return reject(requestId, 'invalid-args', `material property must be one of ${MATERIAL_PROPERTIES.join(', ')}`);
+        const valueList = property === 'albedoColor' ? (Array.isArray(value) ? value.map(Number) : null) : null;
+        if (property === 'albedoColor' && (!valueList || valueList.length !== 3 || valueList.some(entry => !Number.isFinite(entry) || entry < 0 || entry > 1))) {
+          return reject(requestId, 'invalid-args', 'albedoColor value must be [r,g,b] with 0..1 components');
+        }
+        const number = property === 'albedoColor' ? null : Number(value);
+        if (property !== 'albedoColor' && !Number.isFinite(number)) return reject(requestId, 'invalid-args', 'value must be finite');
+
+        if (args.scope === 'shared') {
+          const resolved = resolveMaterialTarget(stableAddress, Boolean(args.acknowledgeShared));
+          if (resolved.error) return reject(requestId, 'invalid-args', resolved.error);
+          if (resolved.sharedConflict) return build(requestId, 'rejected', { errorCode: 'shared-material', data: resolved.sharedConflict });
+          const { material } = resolved;
+          const before = readMaterialProperty(material, property);
+          writeMaterialProperty(material, property, property === 'albedoColor' ? valueList : number);
+          await waitForFrame();
+          const after = readMaterialProperty(material, property);
+          pushOverride({
+            scope: 'shared', target: stableAddress, materialName: material.name, property, before, after,
+            undo: () => writeMaterialProperty(material, property, before),
+            redo: () => writeMaterialProperty(material, property, after),
+          });
+          return mutate(requestId, null, { scope: 'shared', stableAddress, property, before, after, affectedInstances: sharedUserCount(material) });
+        }
+
+        // Instance scope: the first override clones the material so other
+        // users of the shared material keep their appearance.
+        const beforeResolution = materialForAddress(stableAddress);
+        if (beforeResolution.error) return reject(requestId, 'invalid-args', beforeResolution.error);
+        const sharedMaterial = beforeResolution.material;
+        const isClone = Boolean(sharedMaterial.metadata?.ffxiv?.workbenchClone);
+        let before = null;
+        let createdClone = false;
+        if (!isClone && sharedUserCount(sharedMaterial) > 1) {
+          before = readMaterialProperty(sharedMaterial, property);
+          if (!cloneForInstance(stableAddress)) return reject(requestId, 'unavailable', 'material clone failed');
+          createdClone = true;
+        }
+        const targetResolution = materialForAddress(stableAddress);
+        if (targetResolution.error) return reject(requestId, 'invalid-args', targetResolution.error);
+        const material = targetResolution.material;
+        if (!createdClone) before = readMaterialProperty(material, property);
+        writeMaterialProperty(material, property, property === 'albedoColor' ? valueList : number);
+        await waitForFrame();
+        const after = readMaterialProperty(material, property);
+        pushOverride({
+          scope: 'instance', target: stableAddress, materialName: material.name, property, before, after,
+          createdClone,
+          undo: () => {
+            if (createdClone) {
+              const entry = overrideState.clones.get(stableAddress);
+              if (entry) {
+                entry.instanceMesh.setEnabled(true);
+                entry.replacement.dispose(false, true);
+                overrideState.clones.delete(stableAddress);
+              }
+            } else {
+              writeMaterialProperty(material, property, before);
+            }
+          },
+          redo: () => {
+            if (createdClone) {
+              const entry = cloneForInstance(stableAddress);
+              if (entry) writeMaterialProperty(entry.clone, property, after);
+            } else {
+              writeMaterialProperty(material, property, after);
+            }
+          },
+        });
+        return mutate(requestId, null, {
+          scope: 'instance', stableAddress, property, before, after,
+          clonedMaterial: createdClone ? material.name : null,
+        });
+      }
+
+      return reject(requestId, 'invalid-args', "scope must be 'environment', 'instance' or 'shared'");
+    },
+
+    'override.list': requestId => build(requestId, 'ok', {
+      data: {
+        applied: overrideState.applied.map(({ undo, redo, ...rest }) => rest),
+        redoable: overrideState.redo.length,
+        originals: Object.fromEntries(overrideState.originals),
+        clonedInstances: [...overrideState.clones.keys()],
+      },
+    }),
+
+    'override.undo': async requestId => {
+      const record = overrideState.applied.pop();
+      if (!record) return reject(requestId, 'invalid-args', 'nothing to undo');
+      record.undo();
+      overrideState.redo.push(record);
+      await waitForFrame();
+      stateRevision += 1;
+      return mutate(requestId, null, { undone: { scope: record.scope, target: record.target, property: record.property, restoredTo: record.before } });
+    },
+
+    'override.redo': async requestId => {
+      const record = overrideState.redo.pop();
+      if (!record) return reject(requestId, 'invalid-args', 'nothing to redo');
+      record.redo();
+      overrideState.applied.push(record);
+      await waitForFrame();
+      stateRevision += 1;
+      return mutate(requestId, null, { redone: { scope: record.scope, target: record.target, property: record.property, value: record.after } });
+    },
+
+    'override.clear': async requestId => {
+      const count = overrideState.applied.length;
+      while (overrideState.applied.length) {
+        const record = overrideState.applied.pop();
+        record.undo();
+      }
+      overrideState.redo.length = 0;
+      await waitForFrame();
+      stateRevision += 1;
+      return mutate(requestId, null, { cleared: count, clonedInstances: [...overrideState.clones.keys()].length });
+    },
+
+    'patch.export': (requestId, args) => {
+      if (!overrideState.applied.length && !args.includeEmpty) return reject(requestId, 'invalid-args', 'no session overrides to export');
+      const assetFields = assetVersionFields(api);
+      const patch = {
+        schemaVersion: PATCH_SCHEMA_VERSION,
+        kind: 'patch',
+        patchId: String(args.patchId || `patch-${Date.now()}`),
+        createdAt: new Date().toISOString(),
+        mapId: api.mapId,
+        targetVersions: { assetRunId: assetFields.assetRunId, mapManifest: assetFields.mapManifest },
+        overrides: overrideState.applied.map(({ undo, redo, ...rest }) => rest),
+      };
+      return build(requestId, 'ok', { data: { patch } });
+    },
+
+    'patch.validate': (requestId, args) => {
+      const patch = args.patch;
+      if (patch?.kind !== 'patch' || patch?.schemaVersion !== PATCH_SCHEMA_VERSION) return reject(requestId, 'invalid-args', `patch schema must be ${PATCH_SCHEMA_VERSION}`);
+      const assetFields = assetVersionFields(api);
+      const conflicts = [];
+      if (patch.targetVersions?.assetRunId && patch.targetVersions.assetRunId !== assetFields.assetRunId) {
+        conflicts.push({ field: 'assetRunId', patch: patch.targetVersions.assetRunId, current: assetFields.assetRunId });
+      }
+      if (patch.mapId && patch.mapId !== api.mapId) conflicts.push({ field: 'mapId', patch: patch.mapId, current: api.mapId });
+      const invalid = (patch.overrides || []).filter(entry => {
+        if (entry.scope === 'environment') return !ENVIRONMENT_PROPERTIES.includes(entry.property);
+        return !entry.target || !MATERIAL_PROPERTIES.includes(entry.property);
+      });
+      return build(requestId, 'ok', {
+        data: { applicable: conflicts.length === 0 && invalid.length === 0, conflicts, invalid, overrideCount: (patch.overrides || []).length },
+      });
+    },
+
+    'patch.import': async (requestId, args) => {
+      const patch = args.patch;
+      if (patch?.kind !== 'patch' || patch?.schemaVersion !== PATCH_SCHEMA_VERSION) return reject(requestId, 'invalid-args', `patch schema must be ${PATCH_SCHEMA_VERSION}`);
+      const assetFields = assetVersionFields(api);
+      if (patch.targetVersions?.assetRunId && patch.targetVersions.assetRunId !== assetFields.assetRunId) {
+        return build(requestId, 'failed', { errorCode: 'version-mismatch', data: { field: 'assetRunId', patch: patch.targetVersions.assetRunId, current: assetFields.assetRunId } });
+      }
+      if (patch.mapId && patch.mapId !== api.mapId) {
+        return build(requestId, 'failed', { errorCode: 'map-mismatch', data: { patch: patch.mapId, current: api.mapId } });
+      }
+      const applied = [];
+      const skipped = [];
+      let index = 0;
+      for (const entry of patch.overrides || []) {
+        const result = await dispatch('override.set', {
+          scope: entry.scope === 'environment' ? 'environment' : 'instance',
+          property: entry.property,
+          value: entry.after,
+          stableAddress: entry.target,
+          requestId: `${requestId}:${index}`,
+        });
+        index += 1;
+        if (result.status === 'ok') applied.push({ target: entry.target ?? 'environment', property: entry.property });
+        else skipped.push({ target: entry.target ?? 'environment', property: entry.property, reason: result.errorCode });
+      }
+      return mutate(requestId, null, { applied, skipped, patchId: patch.patchId });
+    },
   };
 
   async function dispatch(command, args = {}) {    const requestId = String(args.requestId || `req-${stateRevision}-${Math.random().toString(36).slice(2, 8)}`);
@@ -644,6 +863,179 @@ export function createWorkbenchApi(api) {
     } catch (error) {
       return reject(requestId, 'runtime-error', error?.message || String(error));
     }
+  }
+
+  // ---- Parameter overrides (S04) -------------------------------------------
+  // Layering: original resource -> shipped mapping/config -> saved experiment
+  // preset (patch import) -> this session's temporary overrides. Only the
+  // session layer lives in memory; patches record base versions and are the
+  // only thing that leaves the page.
+  const overrideState = {
+    applied: [], // undo stack: {scope,target,property,before,after,undo}
+    redo: [],
+    originals: new Map(), // environment property -> first observed value
+    clones: new Map(), // stableAddress -> cloned material
+  };
+
+  function environmentAccessor(property) {
+    const scene = api.scene;
+    switch (property) {
+      case 'exposure':
+        return {
+          read: () => scene?.imageProcessingConfiguration?.exposure ?? null,
+          write: value => { scene.imageProcessingConfiguration.exposure = value; },
+        };
+      case 'fogNear':
+        return {
+          read: () => scene?.fogStart ?? null,
+          write: value => { scene.fogStart = value; },
+        };
+      case 'fogEnd':
+        return {
+          read: () => scene?.fogEnd ?? null,
+          write: value => { scene.fogEnd = value; },
+        };
+      case 'ambientIntensity':
+        return {
+          read: () => api.environment?.ensureLights?.().ambient?.intensity ?? null,
+          write: value => { api.environment.ensureLights().ambient.intensity = value; },
+        };
+      case 'sunIntensity':
+        return {
+          read: () => api.environment?.ensureLights?.().sun?.intensity ?? null,
+          write: value => { api.environment.ensureLights().sun.intensity = value; },
+        };
+      default:
+        return null;
+    }
+  }
+
+  function ensureEnvironmentOriginal(property) {
+    if (!overrideState.originals.has(property)) {
+      const accessor = environmentAccessor(property);
+      overrideState.originals.set(property, accessor.read());
+    }
+    return overrideState.originals.get(property);
+  }
+
+  function materialForAddress(stableAddress) {
+    const mesh = findObjectMesh(stableAddress);
+    if (!mesh) return { error: `object not found: ${stableAddress}` };
+    const material = meshMaterials(mesh)[0];
+    if (!material) return { error: `object has no material: ${stableAddress}` };
+    return { mesh, material };
+  }
+
+  function sharedUserCount(material) {
+    let count = 0;
+    for (const candidate of api.scene?.meshes || []) {
+      if (candidate.material === material || (material.subMaterials && material.subMaterials.includes(candidate.material))) count += 1;
+    }
+    return count;
+  }
+
+  function resolveMaterialTarget(stableAddress, acknowledgeShared) {
+    const resolved = materialForAddress(stableAddress);
+    if (resolved.error) return resolved;
+    const { mesh, material } = resolved;
+    const isClone = Boolean(material.metadata?.ffxiv?.workbenchClone);
+    if (!isClone) {
+      const users = sharedUserCount(material);
+      if (users > 1 && !acknowledgeShared) {
+        return {
+          sharedConflict: {
+            affectedInstances: users,
+            materialPath: material.metadata?.ffxiv?.materialPath || material.name,
+            note: 'material is shared; pass acknowledgeShared=true to mutate every user, or scope this override to the single instance',
+          },
+        };
+      }
+      return { mesh, material };
+    }
+    return { mesh, material };
+  }
+
+  function cloneForInstance(stableAddress) {
+    if (overrideState.clones.has(stableAddress)) return overrideState.clones.get(stableAddress);
+    const resolved = materialForAddress(stableAddress);
+    if (resolved.error) return null;
+    const instanceMesh = resolved.mesh;
+    let replacement;
+    let originalMaterial;
+    if (instanceMesh.sourceMesh) {
+      // Instanced meshes always render the master's material, so a true
+      // per-instance edit needs a real mesh that shares the geometry but owns
+      // its material. Clone the master, restore the instance transform, and
+      // hide the instance for as long as the override lives.
+      const master = instanceMesh.sourceMesh;
+      replacement = master.clone(`ffxiv-workbench-inst:${stableAddress}`);
+      replacement.position.copyFrom(instanceMesh.position);
+      if (instanceMesh.rotationQuaternion) {
+        replacement.rotationQuaternion = replacement.rotationQuaternion || replacement.rotationQuaternion.constructor.Zero();
+        replacement.rotationQuaternion.copyFrom(instanceMesh.rotationQuaternion);
+      } else {
+        replacement.rotation.copyFrom(instanceMesh.rotation);
+      }
+      replacement.scaling.copyFrom(instanceMesh.scaling);
+      replacement.parent = instanceMesh.parent;
+      replacement.metadata = {
+        ...(replacement.metadata || {}),
+        ff14: {
+          ...(replacement.metadata?.ff14 || master.metadata?.ff14 || {}),
+          sourceAsset: instanceMesh.metadata?.ff14?.sourceAsset,
+          sourceInstanceIndex: instanceMesh.metadata?.ff14?.sourceInstanceIndex,
+          workbenchReplacementOf: stableAddress,
+        },
+      };
+      replacement.setEnabled(true);
+      instanceMesh.setEnabled(false);
+      originalMaterial = master.material;
+    } else {
+      replacement = instanceMesh;
+      originalMaterial = instanceMesh.material;
+    }
+    const clone = originalMaterial.clone(`ffxiv-workbench-clone:${stableAddress}`);
+    clone.metadata = {
+      ...(clone.metadata || {}),
+      ffxiv: {
+        ...(clone.metadata?.ffxiv || {}),
+        materialPath: originalMaterial.metadata?.ffxiv?.materialPath || null,
+        workbenchClone: true,
+        clonedFromInstance: stableAddress,
+      },
+    };
+    replacement.material = clone;
+    const entry = { replacement, instanceMesh: instanceMesh.sourceMesh ? instanceMesh : null, originalMaterial, clone };
+    overrideState.clones.set(stableAddress, entry);
+    return entry;
+  }
+
+  function readMaterialProperty(material, property) {
+    switch (property) {
+      case 'roughness': return Number.isFinite(material.roughness) ? material.roughness : null;
+      case 'metallic': return Number.isFinite(material.metallic) ? material.metallic : null;
+      case 'albedoColor': return material.albedoColor ? material.albedoColor.asArray() : null;
+      default: return null;
+    }
+  }
+
+  function writeMaterialProperty(material, property, value) {
+    switch (property) {
+      case 'roughness': material.roughness = value; return true;
+      case 'metallic': material.metallic = value; return true;
+      case 'albedoColor': {
+        const [r, g, b] = value;
+        material.albedoColor.set(r, g, b);
+        return true;
+      }
+      default: return false;
+    }
+  }
+
+  function pushOverride(record) {
+    overrideState.applied.push(record);
+    overrideState.redo.length = 0;
+    stateRevision += 1;
   }
 
   // A cross-map restore stashes the case in sessionStorage before navigating;

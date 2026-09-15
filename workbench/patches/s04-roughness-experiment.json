@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "kind": "patch",
+  "patchId": "s04-roughness-experiment",
+  "createdAt": "2026-09-15T18:10:43.674Z",
+  "mapId": "e3t1",
+  "targetVersions": {
+    "assetRunId": "20260909T124255Z-e3ea44",
+    "mapManifest": "maps/e3t1/manifest_ab686a714791aad26083e35fe8348e409998a6b3c1d970342f9286f9bd0d33b4.json.gz"
+  },
+  "overrides": [
+    {
+      "scope": "instance",
+      "target": "e3t1:118:0",
+      "materialName": "ffxiv-workbench-clone:e3t1:118:0",
+      "property": "roughness",
+      "before": 1,
+      "after": 0.35,
+      "createdClone": true
+    }
+  ]
+}

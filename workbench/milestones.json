@@ -82,8 +82,23 @@
         "whoUses covers model instances and manifest.materials presence only; bundle-level reverse index comes with S09"
       ]
     },
-    "S04": { "title": "参数编辑与补丁落盘", "status": "READY", "dependencies": ["S02", "S03"] },
-    "S05": { "title": "局部热更新与失败回退", "status": "BLOCKED", "dependencies": ["S04"] },
+    "S04": {
+      "title": "参数编辑与补丁落盘",
+      "status": "VERIFIED",
+      "dependencies": ["S02", "S03"],
+      "implementedIn": "preview/babylon/WorkbenchApi.js (override.set/list/undo/redo/clear, patch.export/validate/import) + scripts/workbench/validate-patch.mjs",
+      "entry": "wb.mjs --command=override.set --args='{\"scope\":\"instance\",\"stableAddress\":\"e3t1:118:0\",\"property\":\"roughness\",\"value\":0.35}' ; patches persist under workbench/patches/",
+      "evidence": [
+        "work/workbench/s04/s04-report-2026-09-15T18-08-57-771Z.json",
+        "workbench/patches/s04-roughness-experiment.json"
+      ],
+      "verification": "11/11 steps pass: shared-material mutation rejected without explicit acknowledgement (33 users); instance scope clones the master mesh (instanced meshes render the master material) and observes the new value; undo/redo restore and reapply; environment exposure override observed through a rendered frame; patch export -> clear -> page reload -> re-import reproduces identical values; stale assetRunId patch refused (version-mismatch)",
+      "knownGaps": [
+        "patch re-import onto an already-overridden session overwrites values without deep conflict diffing (base values are compared only against the asset version)",
+        "environment overrides cover exposure/fog/ambient/sun only; saved presets layer (shared across sessions) is deferred until S07 recipes need it"
+      ]
+    },
+    "S05": { "title": "局部热更新与失败回退", "status": "READY", "dependencies": ["S04"] },
     "S06": { "title": "单对象隔离实验室", "status": "BLOCKED", "dependencies": ["S02", "S03", "S04"] },
     "S07": { "title": "场景配方与小范围 A/B 实验", "status": "BLOCKED", "dependencies": ["S02", "S04"] },
     "S08": { "title": "异常摘要与证据包", "status": "BLOCKED", "dependencies": ["S03", "S07"] },
