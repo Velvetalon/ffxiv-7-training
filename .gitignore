@@ -27,6 +27,8 @@ tools/character-tools/bin/
 tools/character-tools/obj/
 tools/audio-tools/bin/
 tools/audio-tools/obj/
+tools/audio-tools/.dotnet-home/
+tools/audio-tools/.nuget/
 tools/map-tools/MapNameProbe/bin/
 tools/map-tools/MapNameProbe/obj/
 public/sandbox/audio/

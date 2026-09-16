@@ -17,7 +17,7 @@ const maximum = Number(args['pack-bytes'] || 8 * 1024 * 1024);
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const readJson = async file => JSON.parse(await fs.readFile(file, 'utf8'));
 const inputs = String(args.inputs).split(',').map(file => path.resolve(file));
-const manifest = { schemaVersion: 1, resources: {}, aliases: {}, bundles: {}, characters: {}, mounts: {}, sceneBgm: {}, skills: {} };
+const manifest = { schemaVersion: 1, resources: {}, aliases: {}, bundles: {}, characters: {}, mounts: {}, sceneBgm: {}, skills: {}, rideBgm: {}, actionSfx: {} };
 const payloads = new Map();
 const sections = [];
 await fs.mkdir(path.join(out, 'packs'), { recursive: true });
@@ -29,7 +29,8 @@ for (const file of inputs) {
     const relative = [resource.source, resource.url, resource.assetPath, resource.Path]
       .find(value => typeof value === 'string');
     if (typeof relative !== 'string' || /^https?:/.test(relative)) throw new Error(`Expected local converted resource: ${sourceId}`);
-    const source = path.resolve(path.dirname(file), relative);
+    const baseDir = data.__assetBaseDir ? path.resolve(data.__assetBaseDir) : path.dirname(file);
+    const source = path.resolve(baseDir, relative);
     const digest = crypto.createHash('sha256');
     let size = 0;
     for await (const bytes of createReadStream(source)) { digest.update(bytes); size += bytes.length; }
@@ -109,7 +110,7 @@ const remap = value => typeof value === 'string' ? manifest.aliases[value] || va
   : Array.isArray(value) ? value.map(remap)
     : value && typeof value === 'object' ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, remap(item)])) : value;
 for (const input of sections) {
-  for (const name of ['characters', 'mounts', 'sceneBgm', 'actionSfx', 'skills', 'environment', 'uiSounds']) {
+  for (const name of ['characters', 'mounts', 'sceneBgm', 'rideBgm', 'actionSfx', 'skills', 'environment', 'uiSounds']) {
     if (!input[name]) continue;
     const values = remap(input[name]);
     if (['characters', 'mounts', 'skills'].includes(name)) {

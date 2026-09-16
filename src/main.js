@@ -99,10 +99,14 @@ const sandboxPanel = new SandboxPanel({
   onMount: async id => {
     if (world.mount.state.isMounted) {
       if (!world.mount.dismount()) throw new Error('请先降落再下坐骑');
+      await audio.releaseMountMusic?.();
     } else {
       const definition = sandboxAssets.mounts.find(item => item.id === id);
       if (!definition) throw new Error('坐骑资源尚未就绪');
       await world.mount.mount(definition);
+      const rideEntry = sandboxAssets.manifest?.rideBgm?.[String(definition.mountRowId)];
+      const rideCue = definition.rideBgm || rideEntry?.id;
+      if (rideCue) await audio.requestMountMusic?.(rideCue);
     }
   },
 });
@@ -118,6 +122,7 @@ sandboxButton.addEventListener('click', () => sandboxPanel.toggle());
 world.sandboxReady = world.loadPromise.then(async success => {
   if (!success) return;
   await sandboxAssets.initialize();
+  audio.setSkills(sandboxAssets.skills);
   world.skillDefinitions.merge(sandboxAssets.skills);
   const saved = preferences.appearance;
   const appearance = saved && sandboxAssets.getCharacter(saved) ? saved : sandboxAssets.manifest.defaultAppearance;

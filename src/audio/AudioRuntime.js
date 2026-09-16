@@ -4,6 +4,8 @@
  * Audio bytes are intentionally owned by AssetRuntime. This module only
  * registers an AudioBuffer decoder and creates/cleans Web Audio nodes.
  */
+import { AudioEngine } from './AudioEngine.js';
+
 export class AudioRuntime {
   constructor(assetRuntime, settings = {}, options = {}) {
     if (!assetRuntime || typeof assetRuntime.load !== 'function') {
@@ -22,11 +24,41 @@ export class AudioRuntime {
     this.pendingActions = [];
     this.sfxSources = new Set();
     this.sfxGeneration = 0;
+    this.engine = null;
+    this.skills = null;
     this.unlockBound = false;
     this.unlocked = false;
     this.gestureHandler = () => { void this.unlock(); };
     this.installDecoder();
     this.bindUserGesture();
+  }
+
+  /** Provide skill-level audio metadata for source-mapped action cues. */
+  setSkills(skills) {
+    this.skills = skills || {};
+  }
+
+  /** Create (or refresh) the composed engine once a context exists. */
+  ensureEngine() {
+    if (!this.context) return this.engine;
+    if (this.engine) return this.engine;
+    this.engine = new AudioEngine({
+      context: this.context,
+      runtime: this.assetRuntime,
+      buses: { master: this.master, music: this.bgmBus, sfx: this.sfxBus },
+    });
+    const skillRules = Object.values(this.skills || {})
+      .filter(definition => definition.soundId)
+      .map(definition => ({
+        event: 'action.release',
+        slot: 'primary',
+        mode: 'replace',
+        priority: 5,
+        conditions: { actionId: definition.skillId },
+        cue: { clip: definition.soundId, bus: 'sfx', gain: 1 },
+      }));
+    this.skillBinding = this.engine.bindProfiles('player', [{ id: 'skills', rules: skillRules }]);
+    return this.engine;
   }
 
   /** Register the decoder against the supplied AssetRuntime exactly once. */
@@ -141,6 +173,13 @@ export class AudioRuntime {
     return table[soundId] ?? null;
   }
 
+  /** Resolve a runtime-level cue alias (e.g. remapped actionSfx entries). */
+  resolveActionCue(soundId) {
+    const table = this.manifest().actionSfx || {};
+    const entry = table[soundId];
+    return entry?.id || soundId;
+  }
+
   /** Start or transition to the BGM selected by a scene/zone id. */
   async playScene(sceneId, options = {}) {
     const token = ++this.sceneToken;
@@ -233,8 +272,51 @@ export class AudioRuntime {
     return this.playScene(sceneId, options);
   }
 
+  /** Mount music request routed through the MusicArbiter (mount wins over scene). */
+  async requestMountMusic(trackId, options = {}) {
+    const engine = this.ensureEngine();
+    if (!engine) return { ok: false, reason: 'engine-unavailable', trackId };
+    const entry = this.manifest().resources?.[trackId] || { id: trackId };
+    const resourceId = entry?.id || trackId;
+    const meta = entry?.metadata || {};
+    return engine.requestMountMusic({ trackId: resourceId, loop: options.loop ?? true, loopStart: meta.loopStart, loopEnd: meta.loopEnd });
+  }
+
+  /** Release mount music and restore the scene's active track. */
+  async releaseMountMusic() {
+    const engine = this.engine;
+    if (!engine) return { ok: false, reason: 'engine-unavailable' };
+    return engine.releaseMountMusic();
+  }
+
   async _playAction(soundId, options) {
     const generation = this.sfxGeneration;
+    soundId = this.resolveActionCue(soundId);
+    const skillDefinition = this.skills ? Object.values(this.skills).find(definition =>
+      definition.soundId === soundId
+      || (definition.soundEvents || []).some(cue => cue.resourceId === soundId)) : null;
+    const engine = this.ensureEngine();
+    if (engine && skillDefinition) {
+      const skillId = skillDefinition.skillId;
+      const delaySeconds = Number(options.delaySeconds ?? 0);
+      const cues = skillDefinition.soundEvents?.length ? skillDefinition.soundEvents : [{ resourceId: skillDefinition.soundId, delaySeconds }];
+      const handles = [];
+      for (const cue of cues) {
+        const cueDelay = Number(cue.delaySeconds ?? cueDelayDefault(skillDefinition) ?? 0);
+        const clipId = cue.resourceId || skillDefinition.soundId;
+        const result = await engine.emit({
+          type: 'action.release',
+          ownerId: 'player',
+          eventId: 'action:' + skillId + ':' + clipId,
+          context: { actionId: skillId },
+        }, { priority: 0, cueOverride: { id: clipId, clip: clipId, bus: 'sfx', gain: Number(options.volume ?? 1), delaySeconds: cueDelay } });
+        handles.push(result);
+      }
+      if (handles.some(handle => handle.ok)) return { ok: true, soundId, skillId, via: 'engine' };
+      if (handles.length && handles.every(handle => handle.reason === 'suppressed-explicit')) {
+        return { ok: false, reason: 'suppressed-explicit', soundId };
+      }
+    }
     const entry = this.actionEntry(soundId) || (this.manifest().resources?.[soundId]?.type === 'audio' ? { id: soundId } : null);
     const resourceId = resourceIdOf(entry);
     if (!resourceId) return { ok: false, reason: 'action-sfx-unknown', soundId };
@@ -337,6 +419,10 @@ function level(value, fallback) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) return fallback;
   return Math.max(0, Math.min(1, numeric > 1 ? numeric / 100 : numeric));
+}
+
+function cueDelayDefault(definition) {
+  return Number(definition?.timing?.soundDelaySeconds || 0);
 }
 
 export default initialize;
