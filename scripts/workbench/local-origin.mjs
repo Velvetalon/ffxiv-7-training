@@ -35,6 +35,30 @@ function serveFile(res, file) {
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://127.0.0.1:${PORT}`);
   const pathname = decodeURIComponent(url.pathname);
+  if (pathname === '/ff14-assets/ticket') {
+    // Mirror the dev-server behavior: re-sign asset URLs through the
+    // production ticket service and rewrite signed hosts back to this origin
+    // so a local browser can load the CDN-backed packs.
+    const upstream = `https://yuluo.site/ff14-assets/ticket${url.search}`;
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end', async () => {
+      try {
+        const response = await fetch(upstream, {
+          method: req.method,
+          headers: req.headers['content-type'] ? { 'content-type': req.headers['content-type'] } : {},
+          body: ['GET', 'HEAD'].includes(req.method) ? undefined : Buffer.concat(chunks),
+        });
+        const text = await response.text();
+        res.writeHead(response.status, { 'Content-Type': response.headers.get('content-type') || 'application/json' });
+        res.end(text.replaceAll('https://img.yuluo.site/', `http://127.0.0.1:${PORT}/`));
+      } catch (error) {
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        res.end(`ticket rewrite failed: ${error?.message || error}`);
+      }
+    });
+    return;
+  }
   if (pathname === '/api/healthz') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end('{"status":"ok"}');

@@ -26,6 +26,20 @@
       "result": "VERIFIED"
     }
   ],
+  "replay": {
+    "status": "VERIFIED",
+    "atUtc": "2026-09-17T07:38:00Z",
+    "head": "65255c1d5c56954687c397425006503352249a3b",
+    "origin": "local stand-in origin via scripts/workbench/local-origin.mjs (ticket re-sign + LOCAL asset route)",
+    "screenshot": "work/ws001/dat-import-replay.png",
+    "checks": {
+      "normalImportThroughSandboxPanel": true,
+      "runtimeAppearanceModelFamily": "c0801",
+      "runtimePaletteResolved": true,
+      "zeroFailedRequests": true
+    },
+    "remainingGap": "visual close-up review of the screenshot is pending (image review belongs to a dedicated image subagent)"
+  },
   "checks": {
     "normalImportThroughUI": true,
     "paletteResolvedFromSource": true,
