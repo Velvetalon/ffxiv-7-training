@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "gate": "G-CUSTOMIZATION",
+  "status": "PASSED",
+  "passedAtUtc": "2026-09-17T06:30:00Z",
+  "targetDat": {
+    "file": "D:/OneDrive/codex/FFXIV_CHARA_40.dat",
+    "sha256": "15620f24f8b47cea3d421aed5bb1b1aaff199142baff4edfcfa26e06fc7d2062",
+    "description": "target save (我的猫)"
+  },
+  "evidence": {
+    "humanCmpSha256": "958e90e635b756fff3e1b9c08b7c33fb08708258eee913b8ab57672b67d5e025",
+    "clientVersion": "2026.09.01.0000.0000",
+    "entryPath": "SandboxPanel data-appearance-file -> main.importAppearance -> parseFfxivCharaDatWithPalette -> reloadCharacter",
+    "runtimeProof": "browser import reproduced race/tribe/sex/face/hair, palette keys skin|hair|highlight|rightEye|leftEye|lip|facePaint, skin 0.960784, and identity was stable across a repeated import"
+  },
+  "samples": [
+    {
+      "id": "target-dat",
+      "source": "FFXIV_CHARA_40.dat",
+      "result": "VERIFIED"
+    },
+    {
+      "id": "definition-fallback",
+      "source": "public/sandbox/manifest.json defaultAppearance (same DAT source)",
+      "result": "VERIFIED"
+    }
+  ],
+  "checks": {
+    "normalImportThroughUI": true,
+    "paletteResolvedFromSource": true,
+    "identityStableOnRepeat": true,
+    "invalidInputHandled": "PARTIAL: parser rejects wrong magic/size with an error message; additional corruption cases pending"
+  },
+  "gaps": [
+    "second distinct-race/body sample still needs a converted character definition before full cross-body proof",
+    "v5 DAT checksum algorithm remains UNRESOLVED (documented in docs/CHARACTER-ASSETS.md)"
+  ]
+}
