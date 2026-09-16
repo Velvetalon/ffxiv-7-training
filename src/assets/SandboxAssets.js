@@ -19,6 +19,14 @@ export class SandboxAssets {
     return this.promise;
   }
 
+  async loadCmp(url = `${import.meta.env.BASE_URL}sandbox/human.cmp`) {
+    try {
+      const response = await fetch(url, { cache: 'force-cache' });
+      if (!response.ok) return null;
+      return new Uint8Array(await response.arrayBuffer());
+    } catch { return null; }
+  }
+
   getCharacter(appearance) {
     const characters = Object.values(this.manifest?.characters || {});
     return characters.find(character => {

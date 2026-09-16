@@ -4,6 +4,7 @@ dist/
 site-babylon-preview/
 site-babylon-preview-stale-*/
 work/
+task/
 *.log
 HUMAN_RESPONSE.md
 .env

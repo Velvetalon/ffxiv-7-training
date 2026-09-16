@@ -54,7 +54,7 @@ export class AppearanceRuntime {
         const role = binding.shader || binding.role || inferMaterialRole(material.name);
         if (role) applyMaterialRole(material, role, binding, node, appearance, bindings);
         for (const [property, source] of Object.entries(binding.colors || {})) {
-          const value = bindings.palettes?.[source.palette]?.[appearance[source.field]];
+          const value = appearance.palette?.[source.palette] || bindings.palettes?.[source.palette]?.[appearance[source.field]];
           if (value && material[property]?.isColor) setFfxivColor(material[property], value, source);
         }
       }
@@ -118,8 +118,8 @@ function applyIrisVertexColors(mesh, appearance, bindings) {
   const colors = geometry.getAttribute('color');
   const positions = geometry.getAttribute('position');
   if (!colors || !positions) return;
-  const right = bindings.palettes?.rightEye?.[appearance.rightEyeColor] || appearance.palette?.rightEye;
-  const left = bindings.palettes?.leftEye?.[appearance.leftEyeColor] || appearance.palette?.leftEye;
+  const right = appearance.palette?.rightEye || bindings.palettes?.rightEye?.[appearance.rightEyeColor];
+  const left = appearance.palette?.leftEye || bindings.palettes?.leftEye?.[appearance.leftEyeColor];
   if (!right || !left) return;
   for (let index = 0; index < positions.count; index++) {
     const value = positions.getX(index) < 0 ? left : right;

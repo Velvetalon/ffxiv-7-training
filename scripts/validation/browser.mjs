@@ -31,9 +31,18 @@ async function loadPlaywright(modulePath) {
       } catch {
         // A module directory is more common than a direct entrypoint.
       }
-      return createRequire(path.basename(resolved).toLowerCase() === 'package.json' ? resolved : path.join(resolved, 'package.json'))('playwright');
+      const requireFrom = createRequire(path.basename(resolved).toLowerCase() === 'package.json' ? resolved : path.join(resolved, 'package.json'));
+      try {
+        return requireFrom('playwright');
+      } catch {
+        return requireFrom('playwright-core');
+      }
     }
-    return require('playwright');
+    try {
+      return require('playwright');
+    } catch {
+      return require('playwright-core');
+    }
   } catch (error) {
     throw new Error(`Playwright could not be loaded. Install it or set PLAYWRIGHT_MODULE_PATH. ${error.message}`);
   }

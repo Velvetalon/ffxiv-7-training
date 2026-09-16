@@ -67,8 +67,8 @@ function applyIrisVertexColors(mesh, appearance, bindings) {
   const positions = mesh.getVerticesData(VertexBuffer.PositionKind);
   const colors = mesh.getVerticesData(VertexBuffer.ColorKind);
   if (!positions || !colors) return;
-  const right = bindings.palettes?.rightEye?.[appearance.rightEyeColor] || appearance.palette?.rightEye;
-  const left = bindings.palettes?.leftEye?.[appearance.leftEyeColor] || appearance.palette?.leftEye;
+  const right = appearance.palette?.rightEye || bindings.palettes?.rightEye?.[appearance.rightEyeColor];
+  const left = appearance.palette?.leftEye || bindings.palettes?.leftEye?.[appearance.leftEyeColor];
   if (!right || !left) return;
   if (!mesh.metadata?.ffxivIrisGeometryIsolated) {
     mesh.makeGeometryUnique?.();
@@ -84,6 +84,15 @@ function applyIrisVertexColors(mesh, appearance, bindings) {
   }
   mesh.updateVerticesData(VertexBuffer.ColorKind, result, false, false);
   mesh.useVertexColors = true;
+}
+
+function resolvedPaletteEntry(appearance, binding, source) {
+  const table = bindings.palettes?.[source.palette];
+  const indexed = table?.[appearance[source.field]];
+  if (indexed) return indexed;
+  // Fresh DAT imports carry exact human.cmp colors resolved at parse time;
+  // the pre-baked definition palette is the compatibility fallback.
+  return appearance.palette?.[source.palette];
 }
 
 function applyMaterialRole(material, role, binding, mesh, appearance, bindings) {
@@ -167,7 +176,7 @@ export class AppearanceRuntime {
         const role = binding.shader || binding.role || inferMaterialRole(material.name);
         if (role) applyMaterialRole(material, role, binding, mesh, appearance, bindings);
         for (const [property, source] of Object.entries(binding.colors || {})) {
-          const value = bindings.palettes?.[source.palette]?.[appearance[source.field]];
+          const value = resolvedPaletteEntry(appearance, binding, source);
           if (value) setFfxivColor(materialColor(material, property), value, source);
         }
       }
@@ -186,4 +195,3 @@ export class AppearanceRuntime {
     }
   }
 }
-
