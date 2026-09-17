@@ -250,7 +250,11 @@ export class World {
       draft.assets = await new BabylonAssets({ mapId: id }).initializeForMap(id);
       if (request !== this.loadRequest) { draft.assets.dispose(); return false; }
       draft.materials = new MaterialAdapter({ scene: this.scene, assets: draft.assets, map: draft.assets.map });
-      draft.environmentAdapter = new EnvironmentAdapter({ scene: this.scene, profile: draft.assets.profile });
+      draft.environmentAdapter = new EnvironmentAdapter({
+        scene: this.scene,
+        profile: draft.assets.profile,
+        lightingObjects: draft.assets.config?.lightingObjects?.[id] || draft.assets.lightingObjects || null,
+      });
       draft.environment = new NativeEnvironmentRuntime(
         draft.environmentAdapter,
         draft.assets.config?.profiles,

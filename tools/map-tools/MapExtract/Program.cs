@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using Meddle.Formats.Files;
 using Meddle.Formats.Files.MdlFile;
+using Meddle.Formats;
 using Meddle.SqPack;
 using Microsoft.Extensions.Logging.Abstractions;
 using Model = Meddle.Utils.Export.Model;
@@ -17,12 +18,13 @@ var targets = catalog.RootElement.GetProperty("scenes").EnumerateArray().ToDicti
 Global.Logger = NullLogger.Instance;
 try
 {
-    if (args.Length == 0 || args[0] is "help" or "--help")
-    {
-        Console.WriteLine("""
-        MapExtract — read-only FFXIV asset inspection
-          targets
-          probe <client-root>
+        if (args.Length == 0 || args[0] is "help" or "--help")
+        {
+            Console.WriteLine("""
+            MapExtract — read-only FFXIV asset inspection
+              targets
+              lgb <client-root> <catalog-scene-id> <output-directory>
+              probe <client-root>
           probe-catalog <client-root>
           extract-map <client-root> <catalog-scene-id> <output-directory>
           collision-map <client-root> <catalog-scene-id> <output-directory>
@@ -95,6 +97,124 @@ try
         var target = Path.GetFullPath(args[3]); Directory.CreateDirectory(Path.GetDirectoryName(target)!);
         File.WriteAllBytes(target, file.File.RawData.ToArray());
         Console.WriteLine(target); return 0;
+    }
+    if (args[0] == "lgb")
+    {
+        if (args.Length < 4) throw new ArgumentException("Usage: lgb <client-root> <catalog-scene-id> <output-directory>");
+        if (!targets.TryGetValue(args[2], out var zone2)) throw new ArgumentException("Map must be an id from world-catalog.json.");
+        var lgbOutput = Path.GetFullPath(args[3]); Directory.CreateDirectory(lgbOutput);
+        var layerSeeds = Seeds(zone2.root).Where(path => path.EndsWith(".lgb") || path.EndsWith(".lvb")).ToArray();
+        var lgbReport = new List<object>();
+        var firstError2 = "";
+        foreach (var path in layerSeeds)
+        {
+            var file = pack.GetFile(path);
+            if (file == null) { lgbReport.Add(new { path, found = false }); continue; }
+            var bytes = file.File.RawData.ToArray();
+            var isLgb = bytes.Length >= 16 && bytes[0] == (byte)'L' && bytes[1] == (byte)'G' && bytes[2] == (byte)'B' && bytes[3] == (byte)'1' && bytes[12] == (byte)'L' && bytes[13] == (byte)'G' && bytes[14] == (byte)'P' && bytes[15] == (byte)'1';
+            if (!isLgb)
+            {
+                lgbReport.Add(new { path, found = true, parsed = false, error = (string?)($"{bytes[0..4]} / {bytes[12..16]} (not an LGB1/LGP1 container - LVB seeds are parsed via their embedded layer groups by the game, not this tool)"), bytes = bytes.Length });
+                continue;
+            }
+            LgbFile lgb;
+            try { lgb = new LgbFile(bytes); }
+            catch (Exception error) { lgbReport.Add(new { path, found = true, parsed = false, error = error.Message, bytes = bytes.Length }); if (string.IsNullOrEmpty(firstError2)) firstError2 = $"{path}: {error.Message}"; continue; }
+            var objects = new List<object>();
+            for (var layer = 0; layer < lgb.Groups.Length; layer++)
+            for (var index = 0; index < lgb.Groups[layer].InstanceObjects.Length; index++)
+            {
+                var instance = lgb.Groups[layer].InstanceObjects[index];
+                string? name = null;
+                if (instance.Type is LgbFile.LayerEntryType.EnvSet or LgbFile.LayerEntryType.EnvLocation or LgbFile.LayerEntryType.LayLight)
+                {
+                    // Name strings live in the layer string heap; recover via the
+                    // same helper Meddle uses for BG paths (offset field + heap).
+                    var layerGroup = lgb.Groups[layer];
+                    var reader = new SpanBinaryReader(bytes);
+                    var instanceRoot = layerGroup.Offset + (int)layerGroup.Header.InstanceObjectsOffset + (int)layerGroup.InstanceObjectOffsets[index];
+                    var nameOffset = BitConverter.ToInt32(bytes, instanceRoot + 8);
+                    var nameStart = instanceRoot + 8 + nameOffset;
+                    var end = nameStart;
+                    while (end < bytes.Length && bytes[end] != 0) end++;
+                    name = Encoding.ASCII.GetString(bytes, nameStart, Math.Max(0, end - nameStart));
+                    if (instance.Type == LgbFile.LayerEntryType.LayLight)
+                    {
+                        // Physis v0.7 LightInstanceObject layout (shape i32,
+                        // attenuation f32, range f32, point type i32, cone f32,
+                        // angle f32, texture offset i32, pad i32, ColorIntensity
+                        // rgba+f32, four bool bytes, near f32, skew 2f32, then
+                        // Dawntrail tail). Payload begins at instanceRoot+0x30.
+                        var p = instanceRoot + 0x30;
+                        int shape = BitConverter.ToInt32(bytes, p);
+                        var attenuation = BitConverter.ToSingle(bytes, p + 4);
+                        var range = BitConverter.ToSingle(bytes, p + 8);
+                        // Verified layout (Physis v0.7 LightInstanceObject):
+                        // +0 shape i32, +4 attenuation f32, +8 range f32,
+                        // +12 point type i32, +16 cone coefficient f32,
+                        // +20 spot angle f32, +24 texture path offset i32,
+                        // +28 ColorIntensity rgba(4 u8)+intensity f32,
+                        // +40 flag bytes x4, +44 shadow near f32,
+                        // +48 skew 2f32, then Dawntrail tail (marker at +88).
+                        var colorR = bytes[p + 28]; var colorG = bytes[p + 29]; var colorB = bytes[p + 30]; var colorA = bytes[p + 31];
+                        var intensity = BitConverter.ToSingle(bytes, p + 32);
+                        objects.Add(new
+                        {
+                            layer = layer, index, instanceId = instance.InstanceId, type = instance.Type.ToString(), name,
+                            translation = instance.Translation, rotation = instance.Rotation, scale = instance.Scale,
+                            shape, attenuation, range, color = new { r = colorR, g = colorG, b = colorB, a = colorA, intensity },
+                            lightPayloadOffset = p
+                        });
+                        continue;
+                    }
+                    if (instance.Type == LgbFile.LayerEntryType.EnvSet)
+                    {
+                        var p = instanceRoot + 0x30;
+                        var assetPathOffset = BitConverter.ToInt32(bytes, p);
+                        var assetPath = reader.ReadString(p + assetPathOffset);
+                        var boundInstanceId = BitConverter.ToUInt32(bytes, p + 4);
+                        int shape = BitConverter.ToInt32(bytes, p + 8);
+                        var priority = bytes[p + 13];
+                        var effectiveRange = BitConverter.ToSingle(bytes, p + 16);
+                        var interpolationTime = BitConverter.ToInt32(bytes, p + 20);
+                        objects.Add(new
+                        {
+                            layer = layer, index, instanceId = instance.InstanceId, type = instance.Type.ToString(), name,
+                            translation = instance.Translation, rotation = instance.Rotation, scale = instance.Scale,
+                            assetPath, boundInstanceId, shape, priority, effectiveRange, interpolationTime,
+                            payloadOffset = p
+                        });
+                        continue;
+                    }
+                    if (instance.Type == LgbFile.LayerEntryType.EnvLocation)
+                    {
+                        var p = instanceRoot + 0x30;
+                        // Both paths use the BG-style heap rule: the dword at the
+                        // field is an offset relative to the field position.
+                        var ambientOffset = BitConverter.ToInt32(bytes, p);
+                        var ambientPath = reader.ReadString(p + ambientOffset);
+                        var envMapOffset = BitConverter.ToInt32(bytes, p + 4);
+                        var envMapPath = reader.ReadString(p + 4 + envMapOffset);
+                        objects.Add(new
+                        {
+                            layer = layer, index, instanceId = instance.InstanceId, type = instance.Type.ToString(), name,
+                            translation = instance.Translation, rotation = instance.Rotation, scale = instance.Scale,
+                            ambientLightAssetPath = ambientPath, envMapAssetPath = envMapPath,
+                            payloadOffset = p
+                        });
+                        continue;
+                    }
+                }
+                objects.Add(new { layer = layer, index, instanceId = instance.InstanceId, type = instance.Type.ToString(), name });
+            }
+            lgbReport.Add(new { path, found = true, parsed = true, bytes = bytes.Length, sha256 = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(bytes)).ToLowerInvariant(), layers = lgb.Groups.Length, objects });
+        }
+        var manifest2 = new { schemaVersion = 1, map = args[2], root = zone2.root, territoryId = zone2.territory, gameVersion = version, generatedAtUtc = DateTime.UtcNow, parser = "MapExtract lgb command (pinned Meddle LgbFile + Physis v0.7 field layouts)", files = lgbReport };
+        var target2 = Path.Combine(lgbOutput, $"{args[2]}-lgb.json");
+        File.WriteAllText(target2, JsonSerializer.Serialize(manifest2, jsonOptions));
+        Console.WriteLine(target2);
+        if (!string.IsNullOrEmpty(firstError2)) { Console.Error.WriteLine(firstError2); return 3; }
+        return 0;
     }
     if (args[0] == "collision-map")
     {

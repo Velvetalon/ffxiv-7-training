@@ -44,6 +44,7 @@
     "@babylonjs/materials": "9.26.0",
     "lucide": "^0.468.0",
     "meshoptimizer": "1.2.0",
+    "playwright": "^1.63.0",
     "three": "0.180.0",
     "three-mesh-bvh": "^0.9.14"
   },

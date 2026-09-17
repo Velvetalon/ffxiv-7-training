@@ -15,6 +15,12 @@ const catalogEntry = 'catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3
 const mapManifest = 'maps/e3t1/manifest_ab686a714791aad26083e35fe8348e409998a6b3c1d970342f9286f9bd0d33b4.json.gz';
 const active = readJson(path.join(repo, 'public/extracted/active.json'));
 const profiles = readJson(path.join(repo, 'src/world/environment/source-profiles.json'));
+let lightingObjects = {};
+try {
+  lightingObjects = readJson(path.join(repo, 'src/world/environment/source-lights.json'));
+} catch {
+  lightingObjects = {};
+}
 const visualReferencesPath = path.join(repo, 'config/visual-references.json');
 const visualReferencesRaw = fs.readFileSync(visualReferencesPath);
 const visualReferences = JSON.parse(visualReferencesRaw);
@@ -78,6 +84,7 @@ export default defineConfig(({ command }) => {
     // catalog-relative to the CDN/ticket base and are never joined to appBase.
     maps: active.scenes,
     profiles,
+    lightingObjects,
     assetBaseUrl: 'https://img.yuluo.site/ff14-assets/v1/',
     assetVersion: active.runId, catalogEntry, mapManifest,
     sharedAppBaseUrl: '/ff14-web/',

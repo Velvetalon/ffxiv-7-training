@@ -14,6 +14,9 @@ import { Observable } from '@babylonjs/core/Misc/observable.js';
 import { Scene } from '@babylonjs/core/scene.js';
 import { Mesh } from '@babylonjs/core/Meshes/mesh.js';
 import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder.js';
+import { PointLight } from '@babylonjs/core/Lights/pointLight.js';
+import { SpotLight } from '@babylonjs/core/Lights/spotLight.js';
+import { normalizeLightingObjects, lightingObjectDiagnostics } from '../../src/world/environment/LightingObjects.js';
 
 const PRESETS = Object.freeze({ day: 12, dusk: 17.5, night: 22 });
 const DEFAULT_IBL_SIZE = 4;
@@ -38,6 +41,9 @@ const SHADOW_NORMAL_BIAS = 0.012;
 const AMBIENT_DAY_YIELD = 0.55;
 const SHADOW_MIN_Z = 0.5;
 const SHADOW_MAX_Z = 900;
+// Night local-light budget: real LGB instances are admitted nearest-first and
+// per-instance toggles stay available for the S6 on/off proof.
+const SOURCE_LIGHT_BUDGET = 64;
 
 function finite(value, fallback) {
   return Number.isFinite(Number(value)) ? Number(value) : fallback;
@@ -180,6 +186,7 @@ export class EnvironmentAdapter {
     iblIntensity = 1,
     imageProcessingExposure = 1,
     iblSize = DEFAULT_IBL_SIZE,
+    lightingObjects = null,
     onDiagnostic = () => {},
   } = {}) {
     this.scene = scene;
@@ -191,6 +198,9 @@ export class EnvironmentAdapter {
     this.imageProcessingExposure = finite(imageProcessingExposure, 1);
     this.iblSize = Math.max(1, Math.floor(finite(iblSize, DEFAULT_IBL_SIZE)));
     this.onDiagnostic = onDiagnostic;
+    this.sourceLightingObjects = null;
+    this.sourceLights = [];
+    this.setLightingObjects(lightingObjects);
     this.iblReadyObservable = new Observable();
     this.lights = null;
     this.environmentTexture = null;
@@ -212,6 +222,29 @@ export class EnvironmentAdapter {
       normalBias: SHADOW_NORMAL_BIAS,
       sourceEquation: 'browser-directional-light-approximation',
     });
+  }
+
+  setLightingObjects(input) {
+    this.sourceLights.forEach(light => light.dispose());
+    this.sourceLights = [];
+    const normalized = normalizeLightingObjects(input || undefined);
+    this.sourceLightingObjects = normalized;
+    const admitted = [...normalized.lights]
+      .sort((left, right) => right.intensity - left.intensity || String(left.id).localeCompare(String(right.id)))
+      .slice(0, SOURCE_LIGHT_BUDGET);
+    for (const object of admitted) {
+      const position = new Vector3(object.position.x, object.position.y, object.position.z);
+      const light = object.kind === 'SpotLight'
+        ? new SpotLight(object.id, position, new Vector3(object.direction.x, object.direction.y, object.direction.z), object.angleRadians, Math.PI / 3, this.scene)
+        : new PointLight(object.id, position, this.scene);
+      light.diffuse = new Color3(object.color.r, object.color.g, object.color.b);
+      light.specular = light.diffuse.clone();
+      light.intensity = object.intensity;
+      if (object.range > 0) light.range = object.range;
+      light.metadata = { ffxivSourceLight: object };
+      this.sourceLights.push(light);
+    }
+    if (this.state) this.apply(this.state);
   }
 
   ensureLights() {
@@ -515,6 +548,10 @@ export class EnvironmentAdapter {
       },
       imageProcessing: state?.imageProcessing || { exposure: this.imageProcessingExposure, mapped: false },
       sky: state?.sky || null,
+      ...lightingObjectDiagnostics(this.sourceLightingObjects, {
+        admitted: this.sourceLights.length,
+        budget: SOURCE_LIGHT_BUDGET,
+      }),
       knownUnsupported: { ...this.unsupported },
     };
   }
@@ -531,6 +568,8 @@ export class EnvironmentAdapter {
     this.skyGradient = null;
     for (const light of Object.values(this.lights || {})) light.dispose();
     this.lights = null;
+    for (const light of this.sourceLights) light.dispose();
+    this.sourceLights = [];
   }
 }
 

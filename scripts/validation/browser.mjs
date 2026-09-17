@@ -382,7 +382,7 @@ async function runValidation({ url, scenes, timeoutMs = 30000, concurrency = 2, 
   let browser = null;
   try {
     const { chromium } = await loadPlaywright(playwrightModulePath);
-    browser = await chromium.launch({ executablePath: browserPath || process.env.BROWSER_PATH || undefined, headless: !headed, args: ['--enable-webgl', '--ignore-gpu-blocklist'] });
+    browser = await chromium.launch({ executablePath: browserPath || process.env.BROWSER_PATH || undefined, headless: !headed, args: ['--enable-webgl', '--ignore-gpu-blocklist', '--use-gl=angle', '--use-angle=gl', '--enable-unsafe-swiftshader'] });
     const limit = Math.max(1, Math.min(Number(concurrency) || 2, sceneIds.length));
     let next = 0;
     await Promise.all(Array.from({ length: limit }, async () => {
