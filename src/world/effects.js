@@ -1,14 +1,43 @@
-import * as THREE from 'three';
+﻿import * as THREE from 'three';
 import { disposeObject, mesh } from './assets.js';
+import { EffectRuntime } from '../vfx/EffectCore.js';
+
 
 export class EffectSystem {
   constructor(root) {
     this.root = root;
     this.active = [];
     this.fields = new Map();
+    // Client-derived AVFX content path: definitions are produced at build time by
+    // tools/vfx and registered as data. Used only when a definition resolves for the
+    // fired event; otherwise the hand-authored baseline below plays so the demo
+    // always has feedback.
+    this.vfxRuntime = new EffectRuntime();
+    this.registerBuiltins();
+  }
+
+  registerBuiltins() {
+    const catalog = {
+      'RPR.hit': { schemaVersion: 1, effectId: 'RPR.hit', sourceStatus: 'APPROXIMATE', buildStatus: 'BUILT', runtimeStatus: 'NOT_TESTED', reviewStatus: 'PENDING', duration: 0.7, nodes: [{ kind: 'emitter', lifeSeconds: 0.7, emissionRate: 26, maxAlive: 26, size: 0.15, spread: 2.4, rise: 1.6, color: [0.85, 0.29, 0.47], gravity: -1.4 }] },
+      'PCT.hit': { schemaVersion: 1, effectId: 'PCT.hit', sourceStatus: 'APPROXIMATE', buildStatus: 'BUILT', runtimeStatus: 'NOT_TESTED', reviewStatus: 'PENDING', duration: 0.7, nodes: [{ kind: 'emitter', lifeSeconds: 0.7, emissionRate: 26, maxAlive: 26, size: 0.15, spread: 2.4, rise: 1.6, color: [0.94, 0.66, 0.81], gravity: -1.4 }] },
+      'WHM.hit': { schemaVersion: 1, effectId: 'WHM.hit', sourceStatus: 'APPROXIMATE', buildStatus: 'BUILT', runtimeStatus: 'NOT_TESTED', reviewStatus: 'PENDING', duration: 0.7, nodes: [{ kind: 'emitter', lifeSeconds: 0.7, emissionRate: 26, maxAlive: 26, size: 0.15, spread: 2.4, rise: 1.6, color: [1, 0.86, 0.55], gravity: -1.4 }] },
+    };
+    this.vfxRuntime.registerCatalog(catalog);
+    // Client-derived catalog is fetched when deployed; when absent, the baseline
+    // catalog above still exercises the runtime.
+    fetch('/vfx/definitions/catalog.json')
+      .then(response => (response.ok ? response.json() : null))
+      .then(clientCatalog => { if (clientCatalog) this.vfxRuntime.registerCatalog(clientCatalog); })
+      .catch(() => {});
   }
 
   play(event = {}, origin, jobId) {
+    const effectId = event.effectId || (jobId ? jobId + '.' + (event.type || 'hit') : null);
+    if (effectId && this.vfxRuntime.definitions.has(effectId)) {
+      const anchor = origin.clone ? origin.clone() : origin;
+      const handle = this.vfxRuntime.play({ effectId }, { root: this.root }, anchor);
+      if (handle) return;
+    }
     if (this.active.length > 42) this.remove(this.active.shift());
     const color = new THREE.Color(event.color || (jobId === 'RPR' ? 0xd94c79 : jobId === 'PCT' ? 0xf0a8cf : 0x88e7ff));
     const group = new THREE.Group();
@@ -132,3 +161,8 @@ export class EffectSystem {
     this.fields.delete(id);
   }
 }
+
+
+
+
+

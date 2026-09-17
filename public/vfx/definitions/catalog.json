@@ -1,0 +1,2776 @@
+{
+ "00000418": {
+  "schemaVersion": 1,
+  "effectId": "vfx://00000418",
+  "source": {
+   "path": "00000418.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 3,
+    "Emit": 2,
+    "Ptcl": 4,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.6,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 4,
+   "emitterCount": 2,
+   "timelineCount": 3
+  }
+ },
+ "00147F41": {
+  "schemaVersion": 1,
+  "effectId": "vfx://00147F41",
+  "source": {
+   "path": "00147F41.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 1,
+    "Ptcl": 4,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.6,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 5,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 2,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 4,
+   "emitterCount": 1,
+   "timelineCount": 1
+  }
+ },
+ "001B9D15": {
+  "schemaVersion": 1,
+  "effectId": "vfx://001B9D15",
+  "source": {
+   "path": "001B9D15.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 2,
+    "Emit": 2,
+    "Ptcl": 4
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.6,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 4,
+   "emitterCount": 2,
+   "timelineCount": 2
+  }
+ },
+ "001D45CD": {
+  "schemaVersion": 1,
+  "effectId": "vfx://001D45CD",
+  "source": {
+   "path": "001D45CD.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 2,
+    "Ptcl": 3,
+    "Bind": 2
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.2,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 6,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 3,
+   "emitterCount": 2,
+   "timelineCount": 1
+  }
+ },
+ "002A7D9C": {
+  "schemaVersion": 1,
+  "effectId": "vfx://002A7D9C",
+  "source": {
+   "path": "002A7D9C.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 3,
+    "Ptcl": 4,
+    "Bind": 4,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.6,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 5,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 4,
+   "emitterCount": 3,
+   "timelineCount": 1
+  }
+ },
+ "002F383F": {
+  "schemaVersion": 1,
+  "effectId": "vfx://002F383F",
+  "source": {
+   "path": "002F383F.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 2,
+    "Emit": 1,
+    "Ptcl": 3
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.2,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 11,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 11,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 11,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 3,
+   "emitterCount": 1,
+   "timelineCount": 2
+  }
+ },
+ "003171D2": {
+  "schemaVersion": 1,
+  "effectId": "vfx://003171D2",
+  "source": {
+   "path": "003171D2.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 2,
+    "Emit": 1,
+    "Ptcl": 1,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 0.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 1,
+   "emitterCount": 1,
+   "timelineCount": 2
+  }
+ },
+ "0035D040": {
+  "schemaVersion": 1,
+  "effectId": "vfx://0035D040",
+  "source": {
+   "path": "0035D040.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 2,
+    "Ptcl": 3,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.2,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 5,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 3,
+   "emitterCount": 2,
+   "timelineCount": 1
+  }
+ },
+ "0036C861": {
+  "schemaVersion": 1,
+  "effectId": "vfx://0036C861",
+  "source": {
+   "path": "0036C861.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 2,
+    "Emit": 1,
+    "Ptcl": 3,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.2,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 9,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 5,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 9,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 9,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 3,
+   "emitterCount": 1,
+   "timelineCount": 2
+  }
+ },
+ "0045BC43": {
+  "schemaVersion": 1,
+  "effectId": "vfx://0045BC43",
+  "source": {
+   "path": "0045BC43.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 2,
+    "Ptcl": 3,
+    "Bind": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.2,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 3,
+   "emitterCount": 2,
+   "timelineCount": 1
+  }
+ },
+ "00517FA6": {
+  "schemaVersion": 1,
+  "effectId": "vfx://00517FA6",
+  "source": {
+   "path": "00517FA6.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 4,
+    "Emit": 1,
+    "Ptcl": 1,
+    "Bind": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 0.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 1,
+   "emitterCount": 1,
+   "timelineCount": 4
+  }
+ },
+ "00522822": {
+  "schemaVersion": 1,
+  "effectId": "vfx://00522822",
+  "source": {
+   "path": "00522822.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 1,
+    "Ptcl": 5,
+    "Bind": 1,
+    "Modl": 2
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 2.0,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 5,
+   "emitterCount": 1,
+   "timelineCount": 1
+  }
+ },
+ "005675AA": {
+  "schemaVersion": 1,
+  "effectId": "vfx://005675AA",
+  "source": {
+   "path": "005675AA.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 3,
+    "Emit": 1,
+    "Ptcl": 4,
+    "Bind": 1,
+    "Modl": 2
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.6,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 5,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 4,
+   "emitterCount": 1,
+   "timelineCount": 3
+  }
+ },
+ "005B4DF1": {
+  "schemaVersion": 1,
+  "effectId": "vfx://005B4DF1",
+  "source": {
+   "path": "005B4DF1.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 2,
+    "Ptcl": 5,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 2.0,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 2,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 4,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 4,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 4,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 5,
+   "emitterCount": 2,
+   "timelineCount": 1
+  }
+ },
+ "005BB9FC": {
+  "schemaVersion": 1,
+  "effectId": "vfx://005BB9FC",
+  "source": {
+   "path": "005BB9FC.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 3,
+    "Emit": 1,
+    "Ptcl": 1,
+    "Bind": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 0.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 1,
+   "emitterCount": 1,
+   "timelineCount": 3
+  }
+ },
+ "00683224": {
+  "schemaVersion": 1,
+  "effectId": "vfx://00683224",
+  "source": {
+   "path": "00683224.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 2,
+    "Emit": 1,
+    "Ptcl": 1,
+    "Bind": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 0.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 1,
+   "emitterCount": 1,
+   "timelineCount": 2
+  }
+ },
+ "0068709A": {
+  "schemaVersion": 1,
+  "effectId": "vfx://0068709A",
+  "source": {
+   "path": "0068709A.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 2,
+    "Ptcl": 6,
+    "Bind": 1,
+    "Modl": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 2.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 2,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 2,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 6,
+   "emitterCount": 2,
+   "timelineCount": 1
+  }
+ },
+ "006A182A": {
+  "schemaVersion": 1,
+  "effectId": "vfx://006A182A",
+  "source": {
+   "path": "006A182A.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 3,
+    "Ptcl": 6,
+    "Bind": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 2.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 12,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 1,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 10,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 6,
+   "emitterCount": 3,
+   "timelineCount": 1
+  }
+ },
+ "006B01BC": {
+  "schemaVersion": 1,
+  "effectId": "vfx://006B01BC",
+  "source": {
+   "path": "006B01BC.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 1,
+    "Ptcl": 1,
+    "Bind": 1
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 0.4,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 5,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 1,
+   "emitterCount": 1,
+   "timelineCount": 1
+  }
+ },
+ "006EE15A": {
+  "schemaVersion": 1,
+  "effectId": "vfx://006EE15A",
+  "source": {
+   "path": "006EE15A.avfx",
+   "format": "AVFX",
+   "clientVersion": "2026.09.01.0000.0000",
+   "sections": {
+    "Schd": 1,
+    "TmLn": 1,
+    "Emit": 2,
+    "Ptcl": 3,
+    "Bind": 1,
+    "Modl": 3
+   }
+  },
+  "sourceStatus": "SOURCE_CONFIRMED",
+  "buildStatus": "BUILT",
+  "runtimeStatus": "NOT_TESTED",
+  "reviewStatus": "PENDING",
+  "duration": 1.2,
+  "textures": [],
+  "nodes": [
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 8,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 6,
+      "f32": 0.0
+     }
+    }
+   },
+   {
+    "kind": "emitter",
+    "lifeSeconds": 1.0,
+    "emissionRate": 18,
+    "maxAlive": 24,
+    "size": 0.14,
+    "spread": 2.2,
+    "rise": 1.4,
+    "color": [
+     0.53,
+     0.9,
+     1.0
+    ],
+    "mesh": false,
+    "sourceFields": {
+     "LpSt": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "LpEd": {
+      "u32": 0,
+      "f32": 0.0
+     },
+     "PrVT": {
+      "u32": 13,
+      "f32": 0.0
+     },
+     "RBDT": {
+      "u32": 2,
+      "f32": 0.0
+     }
+    }
+   }
+  ],
+  "provenance": {
+   "parser": "tools/vfx/avfx_parser.py",
+   "converter": "tools/vfx/convert_to_definition.py",
+   "particleCount": 3,
+   "emitterCount": 2,
+   "timelineCount": 1
+  }
+ }
+}

@@ -266,6 +266,7 @@ export class World {
     for (const building of this.architecture || []) if (building.userData.wheel) building.userData.wheel.rotation.z += elapsed * 0.18;
     for (const label of this.landmarkLabels || []) label.visible = label.position.distanceTo(this.player.position) < 36;
     this.effects.update(elapsed);
+    this.effects.vfxRuntime?.update(elapsed);
     this.worldTime.advance(dt);
     if (this.environmentLights) {
       const environment = this.environment.apply(this.scene, this.renderer, this.environmentLights, this.worldTime.snapshot());
@@ -632,3 +633,4 @@ export class World {
     return true;
   }
 }
+

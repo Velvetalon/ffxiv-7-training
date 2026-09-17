@@ -1,0 +1,164 @@
+{
+ "schemaVersion": 1,
+ "effectId": "vfx://00000418",
+ "source": {
+  "path": "00000418.avfx",
+  "format": "AVFX",
+  "clientVersion": "2026.09.01.0000.0000",
+  "sections": {
+   "Schd": 1,
+   "TmLn": 3,
+   "Emit": 2,
+   "Ptcl": 4,
+   "Bind": 1,
+   "Modl": 1
+  }
+ },
+ "sourceStatus": "SOURCE_CONFIRMED",
+ "buildStatus": "BUILT",
+ "runtimeStatus": "NOT_TESTED",
+ "reviewStatus": "PENDING",
+ "duration": 1.6,
+ "textures": [],
+ "nodes": [
+  {
+   "kind": "emitter",
+   "lifeSeconds": 1.0,
+   "emissionRate": 18,
+   "maxAlive": 24,
+   "size": 0.14,
+   "spread": 2.2,
+   "rise": 1.4,
+   "color": [
+    0.53,
+    0.9,
+    1.0
+   ],
+   "mesh": false,
+   "sourceFields": {
+    "LpSt": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "LpEd": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "PrVT": {
+     "u32": 13,
+     "f32": 0.0
+    },
+    "RBDT": {
+     "u32": 2,
+     "f32": 0.0
+    }
+   }
+  },
+  {
+   "kind": "emitter",
+   "lifeSeconds": 1.0,
+   "emissionRate": 18,
+   "maxAlive": 24,
+   "size": 0.14,
+   "spread": 2.2,
+   "rise": 1.4,
+   "color": [
+    0.53,
+    0.9,
+    1.0
+   ],
+   "mesh": false,
+   "sourceFields": {
+    "LpSt": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "LpEd": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "PrVT": {
+     "u32": 1,
+     "f32": 0.0
+    },
+    "RBDT": {
+     "u32": 10,
+     "f32": 0.0
+    }
+   }
+  },
+  {
+   "kind": "emitter",
+   "lifeSeconds": 1.0,
+   "emissionRate": 18,
+   "maxAlive": 24,
+   "size": 0.14,
+   "spread": 2.2,
+   "rise": 1.4,
+   "color": [
+    0.53,
+    0.9,
+    1.0
+   ],
+   "mesh": false,
+   "sourceFields": {
+    "LpSt": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "LpEd": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "PrVT": {
+     "u32": 1,
+     "f32": 0.0
+    },
+    "RBDT": {
+     "u32": 10,
+     "f32": 0.0
+    }
+   }
+  },
+  {
+   "kind": "emitter",
+   "lifeSeconds": 1.0,
+   "emissionRate": 18,
+   "maxAlive": 24,
+   "size": 0.14,
+   "spread": 2.2,
+   "rise": 1.4,
+   "color": [
+    0.53,
+    0.9,
+    1.0
+   ],
+   "mesh": false,
+   "sourceFields": {
+    "LpSt": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "LpEd": {
+     "u32": 0,
+     "f32": 0.0
+    },
+    "PrVT": {
+     "u32": 13,
+     "f32": 0.0
+    },
+    "RBDT": {
+     "u32": 2,
+     "f32": 0.0
+    }
+   }
+  }
+ ],
+ "provenance": {
+  "parser": "tools/vfx/avfx_parser.py",
+  "converter": "tools/vfx/convert_to_definition.py",
+  "particleCount": 4,
+  "emitterCount": 2,
+  "timelineCount": 3
+ }
+}
