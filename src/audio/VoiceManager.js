@@ -33,6 +33,10 @@ export class VoiceManager {
     }
   }
 
+  stopAll(reason = 'stopped') {
+    for (const [id] of [...this.voices]) this.stop(id, reason);
+  }
+
   preempt({ cueId, ownerId, priority }) {
     let same = 0;
     for (const [id, voice] of this.voices) {

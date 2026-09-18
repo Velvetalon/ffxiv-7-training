@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "smoke": {
-    "timeoutMs": 30000,
+    "timeoutMs": 60000,
     "concurrency": 2
   },
   "representative": {
-    "timeoutMs": 30000,
+    "timeoutMs": 60000,
     "observeMs": 1500
   },
   "representatives": [

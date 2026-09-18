@@ -78,23 +78,42 @@ export class AudioEngine {
 
   async setSceneAudio({ sceneId, trackId, loop = true, loopStart, loopEnd } = {}) {
     const request = this.music.request({ source: 'scene', trackId: trackId || null, priority: 10, meta: { sceneId } });
-    if (!request.ok || !trackId) return request;
+    if (!request.ok || !trackId || request.trackId !== trackId) return request;
     if (request.reused) return request;
     return this.playMusicTrack({ trackId, loop, loopStart, loopEnd, ownerId: 'scene' });
   }
 
   async requestMountMusic({ trackId, loop = true, loopStart, loopEnd } = {}) {
     const request = this.music.request({ source: 'mount', trackId, priority: 20, meta: { mount: true } });
-    if (!request.ok || !trackId) return request;
+    if (!request.ok || !trackId || request.trackId !== trackId) return request;
     if (request.reused) return request;
     return this.playMusicTrack({ trackId, loop, loopStart, loopEnd, ownerId: 'mount' });
   }
 
+  /** Register the live scene track with the arbiter without engine playback. */
+  registerSceneMusic({ sceneId, trackId, loop = true, loopStart, loopEnd } = {}) {
+    if (!trackId) return { ok: false, reason: 'track-missing' };
+    return this.music.request({ source: 'scene', trackId, priority: 10, meta: { sceneId, loop, loopStart, loopEnd } });
+  }
+
+  dropMusicSource(source) { return this.music.release(source, { onlyIfOwner: false }); }
+
+  isMusicOwner(source) { return this.music.current?.source === source; }
+
   async releaseMountMusic() {
     const result = this.music.release('mount');
     if (!result.changed) return result;
+    this.voices.stopOwner('mount', 'music-release');
     const scene = this.music.current?.source === 'scene' ? this.music.current : null;
-    if (scene?.trackId) return this.playMusicTrack({ trackId: scene.trackId, ownerId: 'scene', loop: true });
+    if (scene?.trackId) {
+      return this.playMusicTrack({
+        trackId: scene.trackId,
+        ownerId: 'scene',
+        loop: scene.meta?.loop ?? true,
+        loopStart: scene.meta?.loopStart,
+        loopEnd: scene.meta?.loopEnd,
+      });
+    }
     await this.stopMusic();
     return result;
   }
@@ -110,11 +129,13 @@ export class AudioEngine {
     void fadeMs;
     this.voices.stopOwner('scene', 'music-stop');
     this.voices.stopOwner('mount', 'music-stop');
-    this.music.current = null;
+    this.music.reset();
     return { ok: true };
   }
 
   stopOwner(ownerId, reason) { this.voices.stopOwner(ownerId, reason); this.scheduler.cancelOwner(ownerId, reason); }
+
+  stopAllVoices(reason = 'stopped') { this.voices.stopAll(reason); }
 
   explain(event) { return this.profiles.resolve(event, event.context || {}).explain; }
 

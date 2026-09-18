@@ -36,7 +36,17 @@ export class MusicArbiter {
     return { ok: true, changed: true, trackId: this.current.trackId };
   }
 
-  stats() { return { sources: this.sources.size - 1, current: this.current?.trackId || null }; }
+  stats() {
+    let count = 0;
+    for (const name of this.sources.keys()) if (name !== '__last__') count++;
+    return { sources: count, current: this.current?.trackId || null };
+  }
+
+  /** Drop every source and the active winner (global stop / mute). */
+  reset() {
+    this.sources.clear();
+    this.current = null;
+  }
 }
 
 export default MusicArbiter;

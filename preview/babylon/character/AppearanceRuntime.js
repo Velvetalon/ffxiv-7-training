@@ -86,7 +86,7 @@ function applyIrisVertexColors(mesh, appearance, bindings) {
   mesh.useVertexColors = true;
 }
 
-function resolvedPaletteEntry(appearance, binding, source) {
+function resolvedPaletteEntry(appearance, bindings, source) {
   const table = bindings.palettes?.[source.palette];
   const indexed = table?.[appearance[source.field]];
   if (indexed) return indexed;
@@ -176,7 +176,7 @@ export class AppearanceRuntime {
         const role = binding.shader || binding.role || inferMaterialRole(material.name);
         if (role) applyMaterialRole(material, role, binding, mesh, appearance, bindings);
         for (const [property, source] of Object.entries(binding.colors || {})) {
-          const value = resolvedPaletteEntry(appearance, binding, source);
+          const value = resolvedPaletteEntry(appearance, bindings, source);
           if (value) setFfxivColor(materialColor(material, property), value, source);
         }
       }

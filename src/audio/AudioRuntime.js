@@ -198,9 +198,24 @@ export class AudioRuntime {
     const resourceId = resourceIdOf(entry);
     if (!resourceId) {
       await this.stopBgm({ fadeMs: options.fadeMs });
+      this.engine?.dropMusicSource('scene');
       return { ok: false, reason: 'scene-bgm-unknown', sceneId };
     }
     if (token !== this.sceneToken) return { ok: false, stale: true, sceneId };
+    const engine = this.ensureEngine();
+    // A mount cycle can leave the scene track as an engine-owned voice.
+    engine?.stopOwner('scene', 'scene-switch');
+    if (engine?.isMusicOwner('mount')) {
+      // Mount owns music: register the request, defer raw scene playback.
+      engine.registerSceneMusic({
+        sceneId,
+        trackId: resourceId,
+        loop: options.loop ?? entry?.loop ?? true,
+        loopStart: options.loopStart ?? entry?.loopStart,
+        loopEnd: options.loopEnd ?? entry?.loopEnd,
+      });
+      return { ok: true, sceneId, resourceId, suppressedBy: 'mount' };
+    }
     if (this.bgm?.resourceId === resourceId && !this.bgm.stopped) return { ok: true, reused: true, sceneId, resourceId };
     let buffer;
     try {
@@ -218,6 +233,13 @@ export class AudioRuntime {
       this.pendingScene = { sceneId, options, token };
       return { ok: false, pending: 'user-gesture', sceneId, resourceId };
     }
+    engine?.registerSceneMusic({
+      sceneId,
+      trackId: resourceId,
+      loop: options.loop ?? entry?.loop ?? true,
+      loopStart: options.loopStart ?? entry?.loopStart,
+      loopEnd: options.loopEnd ?? entry?.loopEnd,
+    });
     const track = this.createBgmTrack(buffer, resourceId, entry, options);
     const old = this.bgm;
     this.bgm = track;
@@ -274,12 +296,27 @@ export class AudioRuntime {
 
   /** Mount music request routed through the MusicArbiter (mount wins over scene). */
   async requestMountMusic(trackId, options = {}) {
+    if (!this.settings.sound) return { ok: false, reason: 'sound-disabled', trackId };
     const engine = this.ensureEngine();
     if (!engine) return { ok: false, reason: 'engine-unavailable', trackId };
     const entry = this.manifest().resources?.[trackId] || { id: trackId };
     const resourceId = entry?.id || trackId;
+    if (resourceId == null || resourceId === '') return { ok: false, reason: 'mount-track-unknown', trackId };
     const meta = entry?.metadata || {};
-    return engine.requestMountMusic({ trackId: resourceId, loop: options.loop ?? true, loopStart: meta.loopStart, loopEnd: meta.loopEnd });
+    // The live scene track must stop before the mount voice starts, and a
+    // failed request must unregister itself so release() cannot replay it.
+    await this.stopBgm({ fadeMs: options.fadeMs ?? 0 });
+    let result;
+    try {
+      result = await engine.requestMountMusic({ trackId: resourceId, loop: options.loop ?? true, loopStart: meta.loopStart, loopEnd: meta.loopEnd });
+    } catch (error) {
+      result = { ok: false, reason: 'mount-music-failed', trackId: resourceId, error };
+    }
+    if (result.ok) return result;
+    engine.dropMusicSource('mount');
+    const scene = engine.music.sources.get('scene');
+    if (scene?.meta?.sceneId) return this._playScene(scene.meta.sceneId, {}, ++this.sceneToken);
+    return result;
   }
 
   /** Release mount music and restore the scene's active track. */
@@ -312,6 +349,7 @@ export class AudioRuntime {
         }, { priority: 0, cueOverride: { id: clipId, clip: clipId, bus: 'sfx', gain: Number(options.volume ?? 1), delaySeconds: cueDelay } });
         handles.push(result);
       }
+      if (generation !== this.sfxGeneration) return { ok: false, stale: true, soundId };
       if (handles.some(handle => handle.ok)) return { ok: true, soundId, skillId, via: 'engine' };
       if (handles.length && handles.every(handle => handle.reason === 'suppressed-explicit')) {
         return { ok: false, reason: 'suppressed-explicit', soundId };
@@ -357,6 +395,7 @@ export class AudioRuntime {
   async stopBgm({ fadeMs = this.options.fadeMs ?? 650 } = {}) {
     this.sceneToken++;
     this.pendingScene = null;
+    this.engine?.stopOwner('scene', 'bgm-stop');
     const track = this.bgm;
     this.bgm = null;
     if (!track) return { ok: true, stopped: false };
@@ -392,6 +431,8 @@ export class AudioRuntime {
     this.pendingActions.length = 0;
     for (const source of this.sfxSources) source.stop();
     this.sfxSources.clear();
+    this.engine?.stopMusic({ fadeMs: 0 });
+    this.engine?.stopAllVoices('stop-all');
     void this.stopBgm(options);
   }
 

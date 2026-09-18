@@ -8,6 +8,7 @@
     "build:babylon": "vite build --config vite.babylon.config.js",
     "preview:babylon": "vite preview --config vite.babylon.config.js",
     "validate:babylon": "node scripts/validate-babylon.mjs",
+    "validate:babylon-default": "node scripts/validation/default-entry.mjs",
     "validate-babylon": "node scripts/validate-babylon.mjs",
     "validate:visual-references": "node scripts/validate-visual-references.mjs",
     "benchmark:babylon": "node scripts/benchmark-babylon.mjs",

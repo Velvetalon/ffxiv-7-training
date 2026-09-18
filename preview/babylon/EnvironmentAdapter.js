@@ -43,7 +43,7 @@ const SHADOW_MIN_Z = 0.5;
 const SHADOW_MAX_Z = 900;
 // Night local-light budget: real LGB instances are admitted nearest-first and
 // per-instance toggles stay available for the S6 on/off proof.
-const SOURCE_LIGHT_BUDGET = 64;
+const SOURCE_LIGHT_BUDGET = 4;
 
 function finite(value, fallback) {
   return Number.isFinite(Number(value)) ? Number(value) : fallback;
