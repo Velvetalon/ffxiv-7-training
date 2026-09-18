@@ -60,4 +60,17 @@ export class SandboxAssets {
   get mounts() { return Object.values(this.manifest?.mounts || {}); }
   get skills() { return this.manifest?.skills || {}; }
   get sceneBgm() { return this.manifest?.sceneBgm || {}; }
+
+  async loadCmp() {
+    try {
+      const config = await loadPreviewConfig();
+      const url = config.sandboxManifestUrl
+        ? new URL('human.cmp', new URL(config.sandboxManifestUrl, location.href)).href
+        : null;
+      if (!url) return null;
+      const response = await fetch(url, { cache: 'force-cache' });
+      if (!response.ok) return null;
+      return new Uint8Array(await response.arrayBuffer());
+    } catch { return null; }
+  }
 }

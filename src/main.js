@@ -15,7 +15,7 @@ import { assetProfiler } from './assets/AssetProfiler.js';
 import { initializeHudLayout } from './ui/layout/index.js';
 import { SandboxAssets } from './assets/SandboxAssets.js';
 import { SandboxPanel } from './ui/SandboxPanel.js';
-import { parseFfxivCharaDat } from './character/appearance/FfxivCharaDat.js';
+import { parseFfxivCharaDatWithPalette } from './character/appearance/FfxivCharaDat.js';
 import { SessionPreferences } from './core/SessionPreferences.js';
 import { DeveloperRuntime } from './dev/DeveloperRuntime.js';
 import { DeveloperPanel } from './ui/developer/DeveloperPanel.js';
@@ -198,7 +198,10 @@ function restoreCamera(sceneId) {
 }
 
 async function importAppearance(file) {
-  return reloadCharacter(parseFfxivCharaDat(await file.arrayBuffer()));
+  const bytes = await file.arrayBuffer();
+  await sandboxAssets.initialize();
+  const cmp = await sandboxAssets.loadCmp();
+  return reloadCharacter(parseFfxivCharaDatWithPalette(bytes, cmp));
 }
 
 async function reloadCharacter(appearance) {
