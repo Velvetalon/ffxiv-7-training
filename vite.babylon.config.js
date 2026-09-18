@@ -27,6 +27,8 @@ const visualReferences = JSON.parse(visualReferencesRaw);
 const visualReferencesSha256 = createHash('sha256').update(visualReferencesRaw).digest('hex');
 const visualValidatorPath = path.join(repo, 'scripts/validate-visual-references.mjs');
 const visualValidatorSha256 = createHash('sha256').update(fs.readFileSync(visualValidatorPath)).digest('hex');
+const dutyCatalogPath = path.join(repo, 'config/duties/duty-catalog.json');
+const dutyEntrancesPath = path.join(repo, 'config/duties/entrances.json');
 const runtimeVisualReferences = {
   ...visualReferences,
   views: visualReferences.views.map(({ referenceProvenance, ...view }) => view),
@@ -74,6 +76,10 @@ function createBuildInfo() {
 }
 
 const devBuildInfoText = JSON.stringify(createBuildInfo());
+const hasDutyCatalog = fs.existsSync(dutyCatalogPath);
+const dutyCatalog = hasDutyCatalog ? readJson(dutyCatalogPath) : { schemaVersion: 1, duties: [], unavailable: true };
+const hasDutyEntrances = fs.existsSync(dutyEntrancesPath);
+const dutyEntrances = hasDutyEntrances ? readJson(dutyEntrancesPath) : { schemaVersion: 1, entrances: [] };
 
 export default defineConfig(({ command }) => {
   const local = command === 'serve' && Boolean(process.env.BABYLON_ASSET_DIR);
@@ -96,6 +102,8 @@ export default defineConfig(({ command }) => {
     // Runtime needs view/camera policy only. The tracked manifest remains the
     // provenance source of truth and may contain private local capture URLs.
     visualReferences: runtimeVisualReferences,
+    duties: dutyCatalog,
+    dutyEntrances,
   };
   const configText = JSON.stringify(config);
   function configureDataServer(server) {
@@ -114,6 +122,16 @@ export default defineConfig(({ command }) => {
       if (url.pathname === `${appBase}build-info.json` || url.pathname === '/build-info.json') {
         response.setHeader('Content-Type', 'application/json');
         response.end(devBuildInfoText);
+        return;
+      }
+      if (url.pathname === `${appBase}duties/catalog.json` || url.pathname === '/duties/catalog.json') {
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify(dutyCatalog));
+        return;
+      }
+      if (url.pathname === `${appBase}duties/entrances.json` || url.pathname === '/duties/entrances.json') {
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify(dutyEntrances));
         return;
       }
       if (url.pathname === '/ff14-assets/ticket') {
@@ -222,6 +240,8 @@ export default defineConfig(({ command }) => {
         if (threeImports.length) this.error(`Babylon preview imports the old engine: ${threeImports[0]}`);
         this.emitFile({ type: 'asset', fileName: 'app-config.json', source: configText });
         this.emitFile({ type: 'asset', fileName: 'extracted/active.json', source: JSON.stringify(active) });
+        this.emitFile({ type: 'asset', fileName: 'duties/catalog.json', source: JSON.stringify(dutyCatalog) });
+        this.emitFile({ type: 'asset', fileName: 'duties/entrances.json', source: JSON.stringify(dutyEntrances) });
         this.emitFile({ type: 'asset', fileName: 'build-info.json', source: JSON.stringify({ ...createBuildInfo(), threeModules: threeImports.length }) });
       },
       configureServer: configureDataServer,

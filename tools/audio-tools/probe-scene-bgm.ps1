@@ -2,6 +2,7 @@
 param(
   [Parameter(Mandatory)][string]$Client,
   [string]$Output = (Join-Path $PSScriptRoot '..\..\public\sandbox\audio\scene-bgm-catalog.json'),
+  [string]$Catalog = (Join-Path $repo 'tools\map-tools\world-catalog.json'),
   [string]$LuminaRoot = '',
   [string]$Dotnet = ''
 )
@@ -10,7 +11,7 @@ $repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 if (-not $Dotnet) { $Dotnet = (Get-Command dotnet -ErrorAction SilentlyContinue)?.Source; if (-not $Dotnet) { $Dotnet = 'dotnet' } }
 if (-not $LuminaRoot) { $LuminaRoot = Join-Path $repo '..\..\..\FFXIV-MapTools\Lumina' }
 $project = Join-Path $PSScriptRoot 'SceneBgmProbe.csproj'
-$catalog = Join-Path $repo 'tools\map-tools\world-catalog.json'
+$catalog = [IO.Path]::GetFullPath($Catalog)
 $buildArgs = @('build',$project,('/p:LuminaRoot=' + $LuminaRoot),'-v:q')
 & $Dotnet @buildArgs | Out-Null
 if ($LASTEXITCODE -ne 0) { throw 'Scene BGM probe build failed.' }

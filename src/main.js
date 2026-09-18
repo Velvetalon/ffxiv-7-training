@@ -7,6 +7,9 @@ import { TeleportController } from './core/TeleportController.js';
 import { TrainingDirector } from './core/TrainingDirector.js';
 import { loadSettings, saveSettings as persistSettings } from './core/Settings.js';
 import { mountShell } from './ui/Shell.js';
+import { DutyTransport } from './world/duties/DutyTransport.js';
+import { loadDutyCatalog } from './world/duties/dutyCatalog.js';
+import { loadDutyEntrances } from './world/duties/entranceGates.js';
 import { Hotbar } from './ui/Hotbar.js';
 import { createDialogs } from './ui/Dialogs.js';
 import { createHud } from './ui/Hud.js';
@@ -34,6 +37,12 @@ let sceneTransition = false;
 let developerRuntime;
 let initialCameraRestore = true;
 let lastLoadFailure = null;
+const TELEPORT_TABS = new Set(['world', 'duties']);
+let teleportTabSel = 'world';
+let dutyCatalog = { schemaVersion: 1, duties: [], unavailable: true };
+let dutyCategoryFilter = 'all';
+let dutySearchTerm = '';
+let dutyPage = 1;
 
 mountShell(JOBS);
 const loadingFeedback = new RuntimeFeedback({ root: $('#app'), onRetry: () => retryLoading() });
@@ -62,6 +71,7 @@ const world = new World($('#world'), {
     if (id === currentScene) { sceneTitle(id); hud.invalidate(); }
   },
   onConnection: connection => travelConnection(connection),
+  onDutyEntrance: gate => enterDuty(gate.dutyKey),
 });
 world.setJob('WHM');
 world.setQuality(settings.quality);
@@ -86,7 +96,13 @@ const teleportController = new TeleportController({
 
 const hud = createHud({ combat, world, jobs: JOBS, getTeleportCast: () => teleportController.cast });
 
-const dialogs = createDialogs({ world, combat, scenes: SCENES, settings, getSceneId: () => currentScene, getTargetCount: () => targetCount, hotbar, training });
+const dialogs = createDialogs({
+  world, combat, scenes: SCENES, settings, getSceneId: () => currentScene, getTargetCount: () => targetCount, hotbar, training,
+  dutyCatalog: () => dutyCatalog, dutyTransport: () => dutyTransport,
+  teleportTab: () => teleportTabSel,
+  dutySearch: () => dutySearchTerm,
+  dutyPage: () => dutyPage,
+});
 const { openTeleport, openBook, openSettings, openMap, openDialogue, openHelp, closeModal } = dialogs;
 const hudLayout = initializeHudLayout({
   root: $('#app'),
@@ -266,6 +282,7 @@ function useAction(id) {
 function switchJob(id) {
   if (id === combat.getState().jobId) return;
   teleportController.cancel();
+  dutyTransport.clear('切换职业后已清理副本返回点');
   combat.setJob(id);
   training.reset();
   world.setJob(id);
@@ -279,6 +296,7 @@ function switchJob(id) {
 
 function reset() {
   teleportController.cancel();
+  dutyTransport.clear('练习已重置，副本返回点已清理');
   combat.reset();
   training.reset();
   world.clearFields();
@@ -304,12 +322,17 @@ function sceneTitle(id) {
   title.classList.add('show');
 }
 
-function teleport(id, immediate = false) {
+function startTeleport(id, immediate = false, entry = {}) {
   if (sceneTransition || world.loading) { toast('地区正在载入'); return { ok: false, reason: '地区正在载入' }; }
-  if (world.loadError && !world.isImported && id === currentScene) return finishTeleport(id);
-  return teleportController.start(id, immediate);
+  if (world.loadError && !world.isImported && id === currentScene) return finishTeleport(id, entry);
+  const result = teleportController.start(id, immediate, entry);
+  if (immediate) return result;
+  return { ok: true, ...result };
 }
+const teleport = startTeleport;
+
 async function finishTeleport(id, entry = {}) {
+  const dutyEntry = entry;
   if (sceneTransition || world.loading) return { ok: false, reason: '地区正在载入' };
   if (!SCENES.some(scene => scene.id === id)) return { ok: false, reason: '目标地区尚未开放' };
   sceneTransition = true;
@@ -320,14 +343,19 @@ async function finishTeleport(id, entry = {}) {
   world.clearFields();
   world.clearReturnGate();
   try {
-    const success = await world.setScene(id, entry);
-    if (success !== true) return { ok: false, reason: world.loadError || '地区载入失败，请重试' };
+    const success = await world.setScene(id, dutyEntry);
+    if (success !== true) {
+      if (dutyEntry.dutyEnter) dutyTransport.abort(world.loadError || '进入副本失败');
+      if (dutyEntry.dutyReturn) dutyTransport.abort(world.loadError || '返回原位置失败');
+      return { ok: false, reason: world.loadError || '地区载入失败，请重试' };
+    }
     currentScene = id;
     lastLoadFailure = null;
     const locationUrl = new URL(location.href);
     locationUrl.searchParams.set('scene', id);
     history.replaceState(null, '', locationUrl);
     world.targetNearest();
+    if (dutyEntry.dutyEnter || dutyEntry.dutyReturn) dutyTransport.complete(id);
     sceneTitle(id);
     hud.invalidate();
     hotbar.reset();
@@ -356,14 +384,45 @@ function travelConnection(connection) {
   return finishTeleport(target.id, { arrivalConnection: connection.targetConnection || connection.arrivalConnection, arrival: connection.arrival, entryFrom: currentScene });
 }
 
+function findDuty(dutyKey) {
+  return dutyCatalog.duties?.find(duty => duty?.dutyKey === dutyKey) || dutyTransport.getDuty(dutyKey) || null;
+}
+
+function enterDuty(dutyKey) {
+  if (!dutyKey) return { ok: false, reason: '缺少副本标识' };
+  if (!dutyTransport) return { ok: false, reason: '副本传送尚未初始化' };
+  if (!findDuty(dutyKey)) return { ok: false, reason: '副本目录中找不到该副本' };
+  return dutyTransport.enter(dutyKey);
+}
+
+function leaveDutyAction() {
+  const result = leaveDuty();
+  if (result?.ok) closeModal();
+  else toast(result?.reason || '无法返回');
+}
+
+function leaveDuty() {
+  if (!dutyTransport) return { ok: false, reason: '副本传送尚未初始化' };
+  return dutyTransport.leave();
+}
+
 function updateConnectionPrompt() {
   const prompt = $('#connection-prompt');
   const connection = world.getNearbyConnection?.();
+  const dutyGate = world.getNearbyDutyEntrance?.();
   const target = connection && SCENES.find(scene => scene.id === connection.targetScene);
-  prompt.classList.toggle('hidden', !connection || !target || world.loading || sceneTransition);
+  const travelButton = $('#connection-travel');
+  prompt.classList.toggle('hidden', (!connection || !target) && !dutyGate || world.loading || sceneTransition);
+  if (dutyGate) {
+    $('#connection-name').textContent = `${dutyGate.name || dutyGate.dutyKey} · 副本入口`;
+    travelButton.dataset.dutyEnter = dutyGate.dutyKey;
+    travelButton.dataset.connectionTravel = '';
+    return;
+  }
   if (!connection || !target) return;
   $('#connection-name').textContent = `${connection.name || '区域出口'} · ${target.name}`;
-  $('#connection-travel').dataset.connectionTravel = connection.id;
+  travelButton.dataset.connectionTravel = connection.id;
+  delete travelButton.dataset.dutyEnter;
 }
 
 function renderCombat() { hud.render(); hotbar.render(); }
@@ -387,6 +446,41 @@ function saveSettings() {
   audio.setSettings?.(settings);
 }
 saveSettings();
+
+const dutyTransport = new DutyTransport({
+  world,
+  scenes: SCENES,
+  getPosition: () => ({ ...world.player.position }),
+  setPosition: point => {
+    if (!world.player.position) return;
+    world.player.position.copy(point);
+    world.character.syncTransform();
+    world.jumpVelocity = 0;
+    world.followCamera.reset();
+    world.updateCamera(0);
+  },
+  saveCamera: () => ({ azimuth: world.azimuth, polar: world.polar, distance: world.zoom }),
+  restoreCamera: state => {
+    if (Number.isFinite(state?.azimuth)) world.azimuth = state.azimuth;
+    if (Number.isFinite(state?.polar)) world.polar = Math.max(0.05, Math.min(Math.PI - 0.05, state.polar));
+    if (Number.isFinite(state?.distance)) world.zoom = Math.max(2, Math.min(60, state.distance));
+    world.followCamera.reset();
+    world.updateCamera(0);
+  },
+  teleport: (sceneKey, entry) => teleport(sceneKey, false, entry),
+  getSceneId: () => currentScene,
+  onFailure: toast,
+  onCancel: toast,
+});
+void loadDutyCatalog().then(catalog => {
+  dutyCatalog = catalog;
+  dutyTransport.setCatalog(catalog);
+  dutyPage = 1;
+  if (dialogs.active === 'teleport-modal') openTeleport();
+});
+void loadDutyEntrances().then(entrances => {
+  world.setDutyEntrances(entrances);
+});
 
 document.addEventListener('click', (event) => {
   const connectionTravel = event.target.closest('[data-connection-travel]');
@@ -419,7 +513,33 @@ document.addEventListener('click', (event) => {
   const job = event.target.closest('[data-job]');
   if (job) { switchJob(job.dataset.job); return; }
   const destination = event.target.closest('[data-teleport]');
-  if (destination) { teleport(destination.dataset.teleport); return; }
+  if (destination) { startTeleport(destination.dataset.teleport); return; }
+  const dutyEnter = event.target.closest('[data-duty-enter]');
+  if (dutyEnter) enterDuty(dutyEnter.dataset.dutyEnter);
+  const dutyLeave = event.target.closest('[data-duty-leave]');
+  if (dutyLeave) leaveDutyAction();
+  const dutyTab = event.target.closest('[data-teleport-tab]');
+  if (dutyTab) {
+    const tab = dutyTab.dataset.teleportTab;
+    if (!TELEPORT_TABS.has(tab)) return;
+    teleportTabSel = tab;
+    closeModal();
+    openTeleport();
+    return;
+  }
+  const dutyCategory = event.target.closest('[data-duty-category-filter]');
+  if (dutyCategory) {
+    dutyCategoryFilter = dutyCategory.dataset.dutyCategoryFilter || 'all';
+    dutyPage = 1;
+    dialogs.refreshCatalog();
+    return;
+  }
+  const dutyPageControl = event.target.closest('[data-duty-page]');
+  if (dutyPageControl) {
+    dutyPage = Number(dutyPageControl.dataset.dutyPage) || 1;
+    dialogs.refreshCatalog();
+    return;
+  }
   const region = event.target.closest('[data-region]');
   if (region) {
     document.querySelectorAll('[data-region]').forEach(button => button.classList.toggle('selected', button === region));
@@ -457,6 +577,11 @@ document.addEventListener('input', (event) => {
   const { id, value, checked } = event.target;
   if (id === 'skill-search') document.querySelectorAll('[data-search]').forEach(row => row.hidden = !row.dataset.search.includes(value.toLowerCase()));
   if (id === 'teleport-search') filterTeleportDestinations();
+  if (id === 'duty-search') {
+    dutySearchTerm = value.trim().toLowerCase();
+    dutyPage = 1;
+    dialogs.refreshCatalog();
+  }
   if (id === 'sound-toggle') { settings.sound = checked; saveSettings(); }
   if (id === 'volume') { settings.volume = Number(value); saveSettings(); }
   if (id === 'hud-scale') { settings.scale = Number(value); $('#hud-scale-output').textContent = `${value}%`; saveSettings(); }
@@ -499,6 +624,8 @@ document.addEventListener('keydown', (event) => {
   if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName) || dialogs.active || event.target.closest('.developer-panel')) return;
   if (event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.code === 'KeyF') {
+    const dutyGate = world.getNearbyDutyEntrance?.();
+    if (dutyGate) { event.preventDefault(); enterDuty(dutyGate.dutyKey); return; }
     const connection = world.getNearbyConnection?.();
     if (connection) { event.preventDefault(); travelConnection(connection); }
     return;
@@ -559,6 +686,7 @@ function frame(now) {
   training.update(dt);
   world.setMovementSpeed(combat.getState().movementMultiplier || 1);
   teleportController.update(dt, ctx.moving);
+  dutyTransport.sync(ctx.moving);
   for (const event of combat.drainEvents()) {
     if (event.type === 'move') world.moveSkill({ ...event, gateDuration: event.saveReturn ? 10 : 0 });
     world.effect(event);
@@ -592,4 +720,11 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-window.__APP__ = { world, combat, training, useAction, switchJob, teleport, reset, openTeleport, openBook, closeModal, SCENES, JOBS, sandbox: { assets: sandboxAssets, audio, panel: sandboxPanel, hudLayout }, developer: { runtime: developerRuntime, panel: developerPanel, overlay: debugOverlay, preferences, feedback: loadingFeedback }, getContext: context, getFPS: () => fps };
+window.__APP__ = {
+  world, combat, training, useAction, switchJob, teleport, reset, openTeleport, openBook, closeModal,
+  SCENES, JOBS,
+  dutyTransport, dutyCatalog,
+  sandbox: { assets: sandboxAssets, audio, panel: sandboxPanel, hudLayout },
+  developer: { runtime: developerRuntime, panel: developerPanel, overlay: debugOverlay, preferences, feedback: loadingFeedback },
+  getContext: context, getFPS: () => fps,
+};

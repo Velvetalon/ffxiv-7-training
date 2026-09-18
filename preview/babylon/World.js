@@ -24,6 +24,7 @@ import {
   nearestConnection,
   prepareEncounter,
 } from './Encounter.js';
+import { mountDutyEntranceGates } from '../../src/world/duties/entranceGateMeshes.js';
 import {
   ActionRuntime,
   CharacterRuntime,
@@ -166,9 +167,9 @@ function createRendererFacade(engine, canvas) {
 }
 
 export class World {
-  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, initialScene = 'gridania' } = {}) {
+  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, onDutyEntrance, initialScene = 'gridania' } = {}) {
     this.canvas = canvas;
-    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection };
+    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, onDutyEntrance };
     this.engine = new Engine(canvas, true, { stencil: true, preserveDrawingBuffer: false, disableWebGL2Support: false });
     this.renderer = createRendererFacade(this.engine, canvas);
     this.scene = new Scene(this.engine);
@@ -213,6 +214,8 @@ export class World {
     this.quality = 'high';
     this.movementSpeed = 1;
     this.returnGate = null;
+    this.dutyEntrances = [];
+    this.dutyEntrancesRoot = null;
     this.isImported = false;
     this.loading = false;
     this.loadError = null;
@@ -307,6 +310,7 @@ export class World {
       this.layout = mounted.layout;
       this.connectionsRoot = mountConnections(this.scene, this.getConnections());
       this.connectionsRoot.parent = this.sceneRoot;
+      this.mountDutyEntranceGates(draft.sceneRoot);
       this.assetScene = this.createAssetScene(draft);
       draft.committed = true;
       this.camera.maxZ = Math.max(650, this.navigation.bounds.getSize(new Vector3()).length());
@@ -487,6 +491,41 @@ export class World {
   }
 
   getConnections() { return this.isImported ? this.importedManifest?.connections || [] : []; }
+
+  setDutyEntrances(entrances) {
+    this.dutyEntrances = Array.isArray(entrances) ? entrances : [];
+    this.mountDutyEntranceGates();
+  }
+
+  mountDutyEntranceGates(parent = this.sceneRoot) {
+    this.dutyEntrancesRoot?.dispose(false, true);
+    this.dutyEntrancesRoot = null;
+    if (!this.scene || this.loading || !this.isImported) return;
+    const gates = this.getDutyEntrances();
+    if (!gates.length) return;
+    this.dutyEntrancesRoot = mountDutyEntranceGates(this.scene, gates, parent).root;
+  }
+
+  getDutyEntrances() {
+    return this.isImported ? this.dutyEntrances.filter(gate => gate.fromSceneId === this.sceneId) : [];
+  }
+
+  getNearbyDutyEntrance() {
+    if (this.loading) return null;
+    for (const gate of this.getDutyEntrances()) {
+      const distance = Math.hypot(
+        this.player.position.x - gate.position.x,
+        this.player.position.z - gate.position.z,
+      );
+      if (distance <= (gate.radius || 4) && Math.abs(this.player.position.y - gate.position.y) <= 10) return gate;
+    }
+    return null;
+  }
+
+  canUseDutyEntrance(dutyKey) {
+    const gate = this.getDutyEntrances().find(item => item.dutyKey === dutyKey);
+    return Boolean(gate) && this.getNearbyDutyEntrance()?.dutyKey === dutyKey;
+  }
 
   getNearbyConnection() {
     if (this.loading) return null;
@@ -725,6 +764,8 @@ export class World {
     this.mapLoader = null;
     this.registry.clear();
     this.layout = null;
+    this.dutyEntrancesRoot?.dispose(false, true);
+    this.dutyEntrancesRoot = null;
   }
 
   updateMovement(dt) {
@@ -829,8 +870,10 @@ export class World {
   pick(event) {
     if (this.loading) return;
     const rect = this.canvas.getBoundingClientRect();
-    const hit = this.scene.pick(event.clientX - rect.left, event.clientY - rect.top, mesh => Boolean(mesh.metadata?.connection || mesh.metadata?.entityId), false, this.camera);
+    const hit = this.scene.pick(event.clientX - rect.left, event.clientY - rect.top, mesh => Boolean(mesh.metadata?.connection || mesh.metadata?.dutyEntrance || mesh.metadata?.entityId), false, this.camera);
     if (!hit?.hit) return;
+    const dutyGate = hit.pickedMesh?.metadata?.dutyEntrance;
+    if (dutyGate) { this.callbacks.onDutyEntrance?.(dutyGate); return; }
     const connection = hit.pickedMesh?.metadata?.connection;
     if (connection) { this.callbacks.onConnection?.(connection); return; }
     const entity = this.registry.get(hit.pickedMesh?.metadata?.entityId);

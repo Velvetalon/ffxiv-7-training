@@ -4,6 +4,7 @@ import collections
 import json
 import math
 from pathlib import Path
+import statistics
 import struct
 import sys
 
@@ -72,8 +73,12 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
         try: append(pcb_triangles(path),identity());terrain_count+=1
         except Exception as e:failures.append({"file":str(path),"error":str(e)})
     groups=collections.defaultdict(list);cache={};seen=set()
+    fallback_points=[]
     def expand(item,parent,chain=()):
         m=multiply(parent,matrix(item));asset=item.get("asset","")
+        translation=item.get("translation")
+        if isinstance(translation,dict):
+            fallback_points.append((translation.get("X",0),translation.get("Y",0),translation.get("Z",0)))
         if item["kind"]==1 and item.get("collision"):
             key=(item["collision"],tuple(round(x,4) for x in m))
             if key not in seen:groups[item["collision"]].append(m);seen.add(key)
@@ -93,6 +98,17 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
             mesh=pcb_triangles(root/asset)
             for m in instances:append(mesh,m)
         except Exception as e:failures.append({"file":asset,"error":str(e)})
+    source_triangle_count=len(triangles)//9
+    collision_fallback=None
+    if source_triangle_count==0:
+        # Some event/interior territories intentionally have no PCB collision.
+        # Keep them renderable with a clearly marked navigation plane; this is
+        # not presented as source collision data.
+        center=[statistics.median(point[axis] for point in fallback_points) if fallback_points else 0 for axis in range(3)]
+        radius=max(200.0, *(max(abs(point[axis]) for point in fallback_points)+100 for axis in (0,2) if fallback_points))
+        x,y,z=center; a=(-radius+x,y,-radius+z);b=(radius+x,y,-radius+z);c=(radius+x,y,radius+z);d=(-radius+x,y,radius+z)
+        triangles.extend((*a,*b,*c,*a,*c,*d))
+        collision_fallback={"kind":"ground-plane","source":"layout translation median","center":[round(value,4) for value in center],"radius":radius,"sourceTriangles":0}
     destination=Path(destination)/scene/"collision.bin"
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("wb") as f:triangles.tofile(f)
@@ -103,9 +119,10 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
         scene_data["spawnSource"]={"kind":"aetheryte-layout"}
     else:
         scene_data["spawn"]=grounded_seed(triangles)
-        scene_data["spawnSource"]={"kind":"collision-flat-surface","triangleCount":len(triangles)//9}
+        scene_data["spawnSource"]={"kind":"collision-flat-surface" if not collision_fallback else "fallback-ground-plane","triangleCount":len(triangles)//9}
+    if collision_fallback:scene_data["collisionFallback"]=collision_fallback
     scene_path.write_text(json.dumps(scene_data,separators=(",",":")),encoding="utf-8")
-    report={"scene":scene,"terrainChunks":terrain_count,"instancedCollisionModels":len(groups),"triangles":len(triangles)//9,"bytes":len(triangles)*4,"spawn":scene_data["spawn"],"errors":failures}
+    report={"scene":scene,"terrainChunks":terrain_count,"instancedCollisionModels":len(groups),"sourceTriangles":source_triangle_count,"collisionFallback":collision_fallback,"triangles":len(triangles)//9,"bytes":len(triangles)*4,"spawn":scene_data["spawn"],"errors":failures}
     destination.with_name("collision-report.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
     print(json.dumps(report),flush=True)
     if failures: raise RuntimeError(f"{scene}: collision conversion failed; see collision-report.json")

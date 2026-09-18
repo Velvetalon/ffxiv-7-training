@@ -1,0 +1,3818 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "site": "https://ff14.huijiwiki.com/",
+    "api": "MediaWiki action=query / action=parse",
+    "retrievedAtUtc": "2026-09-18",
+    "sourceSha256": {
+      "huiji-duty-category-search.json": "bce55da73ede297b77c187e864ef78411b13a6575d237f661579c5f151d83971",
+      "huiji-geography-search.json": "75be5afdf4cceab72577ae5a67e0aee107f39492901ecdb9146c66b29b001167",
+      "huiji-entrance-rendered.json": "3253fbc5afca4f246072831d786909d1c262b94c1d33bc46cf5d5bef21b8833a"
+    },
+    "joinRule": "Duty names join by exact Chinese title. Wiki duty IDs are page/InstanceContent-style IDs and must not be joined to ContentFinderCondition."
+  },
+  "duties": [
+    {
+      "zh": "万魔殿 炼净之狱1",
+      "ja": "万魔殿パンデモニウム：煉獄編1",
+      "en": "Abyssos: The Fifth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 炼净之狱2",
+      "ja": "万魔殿パンデモニウム：煉獄編2",
+      "en": "Abyssos: The Sixth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 炼净之狱3",
+      "ja": "万魔殿パンデモニウム：煉獄編3",
+      "en": "Abyssos: The Seventh Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 炼净之狱4",
+      "ja": "万魔殿パンデモニウム：煉獄編4",
+      "en": "Abyssos: The Eighth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 荒天之狱1",
+      "ja": "万魔殿パンデモニウム：天獄編1",
+      "en": "Anabaseios: The Ninth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 荒天之狱2",
+      "ja": "万魔殿パンデモニウム：天獄編2",
+      "en": "Anabaseios: The Tenth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 荒天之狱3",
+      "ja": "万魔殿パンデモニウム：天獄編3",
+      "en": "Anabaseios: The Eleventh Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 荒天之狱4",
+      "ja": "万魔殿パンデモニウム：天獄編4",
+      "en": "Anabaseios: The Twelfth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 边境之狱1",
+      "ja": "万魔殿パンデモニウム：辺獄編1",
+      "en": "Asphodelos: The First Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 边境之狱2",
+      "ja": "万魔殿パンデモニウム：辺獄編2",
+      "en": "Asphodelos: The Second Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 边境之狱3",
+      "ja": "万魔殿パンデモニウム：辺獄編3",
+      "en": "Asphodelos: The Third Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "万魔殿 边境之狱4",
+      "ja": "万魔殿パンデモニウム：辺獄編4",
+      "en": "Asphodelos: The Fourth Circle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "丛林竞流生息河岸",
+      "ja": "濁流遡上 イフイカ・トゥム",
+      "en": "Ihuykatumu",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "乐园都市笑笑镇",
+      "ja": "楽園都市 スマイルトン",
+      "en": "Smileton",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "乐欲之所瓯博讷修道院",
+      "ja": "楽欲の僧院 オーボンヌ",
+      "en": "the Orbonne Monastery",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 启动之章1",
+      "ja": "機工城アレキサンダー：起動編1",
+      "en": "Alexander - The Fist of the Father",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 启动之章2",
+      "ja": "機工城アレキサンダー：起動編2",
+      "en": "Alexander - The Cuff of the Father",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 启动之章3",
+      "ja": "機工城アレキサンダー：起動編3",
+      "en": "Alexander - The Arm of the Father",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 启动之章4",
+      "ja": "機工城アレキサンダー：起動編4",
+      "en": "Alexander - The Burden of the Father",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 天动之章1",
+      "ja": "機工城アレキサンダー：天動編1",
+      "en": "Alexander - The Eyes of the Creator",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 天动之章2",
+      "ja": "機工城アレキサンダー：天動編2",
+      "en": "Alexander - The Breath of the Creator",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 天动之章3",
+      "ja": "機工城アレキサンダー：天動編3",
+      "en": "Alexander - The Heart of the Creator",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 天动之章4",
+      "ja": "機工城アレキサンダー：天動編4",
+      "en": "Alexander - The Soul of the Creator",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 律动之章1",
+      "ja": "機工城アレキサンダー：律動編1",
+      "en": "Alexander - The Fist of the Son",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 律动之章2",
+      "ja": "機工城アレキサンダー：律動編2",
+      "en": "Alexander - The Cuff of the Son",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 律动之章3",
+      "ja": "機工城アレキサンダー：律動編3",
+      "en": "Alexander - The Arm of the Son",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大机神城 律动之章4",
+      "ja": "機工城アレキサンダー：律動編4",
+      "en": "Alexander - The Burden of the Son",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大绝境战",
+      "ja": "絶アレキサンダー討滅戦",
+      "en": "the Epic of Alexander (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 启动之章1",
+      "ja": "機工城アレキサンダー零式：起動編1",
+      "en": "Alexander - The Fist of the Father (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 启动之章2",
+      "ja": "機工城アレキサンダー零式：起動編2",
+      "en": "Alexander - The Cuff of the Father (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 启动之章3",
+      "ja": "機工城アレキサンダー零式：起動編3",
+      "en": "Alexander - The Arm of the Father (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 启动之章4",
+      "ja": "機工城アレキサンダー零式：起動編4",
+      "en": "Alexander - The Burden of the Father (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 天动之章1",
+      "ja": "機工城アレキサンダー零式：天動編1",
+      "en": "Alexander - The Eyes of the Creator (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 天动之章2",
+      "ja": "機工城アレキサンダー零式：天動編2",
+      "en": "Alexander - The Breath of the Creator (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 天动之章3",
+      "ja": "機工城アレキサンダー零式：天動編3",
+      "en": "Alexander - The Heart of the Creator (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 天动之章4",
+      "ja": "機工城アレキサンダー零式：天動編4",
+      "en": "Alexander - The Soul of the Creator (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 律动之章1",
+      "ja": "機工城アレキサンダー零式：律動編1",
+      "en": "Alexander - The Fist of the Son (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 律动之章2",
+      "ja": "機工城アレキサンダー零式：律動編2",
+      "en": "Alexander - The Cuff of the Son (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 律动之章3",
+      "ja": "機工城アレキサンダー零式：律動編3",
+      "en": "Alexander - The Arm of the Son (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亚历山大零式机神城 律动之章4",
+      "ja": "機工城アレキサンダー零式：律動編4",
+      "en": "Alexander - The Burden of the Son (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "亡灵府邸闹鬼庄园",
+      "ja": "亡霊屋敷 ホーンテッドマナー",
+      "en": "the Haunted Manor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "人偶军事基地",
+      "ja": "人形タチノ軍事基地",
+      "en": "the Puppets' Bunker",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊弗利特歼殛战",
+      "ja": "極イフリート討滅戦",
+      "en": "the Bowl of Embers (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊弗利特歼灭战",
+      "ja": "真イフリート討滅戦",
+      "en": "the Bowl of Embers (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊弗利特讨伐战",
+      "ja": "イフリート討伐戦",
+      "en": "the Bowl of Embers",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 共鸣之章1",
+      "ja": "希望の園エデン：共鳴編1",
+      "en": "Eden's Verse: Fulmination",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 共鸣之章2",
+      "ja": "希望の園エデン：共鳴編2",
+      "en": "Eden's Verse: Furor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 共鸣之章3",
+      "ja": "希望の園エデン：共鳴編3",
+      "en": "Eden's Verse: Iconoclasm",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 共鸣之章4",
+      "ja": "希望の園エデン：共鳴編4",
+      "en": "Eden's Verse: Refulgence",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 再生之章1",
+      "ja": "希望の園エデン：再生編1",
+      "en": "Eden's Promise: Umbra",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 再生之章2",
+      "ja": "希望の園エデン：再生編2",
+      "en": "Eden's Promise: Litany",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 再生之章3",
+      "ja": "希望の園エデン：再生編3",
+      "en": "Eden's Promise: Anamorphosis",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 再生之章4",
+      "ja": "希望の園エデン：再生編4",
+      "en": "Eden's Promise: Eternity",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 觉醒之章1",
+      "ja": "希望の園エデン：覚醒編1",
+      "en": "Eden's Gate: Resurrection",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 觉醒之章2",
+      "ja": "希望の園エデン：覚醒編2",
+      "en": "Eden's Gate: Descent",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 觉醒之章3",
+      "ja": "希望の園エデン：覚醒編3",
+      "en": "Eden's Gate: Inundation",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸希望乐园 觉醒之章4",
+      "ja": "希望の園エデン：覚醒編4",
+      "en": "Eden's Gate: Sepulture",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 共鸣之章1",
+      "ja": "希望の園エデン零式：共鳴編1",
+      "en": "Eden's Verse: Fulmination (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 共鸣之章2",
+      "ja": "希望の園エデン零式：共鳴編2",
+      "en": "Eden's Verse: Furor (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 共鸣之章3",
+      "ja": "希望の園エデン零式：共鳴編3",
+      "en": "Eden's Verse: Iconoclasm (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 共鸣之章4",
+      "ja": "希望の園エデン零式：共鳴編4",
+      "en": "Eden's Verse: Refulgence (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 再生之章1",
+      "ja": "希望の園エデン零式：再生編1",
+      "en": "Eden's Promise: Umbra (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 再生之章2",
+      "ja": "希望の園エデン零式：再生編2",
+      "en": "Eden's Promise: Litany (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 再生之章3",
+      "ja": "希望の園エデン零式：再生編3",
+      "en": "Eden's Promise: Anamorphosis (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 再生之章4",
+      "ja": "希望の園エデン零式：再生編4",
+      "en": "Eden's Promise: Eternity (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 觉醒之章1",
+      "ja": "希望の園エデン零式：覚醒編1",
+      "en": "Eden's Gate: Resurrection (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 觉醒之章2",
+      "ja": "希望の園エデン零式：覚醒編2",
+      "en": "Eden's Gate: Descent (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 觉醒之章3",
+      "ja": "希望の園エデン零式：覚醒編3",
+      "en": "Eden's Gate: Inundation (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伊甸零式希望乐园 觉醒之章4",
+      "ja": "希望の園エデン零式：覚醒編4",
+      "en": "Eden's Gate: Sepulture (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "休养胜地布雷福洛克斯野营地",
+      "ja": "奪還支援 ブレイフロクスの野営地",
+      "en": "Brayflox's Longstop",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "伪造天界格鲁格火山",
+      "ja": "偽造天界 グルグ火山",
+      "en": "Mt. Gulg",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "佐拉加歼殛战",
+      "ja": "極ゾラージャ討滅戦",
+      "en": "Everkeep (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "佐拉加歼灭战",
+      "ja": "ゾラージャ討滅戦",
+      "en": "Everkeep",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "佐迪亚克暝暗歼灭战",
+      "ja": "極ゾディアーク討滅戦",
+      "en": "the Minstrel's Ballad: Zodiark's Fall",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "佐迪亚克歼灭战",
+      "ja": "ゾディアーク討滅戦",
+      "en": "the Dark Inside",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "保镖歼灭战",
+      "ja": "真ヨウジンボウ討滅戦",
+      "en": "Kugane Ohashi",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "修行古刹星导寺",
+      "ja": "壊神修行 星導山寺院",
+      "en": "the Temple of the Fist",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "俾斯麦歼殛战",
+      "ja": "極ビスマルク討滅戦",
+      "en": "the Limitless Blue (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "俾斯麦歼灭战",
+      "ja": "真ビスマルク討滅戦",
+      "en": "the Limitless Blue (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "光之战士幻耀歼灭战",
+      "ja": "極ウォーリア・オブ・ライト討滅戦",
+      "en": "the Seat of Sacrifice (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "光之战士歼灭战",
+      "ja": "ウォーリア・オブ・ライト討滅戦",
+      "en": "the Seat of Sacrifice",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "光暗未来绝境战",
+      "ja": "絶もうひとつの未来",
+      "en": "Futures Rewritten (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "军工要地克吕提俄斯魔导工厂",
+      "ja": "妖異侵攻 クルティウス魔導工廠",
+      "en": "the Clyteum",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "冰雪废堡暮卫塔",
+      "ja": "廃砦捜索 ダスクヴィジル",
+      "en": "the Dusk Vigil",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "凛冽洞天披雪大冰壁",
+      "ja": "氷結潜窟 スノークローク大氷壁",
+      "en": "Snowcloak",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "击溃哥布林炸弹军团！",
+      "ja": "爆弾魔ゴブリン軍団を撃滅せよ！",
+      "en": "Flicking Sticks and Taking Names",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "创造机构阿尼德罗学院",
+      "ja": "創造機関 アナイダアカデミア",
+      "en": "Akadaemia Anyder",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "创造环境极北造物院",
+      "ja": "創造環境 ヒュペルボレア造物院",
+      "en": "Ktisis Hyperboreia",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "利维亚桑幻巧战",
+      "ja": "幻リヴァイアサン討滅戦",
+      "en": "the Whorleater (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "利维亚桑歼殛战",
+      "ja": "極リヴァイアサン討滅戦",
+      "en": "the Whorleater (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "利维亚桑歼灭战",
+      "ja": "真リヴァイアサン討滅戦",
+      "en": "the Whorleater (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "制止三方混战的巨人族，守住遗物！",
+      "ja": "三つ巴の巨人族を制し、遺物を守れ！",
+      "en": "Solemn Trinity",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "前哨基地先锋营",
+      "ja": "外征前哨 ヴァンガード",
+      "en": "Vanguard",
+      "wikiDutyId": 97,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "剑斗领域日影地修炼所",
+      "ja": "剣闘領域 ハラタリ修練所 (Hard)",
+      "en": "Halatali (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "加加财富天坑",
+      "ja": "宝物庫 セノーテ・ジャジャグラル",
+      "en": "Cenote Ja Ja Gural",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "卓异的悲寂歼灭战",
+      "ja": "エミネントグリーフ討滅戦",
+      "en": "the Final Verse",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "卓异的悲寂深想战",
+      "ja": "詩想エミネントグリーフ討滅戦",
+      "en": "the Final Verse (Quantum)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "博兹雅堡垒追忆战",
+      "ja": "極シタデル・ボズヤ追憶戦",
+      "en": "Memoria Misera (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "博物战舰无限回廊",
+      "ja": "博物戦艦 フラクタル・コンティニアム",
+      "en": "the Fractal Continuum",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "卢比坎特歼殛战",
+      "ja": "極ルビカンテ討滅戦",
+      "en": "Mount Ordeals (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "卢比坎特歼灭战",
+      "ja": "ルビカンテ討滅戦",
+      "en": "Mount Ordeals",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "厄尔庇斯育体宝殿",
+      "ja": "宝物庫 エルピス・ギュムナシオン祭殿",
+      "en": "the Shifting Gymnasion Agonon",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "古代遗迹喀恩埋没圣堂",
+      "ja": "遺跡探索 カルン埋没寺院",
+      "en": "the Sunken Temple of Qarn",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "吉祥天女歼殛战",
+      "ja": "極ラクシュミ討滅戦",
+      "en": "Emanation (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "吉祥天女歼灭战",
+      "ja": "ラクシュミ討滅戦",
+      "en": "Emanation",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "名门府邸静语庄园",
+      "ja": "名門屋敷 ハウケタ御用邸",
+      "en": "Haukke Manor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "哈迪斯孤念歼灭战",
+      "ja": "極ハーデス討滅戦",
+      "en": "the Minstrel's Ballad: Hades's Elegy",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "哈迪斯歼灭战",
+      "ja": "ハーデス討滅戦",
+      "en": "the Dying Gasp",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "喜悦神域欧芙洛绪涅",
+      "ja": "喜びの神域 エウプロシュネ",
+      "en": "Euphrosyne",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "噩梦乐园迷途鬼区",
+      "ja": "悪夢遊園 ストレイバロー",
+      "en": "The Strayborough Deadwalk",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "国境防线基姆利特暗区",
+      "ja": "境界戦線 ギムリトダーク",
+      "en": "the Ghimlyt Dark",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "圆桌骑士幻巧战",
+      "ja": "幻ナイツ・オブ・ラウンド討滅戦",
+      "en": "The Singularity Reactor (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "圆桌骑士幻想歼灭战",
+      "ja": "蒼天幻想 ナイツ・オブ・ラウンド討滅戦",
+      "en": "the Minstrel's Ballad: Thordan's Reign",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "圆桌骑士歼灭战",
+      "ja": "ナイツ・オブ・ラウンド討滅戦",
+      "en": "the Singularity Reactor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "圣教中枢伊修加德教皇厅",
+      "ja": "強硬突入 イシュガルド教皇庁",
+      "en": "the Vault",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "地下灵殿塔姆·塔拉墓园",
+      "ja": "地下霊殿 タムタラの墓所",
+      "en": "the Tam-Tara Deepcroft",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "地脉灵灯天狼星灯塔",
+      "ja": "制圧巨塔 シリウス大灯台 (Hard)",
+      "en": "Pharos Sirius (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "坚牢铁壁巴埃萨长城",
+      "ja": "巨大防壁 バエサルの長城",
+      "en": "Baelsar's Wall",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "复制工厂废墟",
+      "ja": "複製サレタ工場廃墟",
+      "en": "the Copied Factory",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "多变迷宫 六根山",
+      "ja": "ヴァリアントダンジョン 六根山",
+      "en": "Mount Rokkon",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "多变迷宫 商客奇谭",
+      "ja": "ヴァリアントダンジョン 商客物語",
+      "en": "The Merchant's Tale",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "多变迷宫 希拉狄哈水道",
+      "ja": "ヴァリアントダンジョン シラディハ水道",
+      "en": "the Sil'dihn Subterrane",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "多变迷宫 阿罗阿罗岛",
+      "ja": "ヴァリアントダンジョン アロアロ島",
+      "en": "Aloalo Island",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "大桥上的决斗",
+      "ja": "ギルガメッシュ討伐戦",
+      "en": "Battle on the Big Bridge",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "天山深境索姆阿尔灵峰",
+      "ja": "霊峰浄化 ソーム・アル (Hard)",
+      "en": "Sohm Al (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "天山绝顶索姆阿尔灵峰",
+      "ja": "霊峰踏破 ソーム・アル",
+      "en": "Sohm Al",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "天然要害沙斯塔夏溶洞",
+      "ja": "天然要害 サスタシャ浸食洞",
+      "en": "Sastasha",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "天龙宫殿忆罪宫",
+      "ja": "天竜宮殿 ソール・カイ",
+      "en": "Sohr Khai",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "失落之都拉巴纳斯塔",
+      "ja": "失われた都 ラバナスタ",
+      "en": "the Royal City of Rabanastre",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "奥丁歼灭战",
+      "ja": "闘神オーディン討滅戦",
+      "en": "Urth's Fount",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "妖星乱舞绝境战",
+      "ja": "絶妖星乱舞",
+      "en": "Dancing Mad (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "学识宝库迦巴勒幻想图书馆",
+      "ja": "禁書回収 グブラ幻想図書館",
+      "en": "the Great Gubal Library",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "完成集团战训练！",
+      "ja": "集団戦訓練をくぐり抜けろ！",
+      "en": "Basic Training: Enemy Parties",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "对龙城塞石卫塔",
+      "ja": "城塞攻略 ストーンヴィジル",
+      "en": "the Stone Vigil",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "封锁坑道铜铃铜山",
+      "ja": "封鎖坑道 カッパーベル銅山",
+      "en": "Copperbell Mines",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "封闭圣塔黎铎拉纳大灯塔",
+      "ja": "封じられた聖塔 リドルアナ",
+      "en": "the Ridorana Lighthouse",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "尼德霍格传奇征龙战",
+      "ja": "極ニーズヘッグ征竜戦",
+      "en": "the Minstrel's Ballad: Nidhogg's Rage",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "尼德霍格征龙战",
+      "ja": "ニーズヘッグ征竜戦",
+      "en": "the Final Steps of Faith",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "山中战线泽梅尔要塞",
+      "ja": "掃討作戦 ゼーメル要塞",
+      "en": "Dzemael Darkhold",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巡梦金库",
+      "ja": "宝物庫 ボルト・オネイロン",
+      "en": "Vault Oneiron",
+      "wikiDutyId": null,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "巨炮要塞帝国白山堡",
+      "ja": "巨砲要塞 カストルム・アバニア",
+      "en": "Castrum Abania",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 入侵之章1",
+      "ja": "大迷宮バハムート：侵攻編1",
+      "en": "the Second Coil of Bahamut - Turn 1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 入侵之章2",
+      "ja": "大迷宮バハムート：侵攻編2",
+      "en": "the Second Coil of Bahamut - Turn 2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 入侵之章3",
+      "ja": "大迷宮バハムート：侵攻編3",
+      "en": "the Second Coil of Bahamut - Turn 3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 入侵之章4",
+      "ja": "大迷宮バハムート：侵攻編4",
+      "en": "the Second Coil of Bahamut - Turn 4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 真源之章1",
+      "ja": "大迷宮バハムート：真成編1",
+      "en": "the Final Coil of Bahamut - Turn 1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 真源之章2",
+      "ja": "大迷宮バハムート：真成編2",
+      "en": "the Final Coil of Bahamut - Turn 2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 真源之章3",
+      "ja": "大迷宮バハムート：真成編3",
+      "en": "the Final Coil of Bahamut - Turn 3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 真源之章4",
+      "ja": "大迷宮バハムート：真成編4",
+      "en": "the Final Coil of Bahamut - Turn 4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 邂逅之章1",
+      "ja": "大迷宮バハムート：邂逅編1",
+      "en": "the Binding Coil of Bahamut - Turn 1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 邂逅之章2",
+      "ja": "大迷宮バハムート：邂逅編2",
+      "en": "the Binding Coil of Bahamut - Turn 2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 邂逅之章3",
+      "ja": "大迷宮バハムート：邂逅編3",
+      "en": "the Binding Coil of Bahamut - Turn 3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 邂逅之章4",
+      "ja": "大迷宮バハムート：邂逅編4",
+      "en": "the Binding Coil of Bahamut - Turn 4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特大迷宫 邂逅之章5",
+      "ja": "大迷宮バハムート：邂逅編5",
+      "en": "the Binding Coil of Bahamut - Turn 5",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特绝境战",
+      "ja": "絶バハムート討滅戦",
+      "en": "the Unending Coil of Bahamut (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特零式大迷宫 入侵之章1",
+      "ja": "大迷宮バハムート零式：侵攻編1",
+      "en": "the Second Coil of Bahamut (Savage) - Turn 1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特零式大迷宫 入侵之章2",
+      "ja": "大迷宮バハムート零式：侵攻編2",
+      "en": "the Second Coil of Bahamut (Savage) - Turn 2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特零式大迷宫 入侵之章3",
+      "ja": "大迷宮バハムート零式：侵攻編3",
+      "en": "the Second Coil of Bahamut (Savage) - Turn 3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴哈姆特零式大迷宫 入侵之章4",
+      "ja": "大迷宮バハムート零式：侵攻編4",
+      "en": "the Second Coil of Bahamut (Savage) - Turn 4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴尔巴莉希娅歼殛战",
+      "ja": "極バルバリシア討滅戦",
+      "en": "Storm's Crown (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "巴尔巴莉希娅歼灭战",
+      "ja": "バルバリシア討滅戦",
+      "en": "Storm's Crown",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "希望之炮台：“塔”",
+      "ja": "希望ノ砲台：「塔」",
+      "en": "the Tower at Paradigm's Breach",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "希瓦幻巧战",
+      "ja": "幻シヴァ討滅戦",
+      "en": "the Akh Afah Amphitheatre (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "希瓦歼殛战",
+      "ja": "極シヴァ討滅戦",
+      "en": "the Akh Afah Amphitheatre (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "希瓦歼灭战",
+      "ja": "真シヴァ討滅戦",
+      "en": "the Akh Afah Amphitheatre (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "幻想龙诗绝境战",
+      "ja": "絶竜詩戦争",
+      "en": "Dragonsong's Reprise (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "幻龙残骸密约之塔",
+      "ja": "幻龍残骸 黙約の塔",
+      "en": "the Keeper of the Lake",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "废弃据点玉韦亚瓦塔实验站",
+      "ja": "廃地討究 ユウェヤーワータ",
+      "en": "Yuweyawata Field Station",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异形楼阁佐特塔",
+      "ja": "異形楼閣 ゾットの塔",
+      "en": "the Tower of Zot",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异界孤城特罗亚宫廷",
+      "ja": "異界孤城 トロイアコート",
+      "en": "the Fell Court of Troia",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异界深渊月面地下溪谷",
+      "ja": "深淵潜行 月の地下渓谷",
+      "en": "the Lunar Subterrane",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异界遗构希尔科斯孪晶塔",
+      "ja": "異界遺構 シルクス・ツイニング",
+      "en": "the Twinning",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异闻六根山",
+      "ja": "アナザーダンジョン 異聞六根山",
+      "en": "Another Mount Rokkon",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异闻商客奇谭",
+      "ja": "アナザーダンジョン 異聞商客物語",
+      "en": "Another Merchant's Tale",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异闻希拉狄哈水道",
+      "ja": "アナザーダンジョン 異聞シラディハ水道",
+      "en": "Another Sil'dihn Subterrane",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "异闻阿罗阿罗岛",
+      "ja": "アナザーダンジョン 異聞アロアロ島",
+      "en": "Another Aloalo Island",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "影之国",
+      "ja": "影の国ダン・スカー",
+      "en": "Dun Scaith",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "忆中金曦亚历山德里亚",
+      "ja": "記憶幻想 アレクサンドリア",
+      "en": "Alexandria",
+      "wikiDutyId": 95,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "恩欧歼殛战",
+      "ja": "極エヌオー討滅戦",
+      "en": "the Unmaking (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "恩欧歼灭战",
+      "ja": "エヌオー討滅戦",
+      "en": "the Unmaking",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "恶党孤城黄金阁",
+      "ja": "悪党成敗 クガネ城",
+      "en": "Kugane Castle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "恶灵府邸静语庄园",
+      "ja": "妖異屋敷 ハウケタ御用邸 (Hard)",
+      "en": "Haukke Manor (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "惊奇百宝城",
+      "ja": "宝物庫 エキサイトロン",
+      "en": "the Excitatron 6000",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "惨剧灵殿塔姆·塔拉墓园",
+      "ja": "惨劇霊殿 タムタラの墓所 (Hard)",
+      "en": "the Tam-Tara Deepcroft (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "护锁刃龙上位狩猎战",
+      "ja": "極護竜アルシュベルド狩猟戦",
+      "en": "the Windward Wilds (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "护锁刃龙狩猎战",
+      "ja": "護竜アルシュベルド狩猟戦",
+      "en": "the Windward Wilds",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "拉姆歼殛战",
+      "ja": "極ラムウ討滅戦",
+      "en": "the Striking Tree (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "拉姆歼灭战",
+      "ja": "真ラムウ討滅戦",
+      "en": "the Striking Tree (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "捕获金币龟！",
+      "ja": "ギルガメを捕獲せよ！",
+      "en": "Hero on the Half Shell",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "文明古迹奇坦那神影洞",
+      "ja": "古跡探索 キタンナ神影洞",
+      "en": "the Qitana Ravel",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "无瑕灵君歼殛战",
+      "ja": "極イノセンス討滅戦",
+      "en": "the Crown of the Immaculate (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "无瑕灵君歼灭战",
+      "ja": "イノセンス討滅戦",
+      "en": "the Crown of the Immaculate",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "无限城的死斗",
+      "ja": "真ギルガメッシュ討滅戦",
+      "en": "Battle in the Big Keep",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "星海深幽寻因星晶镜",
+      "ja": "星海潜航 アイティオン星晶鏡",
+      "en": "the Aitiascope",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "星海空间颠倒塔",
+      "ja": "星海観測 逆さの塔",
+      "en": "the Antitower",
+      "wikiDutyId": 43,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "暗影决战诺弗兰特",
+      "ja": "漆黒決戦 ノルヴラント",
+      "en": "the Heroes' Gauntlet",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "暗黑之云诛灭战",
+      "ja": "滅暗闇の雲激闘戦",
+      "en": "the Cloud of Darkness (Chaotic)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "最终决战天幕魔导城",
+      "ja": "最終決戦 魔導城プラエトリウム",
+      "en": "the Praetorium",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "最终幻想末世终迹",
+      "ja": "最終幻想 レムナント",
+      "en": "the Dead Ends",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "月读幻巧战",
+      "ja": "幻ツクヨミ討滅戦",
+      "en": "Tsukuyomi's Pain (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "月读幽夜歼灭战",
+      "ja": "極ツクヨミ討滅戦",
+      "en": "the Minstrel's Ballad: Tsukuyomi's Pain",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "月读歼灭战",
+      "ja": "ツクヨミ討滅戦",
+      "en": "Castrum Fluminis",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "末日暗影亚马乌罗提",
+      "ja": "終末幻想 アーモロート",
+      "en": "Amaurot",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "末日树海万相森国",
+      "ja": "終末樹海 ヴァナスパティ",
+      "en": "Vanaspati",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "朱诺：第一巡行",
+      "ja": "ジュノ：ザ・ファーストウォーク",
+      "en": "Jeuno: The First Walk",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "朱雀幻巧战",
+      "ja": "幻朱雀征魂戦",
+      "en": "Hells' Kier (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "朱雀诗魂战",
+      "ja": "極朱雀征魂戦",
+      "en": "Hells' Kier (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "朱雀镇魂战",
+      "ja": "朱雀征魂戦",
+      "en": "Hells' Kier",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "格莱杨拉波尔歼殛战",
+      "ja": "極グラシャラボラス討滅戦",
+      "en": "Hell on Rails (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "格莱杨拉波尔歼灭战",
+      "ja": "グラシャラボラス討滅戦",
+      "en": "Hell on Rails",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "桑多利亚：第二巡行",
+      "ja": "サンドリア：ザ・セカンドウォーク",
+      "en": "San d'Oria: The Second Walk",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "梦羽宝境",
+      "ja": "宝物庫 リェー・ギア・ダンジョン",
+      "en": "The Dungeons of Lyhe Ghiah",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "梦羽宝殿",
+      "ja": "宝物庫 リェー・ギア・ダンジョン祭殿",
+      "en": "the Shifting Oubliettes of Lyhe Ghiah",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 德尔塔幻境1",
+      "ja": "次元の狭間オメガ：デルタ編1",
+      "en": "Deltascape V1.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 德尔塔幻境2",
+      "ja": "次元の狭間オメガ：デルタ編2",
+      "en": "Deltascape V2.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 德尔塔幻境3",
+      "ja": "次元の狭間オメガ：デルタ編3",
+      "en": "Deltascape V3.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 德尔塔幻境4",
+      "ja": "次元の狭間オメガ：デルタ編4",
+      "en": "Deltascape V4.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 西格玛幻境1",
+      "ja": "次元の狭間オメガ：シグマ編1",
+      "en": "Sigmascape V1.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 西格玛幻境2",
+      "ja": "次元の狭間オメガ：シグマ編2",
+      "en": "Sigmascape V2.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 西格玛幻境3",
+      "ja": "次元の狭間オメガ：シグマ編3",
+      "en": "Sigmascape V3.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 西格玛幻境4",
+      "ja": "次元の狭間オメガ：シグマ編4",
+      "en": "Sigmascape V4.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 阿尔法幻境1",
+      "ja": "次元の狭間オメガ：アルファ編1",
+      "en": "Alphascape V1.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 阿尔法幻境2",
+      "ja": "次元の狭間オメガ：アルファ編2",
+      "en": "Alphascape V2.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 阿尔法幻境3",
+      "ja": "次元の狭間オメガ：アルファ編3",
+      "en": "Alphascape V3.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄时空狭缝 阿尔法幻境4",
+      "ja": "次元の狭間オメガ：アルファ編4",
+      "en": "Alphascape V4.0",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄绝境验证战",
+      "ja": "絶オメガ検証戦",
+      "en": "the Omega Protocol (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 德尔塔幻境1",
+      "ja": "次元の狭間オメガ零式：デルタ編1",
+      "en": "Deltascape V1.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 德尔塔幻境2",
+      "ja": "次元の狭間オメガ零式：デルタ編2",
+      "en": "Deltascape V2.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 德尔塔幻境3",
+      "ja": "次元の狭間オメガ零式：デルタ編3",
+      "en": "Deltascape V3.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 德尔塔幻境4",
+      "ja": "次元の狭間オメガ零式：デルタ編4",
+      "en": "Deltascape V4.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 西格玛幻境1",
+      "ja": "次元の狭間オメガ零式：シグマ編1",
+      "en": "Sigmascape V1.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 西格玛幻境2",
+      "ja": "次元の狭間オメガ零式：シグマ編2",
+      "en": "Sigmascape V2.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 西格玛幻境3",
+      "ja": "次元の狭間オメガ零式：シグマ編3",
+      "en": "Sigmascape V3.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 西格玛幻境4",
+      "ja": "次元の狭間オメガ零式：シグマ編4",
+      "en": "Sigmascape V4.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 阿尔法幻境1",
+      "ja": "次元の狭間オメガ零式：アルファ編1",
+      "en": "Alphascape V1.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 阿尔法幻境2",
+      "ja": "次元の狭間オメガ零式：アルファ編2",
+      "en": "Alphascape V2.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 阿尔法幻境3",
+      "ja": "次元の狭間オメガ零式：アルファ編3",
+      "en": "Alphascape V3.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "欧米茄零式时空狭缝 阿尔法幻境4",
+      "ja": "次元の狭間オメガ零式：アルファ編4",
+      "en": "Alphascape V4.0 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "武装圣域放浪神古神殿",
+      "ja": "武装聖域 ワンダラーパレス (Hard)",
+      "en": "the Wanderer's Palace (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "死亡大地终末焦土",
+      "ja": "永久焦土 ザ・バーン",
+      "en": "the Burn",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "死化奇美拉讨伐战",
+      "ja": "ドルムキマイラ討伐戦",
+      "en": "A Relic Reborn: the Chimera",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "歼灭特殊阵型的妖异！",
+      "ja": "不気味な陣形を組む妖異をせん滅せよ！",
+      "en": "Ward Up",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "毒雾洞窟黄金谷",
+      "ja": "霧中行軍 オーラムヴェイル",
+      "en": "the Aurum Vale",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "水城宝物库",
+      "ja": "宝物庫 アクアポリス",
+      "en": "the Aquapolis",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "水妖幻园多恩美格禁园",
+      "ja": "水妖幻園 ドォーヌ・メグ",
+      "en": "Dohn Mheg",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "水晶塔 古代人迷宫",
+      "ja": "クリスタルタワー：古代の民の迷宮",
+      "en": "the Labyrinth of the Ancients",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "水晶塔 希尔科斯塔",
+      "ja": "クリスタルタワー：シルクスの塔",
+      "en": "Syrcus Tower",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "水晶塔 暗之世界",
+      "ja": "クリスタルタワー：闇の世界",
+      "en": "the World of Darkness",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "永久幽界中央终端",
+      "ja": "永久幽界 メインターミナル",
+      "en": "the Meso Terminal",
+      "wikiDutyId": 102,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "永恒女王忆想歼灭战",
+      "ja": "極エターナルクイーン討滅戦",
+      "en": "the Minstrel's Ballad: Sphene's Burden",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "永恒女王歼灭战",
+      "ja": "エターナルクイーン討滅戦",
+      "en": "the Interphos",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "永远之暗悲惶歼灭战",
+      "ja": "極永遠の闇討滅戦",
+      "en": "the Minstrel's Ballad: Necron's Embrace",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "永远之暗歼灭战",
+      "ja": "永遠の闇討滅戦",
+      "en": "the Ageless Necropolis",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "污染庭园圣茉夏娜植物园",
+      "ja": "草木汚染 聖モシャーヌ植物園 (Hard)",
+      "en": "Saint Mocianne's Arboretum (Hard)",
+      "wikiDutyId": 62,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "沉没神殿斯卡拉遗迹",
+      "ja": "水没遺構 スカラ",
+      "en": "the Drowned City of Skalla",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "注意无敌的眷属，讨伐大型妖异！",
+      "ja": "無敵の眷属を従えし、大型妖異を討て！",
+      "en": "Shadow and Claw",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泰坦幻巧战",
+      "ja": "幻タイタン討滅戦",
+      "en": "the Navel (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泰坦歼殛战",
+      "ja": "極タイタン討滅戦",
+      "en": "the Navel (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泰坦歼灭战",
+      "ja": "真タイタン討滅戦",
+      "en": "the Navel (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泰坦讨伐战",
+      "ja": "タイタン討伐戦",
+      "en": "the Navel",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泽罗姆斯歼殛战",
+      "ja": "極ゼロムス討滅戦",
+      "en": "the Abyssal Fracture (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泽罗姆斯歼灭战",
+      "ja": "ゼロムス討滅戦",
+      "en": "the Abyssal Fracture",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泽莲尼娅歼殛战",
+      "ja": "極ゼレニア討滅戦",
+      "en": "Recollection (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "泽莲尼娅歼灭战",
+      "ja": "ゼレニア討滅戦",
+      "en": "Recollection",
+      "wikiDutyId": 20100,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "流沙迷宫樵鸣洞",
+      "ja": "流砂迷宮 カッターズクライ",
+      "en": "Cutter's Cry",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "海底宫殿紫水宫",
+      "ja": "海底宮殿 紫水宮",
+      "en": "Shisui of the Violet Tides",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "海德拉讨伐战",
+      "ja": "ハイドラ討伐戦",
+      "en": "A Relic Reborn: the Hydra",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "海德林晖光歼灭战",
+      "ja": "極ハイデリン討滅戦",
+      "en": "the Minstrel's Ballad: Hydaelyn's Call",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "海德林歼灭战",
+      "ja": "ハイデリン討滅戦",
+      "en": "the Mothercrystal",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "消灭恶徒团伙寄生蜂团！",
+      "ja": "無法者「似我蜂団」を撃滅せよ！",
+      "en": "Stinging Back",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "深读商客奇谭",
+      "ja": "アドバンスド・ヴァリアントダンジョン 商客物語",
+      "en": "The Merchant's Tale (Advanced)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "温达斯：第三巡行",
+      "ja": "ウィンダス：ザ・サードウォーク",
+      "en": "Windurst: The Third Walk",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "滑稽灵殿闹鬼盛宴",
+      "ja": "道化饗宴 ホーンテッドフィースト",
+      "en": "The Phantoms' Feast",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "漂流海域妖歌海",
+      "ja": "漂流海域 セイレーン海",
+      "en": "the Sirensong Sea",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "激战城塞石卫塔",
+      "ja": "城塞奪回 ストーンヴィジル (Hard)",
+      "en": "the Stone Vigil (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "火龙上位狩猎战",
+      "ja": "極リオレウス狩猟戦",
+      "en": "the Great Hunt (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "火龙狩猎战",
+      "ja": "リオレウス狩猟戦",
+      "en": "the Great Hunt",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "灿烂神域阿格莱亚",
+      "ja": "輝ける神域 アグライア",
+      "en": "Aglaia",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "王城古迹永护塔底",
+      "ja": "王城旧跡 アンダーキープ",
+      "en": "the Underkeep",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "瓦伦提昂蛋糕店",
+      "ja": null,
+      "en": null,
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "电脑梦境斯提格玛四",
+      "ja": "電脳夢想 スティグマ・フォー",
+      "en": "the Stigma Dreamscape",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "疯狂战舰无限回廊",
+      "ja": "暴走戦艦 フラクタル・コンティニアム (Hard)",
+      "en": "the Fractal Continuum (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "白虎幻巧战",
+      "ja": "幻白虎征魂戦",
+      "en": "The Jade Stoa (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "白虎诗魂战",
+      "ja": "極白虎征魂戦",
+      "en": "the Jade Stoa (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "白虎镇魂战",
+      "ja": "白虎征魂戦",
+      "en": "the Jade Stoa",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "皇都伊修加德保卫战",
+      "ja": "皇都イシュガルド防衛戦",
+      "en": "the Steps of Faith",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "监狱废墟托托·拉克千狱",
+      "ja": "監獄廃墟 トトラクの千獄",
+      "en": "the Thousand Maws of Toto-Rak",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "祖尔宛幻巧战",
+      "ja": "幻鬼神ズルワーン討滅戦",
+      "en": "Containment Bay Z1T9 (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "祖尔宛歼殛战",
+      "ja": "極鬼神ズルワーン討滅戦",
+      "en": "Containment Bay Z1T9 (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "祖尔宛歼灭战",
+      "ja": "鬼神ズルワーン討滅戦",
+      "en": "Containment Bay Z1T9",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神兵要塞帝国南方堡",
+      "ja": "外郭攻略 カストルム・メリディアヌム",
+      "en": "Castrum Meridianum",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神圣禁地深空天坑",
+      "ja": "遺産踏査 天深きセノーテ",
+      "en": "the Skydeep Cenote",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神圣遗迹无限城市街古迹",
+      "ja": "神聖遺跡 古アムダプール市街 (Hard)",
+      "en": "the Lost City of Amdapor (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神灵圣域放浪神古神殿",
+      "ja": "旅神聖域 ワンダラーパレス",
+      "en": "the Wanderer's Palace",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神龙幻巧战",
+      "ja": "幻神龍討滅戦",
+      "en": "Shinryu's Domain (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神龙梦幻歼灭战",
+      "ja": "極神龍討滅戦",
+      "en": "the Minstrel's Ballad: Shinryu's Domain",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "神龙歼灭战",
+      "ja": "神龍討滅戦",
+      "en": "the Royal Menagerie",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "禁忌城邦玛哈",
+      "ja": "禁忌都市マハ",
+      "en": "the Weeping City of Mhach",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "秘本宝库迦巴勒幻想图书馆",
+      "ja": "稀書回収 グブラ幻想図書館 (Hard)",
+      "en": "the Great Gubal Library (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "究极神兵假想作战",
+      "ja": "究極幻想 アルテマウェポン破壊作戦",
+      "en": "the Minstrel's Ballad: Ultima's Bane",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "究极神兵幻巧战",
+      "ja": "幻アルテマウェポン破壊作戦",
+      "en": "Ultima's Bane (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "究极神兵破坏作战",
+      "ja": "アルテマウェポン破壊作戦",
+      "en": "the Porta Decumana",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "究极神兵绝境战",
+      "ja": "絶アルテマウェポン破壊作戦",
+      "en": "the Weapon's Refrain (Ultimate)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "空中神域不获岛",
+      "ja": "神域浮島 ネバーリープ",
+      "en": "Neverreap",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "突破所有关门，讨伐最深处的敌人！",
+      "ja": "全関門を突破し、最深部の敵を討て！",
+      "en": "Basic Training: Enemy Strongholds",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "索菲娅幻巧战",
+      "ja": "幻女神ソフィア討滅戦",
+      "en": "Containment Bay P1T6 (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "索菲娅歼殛战",
+      "ja": "極女神ソフィア討滅戦",
+      "en": "Containment Bay P1T6 (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "索菲娅歼灭战",
+      "ja": "女神ソフィア討滅戦",
+      "en": "Containment Bay P1T6",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "红宝石神兵狂想作战",
+      "ja": "極ルビーウェポン破壊作戦",
+      "en": "Cinder Drift (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "红宝石神兵破坏作战",
+      "ja": "ルビーウェポン破壊作戦",
+      "en": "Cinder Drift",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "红玉火山狱之盖",
+      "ja": "紅玉火山 獄之蓋",
+      "en": "Hells' Lid",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "纷争要地布雷福洛克斯野营地",
+      "ja": "盟友支援 ブレイフロクスの野営地 (Hard)",
+      "en": "Brayflox's Longstop (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "终极之战",
+      "ja": "終極の戦い",
+      "en": "the Minstrel's Ballad: Endsinger's Aria",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "终结之战",
+      "ja": "終焉の戦い",
+      "en": "the Final Day",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "绿宝石神兵狂想作战",
+      "ja": "極エメラルドウェポン破壊作戦",
+      "en": "Castrum Marinum (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "绿宝石神兵破坏作战",
+      "ja": "エメラルドウェポン破壊作戦",
+      "en": "Castrum Marinum",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "缇坦妮雅歼殛战",
+      "ja": "極ティターニア討滅戦",
+      "en": "the Dancing Plague (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "缇坦妮雅歼灭战",
+      "ja": "ティターニア討滅戦",
+      "en": "the Dancing Plague",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "罗波那歼殛战",
+      "ja": "極ラーヴァナ討滅戦",
+      "en": "Thok ast Thok (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "罗波那歼灭战",
+      "ja": "真ラーヴァナ討滅戦",
+      "en": "Thok ast Thok (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "腐坏遗迹无限城市街古迹",
+      "ja": "腐敗遺跡 古アムダプール市街",
+      "en": "the Lost City of Amdapor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "良缘仪式",
+      "ja": "ヴァレンティオンセレモニー",
+      "en": "the Valentione's Ceremony",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "艳翼蛇鸟歼殛战",
+      "ja": "極ヴァリガルマンダ討滅戦",
+      "en": "Worqor Lar Dor (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "艳翼蛇鸟歼灭战",
+      "ja": "ヴァリガルマンダ討滅戦",
+      "en": "Worqor Lar Dor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "艾玛吉娜杯斗技大会决赛",
+      "ja": "アマジナ杯闘技会決勝戦",
+      "en": "the Dragon's Neck",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "苏醒遗迹喀恩埋没圣堂",
+      "ja": "遺跡救援 カルン埋没寺院 (Hard)",
+      "en": "the Sunken Temple of Qarn (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "草木庭园圣茉夏娜植物园",
+      "ja": "草木庭園 聖モシャーヌ植物園",
+      "en": "Saint Mocianne's Arboretum",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "荒野秘境仙人刺谷",
+      "ja": "荒野秘境 サボテンダーバレー",
+      "en": "Tender Valley",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "荣华神域塔利亚",
+      "ja": "華めく神域 タレイア",
+      "en": "Thaleia",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "莫古力贤王歼殛战",
+      "ja": "極王モグル・モグXII世討滅戦",
+      "en": "Thornmarch (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "莫古力贤王歼灭战",
+      "ja": "善王モグル・モグXII世討滅戦",
+      "en": "Thornmarch (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "萨菲洛特幻巧战",
+      "ja": "幻魔神セフィロト討滅戦",
+      "en": "Containment Bay S1T7 (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "萨菲洛特歼殛战",
+      "ja": "極魔神セフィロト討滅戦",
+      "en": "Containment Bay S1T7 (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "萨菲洛特歼灭战",
+      "ja": "魔神セフィロト討滅戦",
+      "en": "Containment Bay S1T7",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "血战苍穹魔科学研究所",
+      "ja": "蒼天聖戦 魔科学研究所",
+      "en": "the Aetherochemical Research Facility",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "解放决战多玛王城",
+      "ja": "解放決戦 ドマ城",
+      "en": "Doma Castle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "讨伐坑道中出现的妖异！",
+      "ja": "坑道に現れた妖異ブソを討て！",
+      "en": "Annoy the Void",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "讨伐彷徨死灵！",
+      "ja": "彷徨う死霊を討て！",
+      "en": "Under the Armor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "讨伐梦幻之布拉奇希奥！",
+      "ja": "夢幻のブラキシオを討て！",
+      "en": "All's Well that Ends in the Well",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "讨伐污染源头魔界花！",
+      "ja": "汚染源モルボルを討て！",
+      "en": "More than a Feeler",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "讨伐爆弹怪的女王！",
+      "ja": "ボムを率いる「ボムクイーン」を討て！",
+      "en": "Long Live the Queen",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "试炼行路巴儿达木霸道",
+      "ja": "伝統試練 バルダム覇道",
+      "en": "Bardam's Mettle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "财宝传说破舰岛",
+      "ja": "財宝伝説 ハルブレーカー・アイル",
+      "en": "Hullbreaker Isle",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "运河宝物库",
+      "ja": "宝物庫 ウズネアカナル",
+      "en": "the Lost Canals of Uznair",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "运河宝物库深层",
+      "ja": "宝物庫 ウズネアカナル深層",
+      "en": "the Hidden Canals of Uznair",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "运河宝物库神殿",
+      "ja": "宝物庫 ウズネアカナル祭殿",
+      "en": "the Shifting Altars of Uznair",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "近东秘宝阿尔扎达尔海底遗迹群",
+      "ja": "近東秘宝 アルザダール海底遺跡群",
+      "en": "Alzadaal's Legacy",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "迦楼罗歼殛战",
+      "ja": "極ガルーダ討滅戦",
+      "en": "the Howling Eye (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "迦楼罗歼灭战",
+      "ja": "真ガルーダ討滅戦",
+      "en": "the Howling Eye (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "迦楼罗讨伐战",
+      "ja": "ガルーダ討伐戦",
+      "en": "the Howling Eye",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "逆转要害沙斯塔夏溶洞",
+      "ja": "逆襲要害 サスタシャ浸食洞 (Hard)",
+      "en": "Sastasha (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "通天绝壁沃刻佐莫山",
+      "ja": "山嶺登頂 ウォーコー・ゾーモー",
+      "en": "Worqor Zormor",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "遇袭集落水滩村",
+      "ja": "殺戮郷村 ホルミンスター",
+      "en": "Holminster Switch",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "遗忘行路雾之迹",
+      "ja": "遺忘行路 ミストウェイク",
+      "en": "Mistwake",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "避暑离宫马利卡大井",
+      "ja": "爽涼離宮 マリカの大井戸",
+      "en": "Malikah's Well",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "那布里亚勒斯讨伐战",
+      "ja": "アシエン・ナプリアレス討伐戦",
+      "en": "the Chrysalis",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "邪念妖地无限城古堡",
+      "ja": "邪念排撃 古城アムダプール (Hard)",
+      "en": "Amdapor Keep (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "邪教驻地无限城古堡",
+      "ja": "邪教排撃 古城アムダプール",
+      "en": "Amdapor Keep",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "邪龙王座龙巢神殿",
+      "ja": "邪竜血戦 ドラゴンズエアリー",
+      "en": "the Aery",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "里塔提恩强攻战",
+      "ja": "リットアティン強襲戦",
+      "en": "Cape Westwind",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "鏖战红莲阿拉米格",
+      "ja": "紅蓮決戦 アラミゴ",
+      "en": "Ala Mhigo",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "钻石神兵捕获作战",
+      "ja": "ダイヤウェポン捕獲作戦",
+      "en": "the Cloud Deck",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "钻石神兵狂想作战",
+      "ja": "極ダイヤウェポン捕獲作戦",
+      "en": "the Cloud Deck (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "间歇灵泉哈姆岛",
+      "ja": "星霊間欠 ハーム島",
+      "en": "the Aetherfont",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿修罗歼灭战",
+      "ja": "アスラ討滅戦",
+      "en": "the Gilded Araya",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 中量级1",
+      "ja": "至天の座アルカディア：クルーザー級1",
+      "en": "AAC Cruiserweight M1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 中量级2",
+      "ja": "至天の座アルカディア：クルーザー級2",
+      "en": "AAC Cruiserweight M2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 中量级3",
+      "ja": "至天の座アルカディア：クルーザー級3",
+      "en": "AAC Cruiserweight M3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 中量级4",
+      "ja": "至天の座アルカディア：クルーザー級4",
+      "en": "AAC Cruiserweight M4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 轻量级1",
+      "ja": "至天の座アルカディア：ライトヘビー級1",
+      "en": "AAC Light-heavyweight M1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 轻量级2",
+      "ja": "至天の座アルカディア：ライトヘビー級2",
+      "en": "AAC Light-heavyweight M2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 轻量级3",
+      "ja": "至天の座アルカディア：ライトヘビー級3",
+      "en": "AAC Light-heavyweight M3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 轻量级4",
+      "ja": "至天の座アルカディア：ライトヘビー級4",
+      "en": "AAC Light-heavyweight M4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 重量级1",
+      "ja": "至天の座アルカディア：ヘビー級1",
+      "en": "AAC Heavyweight M1",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 重量级2",
+      "ja": "至天の座アルカディア：ヘビー級2",
+      "en": "AAC Heavyweight M2",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 重量级3",
+      "ja": "至天の座アルカディア：ヘビー級3",
+      "en": "AAC Heavyweight M3",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚登天斗技场 重量级4",
+      "ja": "至天の座アルカディア：ヘビー級4",
+      "en": "AAC Heavyweight M4",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 中量级1",
+      "ja": "至天の座アルカディア零式：クルーザー級1",
+      "en": "AAC Cruiserweight M1 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 中量级2",
+      "ja": "至天の座アルカディア零式：クルーザー級2",
+      "en": "AAC Cruiserweight M2 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 中量级3",
+      "ja": "至天の座アルカディア零式：クルーザー級3",
+      "en": "AAC Cruiserweight M3 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 中量级4",
+      "ja": "至天の座アルカディア零式：クルーザー級4",
+      "en": "AAC Cruiserweight M4 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 轻量级1",
+      "ja": "至天の座アルカディア零式：ライトヘビー級1",
+      "en": "AAC Light-heavyweight M1 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 轻量级2",
+      "ja": "至天の座アルカディア零式：ライトヘビー級2",
+      "en": "AAC Light-heavyweight M2 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 轻量级3",
+      "ja": "至天の座アルカディア零式：ライトヘビー級3",
+      "en": "AAC Light-heavyweight M3 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 轻量级4",
+      "ja": "至天の座アルカディア零式：ライトヘビー級4",
+      "en": "AAC Light-heavyweight M4 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 重量级1",
+      "ja": "至天の座アルカディア零式：ヘビー級1",
+      "en": "AAC Heavyweight M1 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 重量级2",
+      "ja": "至天の座アルカディア零式：ヘビー級2",
+      "en": "AAC Heavyweight M2 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 重量级3",
+      "ja": "至天の座アルカディア零式：ヘビー級3",
+      "en": "AAC Heavyweight M3 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "阿卡狄亚零式登天斗技场 重量级4",
+      "ja": "至天の座アルカディア零式：ヘビー級4",
+      "en": "AAC Heavyweight M4 (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "险峻峡谷塞尔法特尔溪谷",
+      "ja": "峻厳渓谷 ゼルファトル",
+      "en": "Xelphatol",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "雪山奥窟冥魂石洞",
+      "ja": "雪山冥洞 ラピス・マナリス",
+      "en": "Lapis Manalis",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 炼净之狱1",
+      "ja": "万魔殿パンデモニウム零式：煉獄編1",
+      "en": "Abyssos: The Fifth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 炼净之狱2",
+      "ja": "万魔殿パンデモニウム零式：煉獄編2",
+      "en": "Abyssos: The Sixth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 炼净之狱3",
+      "ja": "万魔殿パンデモニウム零式：煉獄編3",
+      "en": "Abyssos: The Seventh Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 炼净之狱4",
+      "ja": "万魔殿パンデモニウム零式：煉獄編4",
+      "en": "Abyssos: The Eighth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 荒天之狱1",
+      "ja": "万魔殿パンデモニウム零式：天獄編1",
+      "en": "Anabaseios: The Ninth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 荒天之狱2",
+      "ja": "万魔殿パンデモニウム零式：天獄編2",
+      "en": "Anabaseios: The Tenth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 荒天之狱3",
+      "ja": "万魔殿パンデモニウム零式：天獄編3",
+      "en": "Anabaseios: The Eleventh Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 荒天之狱4",
+      "ja": "万魔殿パンデモニウム零式：天獄編4",
+      "en": "Anabaseios: The Twelfth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 边境之狱1",
+      "ja": "万魔殿パンデモニウム零式：辺獄編1",
+      "en": "Asphodelos: The First Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 边境之狱2",
+      "ja": "万魔殿パンデモニウム零式：辺獄編2",
+      "en": "Asphodelos: The Second Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 边境之狱3",
+      "ja": "万魔殿パンデモニウム零式：辺獄編3",
+      "en": "Asphodelos: The Third Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式万魔殿 边境之狱4",
+      "ja": "万魔殿パンデモニウム零式：辺獄編4",
+      "en": "Asphodelos: The Fourth Circle (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式异闻六根山",
+      "ja": "アナザーダンジョン 異聞六根山 零式",
+      "en": "Another Mount Rokkon (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式异闻希拉狄哈水道",
+      "ja": "アナザーダンジョン 異聞シラディハ水道 零式",
+      "en": "Another Sil'dihn Subterrane (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "零式异闻阿罗阿罗岛",
+      "ja": "アナザーダンジョン 異聞アロアロ島 零式",
+      "en": "Another Aloalo Island (Savage)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "青龙幻巧战",
+      "ja": "幻青龍征魂戦",
+      "en": "the Wreath of Snakes (Unreal)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "青龙诗魂战",
+      "ja": "極青龍征魂戦",
+      "en": "the Wreath of Snakes (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "青龙镇魂战",
+      "ja": "青龍征魂戦",
+      "en": "the Wreath of Snakes",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "须佐之男歼殛战",
+      "ja": "極スサノオ討滅戦",
+      "en": "the Pool of Tribute (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "须佐之男歼灭战",
+      "ja": "スサノオ討滅戦",
+      "en": "the Pool of Tribute",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "领航明灯天狼星灯塔",
+      "ja": "怪鳥巨塔 シリウス大灯台",
+      "en": "Pharos Sirius",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "风水灵庙岩燕庙",
+      "ja": "風水霊殿 ガンエン廟",
+      "en": "the Swallow's Compass",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "驱除剧毒妖花！",
+      "ja": "有毒妖花を駆除せよ！",
+      "en": "Pulling Poison Posies",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "骚乱坑道铜铃铜山",
+      "ja": "騒乱坑道 カッパーベル銅山 (Hard)",
+      "en": "Copperbell Mines (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "高贝扎歼殛战",
+      "ja": "極ゴルベーザ討滅戦",
+      "en": "the Voidcast Dais (Extreme)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "高贝扎歼灭战",
+      "ja": "ゴルベーザ討滅戦",
+      "en": "the Voidcast Dais",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "魂魄工厂创生设施",
+      "ja": "魂魄工廠 オリジェニクス",
+      "en": "Origenics",
+      "wikiDutyId": 93,
+      "source": "rendered duty page infobox"
+    },
+    {
+      "zh": "魔兽领域日影地修炼所",
+      "ja": "魔獣領域 ハラタリ修練所",
+      "en": "Halatali",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "魔导神门巴别塔",
+      "ja": "魔導神門 バブイルの塔",
+      "en": "the Tower of Babil",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "魔术工房玛托雅工作室",
+      "ja": "魔術工房 マトーヤのアトリエ",
+      "en": "Matoya's Relict",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "魔法宫殿宇宙宫",
+      "ja": "魔法宮殿 グラン・コスモス",
+      "en": "the Grand Cosmos",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "魔航船虚无方舟",
+      "ja": "魔航船ヴォイドアーク",
+      "en": "the Void Ark",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "黄金平原帕戈尔赞草原",
+      "ja": "黄金平原 パガルザン",
+      "en": "Paglth'an",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "黑涡传说破舰岛",
+      "ja": "黒渦伝説 ハルブレーカー・アイル (Hard)",
+      "en": "Hullbreaker Isle (Hard)",
+      "source": "Category:副本 search snippet"
+    },
+    {
+      "zh": "黑风海底阿尼德罗追忆馆",
+      "ja": "黒風海底 アニドラス・アナムネーシス",
+      "en": "Anamnesis Anyder",
+      "source": "Category:副本 search snippet"
+    }
+  ],
+  "geography": [
+    {
+      "zh": "万魔殿正门",
+      "ja": "パンデモニウム，英文︰Pandæmonium",
+      "en": "Pandæmonium",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "东拉诺西亚",
+      "ja": "東ラノシア，英文︰Eastern La Noscea",
+      "en": "Eastern La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "东方",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "东萨纳兰",
+      "ja": "東ザナラーン，英文︰Eastern Thanalan",
+      "en": "Eastern Thanalan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "丧灵钟",
+      "ja": "レヴナンツトール，英文︰Revenant's Toll",
+      "en": "Revenant's Toll",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "中拉诺西亚",
+      "ja": "中央ラノシア，英文︰Middle La Noscea",
+      "en": "Middle La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "中萨纳兰",
+      "ja": "中央ザナラーン，英文︰Central Thanalan",
+      "en": "Central Thanalan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "丰饶海",
+      "ja": "豊穣海，英文︰The Bounty",
+      "en": "The Bounty",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "丽耶美格梦园",
+      "ja": "リェー・メグ，英文︰Lyhe Mheg",
+      "en": "Lyhe Mheg",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "乌兹奈岛",
+      "ja": "ウズネア島，英文︰Uznair",
+      "en": "Uznair",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "乌尔达哈",
+      "ja": "ウルダハ，英文︰Ul'dah",
+      "en": "Ul'dah",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "乌尔达哈来生回廊",
+      "ja": "ウルダハ：ザル回廊，英文︰Ul'dah - Steps of Thal",
+      "en": "Ul'dah - Steps of Thal",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "乌尔达哈现世回廊",
+      "ja": "ウルダハ：ナル回廊，英文︰Ul'dah - Steps of Nald",
+      "en": "Ul'dah - Steps of Nald",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "九号解决方案",
+      "ja": "ソリューション・ナイン，英文︰Solution Nine",
+      "en": "Solution Nine",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "云冠群岛",
+      "ja": "ディアデム諸島，英文︰Diadem",
+      "en": "Diadem",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "亚克特尔树海",
+      "ja": "ヤクテル樹海，英文︰Yak T'el",
+      "en": "Yak T'el",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "亚菲姆湿地",
+      "ja": "ヤフェーム湿地，英文︰Yafaem Saltmoor",
+      "en": "Yafaem Saltmoor",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "伊修加德",
+      "ja": "イシュガルド，英文︰Ishgard",
+      "en": "Ishgard",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "伊修加德基础层",
+      "ja": "イシュガルド下層，英文︰Foundation",
+      "en": "Foundation",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "伊修加德砥柱层",
+      "ja": "イシュガルド上層，英文︰Pillars",
+      "en": "Pillars",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "伊尔美格",
+      "ja": "イル・メグ，英文︰Il Mheg",
+      "en": "Il Mheg",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "伊尔萨巴德大陆",
+      "ja": "イルサバード大陸，英文︰Ilsabard",
+      "en": "Ilsabard",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "佐戈海峡",
+      "ja": "ゾーゴー海峡，英文︰the waterfalls of Zorgor",
+      "en": "the waterfalls of Zorgor",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "俄匊斯行星",
+      "ja": "惑星オイジュス，英文︰Oizys",
+      "en": "Oizys",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "克扎玛乌卡湿地",
+      "ja": "コザマル・カ，英文︰Kozama'uka",
+      "en": "Kozama'uka",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "克雷拉",
+      "ja": "クレイラ，英文︰Cleyra",
+      "en": "Cleyra",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "兰蒂斯",
+      "ja": "ランディス，英文︰Landis",
+      "en": "Landis",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "利姆萨·罗敏萨",
+      "ja": "リムサ・ロミンサ，英文︰Limsa Lominsa",
+      "en": "Limsa Lominsa",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "利姆萨·罗敏萨上层甲板",
+      "ja": "リムサ・ロミンサ：上甲板層，英文︰Limsa Lominsa Upper Decks",
+      "en": "Limsa Lominsa Upper Decks",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "利姆萨·罗敏萨下层甲板",
+      "ja": "リムサ・ロミンサ：下甲板層，英文︰Limsa Lominsa Lower Decks",
+      "en": "Limsa Lominsa Lower Decks",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "加尔提诺平原",
+      "ja": "カルテノー平原，英文︰The Carteneau Flats",
+      "en": "The Carteneau Flats",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "加雷马",
+      "ja": "ガレマルド，英文︰Garlemald",
+      "en": "Garlemald",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "加雷马帝国",
+      "ja": "ガレマール帝国，英文︰Garlean Empire",
+      "en": "Garlean Empire",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "北洋群岛",
+      "ja": null,
+      "en": "the northern seas",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "北萨纳兰",
+      "ja": "北ザナラーン，英文︰Northern Thanalan",
+      "en": "Northern Thanalan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "南洋群岛",
+      "ja": null,
+      "en": "the southern seas",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "南萨纳兰",
+      "ja": "南ザナラーン，英文︰Southern Thanalan",
+      "en": "Southern Thanalan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "博兹雅",
+      "ja": "ボズヤ，英文︰Bozja",
+      "en": "Bozja",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "博兹雅堡垒",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "厄尔庇斯",
+      "ja": "エルピス，英文︰Elpis",
+      "en": "Elpis",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "原初世界",
+      "ja": "原初世界，英文︰The Source",
+      "en": "The Source",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "原初岛",
+      "ja": "エルスレント島，英文︰Isle of Aerslaent",
+      "en": "Isle of Aerslaent",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "古代世界",
+      "ja": "古代世界，英文︰The World Unsundered",
+      "en": "The World Unsundered",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "叹息海",
+      "ja": "嘆きの海，英文︰Mare Lamentorum",
+      "en": "Mare Lamentorum",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "哈姆岛",
+      "ja": "ハーム島，英文︰Isle of Haam",
+      "en": "Isle of Haam",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "图拉尔大陆",
+      "ja": "トラル大陸，英文︰Tural",
+      "en": "Tural",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "图莱尤拉",
+      "ja": "トライヨラ，英文︰Tuliyollal",
+      "en": "Tuliyollal",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "图莱尤拉联合王国",
+      "ja": "トライヨラ連王国，英文︰Tuliyollal",
+      "en": "Tuliyollal",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "地理",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "基姆利特",
+      "ja": "ギムリト，英文︰Ghimlyt",
+      "en": "Ghimlyt",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "基拉巴尼亚",
+      "ja": "ギラバニア，英文︰Gyr Abania",
+      "en": "Gyr Abania",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "基拉巴尼亚山区",
+      "ja": "ギラバニア山岳地帯，英文︰The Peaks",
+      "en": "The Peaks",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "基拉巴尼亚湖区",
+      "ja": "塩の湖畔地帯，英文︰The Lochs",
+      "en": "The Lochs",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "基拉巴尼亚边区",
+      "ja": "ギラバニア辺境地帯，英文︰Fringes",
+      "en": "Fringes",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "塞尔法特尔",
+      "ja": "ゼルファトル，英文︰Xelphatol",
+      "en": "Xelphatol",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "夏劳尼荒野",
+      "ja": "シャーローニ荒野，英文︰Shaaloani",
+      "en": "Shaaloani",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "多玛",
+      "ja": "ドマ，英文︰Doma",
+      "en": "Doma",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "多玛飞地",
+      "ja": "ドマ町人地，英文︰Doman Enclave",
+      "en": "Doman Enclave",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "大天山",
+      "ja": "大天山，英文︰Daitenzan",
+      "en": "Daitenzan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "天堑荒地",
+      "ja": "隔ての荒地，英文︰Windward Wilds",
+      "en": "Windward Wilds",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "天外天垓",
+      "ja": "ウルティマ・トゥーレ，英文︰Ultima Thule",
+      "en": "Ultima Thule",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "天穹街",
+      "ja": "蒼天街，英文︰Firmament",
+      "en": "Firmament",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "太阳神草原",
+      "ja": "アジムステップ，英文︰Azim Steppe",
+      "en": "Azim Steppe",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "奥·哥摩罗山",
+      "ja": "オ・ゴモロ山，英文︰O'Ghomoro",
+      "en": "O'Ghomoro",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "奥克塞西亚行星",
+      "ja": "惑星アウクセシア，英文︰Auxesia",
+      "en": "Auxesia",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "奥萨德次大陆",
+      "ja": "オサード小大陸，英文︰Othard",
+      "en": "Othard",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "奥阔帕恰山",
+      "ja": "オルコ・パチャ，英文︰Urqopacha",
+      "en": "Urqopacha",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "妖歌海",
+      "ja": "セイレーン海，英文︰Sirensong Sea",
+      "en": "Sirensong Sea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "威尔布兰德岛",
+      "ja": "バイルブランド，英文︰Vylbrand",
+      "en": "Vylbrand",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "孚布特王国",
+      "ja": "グリュネスリヒト城，英文︰Gruenes Licht",
+      "en": "Gruenes Licht",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "安穆·艾兰",
+      "ja": "アム・アレーン，英文︰Amh Araeng",
+      "en": "Amh Araeng",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "尘封秘岩",
+      "ja": "シールロック，英文︰Seal Rock",
+      "en": "Seal Rock",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "尤卡图拉尔",
+      "ja": "ヨカ・トラル，英文︰Yok Tural",
+      "en": "Yok Tural",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "希尔科斯峡谷",
+      "ja": "シルクスの峡間，英文︰Syrcus Trench",
+      "en": "Syrcus Trench",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "帕戈尔赞",
+      "ja": "パガルザン，英文︰Paglth'an",
+      "en": "Paglth'an",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "帝国湖岸堡",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "帝都魔导城",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "幻境村",
+      "ja": "蜃気楼の町，英文︰the phantom village",
+      "en": "the phantom village",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "库尔札斯",
+      "ja": "クルザス，英文︰Coerthas",
+      "en": "Coerthas",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "库尔札斯东部低地",
+      "ja": "フィールド・オブ・グローリー，英文︰The Fields of Glory",
+      "en": "The Fields of Glory",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "库尔札斯东部高地",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "库尔札斯中央低地",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "库尔札斯中央高地",
+      "ja": "クルザス中央高地 ，英文︰Coerthas Central Highlands",
+      "en": "Coerthas Central Highlands",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "库尔札斯西部高地",
+      "ja": "クルザス西部高地，英文︰Coerthas Western Highlands",
+      "en": "Coerthas Western Highlands",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "康德亚帕塔",
+      "ja": "コンデヤ・パタ，英文︰Conde Petie",
+      "en": "Conde Petie",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "延夏",
+      "ja": "ヤンサ，英文︰Yanxia",
+      "en": "Yanxia",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "憧憬湾",
+      "ja": "焦がれの入江，英文︰Sinus Ardorum",
+      "en": "Sinus Ardorum",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拉凯提卡大森林",
+      "ja": "ラケティカ大森林，英文︰The Rak'tika Greatwood",
+      "en": "The Rak'tika Greatwood",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拉札罕",
+      "ja": "ラザハン，英文︰Radz-at-Han",
+      "en": "Radz-at-Han",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拉诺西亚",
+      "ja": "ラノシア，英文︰La Noscea",
+      "en": "La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拉诺西亚低地",
+      "ja": "低地ラノシア，英文︰Lower La Noscea",
+      "en": "Lower La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拉诺西亚外地",
+      "ja": "外地ラノシア，英文︰Outer La Noscea",
+      "en": "Outer La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拉诺西亚高地",
+      "ja": "高地ラノシア，英文︰Upper La Noscea",
+      "en": "Upper La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "拿巴示艾兰王国",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "摩杜纳",
+      "ja": "モードゥナ，英文︰Mor Dhona",
+      "en": "Mor Dhona",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "斯卡提山脉",
+      "ja": "スカテイ山脈，英文︰Skatay Range",
+      "en": "Skatay Range",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "新生亚历山德里亚联合王国",
+      "ja": "新生アレクサンドリア連王国，英文︰Alexandria",
+      "en": "Alexandria",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "无名浮岛",
+      "ja": "名もなき浮島，英文︰Unmoored Isle",
+      "en": "Unmoored Isle",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "无失世界",
+      "ja": "アンロスト・ワールド，英文︰Unlost World",
+      "en": "Unlost World",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "旧萨雷安",
+      "ja": "オールド・シャーレアン，英文︰Old Sharlayan",
+      "en": "Old Sharlayan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "星外天域",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "星尘海",
+      "ja": "星屑海，英文︰the Stardust Sea",
+      "en": "the Stardust Sea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "星芒市场",
+      "ja": "星芒マーケット，英文︰Starlight Stalls",
+      "en": "Starlight Stalls",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "林德布鲁姆（国家）",
+      "ja": "リンドブルム，英文︰Lindblum",
+      "en": "Lindblum",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "格里达尼亚",
+      "ja": "グリダニア，英文︰Gridania",
+      "en": "Gridania",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "格里达尼亚新街",
+      "ja": "グリダニア：新市街，英文︰New Gridania",
+      "en": "New Gridania",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "格里达尼亚旧街",
+      "ja": "グリダニア：旧市街，英文︰Old Gridania",
+      "en": "Old Gridania",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "格雷里克弯角",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "梅尔托尔海峡",
+      "ja": "メルトール海峡，英文︰the Strait of Merlthor",
+      "en": "the Strait of Merlthor",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "梦想峰",
+      "ja": "夢想峰，英文︰Cape Mete",
+      "en": "Cape Mete",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "死亡三角区",
+      "ja": "死の三角海域，英文︰Shades' Triangle",
+      "en": "Shades' Triangle",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "比阿纳可岛",
+      "ja": "ビアナック島，英文︰the island of Bianaq",
+      "en": "the island of Bianaq",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "水晶都",
+      "ja": "クリスタリウム，英文︰The Crystarium",
+      "en": "The Crystarium",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "沙珠州",
+      "ja": "沙珠州，英文︰the Pearl",
+      "en": "the Pearl",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "法恩娜行星",
+      "ja": "惑星パエンナ，英文︰Phaenna",
+      "en": "Phaenna",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "洛泽尼黑塔平原",
+      "ja": "ローデニヘタ平原，英文︰Loazeniheta",
+      "en": "Loazeniheta",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "活着的记忆",
+      "ja": "リビング・メモリー，英文︰Living Memory",
+      "en": "Living Memory",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "海雾村",
+      "ja": "ミスト・ヴィレッジ，英文︰Mist",
+      "en": "Mist",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "游末邦",
+      "ja": "ユールモア，英文︰Eulmore",
+      "en": "Eulmore",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "溺没海",
+      "ja": "溺没海，英文︰The Drown",
+      "en": "The Drown",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "灰海",
+      "ja": "灰海，英文︰the Sea of Ash",
+      "en": "the Sea of Ash",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "燕鸥崖",
+      "ja": "ターンクリフ，英文︰Terncliff",
+      "en": "Terncliff",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "特雷诺",
+      "ja": "トレノ，英文︰Treno",
+      "en": "Treno",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "狼狱停船场",
+      "ja": "ウルヴズジェイル係船場，英文︰Wolves' Den Pier",
+      "en": "Wolves' Den Pier",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "玉韦亚瓦塔",
+      "ja": "ユウェヤーワータ，英文︰Yuweyawata",
+      "en": "Yuweyawata",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "珂露西亚岛",
+      "ja": "コルシア島，英文︰Kholusia",
+      "en": "Kholusia",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "琉璃洋",
+      "ja": "瑠璃洋，英文︰The Glass Ocean",
+      "en": "The Glass Ocean",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "瓦尔奈",
+      "ja": "バルナイン，英文︰Valnain",
+      "en": "Valnain",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "瓦尔岛",
+      "ja": "バル島，英文︰The Isle of Val",
+      "en": "The Isle of Val",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "瓦尔纳德海",
+      "ja": "バルナード海，英文︰Valnard Sea",
+      "en": "Valnard Sea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "甘戈斯",
+      "ja": "ガンゴッシュ，英文︰Gangos",
+      "en": "Gangos",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "田园郡",
+      "ja": "イディルシャイア，英文︰Idyllshire",
+      "en": "Idyllshire",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "白银乡",
+      "ja": "シロガネ，英文︰Shirogane",
+      "en": "Shirogane",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "神拳痕",
+      "ja": "ラールガーズリーチ，英文︰Rhalgr's Reach",
+      "en": "Rhalgr's Reach",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "科尔沃",
+      "ja": "コルヴォ，英文︰Corvos",
+      "en": "Corvos",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "科尔沃海峡",
+      "ja": "コルヴォ海峡，英文︰The Corvos Narrow",
+      "en": "The Corvos Narrow",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "科尔沃的隐者",
+      "ja": "コルヴォの隠遁者，英文︰The Anchorite at Corvos",
+      "en": "The Anchorite at Corvos",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "穹顶皓天",
+      "ja": "エンピレアム，英文︰Empyreum",
+      "en": "Empyreum",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "空无大地",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "第一世界",
+      "ja": "第一世界，英文︰The First",
+      "en": "The First",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "第四世界",
+      "ja": "第四世界，英文︰The Fourth",
+      "en": "The Fourth",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "紫州",
+      "ja": "シシュウ，英文︰Shishu",
+      "en": "Shishu",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "红州",
+      "ja": "コウシュウ，英文︰Koshu",
+      "en": "Koshu",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "红月",
+      "ja": "赤き月，英文︰The Red Moon",
+      "en": "The Red Moon",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "红玉海",
+      "ja": "紅玉海，英文︰The Ruby Sea",
+      "en": "The Ruby Sea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "纳夏",
+      "ja": "ナグサ，英文︰Nagxian",
+      "en": "Nagxian",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "终末焦土",
+      "ja": "ザ・バーン，英文︰The Burn",
+      "en": "The Burn",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "绯汐海",
+      "ja": "緋汐海，英文︰Bloodbrine Sea",
+      "en": "Bloodbrine Sea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "维尔利特",
+      "ja": "ウェルリト，英文︰Werlyt",
+      "en": "Werlyt",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "罗塔诺海",
+      "ja": "ロータノ海，英文︰Rhotano Sea",
+      "en": "Rhotano Sea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "罗斯利特湾",
+      "ja": "ロズリト湾，英文︰The Rothlyt Sound",
+      "en": "The Rothlyt Sound",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "美拉西迪亚大陆",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "翁法洛斯",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "翠浪海",
+      "ja": "翠浪海，英文︰the Sea of Jade",
+      "en": "the Sea of Jade",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "翻云雾海",
+      "ja": "ドラヴァニア雲海，英文︰Churning Mists",
+      "en": "Churning Mists",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "至福乐土",
+      "ja": "エリュシオン，英文︰Elysion",
+      "en": "Elysion",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "艾欧泽亚",
+      "ja": "エオルゼア，英文︰Eorzea",
+      "en": "Eorzea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "苍茫洋",
+      "ja": "蒼茫洋，英文︰Indigo Deep",
+      "en": "Indigo Deep",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "萨卡图拉尔",
+      "ja": "サカ・トラル，英文︰Xak Tural",
+      "en": "Xak Tural",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "萨纳兰",
+      "ja": "ザナラーン，英文︰Thanalan",
+      "en": "Thanalan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "萨维奈岛",
+      "ja": "サベネア島，英文︰Thavnair",
+      "en": "Thavnair",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "萨雷安",
+      "ja": "シャーレアン，英文︰Sharlayan",
+      "en": "Sharlayan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "葛尔摩大密林",
+      "ja": "ゴルモア大密林，英文︰Golmore Jungle",
+      "en": "Golmore Jungle",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "薰衣草苗圃",
+      "ja": "ラベンダーベッド，英文︰Lavender Beds",
+      "en": "Lavender Beds",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "虚无界",
+      "ja": "ヴォイド，英文︰The Void",
+      "en": "The Void",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "行星海德林",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "西拉诺西亚",
+      "ja": "西ラノシア，英文︰Western La Noscea",
+      "en": "Western La Noscea",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "西萨纳兰",
+      "ja": "西ザナラーン，英文︰Western Thanalan",
+      "en": "Western Thanalan",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "诺弗兰特",
+      "ja": "ノルヴラント，英文︰Norvrandt",
+      "en": "Norvrandt",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "谢尔达莱群岛",
+      "ja": "シェルダレー諸島，英文︰The Cieldalaes",
+      "en": "The Cieldalaes",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "达宇兹湾",
+      "ja": "ダユズ湾，英文︰the Bay of Dha'yuz",
+      "en": "the Bay of Dha'yuz",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "达尔马斯卡沙漠",
+      "ja": "ダルマスカ砂漠，英文︰Dalmasca Estersand",
+      "en": "Dalmasca Estersand",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "达尔马斯卡王国",
+      "ja": "ダルマスカ王国，英文︰The Kingdom of Dalmasca",
+      "en": "The Kingdom of Dalmasca",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "远东之国",
+      "ja": "ひんがしの国，英文︰Hingashi",
+      "en": "Hingashi",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "远东群岛",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "迷津",
+      "ja": "ラヴィリンソス，英文︰Labyrinthos",
+      "en": "Labyrinthos",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "遗产之地",
+      "ja": "ヘリテージファウンド，英文︰Heritage Found",
+      "en": "Heritage Found",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "醴泉神社",
+      "ja": "醴泉神社，英文︰Reisen Temple",
+      "en": "Reisen Temple",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "金碟游乐场",
+      "ja": "ゴールドソーサー，英文︰Gold Saucer",
+      "en": "Gold Saucer",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "阿亚特兰",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "阿尔迪纳德次大陆",
+      "ja": "アルデナード小大陸，英文︰Aldenard",
+      "en": "Aldenard",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "阿巴拉提亚",
+      "ja": "アバラシア，英文︰Abalathia",
+      "en": "Abalathia",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "阿巴拉提亚云海",
+      "ja": "アバラシア雲海，英文︰Sea of Clouds",
+      "en": "Sea of Clouds",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "阿拉米格",
+      "ja": "アラミゴ，英文︰Ala Mhigo",
+      "en": "Ala Mhigo",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "隆卡帝国",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "隔海峡",
+      "ja": "ディバイド海峡，英文︰The Divide",
+      "en": "The Divide",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "雪棱拜坛",
+      "ja": "ジィゴーテー拝壇，英文︰Zirgorteh the Open-armed",
+      "en": "Zirgorteh the Open-armed",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "零的领域",
+      "ja": "ゼロの領域，英文︰Zero's Domain",
+      "en": "Zero's Domain",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "雷克兰德",
+      "ja": "レイクランド，英文︰Lakeland",
+      "en": "Lakeland",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "雷克兰德联邦",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "雷蒙德",
+      "ja": "レアモンデ，英文︰Lea Monde",
+      "en": "Lea Monde",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "马兹拉雅岛",
+      "ja": "マズラヤ島，英文︰Mazlaya",
+      "en": "Mazlaya",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "高脚孤丘",
+      "ja": "ゴブレットビュート，英文︰The Goblet",
+      "en": "The Goblet",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "魔人的藏身之处",
+      "ja": "魔人の隠れ家，英文︰Sneaky Hollow",
+      "en": "Sneaky Hollow",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "魔大陆阿济兹拉",
+      "ja": "アジス・ラー，英文︰Azys Lla",
+      "en": "Azys Lla",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "魔科学研究所",
+      "ja": null,
+      "en": null,
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黄金港",
+      "ja": "クガネ，英文︰Kugane",
+      "en": "Kugane",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黑衣森林",
+      "ja": "黑衣森，英文︰The Black Shroud",
+      "en": "The Black Shroud",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黑衣森林东部林区",
+      "ja": "黒衣森：東部森林，英文︰East Shroud",
+      "en": "East Shroud",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黑衣森林中央林区",
+      "ja": "黑衣森：中央森林，英文︰Central Shroud",
+      "en": "Central Shroud",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黑衣森林北部林区",
+      "ja": "黒衣森：北部森林，英文︰North Shroud",
+      "en": "North Shroud",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黑衣森林南部林区",
+      "ja": "黒衣森：南部森林，英文︰South Shroud",
+      "en": "South Shroud",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "黑风海",
+      "ja": "テンペスト，英文︰The Tempest",
+      "en": "The Tempest",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "龙堡",
+      "ja": "ドラヴァニア，英文︰Dravania",
+      "en": "Dravania",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "龙堡内陆低地",
+      "ja": "低地ドラヴァニア，英文︰Dravanian Hinterlands",
+      "en": "Dravanian Hinterlands",
+      "source": "Category:地理 search snippet"
+    },
+    {
+      "zh": "龙堡参天高地",
+      "ja": "高地ドラヴァニア，英文︰Dravanian Forelands",
+      "en": "Dravanian Forelands",
+      "source": "Category:地理 search snippet"
+    }
+  ]
+}

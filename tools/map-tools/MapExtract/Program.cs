@@ -10,7 +10,10 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Model = Meddle.Utils.Export.Model;
 
 var jsonOptions = new JsonSerializerOptions { WriteIndented = true, IncludeFields = true };
-var catalogPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "world-catalog.json"));
+var catalogOverride = Environment.GetEnvironmentVariable("MAP_TOOLS_CATALOG");
+var catalogPath = string.IsNullOrWhiteSpace(catalogOverride)
+    ? Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "world-catalog.json"))
+    : Path.GetFullPath(catalogOverride);
 using var catalog = JsonDocument.Parse(File.ReadAllText(catalogPath));
 var targets = catalog.RootElement.GetProperty("scenes").EnumerateArray().ToDictionary(
     entry => entry.GetProperty("id").GetString()!,

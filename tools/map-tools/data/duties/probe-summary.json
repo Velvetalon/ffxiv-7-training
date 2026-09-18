@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "client": "G:\\WeGameApps\\rail_apps\\ffxiv(2000340)",
+  "sqpack": "G:\\WeGameApps\\rail_apps\\ffxiv(2000340)\\game\\sqpack",
+  "clientVersion": "2026.09.01.0000.0000",
+  "outputDirectory": "G:\\UGit\\ffxiv-7-training\\tools\\map-tools\\data\\duties",
+  "sheets": [
+    "ContentFinderCondition",
+    "ContentType",
+    "ContentUICategory",
+    "InstanceContent",
+    "Map",
+    "PartyContent",
+    "PlaceName",
+    "PublicContent",
+    "TerritoryIntendedUse",
+    "TerritoryType"
+  ],
+  "languageErrors": {
+    "ContentFinderCondition:en": [
+      "UnsupportedLanguageException",
+      "Specified excel language is not supported for the sheet. (Parameter 'language')\r\nActual value was None."
+    ],
+    "ContentType:en": [
+      "UnsupportedLanguageException",
+      "Specified excel language is not supported for the sheet. (Parameter 'language')\r\nActual value was None."
+    ],
+    "ContentUICategory:en": [
+      "UnsupportedLanguageException",
+      "Specified excel language is not supported for the sheet. (Parameter 'language')\r\nActual value was None."
+    ],
+    "PublicContent:en": [
+      "UnsupportedLanguageException",
+      "Specified excel language is not supported for the sheet. (Parameter 'language')\r\nActual value was None."
+    ],
+    "PlaceName:en": [
+      "UnsupportedLanguageException",
+      "Specified excel language is not supported for the sheet. (Parameter 'language')\r\nActual value was None."
+    ]
+  }
+}

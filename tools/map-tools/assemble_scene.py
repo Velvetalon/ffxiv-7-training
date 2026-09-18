@@ -267,9 +267,16 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
         for sample in record["samplers"]:
             sample["path"]=record["textures"][sample["index"]] if sample["index"] < len(record["textures"]) else None
             sample["map"]=texture_map.get(sample["path"])
-    map_texture=exported_path(exports,scene,catalog["mapTexture"])
-    if not map_texture.is_file():raise FileNotFoundError(f"{scene}: catalog map texture was not exported: {catalog['mapTexture']}")
-    texture_png(map_texture,target/"map.png")
+    map_texture_relative=catalog.get("mapTexture")
+    map_image_generated=False
+    if map_texture_relative is None:
+        Image.new("RGBA",(1,1),(0,0,0,0)).save(target/"map.png")
+        map_image_generated=True
+        limitations.append("Catalog has no client Map texture; map.png is a generated transparent fallback.")
+    else:
+        map_texture=exported_path(exports,scene,map_texture_relative)
+        if not map_texture.is_file():raise FileNotFoundError(f"{scene}: catalog map texture was not exported: {map_texture}")
+        texture_png(map_texture,target/"map.png")
     aetheryte=([main_aetheryte["translation"][k] for k in ["X","Y","Z"]] if main_aetheryte else None)
     place_file=ROOT/"data/PlaceName-7.0.csv"
     if not place_file.exists():place_file=ROOT/"research/PlaceName-7.0.csv"
@@ -289,7 +296,7 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
                 seen_places.add(place)
                 x,y,z=item["position"]
                 landmarks.append({"id":str(place),"name":names.get(place,str(place)),"x":x,"y":y,"z":z,"type":"landmark"})
-    report={"sourceVersion":manifest["gameVersion"],"scene":scene,**metadata(scene),"mapTexture":catalog["mapTexture"],"aetheryte":aetheryte,"spawn":aetheryte,"connections":[],"models":models,"materials":materials,"layers":layer_stats,"errors":errors,"limitations":[*manifest.get("limitations",[]),*limitations],"source":"Local installed client, read-only SqPack export","sharedGroups":len(shared_cache),"landmarks":landmarks}
+    report={"sourceVersion":manifest["gameVersion"],"scene":scene,**metadata(scene),"mapTexture":map_texture_relative,"mapTextureFallback":map_image_generated,"aetheryte":aetheryte,"spawn":aetheryte,"connections":[],"models":models,"materials":materials,"layers":layer_stats,"errors":errors,"limitations":[*manifest.get("limitations",[]),*limitations],"source":"Local installed client, read-only SqPack export","sharedGroups":len(shared_cache),"landmarks":landmarks}
     (target/"scene.json").write_text(json.dumps(report,separators=(",",":")),encoding="utf-8")
     print(json.dumps({"scene":scene,"models":len(models),"instances":sum(len(m["matrices"]) for m in models),"textures":len(texture_map),"materials":len(materials),"sharedGroups":len(shared_cache),"errors":len(errors),"examples":errors[:5]}),flush=True)
     if errors: raise RuntimeError(f"{scene}: {len(errors)} assembly errors; see scene.json")

@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-09-16T00:11:39.003Z",
+  "entrances": [
+    {
+      "dutyKey": "sastasha",
+      "fromSceneId": "s1f4",
+      "status": "source_verified",
+      "position": {
+        "x": 291.71,
+        "y": 4.49,
+        "z": -7.039
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/s1f4/manifest_19ca35619dcc904f9a449d6516651d0a5585bf30f53d8aaba8c3407e9b341cc4.json.gz",
+          "path": "maps.s1f4.legacyManifest.landmarks[?(@.name=='Sastasha')]",
+          "field": "x,y,z",
+          "value": "291.710, 4.490, -7.039"
+        },
+        {
+          "file": "work/data/PlaceName-7.0.csv",
+          "path": "row 39",
+          "field": "name",
+          "value": "Sastasha"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "s1f4",
+          "field": "territoryId",
+          "value": "s1f4"
+        }
+      ],
+      "notes": "Client PlaceName landmark on Western La Noscea (s1f4); no coordinate derivation."
+    },
+    {
+      "dutyKey": "tam-tara-deepcroft",
+      "fromSceneId": "f1f1",
+      "status": "source_verified",
+      "position": {
+        "x": -42.935,
+        "y": -34.491,
+        "z": 305.763
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/f1f1/manifest_6e3fb11db2d238aa7a3631adb00f731057b699e7d9489635aae99c29f7cea143.json.gz",
+          "path": "maps.f1f1.legacyManifest.landmarks[?(@.name=='The Tam-Tara Deepcroft')]",
+          "field": "x,y,z",
+          "value": "-42.935, -34.491, 305.763"
+        },
+        {
+          "file": "work/data/PlaceName-7.0.csv",
+          "path": "row 59",
+          "field": "name",
+          "value": "The Tam-Tara Deepcroft"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "f1f1",
+          "field": "territoryId",
+          "value": "f1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark on Central Shroud (f1f1); no coordinate derivation."
+    },
+    {
+      "dutyKey": "haukke-manor",
+      "fromSceneId": "f1f1",
+      "status": "source_verified",
+      "position": {
+        "x": -544.179,
+        "y": 79.025,
+        "z": 69.899
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/f1f1/manifest_6e3fb11db2d238aa7a3631adb00f731057b699e7d9489635aae99c29f7cea143.json.gz",
+          "path": "maps.f1f1.legacyManifest.landmarks[?(@.name=='Haukke Manor')]",
+          "field": "x,y,z",
+          "value": "-544.179, 79.025, 69.899"
+        },
+        {
+          "file": "work/data/PlaceName-7.0.csv",
+          "path": "row 59",
+          "field": "name",
+          "value": "Haukke Manor"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "f1f1",
+          "field": "territoryId",
+          "value": "f1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark on Central Shroud (f1f1); no coordinate derivation."
+    },
+    {
+      "dutyKey": "brayfloxs-longstop",
+      "fromSceneId": "s1f3",
+      "status": "source_verified",
+      "position": {
+        "x": -346.932,
+        "y": 76.017,
+        "z": 158.926
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/s1f3/manifest_f58134cb9430cf24c4ec0bb029199e0de303357b0340c41ef537b39e3962e6ec.json.gz",
+          "path": "maps.s1f3.legacyManifest.landmarks[?(@.name=='Brayfloxs Longstop')]",
+          "field": "x,y,z",
+          "value": "-346.932, 76.017, 158.926"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "s1f3",
+          "field": "territoryId",
+          "value": "s1f3"
+        }
+      ],
+      "notes": "Client PlaceName landmark in Eastern La Noscea (s1f3); exact CSV display name uses punctuation and should be normalized only at the lookup layer."
+    },
+    {
+      "dutyKey": "copperbell-mines",
+      "fromSceneId": "w1f1",
+      "status": "source_verified",
+      "position": {
+        "x": 331.492,
+        "y": 63.953,
+        "z": -228.025
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/w1f1/manifest_19c81480b82b1f6d81110bd51902d2886ea8c845bf7f2ac1db373e4b59b1ae8d.json.gz",
+          "path": "maps.w1f1.legacyManifest.landmarks[?(@.name=='Copperbell Mines')]",
+          "field": "x,y,z",
+          "value": "331.492, 63.953, -228.025"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "w1f1",
+          "field": "territoryId",
+          "value": "w1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark in Western Thanalan (w1f1); no coordinate derivation."
+    },
+    {
+      "dutyKey": "halatali",
+      "fromSceneId": "w1f3",
+      "status": "source_verified",
+      "position": {
+        "x": -340.633,
+        "y": -24.049,
+        "z": 444.019
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/w1f3/manifest_41ae20991fdab18b51a414af57b55e7c1248e72c7e1273d99c0427f1a1676cfa.json.gz",
+          "path": "maps.w1f3.legacyManifest.landmarks[?(@.name=='Halatali')]",
+          "field": "x,y,z",
+          "value": "-340.633, -24.049, 444.019"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "w1f3",
+          "field": "territoryId",
+          "value": "w1f3"
+        }
+      ],
+      "notes": "Client PlaceName landmark in Eastern Thanalan (w1f3); no coordinate derivation."
+    },
+    {
+      "dutyKey": "toto-rak",
+      "fromSceneId": "f1f3",
+      "status": "source_verified",
+      "position": {
+        "x": -87.96,
+        "y": 7.568,
+        "z": -175.445
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/f1f3",
+          "path": "maps.f1f3.legacyManifest.landmarks[?(@.name=='The Toto-Rak')]",
+          "field": "x,y,z",
+          "value": "-87.960, 7.568, -175.445"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "f1f3",
+          "field": "territoryId",
+          "value": "f1f3"
+        }
+      ],
+      "notes": "Manifest filename hash must be read from the f1f3 directory; landmark coordinates themselves are client-extracted."
+    },
+    {
+      "dutyKey": "aurum-vale",
+      "fromSceneId": "r1f1",
+      "status": "source_verified",
+      "position": {
+        "x": -343.458,
+        "y": 218.677,
+        "z": 682.798
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/r1f1/manifest_816ccef53b15ad73fb137f22ff5a59ccae5d66ca49870473af801499483f460c.json.gz",
+          "path": "maps.r1f1.legacyManifest.landmarks[?(@.name=='Aurum Vale')]",
+          "field": "x,y,z",
+          "value": "-343.458, 218.677, 682.798"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "r1f1",
+          "field": "territoryId",
+          "value": "r1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark in the Coerthas Central side of r1f1; no coordinate derivation."
+    },
+    {
+      "dutyKey": "snowcloak",
+      "fromSceneId": "r1f1",
+      "status": "source_verified",
+      "position": {
+        "x": -969.782,
+        "y": 282.758,
+        "z": -11.626
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/r1f1/manifest_816ccef53b15ad73fb137f22ff5a59ccae5d66ca49870473af801499483f460c.json.gz",
+          "path": "maps.r1f1.legacyManifest.landmarks[?(@.name=='Snowcloak')]",
+          "field": "x,y,z",
+          "value": "-969.782, 282.758, -11.626"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "r1f1",
+          "field": "territoryId",
+          "value": "r1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark in r1f1; no coordinate derivation."
+    },
+    {
+      "dutyKey": "dzemael-darkhold",
+      "fromSceneId": "r1f1",
+      "status": "source_verified",
+      "position": {
+        "x": -64.481,
+        "y": 227.117,
+        "z": 341.624
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/r1f1/manifest_816ccef53b15ad73fb137f22ff5a59ccae5d66ca49870473af801499483f460c.json.gz",
+          "path": "maps.r1f1.legacyManifest.landmarks[?(@.name=='Dzemael Darkhold')]",
+          "field": "x,y,z",
+          "value": "-64.481, 227.117, 341.624"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "r1f1",
+          "field": "territoryId",
+          "value": "r1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark in r1f1; no coordinate derivation."
+    },
+    {
+      "dutyKey": "stone-vigil",
+      "fromSceneId": "r1f1",
+      "status": "source_verified",
+      "position": {
+        "x": -691.058,
+        "y": 231.991,
+        "z": -531.383
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/r1f1/manifest_816ccef53b15ad73fb137f22ff5a59ccae5d66ca49870473af801499483f460c.json.gz",
+          "path": "maps.r1f1.legacyManifest.landmarks[?(@.name=='The Stone Vigil')]",
+          "field": "x,y,z",
+          "value": "-691.058, 231.991, -531.383"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "r1f1",
+          "field": "territoryId",
+          "value": "r1f1"
+        }
+      ],
+      "notes": "Client PlaceName landmark in r1f1; normalized lookup key must preserve the canonical The-prefixed display name."
+    },
+    {
+      "dutyKey": "great-gubal-library",
+      "fromSceneId": "d2f2",
+      "status": "source_verified",
+      "position": {
+        "x": 332.617,
+        "y": 345.13,
+        "z": 764.045
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/d2f2/manifest_03a9688a03044fa0b10ff976992a5148bed90dda7070545deb200f8948295684.json.gz",
+          "path": "maps.d2f2.legacyManifest.landmarks[?(@.name=='The Great Gubal Library')]",
+          "field": "x,y,z",
+          "value": "332.617, 345.130, 764.045"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "d2f2",
+          "field": "territoryId",
+          "value": "d2f2"
+        }
+      ],
+      "notes": "Client PlaceName landmark in d2f2; no coordinate derivation."
+    },
+    {
+      "dutyKey": "matoyas-cave",
+      "fromSceneId": "d2f2",
+      "status": "source_verified",
+      "position": {
+        "x": -482.146,
+        "y": 145,
+        "z": 785.724
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/d2f2/manifest_03a9688a03044fa0b10ff976992a5148bed90dda7070545deb200f8948295684.json.gz",
+          "path": "maps.d2f2.legacyManifest.landmarks[?(@.name==\"Matoya's Cave\")]",
+          "field": "x,y,z",
+          "value": "-482.146, 145.000, 785.724"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "d2f2",
+          "field": "territoryId",
+          "value": "d2f2"
+        }
+      ],
+      "notes": "Client PlaceName landmark in d2f2; no coordinate derivation."
+    },
+    {
+      "dutyKey": "saint-mociannes-arboretum",
+      "fromSceneId": "d2f2",
+      "status": "source_verified",
+      "position": {
+        "x": -697.389,
+        "y": 242.21,
+        "z": 134.611
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/d2f2/manifest_03a9688a03044fa0b10ff976992a5148bed90dda7070545deb200f8948295684.json.gz",
+          "path": "maps.d2f2.legacyManifest.landmarks[?(@.name==\"Saint Mocianne's Arboretum\")]",
+          "field": "x,y,z",
+          "value": "-697.389, 242.210, 134.611"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "d2f2",
+          "field": "territoryId",
+          "value": "d2f2"
+        }
+      ],
+      "notes": "Client PlaceName landmark in d2f2; no coordinate derivation."
+    },
+    {
+      "dutyKey": "bardams-mettle",
+      "fromSceneId": "e3f3",
+      "status": "source_verified",
+      "position": {
+        "x": -508.319,
+        "y": 76.854,
+        "z": -519.803
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/e3f3/manifest_5675be6845febaa5731e2fb1b048053575dbdf35868e55c56025e65facb8d933.json.gz",
+          "path": "maps.e3f3.legacyManifest.landmarks[?(@.name==\"Bardam's Mettle\")]",
+          "field": "x,y,z",
+          "value": "-508.319, 76.854, -519.803"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "e3f3",
+          "field": "territoryId",
+          "value": "e3f3"
+        }
+      ],
+      "notes": "Client PlaceName landmark in e3f3; no coordinate derivation."
+    },
+    {
+      "dutyKey": "everkeep",
+      "fromSceneId": "x6f2",
+      "status": "source_verified",
+      "position": {
+        "x": 33.163,
+        "y": 150,
+        "z": -328.26
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/x6f2/manifest_b3ba052e968cdefd0b095f7c3e0f29bda3210c30cf6e664c16bec1c208db6b01.json.gz",
+          "path": "maps.x6f2.legacyManifest.landmarks[?(@.name=='Everkeep')]",
+          "field": "x,y,z",
+          "value": "33.163, 150.000, -328.260"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "x6f2",
+          "field": "territoryId",
+          "value": "x6f2"
+        }
+      ],
+      "notes": "Client PlaceName landmark in x6f2; no coordinate derivation."
+    },
+    {
+      "dutyKey": "archeo-alexandria",
+      "fromSceneId": "x6f2",
+      "status": "source_verified",
+      "position": {
+        "x": -154.844,
+        "y": 150,
+        "z": -122.878
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/x6f2/manifest_b3ba052e968cdefd0b095f7c3e0f29bda3210c30cf6e664c16bec1c208db6b01.json.gz",
+          "path": "maps.x6f2.legacyManifest.landmarks[?(@.name=='Archeo Alexandria')]",
+          "field": "x,y,z",
+          "value": "-154.844, 150.000, -122.878"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "x6f2",
+          "field": "territoryId",
+          "value": "x6f2"
+        }
+      ],
+      "notes": "Client PlaceName landmark in x6f2; no coordinate derivation."
+    },
+    {
+      "dutyKey": "proto-alexandria",
+      "fromSceneId": "x6f3",
+      "status": "source_verified",
+      "position": {
+        "x": 666.643,
+        "y": 100,
+        "z": 207.264
+      },
+      "evidence": [
+        {
+          "file": "work/asset-performance/packed-all-final/maps/x6f3/manifest_a8c9b5a32ab8d69eb49b2acdfbe9ac5e818e9ae74e168ed64ad31649c5b9f8a9.json.gz",
+          "path": "maps.x6f3.legacyManifest.landmarks[?(@.name=='Proto Alexandria')]",
+          "field": "x,y,z",
+          "value": "666.643, 100.000, 207.264"
+        },
+        {
+          "file": "work/data/TerritoryType-7.0.csv",
+          "path": "x6f3",
+          "field": "territoryId",
+          "value": "x6f3"
+        }
+      ],
+      "notes": "Client PlaceName landmark in x6f3; no coordinate derivation."
+    }
+  ],
+  "unresolved": []
+}

@@ -11,6 +11,8 @@
     "validate:babylon-default": "node scripts/validation/default-entry.mjs",
     "validate-babylon": "node scripts/validate-babylon.mjs",
     "validate:visual-references": "node scripts/validate-visual-references.mjs",
+    "catalog:duties": "node scripts/duties/build-catalog.mjs",
+    "test:duties": "node tests/duties/runtime.test.mjs",
     "benchmark:babylon": "node scripts/benchmark-babylon.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",

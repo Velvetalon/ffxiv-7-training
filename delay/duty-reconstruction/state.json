@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "taskId": "20260918-duty-reconstruction",
+  "snapshotAtUtc": "2026-09-18T05:29:55Z",
+  "repository": "G:/UGit/ffxiv-7-training",
+  "branch": "master",
+  "baselineHead": "48f25c16baab9522dd4b407e30412b1096936162",
+  "remote": "https://github.com/Velvetalon/ffxiv-7-training.git",
+  "scope": {
+    "existingPublicScenes": 65,
+    "oldExcludedTerritories": 942,
+    "supplementaryCurrentTerritories": 130,
+    "newResourceRootScenes": 531,
+    "fullRuntimeScenes": 596,
+    "dutyRecords": 1072,
+    "sourceVerifiedEntrances": 18
+  },
+  "rebuild": {
+    "coordinatorCommand": "py -3 tools/map-tools/rebuild_hidden_maps.py --client G:/WeGameApps/rail_apps/ffxiv(2000340) --work work/duty-build/full --state work/duty-build/full/rebuild-state.json --workers 4 --chunk-size 12 --package-workers 2",
+    "snapshotProcessId": 275824,
+    "processWasRunning": true,
+    "statePath": "work/duty-build/full/rebuild-state.json",
+    "authoritativeStatusPath": "work/duty-build/full/packed/<sceneId>/package-state.json",
+    "stateCounts": {
+      "complete": 176,
+      "failed": 18,
+      "queued": 337
+    },
+    "packageStateCheckedAtUtc": "2026-09-18T05:37:37Z",
+    "packageStateCounts": {
+      "complete": 197
+    },
+    "failuresAreFinal": false
+  },
+  "lighting": {
+    "parsedScenes": 523,
+    "totalScenes": 531,
+    "lights": 69207,
+    "envSets": 4887,
+    "envLocations": 1618,
+    "aggregateJson": "work/duty-build/source-lights.hidden.json",
+    "runtimeIntegration": "pending-lazy-per-scene"
+  },
+  "audio": {
+    "sourceScenesResolved": 531,
+    "playableScenes": 173,
+    "bgmNullScenes": 345,
+    "unknownScenes": 13,
+    "extractionErrors": 0,
+    "manifest": "work/duty-build/audio-hidden/audio-source-manifest.json",
+    "runtimeIntegration": "pending"
+  },
+  "huijiNames": {
+    "trackedDutyMatches": 421,
+    "trackedGeographyMatches": 279,
+    "structuredInstancePagesFetched": 427,
+    "structuredEntriesParsed": 427,
+    "structuredEvidencePath": "work/wiki/huiji-instance-data-current.json",
+    "structuredMergeStatus": "pending"
+  },
+  "deployment": {
+    "previewBaseUrl": "https://yuluo.site/ff14-web-babylon-preview/",
+    "mainSiteIsProtected": true,
+    "status": "not-deployed-for-this-task"
+  }
+}

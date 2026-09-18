@@ -1,0 +1,27 @@
+{
+  "existingScenes": 65,
+  "excludedTerritories": 942,
+  "supplementaryCurrentTerritories": 130,
+  "newRootScenes": 531,
+  "fullScenes": 596,
+  "duties": 1072,
+  "sourceVerifiedEntrances": 18,
+  "entranceAliases": 18,
+  "unmatchedEntrances": [],
+  "categories": {
+    "alliance": 24,
+    "dungeon": 168,
+    "event": 171,
+    "high_end": 44,
+    "housing": 12,
+    "internal": 41,
+    "other_instance": 275,
+    "pvp": 51,
+    "raid": 25,
+    "trial": 261
+  },
+  "mapTextureFallbackScenes": 42,
+  "contentFinderLinked": 799,
+  "wikiDutyNames": 421,
+  "wikiGeographyNames": 279
+}

@@ -32,4 +32,6 @@ tools/audio-tools/.dotnet-home/
 tools/audio-tools/.nuget/
 tools/map-tools/MapNameProbe/bin/
 tools/map-tools/MapNameProbe/obj/
+tools/map-tools/DutySheetProbe/bin/
+tools/map-tools/DutySheetProbe/obj/
 public/sandbox/audio/

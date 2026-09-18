@@ -1,10 +1,11 @@
 """Catalog-backed paths and metadata for every supported world scene."""
 import json
+import os
 from functools import lru_cache
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parent
-CATALOG = ROOT / "world-catalog.json"
+CATALOG = Path(os.environ.get("MAP_TOOLS_CATALOG", ROOT / "world-catalog.json"))
 
 
 @lru_cache(maxsize=1)
@@ -17,8 +18,11 @@ def catalog():
         root = PurePosixPath(scene["root"])
         if not str(root).startswith("bg/") or root.suffix:
             raise ValueError(f"{scene['id']}: invalid catalog root {scene['root']!r}")
-        if not scene["mapTexture"].startswith("ui/map/"):
+        map_texture = scene.get("mapTexture")
+        if map_texture is not None and not map_texture.startswith("ui/map/"):
             raise ValueError(f"{scene['id']}: invalid catalog mapTexture")
+        if map_texture is None and not scene.get("mapTextureFallback"):
+            raise ValueError(f"{scene['id']}: missing mapTexture without mapTextureFallback")
     return document, scenes
 
 

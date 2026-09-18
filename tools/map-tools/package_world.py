@@ -166,7 +166,7 @@ def main(args):
     available = discover(source); selected = args.scenes or list(available)
     missing = [scene for scene in selected if scene not in available]
     if missing: raise ValueError(f"Unknown source scenes: {', '.join(missing)}")
-    report_path = destination / "package-report.json"; progress_path = (Path(args.progress).resolve() if args.progress else TOOLS / "work/world-package-progress.json")
+    report_path = (Path(args.report).resolve() if args.report else destination / "package-report.json"); progress_path = (Path(args.progress).resolve() if args.progress else TOOLS / "work/world-package-progress.json")
     report = {"state": "running", "pid": os.getpid(), "source": str(source), "destination": str(destination), "cache": str(cache), "policy": POLICY, "policySha256": policy_sha, "scenes": {}}
     def save_progress(current=None, error=None):
         write_json(report_path, report)
@@ -192,5 +192,5 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=__doc__); parser.add_argument("--source", type=Path, required=True); parser.add_argument("--destination", type=Path, required=True); parser.add_argument("--public-root", type=Path); parser.add_argument("--cache", type=Path); parser.add_argument("--progress", type=Path); parser.add_argument("--scenes", nargs="+"); parser.add_argument("--workers", type=int, default=4)
+    parser = argparse.ArgumentParser(description=__doc__); parser.add_argument("--source", type=Path, required=True); parser.add_argument("--destination", type=Path, required=True); parser.add_argument("--public-root", type=Path); parser.add_argument("--cache", type=Path); parser.add_argument("--progress", type=Path); parser.add_argument("--report", type=Path); parser.add_argument("--scenes", nargs="+"); parser.add_argument("--workers", type=int, default=4)
     main(parser.parse_args())
