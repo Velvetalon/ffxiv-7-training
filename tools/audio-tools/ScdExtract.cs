@@ -44,11 +44,12 @@ foreach (var id in new uint[] { 1003, 1020, 1035 })
 var territorySheet = game.GetExcelSheet<TerritoryRow>();
 foreach (var id in new uint[] { 128, 129, 130, 131, 132, 133 })
     Console.Error.WriteLine($"Territory row {id}: BGM={territorySheet.GetRowOrDefault(id)?.Bgm.ToString() ?? "<missing>"}");
-var soundLgb = game.GetFileFromDisk<LgbFile>(lgbPath, $"bg/ffxiv/audio/{sceneId}/level/sound.lgb");
+// Direct --scd runs have no scene layout; the sound.lgb path stays optional.
+var soundLgb = File.Exists(lgbPath) ? game.GetFileFromDisk<LgbFile>(lgbPath, $"bg/ffxiv/audio/{sceneId}/level/sound.lgb") : null;
 var paths = new HashSet<string>(explicitScd.Select(NormalizePath), StringComparer.OrdinalIgnoreCase);
 var references = new List<SoundReference>();
 
-foreach (var layer in soundLgb.Layers)
+foreach (var layer in soundLgb?.Layers ?? Enumerable.Empty<Lumina.Data.Parsing.Layer.LayerCommon.Layer>())
 foreach (var instance in layer.InstanceObjects)
 {
     if (instance.Object is not LayerCommon.SoundInstanceObject sound) continue;
@@ -126,6 +127,21 @@ var chosen = sceneCandidates
     .ThenBy(candidate => candidate.Path, StringComparer.OrdinalIgnoreCase)
     .ThenBy(candidate => candidate.AudioIndex)
     .FirstOrDefault();
+Manifest? previous = null;
+var manifestPath = Path.Combine(outputRoot, "audio-source-manifest.json");
+if (File.Exists(manifestPath))
+{
+    try
+    {
+        var old = JsonSerializer.Deserialize<Manifest>(File.ReadAllText(manifestPath), new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        if (old != null)
+        {
+            foreach (var pair in old.Resources) resources.TryAdd(pair.Key, pair.Value);
+            previous = old;
+        }
+    }
+    catch { /* rebuild from scratch if the old manifest is unreadable */ }
+}
 var manifest = new Manifest(
     1,
     new SourceInfo("Lumina", "2.4.2", "SCD OggVorbis decryption/format parser; source client read through MapExtract.cmd raw", sceneId),
