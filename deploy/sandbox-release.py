@@ -144,6 +144,32 @@ def merged_ticket_manifest(world: dict, sandbox: dict) -> dict:
     }
 
 
+def validate_sandbox_manifests(root: Path) -> dict:
+    local = read_json(root / "manifest.json")
+    cdn = read_json(root / "manifest.cdn.json")
+    local_bundles = local.get("bundles")
+    cdn_bundles = cdn.get("bundles")
+    if not isinstance(local_bundles, dict) or not local_bundles:
+        raise ReleaseError("sandbox manifest.json has no bundles")
+    if not isinstance(cdn_bundles, dict) or set(cdn_bundles) != set(local_bundles):
+        raise ReleaseError("sandbox manifest.cdn.json bundles differ from manifest.json")
+    for bundle_id, local_bundle in local_bundles.items():
+        cdn_bundle = cdn_bundles[bundle_id]
+        if not isinstance(local_bundle, dict) or not isinstance(cdn_bundle, dict):
+            raise ReleaseError(f"sandbox bundle {bundle_id} is not an object")
+        local_metadata = {key: value for key, value in local_bundle.items() if key != "url"}
+        cdn_metadata = {key: value for key, value in cdn_bundle.items() if key != "url"}
+        if local_metadata != cdn_metadata:
+            raise ReleaseError(f"sandbox bundle metadata differs for {bundle_id}")
+        url = cdn_bundle.get("url")
+        if not isinstance(url, str) or not url.startswith(CDN_BASE):
+            raise ReleaseError(f"sandbox bundle URL is not pinned to the CDN: {bundle_id}")
+    for key in ("schemaVersion", "resources", "aliases", "characters", "mounts", "sceneBgm", "skills", "rideBgm", "actionSfx", "defaultAppearance"):
+        if local.get(key) != cdn.get(key):
+            raise ReleaseError(f"sandbox manifest.cdn.json {key} differs from manifest.json")
+    return cdn
+
+
 def require_freeze(ref: str | None) -> str:
     if not ref:
         raise ReleaseError("--freeze-ref is required for a real prepare")
@@ -208,7 +234,7 @@ def prepare(args: argparse.Namespace) -> dict:
     prepared = Path(args.out or DEFAULT_OUT_ROOT / f"sandbox-release-{release_id}").resolve()
     sandbox = validate_manifest(sandbox_root, "sandbox")
     world = validate_manifest(world_root, "world", verify_assets=False)
-    sandbox_manifest = read_json(sandbox_root / "manifest.cdn.json")
+    sandbox_manifest = validate_sandbox_manifests(sandbox_root)
     ticket = merged_ticket_manifest(world, sandbox)
     plan = {
         "dryRun": not args.apply,
@@ -270,6 +296,7 @@ def publish_assets(args: argparse.Namespace) -> dict:
     world_manifest = validate_manifest(world_root, "world", verify_assets=False)
     sandbox_root = Path(args.sandbox_release).resolve()
     sandbox_manifest = validate_manifest(sandbox_root, "sandbox")
+    validate_sandbox_manifests(sandbox_root)
     prepared = None
     if args.apply and args.execute and args.prepared_dir:
         prepared = Path(args.prepared_dir).resolve()
