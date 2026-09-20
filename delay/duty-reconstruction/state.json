@@ -1,13 +1,13 @@
 {
     "schemaVersion": 2,
     "taskId": "20260918-duty-reconstruction",
-    "snapshotAtUtc": "2026-09-20T07:51:29Z",
+    "snapshotAtUtc": "2026-09-21T05:30:00Z",
     "repository": "G:/UGit/ffxiv-7-training",
     "branch": "master",
-    "baselineHead": "0f26a0de54cde47cfbd2d146166a600624801329",
+    "baselineHead": "c9198082a8227794af015caa1f5e4a0b4c780c24",
     "remote": "https://github.com/Velvetalon/ffxiv-7-training.git",
     "pushCommand": "git -c http.proxy=http://127.0.0.1:7890 push origin master",
-    "deploymentStatus": "deployed-to-main-site-20260920T091500Z-9f9e6929",
+    "deploymentStatus": "deployed-to-main-site-20260920T194027Z-55619b7f-babylon-596-scenes",
   "scope": {
     "existingPublicScenes": 65,
     "oldExcludedTerritories": 942,
@@ -67,13 +67,17 @@
     ]
   },
   "federatedRelease": {
-    "path": "D:/ffxiv-duty-asset-pipeline/packed-correct",
-    "releaseId": "pending-local-bundle-verification",
+    "path": "D:/ffxiv-duty-asset-pipeline/collision-596",
+    "releaseId": "duty-full-20260920T052743Z",
     "maps": 596,
-    "publishFiles": null,
-    "catalog": null,
+    "publishFiles": 23039,
+    "catalog": "catalog_1f2a57425c02765c4f0b514c21c2e06ed7089aafa189448919c43685985c1497.json",
     "staticPreviewRoot": null,
-    "historicalReleaseUnavailable": true
+    "historicalReleaseUnavailable": true,
+    "deployedReleaseId": "20260920T194027Z-55619b7f",
+    "ticketObjects": 23124,
+    "cosUploaded": 20969,
+    "cosSkipped": 2155
   },
   "visualQA": {
     "closureTask": "SC-004",
@@ -114,14 +118,9 @@
     "localFocusedDefaultEntry": "pass:e3t1"
   },
   "remainingActions": [
-    "regenerate g3fb and n4gb after collision fallback spawn fix",
-    "finish local bundle verification with expectedConnections=145",
-    "rerun six shard-1 gzip failures with locally regenerated preview server and corrected helper",
-    "re-capture and diagnose g3fb",
-    "re-capture and diagnose n4f1 interaction",
-    "re-capture and diagnose n5r9 readiness",
-    "score all runtime screenshots in batches of at most 10 via image-capable subagent",
-    "close SC-004 only after explicit accepted or root-caused outcome for all 180 positions"
+    "raise Babylon SOURCE_LIGHT_BUDGET beyond 4 or implement distance/priority culling to render more per-scene source lights",
+    "re-test the 20 AVFX definitions in runtime (currently runtimeStatus NOT_TESTED, reviewStatus PENDING)",
+    "finish historical 180-position visual scoring if that evidence is still required; live 596-scene smoke and hidden-duty browser checks already PASS"
   ],
   "validationAtSnapshot": {
     "syntaxChecks": "passed",
@@ -132,6 +131,9 @@
     "localReferenceAnalysis": "596 scenes, 277566 resources, 51447 materials, 55299744787 bytes, 35 warnings",
     "geometryResume": "129 missing packages regenerated; 531/531 complete",
     "runtimeCatalog": "596 scenes generated; duty catalog refreshed",
-    "bundleVerification": "incomplete; invalid expectedConnections=0 run stopped; reuse run pending"
+    "bundleVerification": "complete; collision-596 release 23039 objects verified; deployed as 20260920T194027Z-55619b7f",
+    "babylonFastValidation596": "PASS; smoke 596/596, representatives 4/4; 11 risk scenes individually PASS",
+    "liveBabylonCheck": "a2d1/x6f2/n4gb imported with navigation and zero page errors",
+    "mainSiteEngine": "Babylon.js 9.26.0; mapCount 596; threeModules 0"
   }
 }

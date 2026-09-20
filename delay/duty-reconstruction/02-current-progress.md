@@ -100,3 +100,34 @@ Deployed to the main site /ff14-web/ on 2026-09-20 by explicit user authorizatio
 - Fixed no-collision fallback spawn generation to use model instance translations when layout translations are absent; `g3fb` and `n4gb` must be regenerated and re-analyzed before accepting bootstrap coverage.
 - Local reference analysis completed: 596 scenes, 277,566 resources, 51,447 materials, 55,299,744,787 resource bytes, 35 material-without-sampler warnings.
 - Bundle planner was first stopped after an invalid `--expected-connections 0` attempt; the correct 145-connection reuse run is incomplete. Keep all D: outputs out of Git.
+
+## Full 596-Scene Release 2026-09-21
+
+The main site `/ff14-web/` now serves the native Babylon client for all 596 scenes. Three.js is no longer the main entry.
+
+Release: `20260920T194027Z-55619b7f`; previous `releases/20260920T091500Z-9f9e6929`.
+
+* Code freeze: `c9198082a8227794af015caa1f5e4a0b4c780c24` (pushed to origin/master).
+* Archive: 5,924,122 bytes, SHA-256 `bae61c84799237b8d23a66bc9144b36c8f50c8a36c449de154963ce3e49679fa`.
+* World release: `duty-full-20260920T052743Z`, 23,039 objects (22,442 packs + 596 map manifests + 1 catalog), from `D:/ffxiv-duty-asset-pipeline/collision-596`.
+* Sandbox release: `sandbox-fbfee4f9b21c2709`, 85 objects, 84 bundles, 596 scene BGM mappings.
+* Ticket manifest: 23,124 objects. `MAX_MANIFEST_ASSETS` raised from 20,000 to 50,000.
+* COS: 20,969 objects uploaded (50,690,597,044 bytes), 2,155 skipped (6,720,268,465 bytes), zero failures; `current.json` untouched.
+
+### Verification evidence
+
+* Fast Validation (Babylon, 596 scenes): smoke 596/596 PASS, representatives 4/4 PASS, status PASS.
+* Eleven risk scenes re-tested individually and all PASS: a2e2, a2fa, a2fd, g3fb, n4gb, o1a1, o1fa, r1e2, s1b7, x6f2, z1j1.
+* Live `/ff14-web/build-info.json`: engine Babylon.js 9.26.0, mapCount 596, threeModules 0, appBase /ff14-web/.
+* Live `/ff14-web/extracted/active.json`: 596 scenes, runId duty-full-20260920T052743Z, ticket mode.
+* Live `/ff14-web/duties/catalog.json` 1072 entries, entrances 18, VFX definitions 20, duty-lights manifest 531 scenes (523 complete + 8 parser-unavailable).
+* Live `/ff14-web` 308, `/api/healthz` 200, `/` 200, `/ff14-assets/healthz` 200, `/ff14-assets/ticket?mode=batch` 200.
+* Live Babylon browser check on hidden duty scenes: a2d1 (1714 meshes, 390 placements), x6f2 (4621 meshes, 4419 placements), n4gb (1880 meshes, 473 placements) all isImported=true, navigation=true, zero page/console errors.
+* Live duty menu renders 1072 entries across 22 pages.
+
+### Known limitations carried forward
+
+* Babylon `SOURCE_LIGHT_BUDGET = 4` admits only the four brightest source lights per scene out of ~325 average; per-scene source lighting is therefore partial by design, not complete.
+* The Three.js runtime never received per-scene LGB local lights; that gap is now moot for the main site but the old Three.js path is retained in source.
+* 8 hidden scenes remain lighting parser-unavailable and fall back to the existing environment system.
+* 20 AVFX definitions are runtimeStatus NOT_TESTED / reviewStatus PENDING; only runtime lifecycle is tested.
