@@ -366,7 +366,7 @@ async function writeJson(file, value) {
   await fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
 }
 
-async function runValidation({ url, scenes, timeoutMs = 30000, concurrency = 2, out = DEFAULT_OUT, browserPath, playwrightModulePath, representative = false, observeMs = 1500, headed = false }) {
+async function runValidation({ url, scenes, timeoutMs = 30000, concurrency = 2, out = DEFAULT_OUT, browserPath, playwrightModulePath, representative = false, observeMs = 1500, headed = false, browser: suppliedBrowser = null }) {
   if (!url) throw new Error('url is required');
   const appUrl = normalizeUrl(url);
   const outPath = path.resolve(out);
@@ -388,10 +388,17 @@ async function runValidation({ url, scenes, timeoutMs = 30000, concurrency = 2, 
   const runStartedAt = Date.now();
   const results = [];
   let globalError = null;
-  let browser = null;
+  let browser = suppliedBrowser;
+  let ownsBrowser = false;
   try {
     const { chromium } = await loadPlaywright(playwrightModulePath);
-    browser = await chromium.launch({ executablePath: browserPath || process.env.BROWSER_PATH || undefined, headless: !headed, args: ['--enable-webgl', '--ignore-gpu-blocklist', '--use-gl=angle', '--use-angle=gl', '--enable-unsafe-swiftshader'] });
+    // SwiftShader is the deterministic WebGL backend on the validation host.
+    // The default ANGLE GL path intermittently reports `WebGL not supported`
+    // when multiple isolated contexts are created for the all-map smoke run.
+    if (!browser) {
+      browser = await chromium.launch({ executablePath: browserPath || process.env.BROWSER_PATH || undefined, headless: !headed, args: ['--enable-webgl', '--ignore-gpu-blocklist', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+      ownsBrowser = true;
+    }
     const limit = Math.max(1, Math.min(Number(concurrency) || 2, sceneIds.length));
     let next = 0;
     await Promise.all(Array.from({ length: limit }, async () => {
@@ -403,7 +410,7 @@ async function runValidation({ url, scenes, timeoutMs = 30000, concurrency = 2, 
   } catch (error) {
     globalError = error.message;
   } finally {
-    await browser?.close();
+    if (ownsBrowser) await browser?.close();
   }
 
   const failures = results.filter(result => result.status !== 'pass');
@@ -479,6 +486,19 @@ export async function runRepresentative(options) {
   return runValidation({ ...options, representative: true, concurrency: 1 });
 }
 
+export async function runRepresentativeWithBrowser(options, browser) {
+  return runValidation({ ...options, browser, representative: true, concurrency: 1 });
+}
+
+export async function createValidationBrowser({ browserPath, playwrightModulePath, headed = false } = {}) {
+  const { chromium } = await loadPlaywright(playwrightModulePath);
+  return chromium.launch({ executablePath: browserPath || process.env.BROWSER_PATH || undefined, headless: !headed, args: ['--enable-webgl', '--ignore-gpu-blocklist', '--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+}
+
+export async function runSmokeWithBrowser(options, browser) {
+  return runValidation({ ...options, browser, representative: false });
+}
+
 // Shared by bounded feature validators that need the same Playwright module
 // resolution as the fast smoke/representative checks.
-export { loadPlaywright };
+export { catalogSceneIds, loadPlaywright };
