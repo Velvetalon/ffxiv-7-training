@@ -5,7 +5,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const MAX_MANIFEST_ASSETS = 20_000;
+const MAX_MANIFEST_ASSETS = 50_000;
 const MAX_BATCH_KEYS = 256;
 const MAX_BATCH_BODY_BYTES = 64 * 1024;
 const MAX_LEGACY_RESPONSE_BYTES = 4 * 1024 * 1024;

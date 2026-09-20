@@ -129,8 +129,8 @@ def merged_ticket_manifest(world: dict, sandbox: dict) -> dict:
     if entry not in paths:
         raise ReleaseError("world entry is not in its allowlist")
     files = [*world_files, *sandbox_files]
-    if len(files) > 20_000:
-        raise ReleaseError(f"merged ticket manifest has {len(files)} objects; ticket server limit is 20000")
+    if len(files) > 50_000:
+        raise ReleaseError(f"merged ticket manifest has {len(files)} objects; ticket server limit is 50000")
     return {
         "schemaVersion": 1,
         "releaseId": f"sandbox-web-{sandbox['releaseId']}",
