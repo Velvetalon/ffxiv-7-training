@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import time
 import uuid
@@ -23,6 +24,12 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def relative_base(target, origin):
+    """Runtime base for a scene directory, resolved against the emitted catalog."""
+    relative = os.path.relpath(Path(target).resolve(), Path(origin).resolve())
+    return relative.replace(os.sep, "/") + "/"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--public-active", type=Path, default=PROJECT / "public/extracted/active.json")
@@ -35,6 +42,7 @@ def main():
     public = json.loads(args.public_active.read_text(encoding="utf-8"))
     full = json.loads(args.full_catalog.read_text(encoding="utf-8"))
     duties = json.loads(args.duty_catalog.read_text(encoding="utf-8"))
+    output_parent = args.output.parent
     public_ids = set(public["scenes"])
     hidden_catalog = {item["id"]: item for item in full["scenes"] if item["id"] not in public_ids}
     scenes = {}
@@ -49,7 +57,7 @@ def main():
                 missing.append(scene_id)
                 continue
             scenes[scene_id] = {
-                "base": f"../full/packed/{scene_id}/",
+                "base": relative_base(args.packed / scene_id, output_parent),
                 "clientVersion": manifest["sourceVersion"],
                 "name": metadata["name"],
                 "fullSceneName": metadata["name"],
@@ -69,7 +77,10 @@ def main():
         source = args.public_active.parent / record["base"] / "scene.json"
         if not source.is_file():
             raise ValueError(f"Public scene source missing: {scene_id}")
-        item = {**record, "base": f"../../public/extracted/{record['base']}"}
+        item = {
+            **record,
+            "base": relative_base(args.public_active.parent / record["base"], output_parent),
+        }
         scenes[scene_id] = item
 
     scene_status = {}

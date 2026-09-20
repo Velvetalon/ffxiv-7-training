@@ -118,22 +118,34 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
             for m in instances:append(mesh,m)
         except Exception as e:failures.append({"file":asset,"error":str(e)})
     source_triangle_count=len(triangles)//9
+    scene_path=Path(destination)/scene/"scene.json"
+    scene_data=json.loads(scene_path.read_text(encoding="utf-8"))
     collision_fallback=None
     if source_triangle_count==0:
         # Some event/interior territories intentionally have no PCB collision.
         # Keep them renderable with a clearly marked navigation plane; this is
         # not presented as source collision data.
+        fallback_source="layout translation median"
+        if not fallback_points:
+            # A few event scenes have no layout translation records even though
+            # their model instances are well away from the origin. Use those
+            # instance translations so the synthetic plane and spawn overlap
+            # the actual scene geometry.
+            for model in scene_data.get("models", []):
+                for values in model.get("matrices", []):
+                    if len(values) >= 15 and all(math.isfinite(float(value)) for value in values[12:15]):
+                        fallback_points.append(tuple(float(value) for value in values[12:15]))
+            fallback_source="model instance translation median"
         center=[statistics.median(point[axis] for point in fallback_points) if fallback_points else 0 for axis in range(3)]
         fallback_radius=[max(abs(point[axis]) for point in fallback_points)+100 for axis in (0,2)] if fallback_points else []
         radius=max([200.0, *fallback_radius])
         x,y,z=center; a=(-radius+x,y,-radius+z);b=(radius+x,y,-radius+z);c=(radius+x,y,radius+z);d=(-radius+x,y,radius+z)
         triangles.extend((*a,*b,*c,*a,*c,*d))
-        collision_fallback={"kind":"ground-plane","source":"layout translation median","center":[round(value,4) for value in center],"radius":radius,"sourceTriangles":0}
+        collision_fallback={"kind":"ground-plane","source":fallback_source,"center":[round(value,4) for value in center],"radius":radius,"sourceTriangles":0}
     destination=Path(destination)/scene/"collision.bin"
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("wb") as f:triangles.tofile(f)
     scene_path=destination.with_name("scene.json")
-    scene_data=json.loads(scene_path.read_text(encoding="utf-8"))
     payload_bytes=triangles.tobytes()
     payload_sha256=hashlib.sha256(payload_bytes).hexdigest()
     if scene_data.get("aetheryte"):

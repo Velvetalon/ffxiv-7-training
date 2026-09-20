@@ -1,10 +1,10 @@
 {
     "schemaVersion": 2,
     "taskId": "20260918-duty-reconstruction",
-    "snapshotAtUtc": "2026-09-19T23:38:59Z",
-    "repository": "E:/Code/ffxiv-7-training",
+    "snapshotAtUtc": "2026-09-20T07:51:29Z",
+    "repository": "G:/UGit/ffxiv-7-training",
     "branch": "master",
-    "baselineHead": "e741a548f1ece83da4daf13007639ac12e4078aa",
+    "baselineHead": "0f26a0de54cde47cfbd2d146166a600624801329",
     "remote": "https://github.com/Velvetalon/ffxiv-7-training.git",
     "pushCommand": "git -c http.proxy=http://127.0.0.1:7890 push origin master",
     "deploymentStatus": "not-deployed-and-forbidden",
@@ -67,12 +67,13 @@
     ]
   },
   "federatedRelease": {
-    "path": "D:/Cache/duty-asset-pipeline/union-596-v2",
-    "releaseId": "duty-full-20260918T205414Z",
+    "path": "D:/ffxiv-duty-asset-pipeline/packed-correct",
+    "releaseId": "pending-local-bundle-verification",
     "maps": 596,
-    "publishFiles": 21805,
-    "catalog": "D:/Cache/duty-asset-pipeline/union-596-v2/catalog_merged.json",
-    "staticPreviewRoot": "D:/Cache/duty-asset-pipeline/union-preview-v2"
+    "publishFiles": null,
+    "catalog": null,
+    "staticPreviewRoot": null,
+    "historicalReleaseUnavailable": true
   },
   "visualQA": {
     "closureTask": "SC-004",
@@ -108,10 +109,14 @@
       "none": 111,
       "bannersCountAsRuntimeScreenshots": false
     },
-    "imageScoring": "pending"
+    "imageScoring": "pending-local-regeneration",
+    "historicalArtifactsAvailable": false,
+    "localFocusedDefaultEntry": "pass:e3t1"
   },
   "remainingActions": [
-    "rerun six shard-1 gzip failures with fixed federation server and corrected helper",
+    "regenerate g3fb and n4gb after collision fallback spawn fix",
+    "finish local bundle verification with expectedConnections=145",
+    "rerun six shard-1 gzip failures with locally regenerated preview server and corrected helper",
     "re-capture and diagnose g3fb",
     "re-capture and diagnose n4f1 interaction",
     "re-capture and diagnose n5r9 readiness",
@@ -123,6 +128,10 @@
     "testsDuties": "passed",
     "testsAudioRun": "5 tests passed",
     "testsAudioPublicEntry": "5 tests passed",
-    "babylonBuild": "passed in 2m10s; npm cache redirected to work/npm-cache"
+    "babylonBuild": "passed in prior snapshot; npm cache redirected to work/npm-cache",
+    "localReferenceAnalysis": "596 scenes, 277566 resources, 51447 materials, 55299744787 bytes, 35 warnings",
+    "geometryResume": "129 missing packages regenerated; 531/531 complete",
+    "runtimeCatalog": "596 scenes generated; duty catalog refreshed",
+    "bundleVerification": "incomplete; invalid expectedConnections=0 run stopped; reuse run pending"
   }
 }

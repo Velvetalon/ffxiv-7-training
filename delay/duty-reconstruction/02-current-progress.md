@@ -1,16 +1,16 @@
 # Current Progress And Evidence
 
-Snapshot time: 2026-09-19T23:38:59Z (2026-09-20 07:38:59 Asia/Hong_Kong).
+Snapshot time: 2026-09-20T07:51:29Z (2026-09-20 15:51:29 Asia/Shanghai).
 
 ## Git And Workspace
 
-- Repository: E:/Code/ffxiv-7-training
+- Repository: G:/UGit/ffxiv-7-training
 - Branch: master
-- Baseline HEAD: e741a548f1ece83da4daf13007639ac12e4078aa
+- Current HEAD before this resume commit: 0f26a0de54cde47cfbd2d146166a600624801329
 - Remote origin: https://github.com/Velvetalon/ffxiv-7-training.git
 - At snapshot time HEAD matched origin/master. The intended uncommitted source/data changes were present; this snapshot records them before the selective staging/commit.
 - `work/`, `site-babylon-preview/`, QA screenshots, federation helpers, and D:/Cache outputs are intentionally outside Git.
-- The coordinator was not running at snapshot time. All 531 `work/duty-build/full/packed/<sceneId>/package-state.json` files have status `complete`.
+- The local resume coordinator completed all 129 previously missing packages. All 531 `work/duty-build/full/packed/<sceneId>/package-state.json` files have status `complete`.
 
 ## Settled Content Scope
 
@@ -49,7 +49,7 @@ Lighting is per-scene routed and served. `preview/babylon/World.js` lazily fetch
 
 ## Federated QA Release
 
-Authoritative release: `D:/Cache/duty-asset-pipeline/union-596-v2`.
+The historical release at `D:/Cache/duty-asset-pipeline/union-596-v2` is not present on this machine. Local regeneration is possible from `G:/WeGameApps/rail_apps/ffxiv(2000340)`; reference analysis completed under `D:/ffxiv-duty-asset-pipeline/analysis`, while bundle output remains in progress under `D:/ffxiv-duty-asset-pipeline/packed-correct`.
 
 - Release ID: duty-full-20260918T205414Z
 - Maps: 596 (531 hidden plus 65 public)
@@ -67,7 +67,8 @@ The runtime evidence is not a linear 180-scene completion. It spans corrected ru
 - Shard 3 v5: complete, 60/60 runtime-ready states and screenshots, using the fixed union federation server on port 4533. Evidence: `work/qa/visual-acceptance/run-v5/shard-3/summary.json` and `shots/`.
 - The later shard-1 retry in `work/qa/visual-acceptance/run-v5/shard-1-retry` used the fixed server, but its own canvas-evaluation helper had an out-of-scope-variable bug (initially `sampledNonblack`, later `sampledNonzeroAlpha`); it therefore did not upgrade shard-1 evidence. Its g3fb attempts reproduced no geometry in both repeats. Resume with the corrected helper.
 - Direct reference metadata covers 180 files: 69 matches and 111 with reference status `none`. Xivapi duty banners are name-matched art, not runtime screenshots, and do not satisfy image scoring.
-- Image scoring remains pending. Do not close SC-004 on capture metadata alone.
+- The historical `work/qa/visual-acceptance` screenshots/scripts are not present locally. Rebuild focused QA from the installed client and regenerated local release before closing SC-004.
+- Local focused browser validation passed for public scene `e3t1` with bundled Node 24: map imported, navigation ready, FFXIV character/NPC runtime state ready.
 
 ## Commit/Push Validation
 
@@ -81,4 +82,12 @@ Before selective staging, these checks passed in the working tree:
 6. `node tests/audio/public-entry.mjs` (5 tests passed)
 7. `npm run build:babylon` completed in 2m10s after redirecting npm cache to `work/npm-cache`; the default C:\ cache failed with UNKNOWN mkdir errno -4094.
 
-No deployment was performed.
+No deployment was performed. The local pack/catalog release is not yet complete; do not publish it.
+
+## Resume Update 2026-09-20
+
+- `build_full_runtime_catalog.py` generated 596 scenes and refreshed `duty-catalog.json` to 842 hidden built records plus 230 public-scene records carrying the older `planned` marker; this is a status-label gap, not missing geometry.
+- Fixed runtime-catalog bases to use `os.path.relpath`, so custom output locations cannot point public scenes at `work/public`.
+- Fixed no-collision fallback spawn generation to use model instance translations when layout translations are absent; `g3fb` and `n4gb` must be regenerated and re-analyzed before accepting bootstrap coverage.
+- Local reference analysis completed: 596 scenes, 277,566 resources, 51,447 materials, 55,299,744,787 resource bytes, 35 material-without-sampler warnings.
+- Bundle planner was first stopped after an invalid `--expected-connections 0` attempt; the correct 145-connection reuse run is incomplete. Keep all D: outputs out of Git.

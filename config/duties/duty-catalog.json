@@ -156,7 +156,7 @@
           "y": -0.0512,
           "z": -22.264
         },
-        "manifestSha256": "13a25d6b113e39d5cd14a2a45e501558fff7d028976435dfa4988d0b0b6d5753"
+        "manifestSha256": "bb3eadc3950c8f538360f6983f239496ae838b3b2683ba1dccc212790b6be8e7"
       },
       "source": {
         "territoryRow": 149,
@@ -427,7 +427,7 @@
           "y": -0.0,
           "z": 142.0
         },
-        "manifestSha256": "f9ab9dd8f99f2e93b2d24af9be1d364259da22a772e1e852dad1575202737bf6"
+        "manifestSha256": "4e6433c852bf88bab776ce9ba475bd929cbcce50a0caae19fa6650ac7527bdbd"
       },
       "source": {
         "territoryRow": 167,
@@ -979,11 +979,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -44.4632,
-          "y": 64.0,
-          "z": -82.3266
+          "x": 119.3333,
+          "y": -20.0,
+          "z": 13.3333
         },
-        "manifestSha256": "1af3763b3a6b0ae3fb21ec60d0acbf7560e814a7afe2dc6d16ca9a1e317ad284"
+        "manifestSha256": "7b4b8e4fea9c1227560e0d9cd68c3e0ef8d6c1d9c5ee80756a5a5948fdf57b47"
       },
       "source": {
         "territoryRow": 189,
@@ -1134,7 +1134,7 @@
           "y": -3.0028,
           "z": 189.41
         },
-        "manifestSha256": "d1555070159b17516ac2dab48c09b81cc735f5f137a697c03035c04add6d337c"
+        "manifestSha256": "22bf1e541c33060c73ed283420966c9067d11c01e4e830c0f385b8e993ee1668"
       },
       "source": {
         "territoryRow": 193,
@@ -1177,7 +1177,7 @@
           "y": 40.981,
           "z": 296.3408
         },
-        "manifestSha256": "e8ee7840660a598bb8e92a12ae2fbbd1c9c643add393a6c0995c89f08e056ee6"
+        "manifestSha256": "a310612d2b18d9250339dc879eed17c58ff1ea0c07d390e504bbb6f3dc61b911"
       },
       "source": {
         "territoryRow": 194,
@@ -1220,7 +1220,7 @@
           "y": -63.1633,
           "z": -207.5458
         },
-        "manifestSha256": "c33b649e460ef1719c850c8090d39137043afd72c7d012d58a6b4ddf93f8daea"
+        "manifestSha256": "e54553ca7f590c20c3ab625194fa3e8add60cd6d464cd40b20a281c3eb8474c1"
       },
       "source": {
         "territoryRow": 195,
@@ -1263,7 +1263,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "21d708d39554129e1285a0d63af2af12db74c94050f3bc2bc0109bfbb2ccb2c7"
+        "manifestSha256": "46b9b5d7e12a43b06e1c9c0936c0de71844fb68c78390894365a91994804580e"
       },
       "source": {
         "territoryRow": 196,
@@ -2586,7 +2586,7 @@
           "y": -0.0945,
           "z": 654.5884
         },
-        "manifestSha256": "58e6398f5780558b8095ffabac21f05186aca35a505bc5972fdbfc0703d26773"
+        "manifestSha256": "e4cd8f9a7c523a3f1f38c25c33a4e9b3e135db301fec0f31546b82ae6c813f35"
       },
       "source": {
         "territoryRow": 246,
@@ -5898,11 +5898,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -752.5152,
-          "y": 9.625,
-          "z": -583.3473
+          "x": 85.3333,
+          "y": -0.0,
+          "z": -72.0886
         },
-        "manifestSha256": "3e8404abacada81359eb0283dca1c068f7210b9ffcea97b8245697c792a94f1c"
+        "manifestSha256": "14c6f6e2e2214c92a9eb4846f84256ca8dac09e84dde8670c58f7e3156139d8e"
       },
       "source": {
         "territoryRow": 340,
@@ -6314,11 +6314,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 45.0515,
-          "y": 0.01,
-          "z": -8.7837
+          "x": -21.8,
+          "y": 0.0,
+          "z": 53.0333
         },
-        "manifestSha256": "033cd9de2f7dea8e13c317a56236504f6a129d724d8ffea740dd07d58c31a7ed"
+        "manifestSha256": "32e50f6272b11ece470a5674830da7197a9a990cb1cca0e1ba8b26f7958fa7ca"
       },
       "source": {
         "territoryRow": 350,
@@ -6400,7 +6400,7 @@
           "y": 1.5572,
           "z": 104.8932
         },
-        "manifestSha256": "ebc9ba1f594798ae805edc95894d03a255e8d5c46114c3443dc068a348ca1b6d"
+        "manifestSha256": "799e78a9f9ac32cb35d83c48b8637c2f28cba2c5399b7acd0bcd89b50d2c4f6f"
       },
       "source": {
         "territoryRow": 353,
@@ -6480,11 +6480,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -201.2009,
-          "y": 75.9371,
-          "z": 109.0019
+          "x": -971.4969,
+          "y": -50.0,
+          "z": 615.0962
         },
-        "manifestSha256": "4ac7f9cdcb6f3a5a37e82d4251072845b572254a57e74f5a456c0b2a5f383f2f"
+        "manifestSha256": "1b27572db23c329a3e40960bc2b6005a5c4a8702d88dd22344451a002be05796"
       },
       "source": {
         "territoryRow": 355,
@@ -6523,11 +6523,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -433.8734,
-          "y": -297.1901,
-          "z": -26.025
+          "x": -455.7392,
+          "y": -300.0,
+          "z": 7.5038
         },
-        "manifestSha256": "e3f8ab37a42aa3739f17b23d8dd2c8c7d249b70560d6db43a24efb7e82be0c1c"
+        "manifestSha256": "29c3b72fb08be74d8480a964d88b0a17a4ba0c470a194325b1fb42016e88583d"
       },
       "source": {
         "territoryRow": 356,
@@ -6570,7 +6570,7 @@
           "y": -514.9329,
           "z": 30.2025
         },
-        "manifestSha256": "edb037068f08a24375c82785a4d049dd32e669fe72e1b473cea4168d2ecbacf0"
+        "manifestSha256": "7e0480849193e72f90028544cfd236e4ded5723938e08885e35d9c4dafcd30c8"
       },
       "source": {
         "territoryRow": 357,
@@ -6613,7 +6613,7 @@
           "y": -1.0,
           "z": -27.5639
         },
-        "manifestSha256": "8d2a59fb2cd63df7b63d4a3c2bb75083bdd15a65ce5545a404ed63a0cf507d11"
+        "manifestSha256": "57b330fb06780855a6c7c00f8cdd1df0b48496c6072dda9ff8fbb0986ceb467b"
       },
       "source": {
         "territoryRow": 358,
@@ -6824,11 +6824,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 94.6667,
-          "y": 42.0,
-          "z": -18.6667
+          "x": -30.0,
+          "y": 4.0,
+          "z": -11.0
         },
-        "manifestSha256": "0cc6b603b0744a7de73b7e6710e9e2402ca5631929c825799f03aaafd5f6ab5c"
+        "manifestSha256": "3b7a8f466f906b96be0ba48c2e294243df4d08f639feb223cbe550d574cd925d"
       },
       "source": {
         "territoryRow": 363,
@@ -6867,11 +6867,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 121.3888,
-          "y": 6.217,
-          "z": 73.3745
+          "x": 28.4473,
+          "y": 2.5063,
+          "z": 26.7453
         },
-        "manifestSha256": "2a8a21f055a32de782b22a52d729862a1b9f780ef0f8b35bfbd34ac0b164852b"
+        "manifestSha256": "f556a5ad98cf6e7e4fba6542625fedf1d4d374a3fa26c13f2dcea84afc6f1678"
       },
       "source": {
         "territoryRow": 364,
@@ -7112,11 +7112,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 678.8538,
-          "y": 1.6021,
-          "z": 681.8004
+          "x": -81.7722,
+          "y": -27.1123,
+          "z": 25.0932
         },
-        "manifestSha256": "23930c2ab9d83bc7cf08575c7d7931ef18d19931b982915683dd4321d45fb7e3"
+        "manifestSha256": "f9cf8ae5b74d687bd2e3f51142b3a7a3107fd77197a58faf68ad87b7a2a4614b"
       },
       "source": {
         "territoryRow": 370,
@@ -7198,11 +7198,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 84.8929,
-          "y": -15.6315,
-          "z": -10.7409
+          "x": 81.6368,
+          "y": 8.2499,
+          "z": 14.2629
         },
-        "manifestSha256": "b0f7582439b611de73e2c72dc41fd215049cafda014149fc6031b48b9899acf9"
+        "manifestSha256": "06543a2fda12edc0127725c4f20442b97647b057432fffb15f16db658484988a"
       },
       "source": {
         "territoryRow": 373,
@@ -7243,7 +7243,7 @@
           "y": 23.7005,
           "z": 290.9619
         },
-        "manifestSha256": "9c6e09c7cea5c152412acc5c1e2a517349b4dca34a71c0d799252561e0c3fe99"
+        "manifestSha256": "f599c610ae2bc35b4f6d620c7ff246af534bba635397d18ffbef651272b08bcf"
       },
       "source": {
         "territoryRow": 374,
@@ -7286,7 +7286,7 @@
           "y": 23.7005,
           "z": 290.9619
         },
-        "manifestSha256": "9c6e09c7cea5c152412acc5c1e2a517349b4dca34a71c0d799252561e0c3fe99"
+        "manifestSha256": "f599c610ae2bc35b4f6d620c7ff246af534bba635397d18ffbef651272b08bcf"
       },
       "source": {
         "territoryRow": 375,
@@ -7368,7 +7368,7 @@
           "y": 10.1221,
           "z": 24.7545
         },
-        "manifestSha256": "48af0afa77c34baf3d5e248b0acb7370838d58e8f959444b82458fa23985be0d"
+        "manifestSha256": "2f974dd14c4dfd89083cd052ebe6f076d856bba9288b8a22d22646a2925ebbb8"
       },
       "source": {
         "territoryRow": 377,
@@ -7411,7 +7411,7 @@
           "y": 10.1221,
           "z": 24.7545
         },
-        "manifestSha256": "48af0afa77c34baf3d5e248b0acb7370838d58e8f959444b82458fa23985be0d"
+        "manifestSha256": "2f974dd14c4dfd89083cd052ebe6f076d856bba9288b8a22d22646a2925ebbb8"
       },
       "source": {
         "territoryRow": 378,
@@ -7486,11 +7486,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -201.2009,
-          "y": 75.9371,
-          "z": 109.0019
+          "x": -971.4969,
+          "y": -50.0,
+          "z": 615.0962
         },
-        "manifestSha256": "4ac7f9cdcb6f3a5a37e82d4251072845b572254a57e74f5a456c0b2a5f383f2f"
+        "manifestSha256": "1b27572db23c329a3e40960bc2b6005a5c4a8702d88dd22344451a002be05796"
       },
       "source": {
         "territoryRow": 380,
@@ -7529,11 +7529,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -433.8734,
-          "y": -297.1901,
-          "z": -26.025
+          "x": -455.7392,
+          "y": -300.0,
+          "z": 7.5038
         },
-        "manifestSha256": "e3f8ab37a42aa3739f17b23d8dd2c8c7d249b70560d6db43a24efb7e82be0c1c"
+        "manifestSha256": "29c3b72fb08be74d8480a964d88b0a17a4ba0c470a194325b1fb42016e88583d"
       },
       "source": {
         "territoryRow": 381,
@@ -7576,7 +7576,7 @@
           "y": -514.9329,
           "z": 30.2025
         },
-        "manifestSha256": "edb037068f08a24375c82785a4d049dd32e669fe72e1b473cea4168d2ecbacf0"
+        "manifestSha256": "7e0480849193e72f90028544cfd236e4ded5723938e08885e35d9c4dafcd30c8"
       },
       "source": {
         "territoryRow": 382,
@@ -7619,7 +7619,7 @@
           "y": -1.0,
           "z": -27.5639
         },
-        "manifestSha256": "8d2a59fb2cd63df7b63d4a3c2bb75083bdd15a65ce5545a404ed63a0cf507d11"
+        "manifestSha256": "57b330fb06780855a6c7c00f8cdd1df0b48496c6072dda9ff8fbb0986ceb467b"
       },
       "source": {
         "territoryRow": 383,
@@ -7945,11 +7945,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 174.7894,
-          "y": 18.07,
-          "z": -90.7803
+          "x": -436.4081,
+          "y": 0.0,
+          "z": -170.6667
         },
-        "manifestSha256": "bf66fb029122793af7b5e5c1e455d1ac0341afaf08f5ab719b480534c2711b71"
+        "manifestSha256": "384edf20a3f0346bd752dee2e7baea8f0b434790cc8a3ae402338c8e8c0714c6"
       },
       "source": {
         "territoryRow": 391,
@@ -8153,7 +8153,7 @@
           "y": -0.0,
           "z": 142.0
         },
-        "manifestSha256": "f9ab9dd8f99f2e93b2d24af9be1d364259da22a772e1e852dad1575202737bf6"
+        "manifestSha256": "4e6433c852bf88bab776ce9ba475bd929cbcce50a0caae19fa6650ac7527bdbd"
       },
       "source": {
         "territoryRow": 396,
@@ -8711,11 +8711,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 90.2895,
-          "y": 71.254,
-          "z": 132.7845
+          "x": 183.487,
+          "y": 85.1926,
+          "z": -41.2911
         },
-        "manifestSha256": "86b1a89e93f5ccb0b4b1afaa0af1fcec65b62b91ba01e3cf89db2af85e38baec"
+        "manifestSha256": "744c715595d5db18388ebba48e3a7e5a3616b47a009d14c65b31ec4eb62bc5a0"
       },
       "source": {
         "territoryRow": 420,
@@ -9045,7 +9045,7 @@
           "y": 32.135,
           "z": -165.8517
         },
-        "manifestSha256": "99274b4e018b91d73b78be6814f097bb446e7f3f5c3516d53a44f7ce0206f5c1"
+        "manifestSha256": "a08fe290ad132537f8918e7a65d85f3f43376999c0aada4566fe9712cc077362"
       },
       "source": {
         "territoryRow": 430,
@@ -10038,7 +10038,7 @@
           "y": 10.1221,
           "z": 24.7545
         },
-        "manifestSha256": "48af0afa77c34baf3d5e248b0acb7370838d58e8f959444b82458fa23985be0d"
+        "manifestSha256": "2f974dd14c4dfd89083cd052ebe6f076d856bba9288b8a22d22646a2925ebbb8"
       },
       "source": {
         "territoryRow": 457,
@@ -11806,7 +11806,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "1c5bca87ba21d78f0129e0d3a22fda5624b500c8a73d2a16a58a5b9453c75049"
+        "manifestSha256": "7a6d88ba03621c2dbfdcae6378c77de5fd3cbffc24f200a0ecec00ebe6a3a676"
       },
       "source": {
         "territoryRow": 506,
@@ -11843,11 +11843,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 66.6667,
+          "x": -12.551,
           "y": 0.0,
-          "z": -66.6667
+          "z": -5.1988
         },
-        "manifestSha256": "51210333884349cdb548641ea11bf581932772b977287cc03e2e5148b5c0cce8"
+        "manifestSha256": "3e91e2bf4fa16dbe499ca6a0670e319db4387de075a06b907dedd93b41e68aba"
       },
       "source": {
         "territoryRow": 507,
@@ -12280,11 +12280,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -86.6667,
-          "y": 42.0,
-          "z": -387.3333
+          "x": -230.0,
+          "y": 5.0,
+          "z": -286.0
         },
-        "manifestSha256": "1252d72852b6c4f90ccabb23e09f2f38db23156428f07fe276944f4297ac05fb"
+        "manifestSha256": "67a7522074428aab8a1764a83506ec5d58c79fbcef8f1c4011e72f5ce4e4cbba"
       },
       "source": {
         "territoryRow": 519,
@@ -12830,7 +12830,7 @@
           "y": 16.6874,
           "z": 16.0525
         },
-        "manifestSha256": "b0a5ccbf659e1863fc7969031ab83ba2dc7a0d644ad97a84b5ef59745e759c95"
+        "manifestSha256": "1ae3643fd2821f5c70c40f7a29bf958d04760d20f5f52c1a484f92de5a8b9bc1"
       },
       "source": {
         "territoryRow": 536,
@@ -13731,7 +13731,7 @@
           "y": 44.1688,
           "z": -359.4871
         },
-        "manifestSha256": "1aa6f3bc8a519e8577bdad6d243aff1aa3bb25a2151c7ce2129ca26e2f2ff305"
+        "manifestSha256": "dce740738bdb97bf7d7943973eaf231282f671dcc8580eec5d628aa044141f34"
       },
       "source": {
         "territoryRow": 559,
@@ -13772,7 +13772,7 @@
           "y": 185.9134,
           "z": 52.9077
         },
-        "manifestSha256": "db0d17b44d91f26c9d8fe29eae2f28f33f1545969479492723ea77e7a964a454"
+        "manifestSha256": "bbd1d8e318091c809f42aa8a165bdf964c5931917989f0103b08e65563de4b6e"
       },
       "source": {
         "territoryRow": 560,
@@ -14020,7 +14020,7 @@
           "y": 44.1688,
           "z": -359.4871
         },
-        "manifestSha256": "1aa6f3bc8a519e8577bdad6d243aff1aa3bb25a2151c7ce2129ca26e2f2ff305"
+        "manifestSha256": "dce740738bdb97bf7d7943973eaf231282f671dcc8580eec5d628aa044141f34"
       },
       "source": {
         "territoryRow": 566,
@@ -14057,11 +14057,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -24.6787,
-          "y": -4.3891,
-          "z": 18.1076
+          "x": 12.4962,
+          "y": -23.5782,
+          "z": 50.0927
         },
-        "manifestSha256": "6551e55217d73fe1da044ed4ccac94df2f5851ed715d19308963921776caebb1"
+        "manifestSha256": "e876aa7c24757a51213ab4da68e2e6593509c57293d2bb4829d48c3d233ff615"
       },
       "source": {
         "territoryRow": 567,
@@ -14223,11 +14223,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -56.82,
+          "x": -21.8,
           "y": 0.0,
-          "z": -24.7508
+          "z": 53.0333
         },
-        "manifestSha256": "8b5f03c09843f88953ac37d671a05e8a5eeba67e59160409fae16a3a0433617b"
+        "manifestSha256": "1e1721b78708105042c0140fb449aef538c26e8b04300f860ecc539790c04062"
       },
       "source": {
         "territoryRow": 571,
@@ -14391,7 +14391,7 @@
           "y": 0.0,
           "z": -14.85
         },
-        "manifestSha256": "81355a3c8411c1383dc21804443abb41f043f48f3e49b645241b448f17095a5d"
+        "manifestSha256": "abc62f51afa0b46b85a67815057a7d9bdfd35a51122015fb623a77da87c46198"
       },
       "source": {
         "territoryRow": 576,
@@ -14434,7 +14434,7 @@
           "y": 0.0,
           "z": -14.85
         },
-        "manifestSha256": "81355a3c8411c1383dc21804443abb41f043f48f3e49b645241b448f17095a5d"
+        "manifestSha256": "abc62f51afa0b46b85a67815057a7d9bdfd35a51122015fb623a77da87c46198"
       },
       "source": {
         "territoryRow": 577,
@@ -14600,11 +14600,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 116.7495,
-          "y": 43.7173,
-          "z": 215.0956
+          "x": 29.8094,
+          "y": -115.0,
+          "z": 13.3333
         },
-        "manifestSha256": "83455b1a59b10a11e37763f53ee30a84a1423f9484c1c60840bccf0fc22ebafb"
+        "manifestSha256": "a8bff224933afa8ab37251b50bb0d2669cec492e15c332535c0250e8d33d28dc"
       },
       "source": {
         "territoryRow": 581,
@@ -14643,11 +14643,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 4.3253,
-          "y": -35.1837,
-          "z": -51.8047
+          "x": -11.7023,
+          "y": -80.0,
+          "z": 45.745
         },
-        "manifestSha256": "ae37de98f67d4ca7b05454961711481cffc1b961400e300809a8e52b711cec71"
+        "manifestSha256": "7b5d0e09a6e06ff9a17ed85848c5d2048d3adeb3522c19da676eb148449aaa1b"
       },
       "source": {
         "territoryRow": 582,
@@ -14686,11 +14686,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -51.7617,
-          "y": -435.1747,
-          "z": 1.8571
+          "x": -1.7559,
+          "y": -480.0,
+          "z": 34.1729
         },
-        "manifestSha256": "3ab6939b0f84b87939148b80fb9cc93f527930786b2b0c557addb17e735a37c0"
+        "manifestSha256": "a5bf749231b43bda34c57a61875a5bc997507c3b833ceb45f44aa84d19bf1966"
       },
       "source": {
         "territoryRow": 583,
@@ -14772,11 +14772,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 116.7495,
-          "y": 43.7173,
-          "z": 215.0956
+          "x": 29.8094,
+          "y": -115.0,
+          "z": 13.3333
         },
-        "manifestSha256": "83455b1a59b10a11e37763f53ee30a84a1423f9484c1c60840bccf0fc22ebafb"
+        "manifestSha256": "a8bff224933afa8ab37251b50bb0d2669cec492e15c332535c0250e8d33d28dc"
       },
       "source": {
         "territoryRow": 585,
@@ -14815,11 +14815,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 4.3253,
-          "y": -35.1837,
-          "z": -51.8047
+          "x": -11.7023,
+          "y": -80.0,
+          "z": 45.745
         },
-        "manifestSha256": "ae37de98f67d4ca7b05454961711481cffc1b961400e300809a8e52b711cec71"
+        "manifestSha256": "7b5d0e09a6e06ff9a17ed85848c5d2048d3adeb3522c19da676eb148449aaa1b"
       },
       "source": {
         "territoryRow": 586,
@@ -14858,11 +14858,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -51.7617,
-          "y": -435.1747,
-          "z": 1.8571
+          "x": -1.7559,
+          "y": -480.0,
+          "z": 34.1729
         },
-        "manifestSha256": "3ab6939b0f84b87939148b80fb9cc93f527930786b2b0c557addb17e735a37c0"
+        "manifestSha256": "a5bf749231b43bda34c57a61875a5bc997507c3b833ceb45f44aa84d19bf1966"
       },
       "source": {
         "territoryRow": 587,
@@ -14944,7 +14944,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "1c5bca87ba21d78f0129e0d3a22fda5624b500c8a73d2a16a58a5b9453c75049"
+        "manifestSha256": "7a6d88ba03621c2dbfdcae6378c77de5fd3cbffc24f200a0ecec00ebe6a3a676"
       },
       "source": {
         "territoryRow": 589,
@@ -14985,7 +14985,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "1c5bca87ba21d78f0129e0d3a22fda5624b500c8a73d2a16a58a5b9453c75049"
+        "manifestSha256": "7a6d88ba03621c2dbfdcae6378c77de5fd3cbffc24f200a0ecec00ebe6a3a676"
       },
       "source": {
         "territoryRow": 590,
@@ -15026,7 +15026,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "1c5bca87ba21d78f0129e0d3a22fda5624b500c8a73d2a16a58a5b9453c75049"
+        "manifestSha256": "7a6d88ba03621c2dbfdcae6378c77de5fd3cbffc24f200a0ecec00ebe6a3a676"
       },
       "source": {
         "territoryRow": 591,
@@ -15231,7 +15231,7 @@
           "y": -5.117,
           "z": -201.4513
         },
-        "manifestSha256": "d842a3eb438ce796d211f1b5cfd3d77d19d58bd5a6d3c81e4752b459ac31e993"
+        "manifestSha256": "c80b78ecefd6c309c5afc4d6991c6ef0f9a5760a6eb250fc170aae4fad151461"
       },
       "source": {
         "territoryRow": 596,
@@ -15272,7 +15272,7 @@
           "y": -5.117,
           "z": -201.4513
         },
-        "manifestSha256": "d842a3eb438ce796d211f1b5cfd3d77d19d58bd5a6d3c81e4752b459ac31e993"
+        "manifestSha256": "c80b78ecefd6c309c5afc4d6991c6ef0f9a5760a6eb250fc170aae4fad151461"
       },
       "source": {
         "territoryRow": 597,
@@ -15313,7 +15313,7 @@
           "y": -5.117,
           "z": -201.4513
         },
-        "manifestSha256": "d842a3eb438ce796d211f1b5cfd3d77d19d58bd5a6d3c81e4752b459ac31e993"
+        "manifestSha256": "c80b78ecefd6c309c5afc4d6991c6ef0f9a5760a6eb250fc170aae4fad151461"
       },
       "source": {
         "territoryRow": 598,
@@ -15354,7 +15354,7 @@
           "y": 14.7298,
           "z": 334.5198
         },
-        "manifestSha256": "ae478302630f569d65b41ad6bc53a4fff5fdacb07a8d515687dc95200c0b597b"
+        "manifestSha256": "8608b49aa4f8d676a144fdb6bda907e38b8c465e9e3e7076e168e63fb57e858c"
       },
       "source": {
         "territoryRow": 599,
@@ -15395,7 +15395,7 @@
           "y": 14.7298,
           "z": 334.5198
         },
-        "manifestSha256": "ae478302630f569d65b41ad6bc53a4fff5fdacb07a8d515687dc95200c0b597b"
+        "manifestSha256": "8608b49aa4f8d676a144fdb6bda907e38b8c465e9e3e7076e168e63fb57e858c"
       },
       "source": {
         "territoryRow": 600,
@@ -15436,7 +15436,7 @@
           "y": -0.0046,
           "z": -313.7062
         },
-        "manifestSha256": "f815fa1248167d2d0b67ce9a7a52a08a82e5581f647a56799b6f65bf21c4a386"
+        "manifestSha256": "650be94d10f6de064d195ebe5b884bbe5b234f114f5729348e01a41c0da5cf38"
       },
       "source": {
         "territoryRow": 601,
@@ -15477,7 +15477,7 @@
           "y": -0.0046,
           "z": -313.7062
         },
-        "manifestSha256": "f815fa1248167d2d0b67ce9a7a52a08a82e5581f647a56799b6f65bf21c4a386"
+        "manifestSha256": "650be94d10f6de064d195ebe5b884bbe5b234f114f5729348e01a41c0da5cf38"
       },
       "source": {
         "territoryRow": 602,
@@ -15514,11 +15514,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -283.8904,
-          "y": -18.5564,
-          "z": -305.5389
+          "x": 103.895,
+          "y": 4.0953,
+          "z": 306.1659
         },
-        "manifestSha256": "4de1debe7a5724e90bbb1eea13f17a2029c99269c2f04bc9edb33dbe45dbf09f"
+        "manifestSha256": "9fe1dbadf3b98358026a6e3acf3fbcc5b4061ee9c5830c731bc2bba36fb5544f"
       },
       "source": {
         "territoryRow": 603,
@@ -15555,11 +15555,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -283.8904,
-          "y": -18.5564,
-          "z": -305.5389
+          "x": 103.895,
+          "y": 4.0953,
+          "z": 306.1659
         },
-        "manifestSha256": "4de1debe7a5724e90bbb1eea13f17a2029c99269c2f04bc9edb33dbe45dbf09f"
+        "manifestSha256": "9fe1dbadf3b98358026a6e3acf3fbcc5b4061ee9c5830c731bc2bba36fb5544f"
       },
       "source": {
         "territoryRow": 604,
@@ -15596,11 +15596,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -283.8904,
-          "y": -18.5564,
-          "z": -305.5389
+          "x": 103.895,
+          "y": 4.0953,
+          "z": 306.1659
         },
-        "manifestSha256": "4de1debe7a5724e90bbb1eea13f17a2029c99269c2f04bc9edb33dbe45dbf09f"
+        "manifestSha256": "9fe1dbadf3b98358026a6e3acf3fbcc5b4061ee9c5830c731bc2bba36fb5544f"
       },
       "source": {
         "territoryRow": 605,
@@ -15637,11 +15637,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -283.8904,
-          "y": -18.5564,
-          "z": -305.5389
+          "x": 103.895,
+          "y": 4.0953,
+          "z": 306.1659
         },
-        "manifestSha256": "4de1debe7a5724e90bbb1eea13f17a2029c99269c2f04bc9edb33dbe45dbf09f"
+        "manifestSha256": "9fe1dbadf3b98358026a6e3acf3fbcc5b4061ee9c5830c731bc2bba36fb5544f"
       },
       "source": {
         "territoryRow": 606,
@@ -15678,11 +15678,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -283.8904,
-          "y": -18.5564,
-          "z": -305.5389
+          "x": 103.895,
+          "y": 4.0953,
+          "z": 306.1659
         },
-        "manifestSha256": "4de1debe7a5724e90bbb1eea13f17a2029c99269c2f04bc9edb33dbe45dbf09f"
+        "manifestSha256": "9fe1dbadf3b98358026a6e3acf3fbcc5b4061ee9c5830c731bc2bba36fb5544f"
       },
       "source": {
         "territoryRow": 607,
@@ -16188,7 +16188,7 @@
           "y": 8.0,
           "z": -2.5387
         },
-        "manifestSha256": "c02ec07a8066af1a9008cc42dc6d070fcff565c3ad3bd0146005d7b2d959d055"
+        "manifestSha256": "28561caaa0ea380c46b0ab656270c346b7346b07d516eaf085b20ccee2b95e09"
       },
       "source": {
         "territoryRow": 629,
@@ -16347,7 +16347,7 @@
           "y": -1.1192,
           "z": -28.8044
         },
-        "manifestSha256": "669dbfb4204017d6379fd30d45c924f643639ade354ec50fc39b811c056f0e40"
+        "manifestSha256": "efe263a54c7470b9fc0d7daaa0b9c41287cfb7f9b962e84626104be60b03b753"
       },
       "source": {
         "territoryRow": 637,
@@ -16390,7 +16390,7 @@
           "y": -1.1192,
           "z": -28.8044
         },
-        "manifestSha256": "669dbfb4204017d6379fd30d45c924f643639ade354ec50fc39b811c056f0e40"
+        "manifestSha256": "efe263a54c7470b9fc0d7daaa0b9c41287cfb7f9b962e84626104be60b03b753"
       },
       "source": {
         "territoryRow": 638,
@@ -16427,11 +16427,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -1.9164,
-          "y": 8.1972,
-          "z": 24.5393
+          "x": 3.6072,
+          "y": 6.9045,
+          "z": -5.1118
         },
-        "manifestSha256": "4ce09adc3d911667bb423744e83a04b64174033bda031bcc86d3fde5bd17aad5"
+        "manifestSha256": "2ef2c69d28f9f2f55d6a630b1525485601d12510ed622eb91c0ee369f1c9f7c2"
       },
       "source": {
         "territoryRow": 639,
@@ -16910,7 +16910,7 @@
           "y": 251.3857,
           "z": -403.9837
         },
-        "manifestSha256": "cf81ae557afee85b8338da347ec81c2169e6bd0d786e149537808cfce75ff5c2"
+        "manifestSha256": "df59cc255c1356e6424c5966da6c327f8de0a5076241bbd315648adad5e4e9c4"
       },
       "source": {
         "territoryRow": 656,
@@ -17062,11 +17062,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 265.3953,
-          "y": 58.6221,
-          "z": -601.2128
+          "x": 159.2983,
+          "y": 0.0,
+          "z": 425.0531
         },
-        "manifestSha256": "d4079cdf3f522d3315e90acba896ee7d51e19a56d9770c08516e7a05d3d33703"
+        "manifestSha256": "39859ab16f54e3bfaa33f94eb76bac0850d556b96c0cb10124c08ef488b69cd3"
       },
       "source": {
         "territoryRow": 660,
@@ -17148,11 +17148,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -292.1522,
-          "y": 25.2979,
-          "z": 92.0135
+          "x": 270.7072,
+          "y": -68.1774,
+          "z": 61.2881
         },
-        "manifestSha256": "1df67c2c9eef6b78621831310674fa7afaad03e91edc943fbeb6654b484e07a3"
+        "manifestSha256": "68c57cd178f3b7d1b19e70471208d840d4d6b2a2e10aaf53f2dd909fd8e59ab7"
       },
       "source": {
         "territoryRow": 662,
@@ -17798,7 +17798,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "30aea242f548a85a2748ca02868dfdb2fc427f88e0d60b480d026a7f34a6b9db"
+        "manifestSha256": "44323182bc794f22323e77b900d089f72e42d7d7f83e3ad42bfb6a7825f0eb03"
       },
       "source": {
         "territoryRow": 679,
@@ -17876,11 +17876,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -188.2208,
-          "y": 48.9528,
-          "z": -59.8696
+          "x": -63.1282,
+          "y": -0.3512,
+          "z": -25.7247
         },
-        "manifestSha256": "ae4f19de2ecd9222b86b4ea419cfd21bc814cc3ea3b6ec374ee040891c75d5a0"
+        "manifestSha256": "6f0373732db1ebd6016ba34c29e095f39676c26f0cdd9c70ba2d7a951fe9e949"
       },
       "source": {
         "territoryRow": 681,
@@ -17921,7 +17921,7 @@
           "y": -0.938,
           "z": 114.1221
         },
-        "manifestSha256": "010a6a0d873d188c275f92f4069f88146c86e0a25f31bb8a8fe5ab6c4f8c2059"
+        "manifestSha256": "1ec90ca4db144f083dc1b649574075663f5c76233d0751d6c5bbd8630588725d"
       },
       "source": {
         "territoryRow": 682,
@@ -18729,7 +18729,7 @@
           "y": 185.9134,
           "z": 52.9077
         },
-        "manifestSha256": "db0d17b44d91f26c9d8fe29eae2f28f33f1545969479492723ea77e7a964a454"
+        "manifestSha256": "bbd1d8e318091c809f42aa8a165bdf964c5931917989f0103b08e65563de4b6e"
       },
       "source": {
         "territoryRow": 702,
@@ -18802,11 +18802,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -201.2009,
-          "y": 75.9371,
-          "z": 109.0019
+          "x": -971.4969,
+          "y": -50.0,
+          "z": 615.0962
         },
-        "manifestSha256": "4ac7f9cdcb6f3a5a37e82d4251072845b572254a57e74f5a456c0b2a5f383f2f"
+        "manifestSha256": "1b27572db23c329a3e40960bc2b6005a5c4a8702d88dd22344451a002be05796"
       },
       "source": {
         "territoryRow": 704,
@@ -19456,11 +19456,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -44.4632,
-          "y": 64.0,
-          "z": -82.3266
+          "x": 119.3333,
+          "y": -20.0,
+          "z": 13.3333
         },
-        "manifestSha256": "1af3763b3a6b0ae3fb21ec60d0acbf7560e814a7afe2dc6d16ca9a1e317ad284"
+        "manifestSha256": "7b4b8e4fea9c1227560e0d9cd68c3e0ef8d6c1d9c5ee80756a5a5948fdf57b47"
       },
       "source": {
         "territoryRow": 721,
@@ -19497,11 +19497,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -86.6667,
-          "y": 42.0,
-          "z": -387.3333
+          "x": -230.0,
+          "y": 5.0,
+          "z": -286.0
         },
-        "manifestSha256": "1252d72852b6c4f90ccabb23e09f2f38db23156428f07fe276944f4297ac05fb"
+        "manifestSha256": "67a7522074428aab8a1764a83506ec5d58c79fbcef8f1c4011e72f5ce4e4cbba"
       },
       "source": {
         "territoryRow": 722,
@@ -19821,7 +19821,7 @@
           "y": 636.813,
           "z": -52.0441
         },
-        "manifestSha256": "eec2e0762c11c3afb69d0c29d6feb50dbef426889050a3acfdacd58b78b065a0"
+        "manifestSha256": "26a18bc4df9240f51ea91a13fcaa3f79c84f4c94c11ec54d3ae4e8a5fd862883"
       },
       "source": {
         "territoryRow": 730,
@@ -19860,11 +19860,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 173.3333,
-          "y": 13.0,
-          "z": 8.0619
+          "x": -80.0,
+          "y": -20.0,
+          "z": 20.6667
         },
-        "manifestSha256": "a10d35e12b9c2283f45a0685f7ce1b7aa225d255156132bb2bb492316b27cc44"
+        "manifestSha256": "5630ee2484ce8541f6cbb74e05fcf7de62a7b95d227c1a39fb649c295ef06a87"
       },
       "source": {
         "territoryRow": 731,
@@ -19946,7 +19946,7 @@
           "y": -0.5196,
           "z": -7.6082
         },
-        "manifestSha256": "e63077eddee5660d7e21707969bdd913e50e964c50eec1dc1f517f726f43e2bc"
+        "manifestSha256": "af35c417c9f77fb974fa2ef06722ba0afd796fbd14e5c86b5e4de85f93cb84ee"
       },
       "source": {
         "territoryRow": 733,
@@ -19989,7 +19989,7 @@
           "y": -229.776,
           "z": 300.9115
         },
-        "manifestSha256": "99037f8fb5b40c15a3829ee1b5306bc19461fa550b8ec9f5059614fde23c5e5d"
+        "manifestSha256": "083889046689274a627187a01432ebf36d5b01eb19763c0ee27e08af71ad7f51"
       },
       "source": {
         "territoryRow": 734,
@@ -20194,7 +20194,7 @@
           "y": -0.938,
           "z": 114.1221
         },
-        "manifestSha256": "888fca53b5ef20b719102a697b6c2e0f482b2d8e2251b705dc649a84c4715393"
+        "manifestSha256": "c58ee5bb4b71f8638fcb3d78641c055d74ae8aeb4fe837ba554bbe7f9fe50d20"
       },
       "source": {
         "territoryRow": 739,
@@ -20315,11 +20315,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -86.0,
-          "y": 21.2826,
-          "z": 146.0
+          "x": 203.8979,
+          "y": -101.0,
+          "z": -581.5787
         },
-        "manifestSha256": "4ddbe7256bfa7554995db8ee3e96f8a17078b8b1f08b70e609a81d40d679c9ee"
+        "manifestSha256": "77d0a0aa9c31d7135793000bb16ce69424e7a18641a18ea148677bee73bd5096"
       },
       "source": {
         "territoryRow": 742,
@@ -20358,11 +20358,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 97.6012,
-          "y": 33.2232,
-          "z": 302.124
+          "x": -350.1734,
+          "y": -16.0,
+          "z": 274.5608
         },
-        "manifestSha256": "e7a94bd989443d2dd03c7831b99dcebbd217d6d5e280c62791f44d45c80c1076"
+        "manifestSha256": "d2c1f94f870bb77f7ff65998734d8bff9708146f73fac66fc70a6866ca862a87"
       },
       "source": {
         "territoryRow": 743,
@@ -20573,7 +20573,7 @@
           "y": 9.2733,
           "z": -20.0
         },
-        "manifestSha256": "dd2101b897b5e211e8a448f525123f9060c762bd9f9c44ad4312bcc3ed1b021d"
+        "manifestSha256": "2b8cf5dafdaf30234006052a71f85da942f12c64b788c552183dea98d46cc3b4"
       },
       "source": {
         "territoryRow": 750,
@@ -20616,7 +20616,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "69ca3c0976abe90e3b1efd0dc6fe31f92617ed14a5fcdcd6653c7b19b00e7cdd"
+        "manifestSha256": "bb76b888052beae7de0b455478085fce9e2db9ec44d881b6ccef9058e954e783"
       },
       "source": {
         "territoryRow": 751,
@@ -20745,7 +20745,7 @@
           "y": 9.2733,
           "z": -20.0
         },
-        "manifestSha256": "dd2101b897b5e211e8a448f525123f9060c762bd9f9c44ad4312bcc3ed1b021d"
+        "manifestSha256": "2b8cf5dafdaf30234006052a71f85da942f12c64b788c552183dea98d46cc3b4"
       },
       "source": {
         "territoryRow": 754,
@@ -20788,7 +20788,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "69ca3c0976abe90e3b1efd0dc6fe31f92617ed14a5fcdcd6653c7b19b00e7cdd"
+        "manifestSha256": "bb76b888052beae7de0b455478085fce9e2db9ec44d881b6ccef9058e954e783"
       },
       "source": {
         "territoryRow": 755,
@@ -21149,11 +21149,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 220.6313,
-          "y": -450.4065,
-          "z": 162.4299
+          "x": -227.6667,
+          "y": -481.0,
+          "z": 15.6667
         },
-        "manifestSha256": "e5d36d6b8dc96f08e7e37235db8733eb8e85f79faf6c908829d98b7f6aca5ce2"
+        "manifestSha256": "e1c03f7bb7f8f2702bfda86e402612287e1d1bc18e4f41e3ad462ae9db68845c"
       },
       "source": {
         "territoryRow": 768,
@@ -21194,7 +21194,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "6b380811cb1cfc1c6a56a0c5d72e001d5fbc69ff7bb4559cbdfc0df14a3e39e3"
+        "manifestSha256": "47ba4fa107c8e2afa86a87f3c49e1f33ec4f8a453718ebc6275d344489a089d9"
       },
       "source": {
         "territoryRow": 769,
@@ -21483,7 +21483,7 @@
           "y": 77.5877,
           "z": -65.376
         },
-        "manifestSha256": "d984c6b2dc988e8cb85984db7d45c89ddc7a7ded3473f809187d9e9d9e921176"
+        "manifestSha256": "7903cd35e0dfa6822265d5c8356974c816c18b2ddd52d6f35b067f3f3752b31c"
       },
       "source": {
         "territoryRow": 776,
@@ -21649,7 +21649,7 @@
           "y": 23.9999,
           "z": -138.0
         },
-        "manifestSha256": "a8cee3930b36307e6e689b409e2794223feeee5dcd081f7a3480f151065d58c8"
+        "manifestSha256": "a5f808a7e6da7f9a4cb5e5269165de4912f7fd020c4eee189b8a313de1859187"
       },
       "source": {
         "territoryRow": 780,
@@ -21936,7 +21936,7 @@
           "y": 77.5877,
           "z": -65.376
         },
-        "manifestSha256": "d984c6b2dc988e8cb85984db7d45c89ddc7a7ded3473f809187d9e9d9e921176"
+        "manifestSha256": "7903cd35e0dfa6822265d5c8356974c816c18b2ddd52d6f35b067f3f3752b31c"
       },
       "source": {
         "territoryRow": 787,
@@ -21975,11 +21975,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -86.4563,
-          "y": -359.3677,
-          "z": -0.5487
+          "x": 12.3054,
+          "y": -361.4459,
+          "z": 152.2522
         },
-        "manifestSha256": "0f2b85a41cef9e35c6f6248779e26be34e821ac2fe5260e7aa6d63d33fb75570"
+        "manifestSha256": "43f2227748104a7c164e934ebd53ea9eb39cf8d0a935a9abfb48172b2e0c614e"
       },
       "source": {
         "territoryRow": 788,
@@ -22018,11 +22018,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 7.8949,
-          "y": 34.2014,
-          "z": -73.3333
+          "x": 64.9769,
+          "y": 19.6767,
+          "z": 94.0235
         },
-        "manifestSha256": "e75c663bcc1d284abc42c6b5d0907a7cac8bbaa8bb84d788f6c8a4dda5ab0eea"
+        "manifestSha256": "dfb22fc12862d6f63a9c959fca8cb1dcc9a5a4e86a5ed7587f70399f47321d7c"
       },
       "source": {
         "territoryRow": 789,
@@ -22179,11 +22179,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 390.6508,
-          "y": -34.1496,
-          "z": -229.1029
+          "x": 495.2317,
+          "y": -0.0,
+          "z": -139.3518
         },
-        "manifestSha256": "bf8af4ae231ab47b17e13fdbd0bcac60c586257eb702832a0b5690f726589dee"
+        "manifestSha256": "28f8ca9138a62c2ab6539a3f9aa1319fd639890f50dab3f01232059640d42c9d"
       },
       "source": {
         "territoryRow": 793,
@@ -22428,7 +22428,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "bdedae948d8d940cedf21a89f4191a908e548f712e0f4b7689791a9806963837"
+        "manifestSha256": "9778a0c1faefa919a2b32d252d6e30449ec1fc46c846d9ee443d18f392fd920c"
       },
       "source": {
         "territoryRow": 799,
@@ -22471,7 +22471,7 @@
           "y": -1.0,
           "z": 80.0005
         },
-        "manifestSha256": "39ee8b4f5633d4868047bc7420d9c4a268216b0f42d3b2c764122cc3306db212"
+        "manifestSha256": "b0d831ff419bed5951d7d21903a0ba102a07d224d6dc204641743b6366b05968"
       },
       "source": {
         "territoryRow": 800,
@@ -22514,7 +22514,7 @@
           "y": -0.0,
           "z": 112.5388
         },
-        "manifestSha256": "2e1e716ba3786c8549884a87487b7f38ee391e40c3f7b68afc3b125e3bd506b8"
+        "manifestSha256": "f06eb9762ec50f539751caaec726f20d9e0e132233e44da5ad940e949879875c"
       },
       "source": {
         "territoryRow": 801,
@@ -22600,7 +22600,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "bdedae948d8d940cedf21a89f4191a908e548f712e0f4b7689791a9806963837"
+        "manifestSha256": "9778a0c1faefa919a2b32d252d6e30449ec1fc46c846d9ee443d18f392fd920c"
       },
       "source": {
         "territoryRow": 803,
@@ -22643,7 +22643,7 @@
           "y": -1.0,
           "z": 80.0005
         },
-        "manifestSha256": "39ee8b4f5633d4868047bc7420d9c4a268216b0f42d3b2c764122cc3306db212"
+        "manifestSha256": "b0d831ff419bed5951d7d21903a0ba102a07d224d6dc204641743b6366b05968"
       },
       "source": {
         "territoryRow": 804,
@@ -22686,7 +22686,7 @@
           "y": -0.0,
           "z": 112.5388
         },
-        "manifestSha256": "2e1e716ba3786c8549884a87487b7f38ee391e40c3f7b68afc3b125e3bd506b8"
+        "manifestSha256": "f06eb9762ec50f539751caaec726f20d9e0e132233e44da5ad940e949879875c"
       },
       "source": {
         "territoryRow": 805,
@@ -22727,7 +22727,7 @@
           "y": 1.5572,
           "z": 104.8932
         },
-        "manifestSha256": "ebc9ba1f594798ae805edc95894d03a255e8d5c46114c3443dc068a348ca1b6d"
+        "manifestSha256": "799e78a9f9ac32cb35d83c48b8637c2f28cba2c5399b7acd0bcd89b50d2c4f6f"
       },
       "source": {
         "territoryRow": 806,
@@ -22768,7 +22768,7 @@
           "y": -10.2755,
           "z": 149.532
         },
-        "manifestSha256": "d806c2ee6ad70ce8fbf2a2a198486f4990140b59f864744cdbe425f2de591524"
+        "manifestSha256": "0225d04017883437e4a1866775ec31b0ce899e18086aeafc73bee2d3a46e992a"
       },
       "source": {
         "territoryRow": 807,
@@ -22809,7 +22809,7 @@
           "y": -0.0,
           "z": 112.5388
         },
-        "manifestSha256": "2e1e716ba3786c8549884a87487b7f38ee391e40c3f7b68afc3b125e3bd506b8"
+        "manifestSha256": "f06eb9762ec50f539751caaec726f20d9e0e132233e44da5ad940e949879875c"
       },
       "source": {
         "territoryRow": 808,
@@ -22846,11 +22846,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -56.82,
+          "x": -21.8,
           "y": 0.0,
-          "z": -24.7508
+          "z": 53.0333
         },
-        "manifestSha256": "8b5f03c09843f88953ac37d671a05e8a5eeba67e59160409fae16a3a0433617b"
+        "manifestSha256": "1e1721b78708105042c0140fb449aef538c26e8b04300f860ecc539790c04062"
       },
       "source": {
         "territoryRow": 809,
@@ -22891,7 +22891,7 @@
           "y": -0.8377,
           "z": 74.7605
         },
-        "manifestSha256": "202fef633a9b09d094fbd056a6e8ffe08110fa47031032f653e67997b776cfe7"
+        "manifestSha256": "d41ae9295b0678e58fd75d82ff984a2caa185948e7a86d7be2e4a045d76505e4"
       },
       "source": {
         "territoryRow": 810,
@@ -22934,7 +22934,7 @@
           "y": -0.8377,
           "z": 74.7605
         },
-        "manifestSha256": "202fef633a9b09d094fbd056a6e8ffe08110fa47031032f653e67997b776cfe7"
+        "manifestSha256": "d41ae9295b0678e58fd75d82ff984a2caa185948e7a86d7be2e4a045d76505e4"
       },
       "source": {
         "territoryRow": 811,
@@ -22975,7 +22975,7 @@
           "y": -10.2755,
           "z": 149.532
         },
-        "manifestSha256": "d806c2ee6ad70ce8fbf2a2a198486f4990140b59f864744cdbe425f2de591524"
+        "manifestSha256": "0225d04017883437e4a1866775ec31b0ce899e18086aeafc73bee2d3a46e992a"
       },
       "source": {
         "territoryRow": 812,
@@ -23145,7 +23145,7 @@
           "y": -0.15,
           "z": 135.2912
         },
-        "manifestSha256": "c70c2f636153e9a09fd5f3bf10b7cf6f0413d37b75290403dea504a94d95ca94"
+        "manifestSha256": "8e2ec1379d801d507ef2111b0ec01eb557476fcd149228712679eba51872516b"
       },
       "source": {
         "territoryRow": 824,
@@ -23188,7 +23188,7 @@
           "y": -0.15,
           "z": 135.2912
         },
-        "manifestSha256": "c70c2f636153e9a09fd5f3bf10b7cf6f0413d37b75290403dea504a94d95ca94"
+        "manifestSha256": "8e2ec1379d801d507ef2111b0ec01eb557476fcd149228712679eba51872516b"
       },
       "source": {
         "territoryRow": 825,
@@ -23231,7 +23231,7 @@
           "y": -112.7454,
           "z": 694.6098
         },
-        "manifestSha256": "4ee8c8353f65cd1d1d4bae0aab980f18c89dc35ef503c50cb403b49a55e9964c"
+        "manifestSha256": "b644ce18ad64a5862e780d2d5423d31155d7745c8a90774b94f904b6d4ae8a1a"
       },
       "source": {
         "territoryRow": 826,
@@ -23391,11 +23391,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 390.6508,
-          "y": -34.1496,
-          "z": -229.1029
+          "x": 495.2317,
+          "y": -0.0,
+          "z": -139.3518
         },
-        "manifestSha256": "bf8af4ae231ab47b17e13fdbd0bcac60c586257eb702832a0b5690f726589dee"
+        "manifestSha256": "28f8ca9138a62c2ab6539a3f9aa1319fd639890f50dab3f01232059640d42c9d"
       },
       "source": {
         "territoryRow": 830,
@@ -24142,7 +24142,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "1d450b18633d3ef81df4a0f5510c0ead7c68738eaad5292e467d4c55572a099e"
+        "manifestSha256": "c758893d9a531cca01ede68c8fc28f5a89d87899e21224e4a294049681140caa"
       },
       "source": {
         "territoryRow": 849,
@@ -24185,7 +24185,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "53287dd9604a646d7ea8a02c61e325700c6680e3544e300da804f9fe9c0eb4bf"
+        "manifestSha256": "dfae0ed359f4a48d0ce2d253580a5815e99067b6c0baced1553560be88aa58ce"
       },
       "source": {
         "territoryRow": 850,
@@ -24271,7 +24271,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "2bf3d7e1b2d77e90898fffe91d2d32eee6f4d3be122ae75dc77cb46bf2b22225"
+        "manifestSha256": "90328022d3c18896c3df291f88485fb50b52e4e4dcb02f012fbec026df5ea275"
       },
       "source": {
         "territoryRow": 852,
@@ -24314,7 +24314,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "1d450b18633d3ef81df4a0f5510c0ead7c68738eaad5292e467d4c55572a099e"
+        "manifestSha256": "c758893d9a531cca01ede68c8fc28f5a89d87899e21224e4a294049681140caa"
       },
       "source": {
         "territoryRow": 853,
@@ -24357,7 +24357,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "53287dd9604a646d7ea8a02c61e325700c6680e3544e300da804f9fe9c0eb4bf"
+        "manifestSha256": "dfae0ed359f4a48d0ce2d253580a5815e99067b6c0baced1553560be88aa58ce"
       },
       "source": {
         "territoryRow": 854,
@@ -24443,7 +24443,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "2bf3d7e1b2d77e90898fffe91d2d32eee6f4d3be122ae75dc77cb46bf2b22225"
+        "manifestSha256": "90328022d3c18896c3df291f88485fb50b52e4e4dcb02f012fbec026df5ea275"
       },
       "source": {
         "territoryRow": 856,
@@ -24484,7 +24484,7 @@
           "y": -0.0,
           "z": 91.1324
         },
-        "manifestSha256": "20c2f729f1a7ed8cb8e433f15c8ae524a7270d5cc27d20ce907f0ebe474f55e2"
+        "manifestSha256": "792722d705756bb443dcef47cec070eb29025106e2d616cd715806908d37242e"
       },
       "source": {
         "territoryRow": 857,
@@ -25555,7 +25555,7 @@
           "y": 13.5,
           "z": 72.1124
         },
-        "manifestSha256": "d4cde676a8f36ba4bd8a62d8af13700e14ed0b50e1537c77256dc649f846959f"
+        "manifestSha256": "cdab60bbe28ab9b46b2c8e4e1bb34990e7be50fe0581d42a24d07dac86755caf"
       },
       "source": {
         "territoryRow": 886,
@@ -25637,7 +25637,7 @@
           "y": -9.4098,
           "z": -78.38
         },
-        "manifestSha256": "30f395e23a38e508394691c14cf644ff13f67ed55a94650b5e46d3e6d8dc8c68"
+        "manifestSha256": "a347dd3351d9f163fd7d92202af76599d2d14ff53eb5fc9c9b6de58fa946564d"
       },
       "source": {
         "territoryRow": 888,
@@ -26172,7 +26172,7 @@
           "y": 302.9695,
           "z": 660.6312
         },
-        "manifestSha256": "757b5d3c13cf7d535317900d51e010536c45e8df7184e58558a4e9e72ed51386"
+        "manifestSha256": "cb47777eed73d18e263723c80274613b98a930a50869d25a14d592eaba273607"
       },
       "source": {
         "territoryRow": 901,
@@ -26215,7 +26215,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "20556f6d874de1a16e44508fe6275d86c673bd6bc7df5b57d52601c9a77d76bb"
+        "manifestSha256": "9510bbe6fff76d85e627925abb18be2b82bdf13fb6f97200263b4b4a475be19c"
       },
       "source": {
         "territoryRow": 902,
@@ -26258,7 +26258,7 @@
           "y": 9.851,
           "z": 79.1235
         },
-        "manifestSha256": "e1443662659199c2fb6b9b402ae3d7b0273a859b036d78e8dbef1f878702a9a3"
+        "manifestSha256": "5cc3259bac2270aaeb7209ec0cbe7cce63dfd4f5770d577db960d1f89e17b051"
       },
       "source": {
         "territoryRow": 903,
@@ -26301,7 +26301,7 @@
           "y": -1.0,
           "z": 120.0
         },
-        "manifestSha256": "02a245b3826432c2cdc2bdfa7b4a242324787305e86fbc76859855c0540cc85f"
+        "manifestSha256": "2e7b2b91faf36660cb3cebbc6525ce984c97880e59dbc8b44488f5515068095d"
       },
       "source": {
         "territoryRow": 904,
@@ -26344,7 +26344,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "3c214dd69efe5348ee01ada08f04b30cd698835e05028b3d6485a94b3343e444"
+        "manifestSha256": "0825b22b09834ae1865357b8358c1b4aeb2f48f2d85c9b32d7b7272b5b66580b"
       },
       "source": {
         "territoryRow": 905,
@@ -26387,7 +26387,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "20556f6d874de1a16e44508fe6275d86c673bd6bc7df5b57d52601c9a77d76bb"
+        "manifestSha256": "9510bbe6fff76d85e627925abb18be2b82bdf13fb6f97200263b4b4a475be19c"
       },
       "source": {
         "territoryRow": 906,
@@ -26430,7 +26430,7 @@
           "y": 9.851,
           "z": 79.1235
         },
-        "manifestSha256": "e1443662659199c2fb6b9b402ae3d7b0273a859b036d78e8dbef1f878702a9a3"
+        "manifestSha256": "5cc3259bac2270aaeb7209ec0cbe7cce63dfd4f5770d577db960d1f89e17b051"
       },
       "source": {
         "territoryRow": 907,
@@ -26473,7 +26473,7 @@
           "y": -1.0,
           "z": 120.0
         },
-        "manifestSha256": "02a245b3826432c2cdc2bdfa7b4a242324787305e86fbc76859855c0540cc85f"
+        "manifestSha256": "2e7b2b91faf36660cb3cebbc6525ce984c97880e59dbc8b44488f5515068095d"
       },
       "source": {
         "territoryRow": 908,
@@ -26516,7 +26516,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "3c214dd69efe5348ee01ada08f04b30cd698835e05028b3d6485a94b3343e444"
+        "manifestSha256": "0825b22b09834ae1865357b8358c1b4aeb2f48f2d85c9b32d7b7272b5b66580b"
       },
       "source": {
         "territoryRow": 909,
@@ -26811,7 +26811,7 @@
           "y": -224.199,
           "z": -306.9427
         },
-        "manifestSha256": "464ac2542f1c9111f75123a71a3e99fc68d46428790ac5552edc97dc53fcddcc"
+        "manifestSha256": "61aad9b10cd1622f00e08522621723e72aec49880e4ababdf1712d4ddecda6f3"
       },
       "source": {
         "territoryRow": 917,
@@ -27223,7 +27223,7 @@
           "y": -224.199,
           "z": -306.9427
         },
-        "manifestSha256": "464ac2542f1c9111f75123a71a3e99fc68d46428790ac5552edc97dc53fcddcc"
+        "manifestSha256": "61aad9b10cd1622f00e08522621723e72aec49880e4ababdf1712d4ddecda6f3"
       },
       "source": {
         "territoryRow": 928,
@@ -27264,7 +27264,7 @@
           "y": 302.9695,
           "z": 660.6312
         },
-        "manifestSha256": "757b5d3c13cf7d535317900d51e010536c45e8df7184e58558a4e9e72ed51386"
+        "manifestSha256": "cb47777eed73d18e263723c80274613b98a930a50869d25a14d592eaba273607"
       },
       "source": {
         "territoryRow": 929,
@@ -27425,7 +27425,7 @@
           "y": -8.28,
           "z": 113.8582
         },
-        "manifestSha256": "bfaa33c0a49046d76813df3f4c837507051cee169389ad34e27cd98ef78f0bf6"
+        "manifestSha256": "da6df7fe28c0067a3f8656477dbd47e86be6e89f709dc8fc94faae75448519f1"
       },
       "source": {
         "territoryRow": 934,
@@ -27468,7 +27468,7 @@
           "y": -8.28,
           "z": 113.8582
         },
-        "manifestSha256": "bfaa33c0a49046d76813df3f4c837507051cee169389ad34e27cd98ef78f0bf6"
+        "manifestSha256": "da6df7fe28c0067a3f8656477dbd47e86be6e89f709dc8fc94faae75448519f1"
       },
       "source": {
         "territoryRow": 935,
@@ -27634,7 +27634,7 @@
           "y": 302.9695,
           "z": 660.6312
         },
-        "manifestSha256": "757b5d3c13cf7d535317900d51e010536c45e8df7184e58558a4e9e72ed51386"
+        "manifestSha256": "cb47777eed73d18e263723c80274613b98a930a50869d25a14d592eaba273607"
       },
       "source": {
         "territoryRow": 939,
@@ -27759,7 +27759,7 @@
           "y": 36.9431,
           "z": 85.1875
         },
-        "manifestSha256": "b122db1ecd38756dd452846c3944ef9b944fb45b46d7d92c28867a8b068f6fad"
+        "manifestSha256": "9ea0f8981d0fc84c172b18ae4e6e0143de08500f042db0136fbc7f76e2bcd59c"
       },
       "source": {
         "territoryRow": 942,
@@ -27802,7 +27802,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a7f2c70777a8dde2796c57d52030ea942deacded44641aa303d23fbbfa00ee48"
+        "manifestSha256": "2070aa31e252ff0dc1dc97be6a802029769eafd5e496e4ceeb4d6b3dfe7c7fbb"
       },
       "source": {
         "territoryRow": 943,
@@ -27845,7 +27845,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "5b98a11f941a45a664c70c36c052818e60cb022b7acfcf19ff76affa11f54134"
+        "manifestSha256": "2a135118ed6474962c2d7223f95d2b41545b63262c18f908c8eb551249e0b27a"
       },
       "source": {
         "territoryRow": 944,
@@ -27888,7 +27888,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a5d56d40bce0dcba365b6dcca65b6c52c7c2c59ad96a59a95b658bd379e81fa6"
+        "manifestSha256": "4f9187bb878ff3b3dfb013970b65a4c45414f1fd7d1a4af0c2252add066b64d3"
       },
       "source": {
         "territoryRow": 945,
@@ -27931,7 +27931,7 @@
           "y": 36.9431,
           "z": 85.1875
         },
-        "manifestSha256": "b122db1ecd38756dd452846c3944ef9b944fb45b46d7d92c28867a8b068f6fad"
+        "manifestSha256": "9ea0f8981d0fc84c172b18ae4e6e0143de08500f042db0136fbc7f76e2bcd59c"
       },
       "source": {
         "territoryRow": 946,
@@ -27974,7 +27974,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a7f2c70777a8dde2796c57d52030ea942deacded44641aa303d23fbbfa00ee48"
+        "manifestSha256": "2070aa31e252ff0dc1dc97be6a802029769eafd5e496e4ceeb4d6b3dfe7c7fbb"
       },
       "source": {
         "territoryRow": 947,
@@ -28017,7 +28017,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "5b98a11f941a45a664c70c36c052818e60cb022b7acfcf19ff76affa11f54134"
+        "manifestSha256": "2a135118ed6474962c2d7223f95d2b41545b63262c18f908c8eb551249e0b27a"
       },
       "source": {
         "territoryRow": 948,
@@ -28060,7 +28060,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a5d56d40bce0dcba365b6dcca65b6c52c7c2c59ad96a59a95b658bd379e81fa6"
+        "manifestSha256": "4f9187bb878ff3b3dfb013970b65a4c45414f1fd7d1a4af0c2252add066b64d3"
       },
       "source": {
         "territoryRow": 949,
@@ -28101,7 +28101,7 @@
           "y": 0.0,
           "z": 140.1428
         },
-        "manifestSha256": "c9091692cbaf6ac94768f155cea3eb954ddab092ea2ab228c98bd4387edca63d"
+        "manifestSha256": "510c8c1d83ae9758b62b1f2df561b044bb18ddba36a7908506576cc2eb6470a2"
       },
       "source": {
         "territoryRow": 950,
@@ -28144,7 +28144,7 @@
           "y": 0.0,
           "z": 140.1428
         },
-        "manifestSha256": "c9091692cbaf6ac94768f155cea3eb954ddab092ea2ab228c98bd4387edca63d"
+        "manifestSha256": "510c8c1d83ae9758b62b1f2df561b044bb18ddba36a7908506576cc2eb6470a2"
       },
       "source": {
         "territoryRow": 951,
@@ -28435,7 +28435,7 @@
           "y": -8.28,
           "z": 113.8582
         },
-        "manifestSha256": "bfaa33c0a49046d76813df3f4c837507051cee169389ad34e27cd98ef78f0bf6"
+        "manifestSha256": "da6df7fe28c0067a3f8656477dbd47e86be6e89f709dc8fc94faae75448519f1"
       },
       "source": {
         "territoryRow": 967,
@@ -28476,7 +28476,7 @@
           "y": -0.0,
           "z": 169.0333
         },
-        "manifestSha256": "24524709c35119900bdf6b91768ba82d0a69b4a93f4b2ac6f4485a6b19ab2f37"
+        "manifestSha256": "77d8a0563d4afab20f1b279c42eccc81bfb33341bc49a7f46161b6112411b08e"
       },
       "source": {
         "territoryRow": 968,
@@ -28898,7 +28898,7 @@
           "y": 1.5,
           "z": -820.7294
         },
-        "manifestSha256": "f3f2f2a6dd5adf407c1747b9fcafb03032c94f4600e8417e1f3261d6217a0504"
+        "manifestSha256": "4628cfe133f4213abb4f8154f9da555c3b92f8cf72188bd6f0633e0e62cda206"
       },
       "source": {
         "territoryRow": 979,
@@ -28939,7 +28939,7 @@
           "y": -0.5,
           "z": 3.3333
         },
-        "manifestSha256": "215f86a5a18de1f2e80b02dc0c615995b3ca8646c78bd0c5c61da34ef0402ff3"
+        "manifestSha256": "cd159285c3ac2de4362c25e743c11f1d4da93a4f13c43738db6c87384c447c20"
       },
       "source": {
         "territoryRow": 980,
@@ -28980,7 +28980,7 @@
           "y": 13.5,
           "z": -2.6667
         },
-        "manifestSha256": "7f8254bad8301b3558efe073d44471a460ab265202a7f3805170df2efd868e69"
+        "manifestSha256": "c534d47ba79c803b93845e415b8e6e45e6d627884376a93f78f33e183f080b32"
       },
       "source": {
         "territoryRow": 981,
@@ -29021,7 +29021,7 @@
           "y": 13.5,
           "z": 5.3333
         },
-        "manifestSha256": "4408cc5f0e0b237261e510c9d2a9636b7cfddf3656533079347c699762beeed0"
+        "manifestSha256": "38edeb13eb69a4de2025e3253cb56e72797ff985237e282dc946df4ea53eae97"
       },
       "source": {
         "territoryRow": 982,
@@ -29062,7 +29062,7 @@
           "y": -0.0,
           "z": 2.6666
         },
-        "manifestSha256": "445d8a16346c66205d1f6185cf01149a0beeded1fe91b8c65af4cc044ac123f1"
+        "manifestSha256": "4724901eb3002e0f18f5676ff2c1f099fd9ad50665b7280a964a56ee7ae64609"
       },
       "source": {
         "territoryRow": 983,
@@ -29103,7 +29103,7 @@
           "y": -2.0001,
           "z": -13.3515
         },
-        "manifestSha256": "4bab270d0296a2a833bff94575c3d8f2163de35f0a0099b09ffc189e84b5cca6"
+        "manifestSha256": "e67e58a23f62cae800179806fb0bf8c2d9c1c03aedf15c06421e331e65550e86"
       },
       "source": {
         "territoryRow": 984,
@@ -29392,7 +29392,7 @@
           "y": 0.0,
           "z": 140.1428
         },
-        "manifestSha256": "c9091692cbaf6ac94768f155cea3eb954ddab092ea2ab228c98bd4387edca63d"
+        "manifestSha256": "510c8c1d83ae9758b62b1f2df561b044bb18ddba36a7908506576cc2eb6470a2"
       },
       "source": {
         "territoryRow": 991,
@@ -29433,7 +29433,7 @@
           "y": -0.0,
           "z": 127.6667
         },
-        "manifestSha256": "843b2a56b5af87cc7b10368b9d85d63c1318ba2ef035b21ae5fc35a210b61d2a"
+        "manifestSha256": "b3f5b262cc0851d6824d5340499c5091db65a9e7fd0692d9bd6620cc5fe62140"
       },
       "source": {
         "territoryRow": 992,
@@ -29476,7 +29476,7 @@
           "y": -0.0,
           "z": 127.6667
         },
-        "manifestSha256": "843b2a56b5af87cc7b10368b9d85d63c1318ba2ef035b21ae5fc35a210b61d2a"
+        "manifestSha256": "b3f5b262cc0851d6824d5340499c5091db65a9e7fd0692d9bd6620cc5fe62140"
       },
       "source": {
         "territoryRow": 993,
@@ -29515,11 +29515,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 465.2462,
-          "y": -15.6315,
-          "z": -60.5923
+          "x": 442.657,
+          "y": -3.6787,
+          "z": 91.6872
         },
-        "manifestSha256": "c2e5adace5070df6beb59d8ca0dc828609a632b2413accb2b7b230c8bfed4e79"
+        "manifestSha256": "32891fbc5d11fa13f1ffa58303bc048a912ed23a009b087d308f4b91ef114199"
       },
       "source": {
         "territoryRow": 994,
@@ -29644,7 +29644,7 @@
           "y": 0.0,
           "z": 146.6096
         },
-        "manifestSha256": "a22d5dc0a814c800a38fdf216ed39974853444540b01c0338abb13a1f00d222c"
+        "manifestSha256": "14c19791c643fa5e4a01b51809ef6076d72f89748c6e7e4c1acd9bbf40e44ee6"
       },
       "source": {
         "territoryRow": 997,
@@ -29687,7 +29687,7 @@
           "y": 0.0,
           "z": 146.6096
         },
-        "manifestSha256": "a22d5dc0a814c800a38fdf216ed39974853444540b01c0338abb13a1f00d222c"
+        "manifestSha256": "14c19791c643fa5e4a01b51809ef6076d72f89748c6e7e4c1acd9bbf40e44ee6"
       },
       "source": {
         "territoryRow": 998,
@@ -29728,7 +29728,7 @@
           "y": -0.0,
           "z": 2.6666
         },
-        "manifestSha256": "445d8a16346c66205d1f6185cf01149a0beeded1fe91b8c65af4cc044ac123f1"
+        "manifestSha256": "4724901eb3002e0f18f5676ff2c1f099fd9ad50665b7280a964a56ee7ae64609"
       },
       "source": {
         "territoryRow": 999,
@@ -29939,7 +29939,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "431919d97f7ae68dc7c0829ee1c26720a342302e911e11c7f81a57118575c776"
+        "manifestSha256": "1e3450686d9a0c4f8b6ac097e4ff199685f1ea64d171804e3a2340d439cfbffd"
       },
       "source": {
         "territoryRow": 1004,
@@ -29982,7 +29982,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "431919d97f7ae68dc7c0829ee1c26720a342302e911e11c7f81a57118575c776"
+        "manifestSha256": "1e3450686d9a0c4f8b6ac097e4ff199685f1ea64d171804e3a2340d439cfbffd"
       },
       "source": {
         "territoryRow": 1005,
@@ -30025,7 +30025,7 @@
           "y": -2.5625,
           "z": 31.9875
         },
-        "manifestSha256": "bb7c6379ee5a24e4a53049d124eb8530722d6e6b044c4514a919a626a8cd1113"
+        "manifestSha256": "9282584e8c485b2d9d25344805fed23d9efce59f0525599d401ffebc8d8a79e6"
       },
       "source": {
         "territoryRow": 1006,
@@ -30068,7 +30068,7 @@
           "y": -2.5625,
           "z": 31.9875
         },
-        "manifestSha256": "bb7c6379ee5a24e4a53049d124eb8530722d6e6b044c4514a919a626a8cd1113"
+        "manifestSha256": "9282584e8c485b2d9d25344805fed23d9efce59f0525599d401ffebc8d8a79e6"
       },
       "source": {
         "territoryRow": 1007,
@@ -30111,7 +30111,7 @@
           "y": -2.5625,
           "z": 150.1125
         },
-        "manifestSha256": "bf71af13a77f32272517c3a0bf6aada8dfc063ec5d7406ec21b3f0d673612d09"
+        "manifestSha256": "9c60ee191a05ab1a57311a0207e2a6671f99c5f07f0d082e0075c73bf2ccd4e7"
       },
       "source": {
         "territoryRow": 1008,
@@ -30154,7 +30154,7 @@
           "y": -2.5625,
           "z": 150.1125
         },
-        "manifestSha256": "bf71af13a77f32272517c3a0bf6aada8dfc063ec5d7406ec21b3f0d673612d09"
+        "manifestSha256": "9c60ee191a05ab1a57311a0207e2a6671f99c5f07f0d082e0075c73bf2ccd4e7"
       },
       "source": {
         "territoryRow": 1009,
@@ -30313,7 +30313,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "3531d70b0e8c5b0405a7e2b9ff7688e2044093f9f132aaa47fb989b4ebd1e42d"
+        "manifestSha256": "0c5b28c63015c24865e050320dfe924448df3c2ce42d18c2c9b4d7d59221a580"
       },
       "source": {
         "territoryRow": 1013,
@@ -30463,11 +30463,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 220.6313,
-          "y": -450.4065,
-          "z": 162.4299
+          "x": -227.6667,
+          "y": -481.0,
+          "z": 15.6667
         },
-        "manifestSha256": "e5d36d6b8dc96f08e7e37235db8733eb8e85f79faf6c908829d98b7f6aca5ce2"
+        "manifestSha256": "e1c03f7bb7f8f2702bfda86e402612287e1d1bc18e4f41e3ad462ae9db68845c"
       },
       "source": {
         "territoryRow": 1017,
@@ -30826,7 +30826,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "3531d70b0e8c5b0405a7e2b9ff7688e2044093f9f132aaa47fb989b4ebd1e42d"
+        "manifestSha256": "0c5b28c63015c24865e050320dfe924448df3c2ce42d18c2c9b4d7d59221a580"
       },
       "source": {
         "territoryRow": 1026,
@@ -30903,7 +30903,7 @@
           "y": -0.0,
           "z": 127.6667
         },
-        "manifestSha256": "843b2a56b5af87cc7b10368b9d85d63c1318ba2ef035b21ae5fc35a210b61d2a"
+        "manifestSha256": "b3f5b262cc0851d6824d5340499c5091db65a9e7fd0692d9bd6620cc5fe62140"
       },
       "source": {
         "territoryRow": 1028,
@@ -30944,7 +30944,7 @@
           "y": 0.0,
           "z": 146.6096
         },
-        "manifestSha256": "a22d5dc0a814c800a38fdf216ed39974853444540b01c0338abb13a1f00d222c"
+        "manifestSha256": "14c19791c643fa5e4a01b51809ef6076d72f89748c6e7e4c1acd9bbf40e44ee6"
       },
       "source": {
         "territoryRow": 1029,
@@ -31257,11 +31257,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 6.0248,
-          "y": 41.2008,
-          "z": -101.6458
+          "x": 0.6542,
+          "y": 67.8589,
+          "z": -68.7688
         },
-        "manifestSha256": "e6acf13fc1b374a08ca6893b52b43cca38151f05e076b00df95190bc7941d6cf"
+        "manifestSha256": "affcbdeb435960174c28bc6107163f637e5d276ba5825d3dcda416a14207c604"
       },
       "source": {
         "territoryRow": 1037,
@@ -31425,11 +31425,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 6.5008,
-          "y": 17.0,
-          "z": -2.6667
+          "x": -21.8,
+          "y": 0.0,
+          "z": 53.0333
         },
-        "manifestSha256": "3f764fc4388b010bebbd89eec5feed88beeee18b010e587ec7a796168dd58b99"
+        "manifestSha256": "67e178bdd649c551d1dfc27af2bd32c705cbf8edaaf895b11ed95f02ac841c12"
       },
       "source": {
         "territoryRow": 1040,
@@ -32032,7 +32032,7 @@
           "y": -935.06,
           "z": -750.1582
         },
-        "manifestSha256": "a69615903d41ce2f5767f8390bbad3c1bad6c530be4c44a2ce50622941fe0243"
+        "manifestSha256": "4d5de3feee6f191ac30509cc05399726740d00cb65347c3228b986e732b782bb"
       },
       "source": {
         "territoryRow": 1054,
@@ -32319,7 +32319,7 @@
           "y": 3.0,
           "z": 66.7849
         },
-        "manifestSha256": "839664002083a582bf06f208e28a3766c050b7e38275056c5e52d2a1a4eb269d"
+        "manifestSha256": "aebdb759fb9fd9d06a73bab776cf920103d79f92c93830c1e04d48adbc149299"
       },
       "source": {
         "territoryRow": 1061,
@@ -32586,11 +32586,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 121.3888,
-          "y": 6.217,
-          "z": 73.3745
+          "x": 28.4473,
+          "y": 2.5063,
+          "z": 26.7453
         },
-        "manifestSha256": "2a8a21f055a32de782b22a52d729862a1b9f780ef0f8b35bfbd34ac0b164852b"
+        "manifestSha256": "f556a5ad98cf6e7e4fba6542625fedf1d4d374a3fa26c13f2dcea84afc6f1678"
       },
       "source": {
         "territoryRow": 1067,
@@ -32631,7 +32631,7 @@
           "y": -0.0351,
           "z": 193.3333
         },
-        "manifestSha256": "d9534a98ea0558caf4d7c755288e57e5d92535a5974b4582cd58ae164b982746"
+        "manifestSha256": "cc479c45f75e611d9290ab1a8c9fe2f49ec2f5d43fd3c4ddd30b1fd35d85a6ec"
       },
       "source": {
         "territoryRow": 1068,
@@ -32715,7 +32715,7 @@
           "y": -686.0001,
           "z": 144.265
         },
-        "manifestSha256": "78b437c7078373b3ef7deee5723a867450b353675a9af5d91bc78ee80a74a21e"
+        "manifestSha256": "22580baa5a235e4565be276f7c349215100ff1023782ee16d44275db9092ab2f"
       },
       "source": {
         "territoryRow": 1070,
@@ -32840,7 +32840,7 @@
           "y": 494.2172,
           "z": 28.2476
         },
-        "manifestSha256": "e667aba488a291dad7668212a789aae884c8e1a5e90f654d785e85a3dfc95f04"
+        "manifestSha256": "a9b60d3fb586b4e43ef5d16527be70a34c39293a63aa10aa34ab9552da13546e"
       },
       "source": {
         "territoryRow": 1073,
@@ -33088,7 +33088,7 @@
           "y": -500.0001,
           "z": -27.3333
         },
-        "manifestSha256": "19421839d012d73222fcbaec5f627f7a5722d0667678443e9c682beb30a1f5e0"
+        "manifestSha256": "969afbe029203c290dd1b4c4de15728c7d4d5a381ce14582f4fca28111801b71"
       },
       "source": {
         "territoryRow": 1081,
@@ -33131,7 +33131,7 @@
           "y": -500.0001,
           "z": -27.3333
         },
-        "manifestSha256": "19421839d012d73222fcbaec5f627f7a5722d0667678443e9c682beb30a1f5e0"
+        "manifestSha256": "969afbe029203c290dd1b4c4de15728c7d4d5a381ce14582f4fca28111801b71"
       },
       "source": {
         "territoryRow": 1082,
@@ -33174,7 +33174,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "49bfb69bfb369a9b596ead499f8752f08d78908b266fb85e2712ff0a13fa8624"
+        "manifestSha256": "9560eb5c0b0777ba9efc160bd3ce0951a2499f4f320859166ced16a979530d01"
       },
       "source": {
         "territoryRow": 1083,
@@ -33217,7 +33217,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "49bfb69bfb369a9b596ead499f8752f08d78908b266fb85e2712ff0a13fa8624"
+        "manifestSha256": "9560eb5c0b0777ba9efc160bd3ce0951a2499f4f320859166ced16a979530d01"
       },
       "source": {
         "territoryRow": 1084,
@@ -33260,7 +33260,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "169dd545a0914c7abc04145805807efcba0a188d62ad29221c40b9acb6a8d87d"
+        "manifestSha256": "45e3bd21859c9b5a89f96e42ea54107b0b0c1e016107fe7f850f016355413734"
       },
       "source": {
         "territoryRow": 1085,
@@ -33303,7 +33303,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "169dd545a0914c7abc04145805807efcba0a188d62ad29221c40b9acb6a8d87d"
+        "manifestSha256": "45e3bd21859c9b5a89f96e42ea54107b0b0c1e016107fe7f850f016355413734"
       },
       "source": {
         "territoryRow": 1086,
@@ -33346,7 +33346,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "bd74efcfcfd831f4f9e52acba2bfcd6c9d4aeaa14cea22a0e80f80706ff9b630"
+        "manifestSha256": "2aa2fef3de34d36b5ed42a34cbc23bc63a050c42ae4a156f47badc56853841ba"
       },
       "source": {
         "territoryRow": 1087,
@@ -33389,7 +33389,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "bd74efcfcfd831f4f9e52acba2bfcd6c9d4aeaa14cea22a0e80f80706ff9b630"
+        "manifestSha256": "2aa2fef3de34d36b5ed42a34cbc23bc63a050c42ae4a156f47badc56853841ba"
       },
       "source": {
         "territoryRow": 1088,
@@ -33430,7 +33430,7 @@
           "y": -686.0001,
           "z": 144.265
         },
-        "manifestSha256": "78b437c7078373b3ef7deee5723a867450b353675a9af5d91bc78ee80a74a21e"
+        "manifestSha256": "22580baa5a235e4565be276f7c349215100ff1023782ee16d44275db9092ab2f"
       },
       "source": {
         "territoryRow": 1089,
@@ -33471,7 +33471,7 @@
           "y": -686.0001,
           "z": 144.265
         },
-        "manifestSha256": "78b437c7078373b3ef7deee5723a867450b353675a9af5d91bc78ee80a74a21e"
+        "manifestSha256": "22580baa5a235e4565be276f7c349215100ff1023782ee16d44275db9092ab2f"
       },
       "source": {
         "territoryRow": 1091,
@@ -33553,7 +33553,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "bd74efcfcfd831f4f9e52acba2bfcd6c9d4aeaa14cea22a0e80f80706ff9b630"
+        "manifestSha256": "2aa2fef3de34d36b5ed42a34cbc23bc63a050c42ae4a156f47badc56853841ba"
       },
       "source": {
         "territoryRow": 1093,
@@ -33758,11 +33758,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 50.5904,
-          "y": 60.9111,
-          "z": -189.1934
+          "x": 56.4726,
+          "y": -0.0,
+          "z": -200.0
         },
-        "manifestSha256": "36f388ef75aafb890ef64020c303a22c5167a7361526df2e9eeaa39d06c1f444"
+        "manifestSha256": "921d3e2a4695eb1118a61552dc7e689d7e5c62c95452ef3835a14963c34e45e1"
       },
       "source": {
         "territoryRow": 1098,
@@ -34269,7 +34269,7 @@
           "y": 185.9134,
           "z": 52.9077
         },
-        "manifestSha256": "db0d17b44d91f26c9d8fe29eae2f28f33f1545969479492723ea77e7a964a454"
+        "manifestSha256": "bbd1d8e318091c809f42aa8a165bdf964c5931917989f0103b08e65563de4b6e"
       },
       "source": {
         "territoryRow": 1110,
@@ -34450,11 +34450,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -256.3344,
-          "y": 2.0,
-          "z": -57.0
+          "x": 312.4515,
+          "y": 161.9935,
+          "z": 382.9995
         },
-        "manifestSha256": "c5281d8b294adc7c34fb0addb761967b932068a4400f3726a0332233b4a860a4"
+        "manifestSha256": "e1098e97c436eb8d26b257c25f26f4add9c8145e81240c2e77011bc59ceb2991"
       },
       "source": {
         "territoryRow": 1114,
@@ -34620,7 +34620,7 @@
           "y": -943.4414,
           "z": 384.8643
         },
-        "manifestSha256": "385da1aa9f813cfa1e7b4fb38cd509c6705fd7ac688674b1e6836b8e28c48648"
+        "manifestSha256": "447feeadd891bda47c2a2744ae426a267176fbdaec2052ae77f13a88a832c462"
       },
       "source": {
         "territoryRow": 1118,
@@ -34738,7 +34738,7 @@
           "y": -0.0,
           "z": 84.6722
         },
-        "manifestSha256": "c83ff03df92c3bf3b69d8496288f0b81b3922e04d0522b69154845d6e93e7d03"
+        "manifestSha256": "1caeb2b435f9101b492d83a6539087f032eb52bf319e401db8b468cd1e9c7b47"
       },
       "source": {
         "territoryRow": 1122,
@@ -34986,7 +34986,7 @@
           "y": 89.7333,
           "z": -216.5581
         },
-        "manifestSha256": "8f48c19f42e4bb8b73803738e87f2b9c7b60b6901a2742bcbe3552457b328667"
+        "manifestSha256": "f5267b4de48bc48df3d43ef9e4bc3376aa78bfa5007549c1ada6a32acfd66c18"
       },
       "source": {
         "territoryRow": 1137,
@@ -35109,7 +35109,7 @@
           "y": 0.03,
           "z": 84.97
         },
-        "manifestSha256": "61c37423890bde0c167eff3f62bfc837a27d2f8bf9787e95925d3710693b97a0"
+        "manifestSha256": "f0ae39c4d2185e7388e405ecbad6b41e4250e1da44a34bfb5575d21672554c80"
       },
       "source": {
         "territoryRow": 1140,
@@ -35152,7 +35152,7 @@
           "y": 0.03,
           "z": 84.97
         },
-        "manifestSha256": "61c37423890bde0c167eff3f62bfc837a27d2f8bf9787e95925d3710693b97a0"
+        "manifestSha256": "f0ae39c4d2185e7388e405ecbad6b41e4250e1da44a34bfb5575d21672554c80"
       },
       "source": {
         "territoryRow": 1141,
@@ -35290,11 +35290,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 265.3953,
-          "y": 58.6221,
-          "z": -601.2128
+          "x": 159.2983,
+          "y": 0.0,
+          "z": 425.0531
         },
-        "manifestSha256": "d4079cdf3f522d3315e90acba896ee7d51e19a56d9770c08516e7a05d3d33703"
+        "manifestSha256": "39859ab16f54e3bfaa33f94eb76bac0850d556b96c0cb10124c08ef488b69cd3"
       },
       "source": {
         "territoryRow": 1144,
@@ -35423,7 +35423,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "0f7915ee21bf567314482ea589d32d1aecb8487043e1a130ae122d7dc2455e75"
+        "manifestSha256": "232085dec4c5bc89e0f878d7a51a9e23fe2ca339e2e257fd087ecd295dc3b624"
       },
       "source": {
         "territoryRow": 1147,
@@ -35466,7 +35466,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "0f7915ee21bf567314482ea589d32d1aecb8487043e1a130ae122d7dc2455e75"
+        "manifestSha256": "232085dec4c5bc89e0f878d7a51a9e23fe2ca339e2e257fd087ecd295dc3b624"
       },
       "source": {
         "territoryRow": 1148,
@@ -35509,7 +35509,7 @@
           "y": -0.6061,
           "z": 95.0
         },
-        "manifestSha256": "bea7c57b67aa630bd56e378c8a9d129589c63b08156a25b72ecbb304b933fd14"
+        "manifestSha256": "27984f6ea7462f9ce655f90d171cdb8620d51a4af38caf2f0556fc9e26d13d29"
       },
       "source": {
         "territoryRow": 1149,
@@ -35552,7 +35552,7 @@
           "y": -0.6061,
           "z": 95.0
         },
-        "manifestSha256": "bea7c57b67aa630bd56e378c8a9d129589c63b08156a25b72ecbb304b933fd14"
+        "manifestSha256": "27984f6ea7462f9ce655f90d171cdb8620d51a4af38caf2f0556fc9e26d13d29"
       },
       "source": {
         "territoryRow": 1150,
@@ -35595,7 +35595,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "4d268870d1bcf7e1fdd4fb59dfc878f8f5269beb11abcf25aa2525b688e89ba0"
+        "manifestSha256": "a3e361986afd0a1bb29485e30d4f1ec0ed375d36fae55a463292c890293ad721"
       },
       "source": {
         "territoryRow": 1151,
@@ -35638,7 +35638,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "4d268870d1bcf7e1fdd4fb59dfc878f8f5269beb11abcf25aa2525b688e89ba0"
+        "manifestSha256": "a3e361986afd0a1bb29485e30d4f1ec0ed375d36fae55a463292c890293ad721"
       },
       "source": {
         "territoryRow": 1152,
@@ -35681,7 +35681,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "3a4057ef02206776b73670e138b8a6e6231b412cf7eb8d2ce3c3e8a5c38bd2a8"
+        "manifestSha256": "fb1be8f8353bb01814169e87ecd6cc53196965c030b3df7ad868ad88bf362bc8"
       },
       "source": {
         "territoryRow": 1153,
@@ -35724,7 +35724,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "3a4057ef02206776b73670e138b8a6e6231b412cf7eb8d2ce3c3e8a5c38bd2a8"
+        "manifestSha256": "fb1be8f8353bb01814169e87ecd6cc53196965c030b3df7ad868ad88bf362bc8"
       },
       "source": {
         "territoryRow": 1154,
@@ -35761,11 +35761,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 295.4491,
-          "y": 5.7333,
-          "z": -146.558
+          "x": -28.3333,
+          "y": -26.5512,
+          "z": -7.3345
         },
-        "manifestSha256": "4db4d1c9badfe3fb5ebf480a82a34a07d121ffe79169f8491b9ca537d921b80f"
+        "manifestSha256": "8dee2b67b4189b3bbc768f7ce576538f714afd7ddcdbea94ae599fa4d6134806"
       },
       "source": {
         "territoryRow": 1155,
@@ -35802,11 +35802,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 295.4491,
-          "y": 5.7333,
-          "z": -146.558
+          "x": -28.3333,
+          "y": -26.5512,
+          "z": -7.3345
         },
-        "manifestSha256": "4db4d1c9badfe3fb5ebf480a82a34a07d121ffe79169f8491b9ca537d921b80f"
+        "manifestSha256": "8dee2b67b4189b3bbc768f7ce576538f714afd7ddcdbea94ae599fa4d6134806"
       },
       "source": {
         "territoryRow": 1156,
@@ -35847,7 +35847,7 @@
           "y": -0.6061,
           "z": 95.0
         },
-        "manifestSha256": "bea7c57b67aa630bd56e378c8a9d129589c63b08156a25b72ecbb304b933fd14"
+        "manifestSha256": "27984f6ea7462f9ce655f90d171cdb8620d51a4af38caf2f0556fc9e26d13d29"
       },
       "source": {
         "territoryRow": 1158,
@@ -35888,7 +35888,7 @@
           "y": 0.03,
           "z": 84.97
         },
-        "manifestSha256": "61c37423890bde0c167eff3f62bfc837a27d2f8bf9787e95925d3710693b97a0"
+        "manifestSha256": "f0ae39c4d2185e7388e405ecbad6b41e4250e1da44a34bfb5575d21672554c80"
       },
       "source": {
         "territoryRow": 1159,
@@ -36095,7 +36095,7 @@
           "y": -574.6474,
           "z": -445.3697
         },
-        "manifestSha256": "21b112b576cde78d6931dd9634df06b0df63a46b8d0beb2f6fa20e9eb4ea093d"
+        "manifestSha256": "b04e95c83629dca388f2bf8ceea435a7d79d47bfa8e4af81b29128dc007c550e"
       },
       "source": {
         "territoryRow": 1164,
@@ -36136,7 +36136,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "c023e2ee2918d50b85e3b65c8d4475712badfcee4ba589f1fb97551aad6fbbd4"
+        "manifestSha256": "15dc4db5310fde555d18fb5871eb1f116f19a84aaa679996360fa1742965678e"
       },
       "source": {
         "territoryRow": 1165,
@@ -36220,7 +36220,7 @@
           "y": -117.4769,
           "z": 282.9583
         },
-        "manifestSha256": "85cd6311ad3dc51f512d29b912a405697533e31df2e22b3a6a3ee353f06430a2"
+        "manifestSha256": "03a5afd0016e309ae78debcd77957703f11e6d39812372fd95e09c78f79ec2d0"
       },
       "source": {
         "territoryRow": 1167,
@@ -36261,7 +36261,7 @@
           "y": 0.0,
           "z": 120.0
         },
-        "manifestSha256": "02a10af6633f5f41d950c9105c0d7a72bb3dcb8240d43ebc0fe56b968db3009f"
+        "manifestSha256": "bfc33ed9faa08b8a08b7e8ef9e034699639b5c193cee258c0d9a8381d50e4d9a"
       },
       "source": {
         "territoryRow": 1168,
@@ -36304,7 +36304,7 @@
           "y": 0.0,
           "z": 120.0
         },
-        "manifestSha256": "02a10af6633f5f41d950c9105c0d7a72bb3dcb8240d43ebc0fe56b968db3009f"
+        "manifestSha256": "bfc33ed9faa08b8a08b7e8ef9e034699639b5c193cee258c0d9a8381d50e4d9a"
       },
       "source": {
         "territoryRow": 1169,
@@ -36345,7 +36345,7 @@
           "y": 5.5151,
           "z": -83.3033
         },
-        "manifestSha256": "1c50b8f5bd6fa9b567b2d755440daf21d65f3be06d34cf348420a48beb2b4874"
+        "manifestSha256": "4e63b24035ce8bd4041c1d3d435a538e384a407463b2a95d287dda8d7b0957d4"
       },
       "source": {
         "territoryRow": 1170,
@@ -36425,11 +36425,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 173.3333,
-          "y": 13.0,
-          "z": 8.0619
+          "x": -80.0,
+          "y": -20.0,
+          "z": 20.6667
         },
-        "manifestSha256": "a10d35e12b9c2283f45a0685f7ce1b7aa225d255156132bb2bb492316b27cc44"
+        "manifestSha256": "5630ee2484ce8541f6cbb74e05fcf7de62a7b95d227c1a39fb649c295ef06a87"
       },
       "source": {
         "territoryRow": 1172,
@@ -36468,11 +36468,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 7.8949,
-          "y": 34.2014,
-          "z": -73.3333
+          "x": 64.9769,
+          "y": 19.6767,
+          "z": 94.0235
         },
-        "manifestSha256": "e75c663bcc1d284abc42c6b5d0907a7cac8bbaa8bb84d788f6c8a4dda5ab0eea"
+        "manifestSha256": "dfb22fc12862d6f63a9c959fca8cb1dcc9a5a4e86a5ed7587f70399f47321d7c"
       },
       "source": {
         "territoryRow": 1173,
@@ -36511,11 +36511,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 390.6508,
-          "y": -34.1496,
-          "z": -229.1029
+          "x": 495.2317,
+          "y": -0.0,
+          "z": -139.3518
         },
-        "manifestSha256": "bf8af4ae231ab47b17e13fdbd0bcac60c586257eb702832a0b5690f726589dee"
+        "manifestSha256": "28f8ca9138a62c2ab6539a3f9aa1319fd639890f50dab3f01232059640d42c9d"
       },
       "source": {
         "territoryRow": 1174,
@@ -36640,7 +36640,7 @@
           "y": -950.0,
           "z": 814.3093
         },
-        "manifestSha256": "e119d77b5a40f1422541457e949a03c0d0033d1787959b9e275fa25e016e30df"
+        "manifestSha256": "1d7d6adba93a55740285bfbf9bbf95c8c017a2d914242e6ddb4a80a6445e3037"
       },
       "source": {
         "territoryRow": 1178,
@@ -36763,7 +36763,7 @@
           "y": 0.0,
           "z": 120.0
         },
-        "manifestSha256": "02a10af6633f5f41d950c9105c0d7a72bb3dcb8240d43ebc0fe56b968db3009f"
+        "manifestSha256": "bfc33ed9faa08b8a08b7e8ef9e034699639b5c193cee258c0d9a8381d50e4d9a"
       },
       "source": {
         "territoryRow": 1181,
@@ -36804,7 +36804,7 @@
           "y": -950.0,
           "z": 814.3093
         },
-        "manifestSha256": "e119d77b5a40f1422541457e949a03c0d0033d1787959b9e275fa25e016e30df"
+        "manifestSha256": "1d7d6adba93a55740285bfbf9bbf95c8c017a2d914242e6ddb4a80a6445e3037"
       },
       "source": {
         "territoryRow": 1182,
@@ -36886,7 +36886,7 @@
           "y": -574.6474,
           "z": -445.3697
         },
-        "manifestSha256": "21b112b576cde78d6931dd9634df06b0df63a46b8d0beb2f6fa20e9eb4ea093d"
+        "manifestSha256": "b04e95c83629dca388f2bf8ceea435a7d79d47bfa8e4af81b29128dc007c550e"
       },
       "source": {
         "territoryRow": 1184,
@@ -36929,7 +36929,7 @@
           "y": 237.1083,
           "z": -29.8206
         },
-        "manifestSha256": "bdfbbf68ee9fa42bfde5746585e390afe565b5c6915c083cd3011896dd8f84d3"
+        "manifestSha256": "14fcb98b930aa82e2dee40f6bb91fcc016ff4432366735837847d5df90fce091"
       },
       "source": {
         "territoryRow": 1193,
@@ -36972,7 +36972,7 @@
           "y": -210.0342,
           "z": -301.7147
         },
-        "manifestSha256": "9fbf0a9cc5824349511bb0e3f19c20e99e9896292765f429a88ff6473f6c22b6"
+        "manifestSha256": "b9ea5047393532b55a301f1b1f60c42adc14de530577b28832bcce03e6bf154c"
       },
       "source": {
         "territoryRow": 1194,
@@ -37013,7 +37013,7 @@
           "y": 6.4109,
           "z": 130.8986
         },
-        "manifestSha256": "829b54120dd0ea21e068e5c12d695d2f27d490d6877ac84838cd595761faa283"
+        "manifestSha256": "ba8d8ea3a4469790091867bde555aeefa47fe703473e61fcd2e4b4639308db0b"
       },
       "source": {
         "territoryRow": 1195,
@@ -37056,7 +37056,7 @@
           "y": 6.4109,
           "z": 130.8986
         },
-        "manifestSha256": "829b54120dd0ea21e068e5c12d695d2f27d490d6877ac84838cd595761faa283"
+        "manifestSha256": "ba8d8ea3a4469790091867bde555aeefa47fe703473e61fcd2e4b4639308db0b"
       },
       "source": {
         "territoryRow": 1196,
@@ -37097,7 +37097,7 @@
           "y": 11.7195,
           "z": -49.2713
         },
-        "manifestSha256": "ad6f11ed090ee14d44b121053c54ddd4dee96942e970800af6eb2c6e5971ed71"
+        "manifestSha256": "0edd3b992e39ff7ddf24baf8adaa50d62f7d9d073fd79b82b9ff4c85c3ba5a5b"
       },
       "source": {
         "territoryRow": 1197,
@@ -37321,7 +37321,7 @@
           "y": -16.0,
           "z": 87.95
         },
-        "manifestSha256": "56f1462afa769b24d566bb77a8a81324ba5690b967959131e7146fcc282a61f6"
+        "manifestSha256": "a040d78db882bb86ec47b6852b25f9e68f9e390dc98d426949f979ccaabb3253"
       },
       "source": {
         "territoryRow": 1202,
@@ -37448,7 +37448,7 @@
           "y": 158.51,
           "z": -224.2703
         },
-        "manifestSha256": "aa7cb44dbce31856cf344436994e749f6d2f2cd2a351ede61eff39defe4d3840"
+        "manifestSha256": "637133bae265f6fe5e5e231dfc1972bf08f4a30bd1599448e9ff16db654fa09e"
       },
       "source": {
         "territoryRow": 1205,
@@ -37489,7 +37489,7 @@
           "y": 15.6008,
           "z": 6.6674
         },
-        "manifestSha256": "6f6c01f213c9c069dadba506f31a6a87354c4b4ff80b19d74e61cf3c7fa9bb7b"
+        "manifestSha256": "811a0c0bbdae379d262ac17e5c133792b27c49c8bcf39f023ab0ed62317185fc"
       },
       "source": {
         "territoryRow": 1206,
@@ -37627,7 +37627,7 @@
           "y": 5.5151,
           "z": -83.3033
         },
-        "manifestSha256": "1c50b8f5bd6fa9b567b2d755440daf21d65f3be06d34cf348420a48beb2b4874"
+        "manifestSha256": "4e63b24035ce8bd4041c1d3d435a538e384a407463b2a95d287dda8d7b0957d4"
       },
       "source": {
         "territoryRow": 1210,
@@ -38058,7 +38058,7 @@
           "y": -16.0,
           "z": 87.95
         },
-        "manifestSha256": "56f1462afa769b24d566bb77a8a81324ba5690b967959131e7146fcc282a61f6"
+        "manifestSha256": "a040d78db882bb86ec47b6852b25f9e68f9e390dc98d426949f979ccaabb3253"
       },
       "source": {
         "territoryRow": 1221,
@@ -38099,7 +38099,7 @@
           "y": -18.0341,
           "z": 318.2854
         },
-        "manifestSha256": "ce25dbc6a0efdfdfdd201732ca550a452b52f597351582a7de752f82142c526d"
+        "manifestSha256": "fafb3f531bcc1af437340db3ca6c2bd8a8623912701028db75012abf99aecaf1"
       },
       "source": {
         "territoryRow": 1222,
@@ -38294,7 +38294,7 @@
           "y": 0.066,
           "z": -0.9604
         },
-        "manifestSha256": "5238c358e7babe11b7ad64d38b7130b8a4580e31e177897903cb332340af08c1"
+        "manifestSha256": "714f3106164f4af31f4837f1f92c6b21cca5510374073c3cf1b1f89cda30108e"
       },
       "source": {
         "territoryRow": 1127,
@@ -38335,7 +38335,7 @@
           "y": 0.066,
           "z": -0.9604
         },
-        "manifestSha256": "5238c358e7babe11b7ad64d38b7130b8a4580e31e177897903cb332340af08c1"
+        "manifestSha256": "714f3106164f4af31f4837f1f92c6b21cca5510374073c3cf1b1f89cda30108e"
       },
       "source": {
         "territoryRow": 1128,
@@ -38376,7 +38376,7 @@
           "y": 0.066,
           "z": -0.9604
         },
-        "manifestSha256": "5238c358e7babe11b7ad64d38b7130b8a4580e31e177897903cb332340af08c1"
+        "manifestSha256": "714f3106164f4af31f4837f1f92c6b21cca5510374073c3cf1b1f89cda30108e"
       },
       "source": {
         "territoryRow": 1129,
@@ -38417,7 +38417,7 @@
           "y": -169.5785,
           "z": -143.7154
         },
-        "manifestSha256": "ca8adbc5e10a4d01af97a4d6966d2f918763563c44fb48667fc0a416c21ffe85"
+        "manifestSha256": "6b5aa21c92912495011bf9a5019a8cb45c5b69828ae3d7cea847fef29d2630c7"
       },
       "source": {
         "territoryRow": 1209,
@@ -38542,7 +38542,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "99cc7c5f73725f493a0490c4486bbf097a74e21ca11e5bfa903f8552457476df"
+        "manifestSha256": "6e204754b97ea86366fa41d9759361888b2c3ffa93d3f27b3135e5d519ccb268"
       },
       "source": {
         "territoryRow": 1225,
@@ -38585,7 +38585,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "99cc7c5f73725f493a0490c4486bbf097a74e21ca11e5bfa903f8552457476df"
+        "manifestSha256": "6e204754b97ea86366fa41d9759361888b2c3ffa93d3f27b3135e5d519ccb268"
       },
       "source": {
         "territoryRow": 1226,
@@ -38628,7 +38628,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a35fb52ff1d0a225d248b6b756a9be20b24c8f48f6cce3987c8cdf13b05e3fbf"
+        "manifestSha256": "6fa8a48fd569d40a1bae5a4cd901bd64c5d308526c5d40c2cf35e9d74df03c3a"
       },
       "source": {
         "territoryRow": 1227,
@@ -38671,7 +38671,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a35fb52ff1d0a225d248b6b756a9be20b24c8f48f6cce3987c8cdf13b05e3fbf"
+        "manifestSha256": "6fa8a48fd569d40a1bae5a4cd901bd64c5d308526c5d40c2cf35e9d74df03c3a"
       },
       "source": {
         "territoryRow": 1228,
@@ -38714,7 +38714,7 @@
           "y": -0.0321,
           "z": 135.3415
         },
-        "manifestSha256": "aebe9b97a65cb8824014d7a1c79cefba450e3767ce44acc15c8a27f572d2659a"
+        "manifestSha256": "c4ea30b957b7274491bd7c349442ad1a3c962eb804c1579ac4654bdcc22ea3ea"
       },
       "source": {
         "territoryRow": 1229,
@@ -38757,7 +38757,7 @@
           "y": -0.0321,
           "z": 135.3415
         },
-        "manifestSha256": "aebe9b97a65cb8824014d7a1c79cefba450e3767ce44acc15c8a27f572d2659a"
+        "manifestSha256": "c4ea30b957b7274491bd7c349442ad1a3c962eb804c1579ac4654bdcc22ea3ea"
       },
       "source": {
         "territoryRow": 1230,
@@ -38800,7 +38800,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "dd07e99da1bbfe4355e9ddf78433c8f257bcfd802b51ddc290340aa19bcd0751"
+        "manifestSha256": "30a967a5d3f8d8235488a19b71c7da4fad521f5e1c67ca6a40fe743a0b0bf5bb"
       },
       "source": {
         "territoryRow": 1231,
@@ -38843,7 +38843,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "dd07e99da1bbfe4355e9ddf78433c8f257bcfd802b51ddc290340aa19bcd0751"
+        "manifestSha256": "30a967a5d3f8d8235488a19b71c7da4fad521f5e1c67ca6a40fe743a0b0bf5bb"
       },
       "source": {
         "territoryRow": 1232,
@@ -38884,7 +38884,7 @@
           "y": 1.0001,
           "z": -99.3848
         },
-        "manifestSha256": "9451f2191dd68175ab95bdd92cc01a76e1d2bb65f21460cd4913e6b3d7e67960"
+        "manifestSha256": "95c5db48ef8667a4450d310948661c72979f7097f92a75aa1b5c4ccd694e4fa0"
       },
       "source": {
         "territoryRow": 1237,
@@ -38925,7 +38925,7 @@
           "y": -0.7015,
           "z": 130.7028
         },
-        "manifestSha256": "b00afe80acd28e6386a97832735bacd1131061872c7b0ff7b348d24ef39792a0"
+        "manifestSha256": "3686ac3a7c2388f0dfd392c64ed8152b887b1e19387cf964500a19e0c264ad3e"
       },
       "source": {
         "territoryRow": 1238,
@@ -39054,7 +39054,7 @@
           "y": 30.0,
           "z": 130.0
         },
-        "manifestSha256": "3a3bc0cf0cfe3e779c203ba2467fc2fbc659b853b9c8904a1252be13048de465"
+        "manifestSha256": "27a54fccdb1707440aa70e27ae8af4f55c5370d5736866cf71931279c7dc05f3"
       },
       "source": {
         "territoryRow": 1243,
@@ -39132,11 +39132,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -5.7043,
-          "y": 0.2905,
-          "z": -3.753
+          "x": 113.7765,
+          "y": 3.3108,
+          "z": 64.2097
         },
-        "manifestSha256": "623c7c9591f1ddb8839dca88e5d9162da18b5ea080e7f337c2a37f5d6d980493"
+        "manifestSha256": "880ea4f889154c0f07719f81187b901fe292976bc2f82860f05639b7acd23957"
       },
       "source": {
         "territoryRow": 1247,
@@ -39177,7 +39177,7 @@
           "y": -964.12,
           "z": -533.0747
         },
-        "manifestSha256": "4a4aad557f18018e29cf3fba1b02a251a011cf9fbe2487f34b207c782855dbc0"
+        "manifestSha256": "82f6a18bb6b7eb12539cf49a51d58855b230c21eb569602ddda4888146a392ac"
       },
       "source": {
         "territoryRow": 1248,
@@ -39378,11 +39378,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -5.7043,
-          "y": 0.2905,
-          "z": -3.753
+          "x": 113.7765,
+          "y": 3.3108,
+          "z": 64.2097
         },
-        "manifestSha256": "623c7c9591f1ddb8839dca88e5d9162da18b5ea080e7f337c2a37f5d6d980493"
+        "manifestSha256": "880ea4f889154c0f07719f81187b901fe292976bc2f82860f05639b7acd23957"
       },
       "source": {
         "territoryRow": 1253,
@@ -39464,7 +39464,7 @@
           "y": 0.8039,
           "z": -3.3406
         },
-        "manifestSha256": "d55eb9d054d3916d755b360acf2a115055bf1ce9ccc505f810e076bead79eb8d"
+        "manifestSha256": "a80bcc10c593468c30c5e5e9048e511a1e65d101cf5cfd7944792a9304bf52f0"
       },
       "source": {
         "territoryRow": 1255,
@@ -39507,7 +39507,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "88020fbe86b402bdafda7e4c0e22c84de96704bad31d5522248642befe02b30f"
+        "manifestSha256": "be9ab1b4edea3ced222783ecf002cf1b199a4827fd7cea8a04f96320f573f043"
       },
       "source": {
         "territoryRow": 1256,
@@ -39550,7 +39550,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "88020fbe86b402bdafda7e4c0e22c84de96704bad31d5522248642befe02b30f"
+        "manifestSha256": "be9ab1b4edea3ced222783ecf002cf1b199a4827fd7cea8a04f96320f573f043"
       },
       "source": {
         "territoryRow": 1257,
@@ -39593,7 +39593,7 @@
           "y": 0.0,
           "z": 106.6667
         },
-        "manifestSha256": "cf333f161a41000cda801c2249de0e2bc97f974c0abe79fa7d67fed6341885fb"
+        "manifestSha256": "97caac89142c9a3e1a95737b5037a19df8e9afc6345a415b499de19b0b5488d5"
       },
       "source": {
         "territoryRow": 1258,
@@ -39636,7 +39636,7 @@
           "y": 0.0,
           "z": 106.6667
         },
-        "manifestSha256": "cf333f161a41000cda801c2249de0e2bc97f974c0abe79fa7d67fed6341885fb"
+        "manifestSha256": "97caac89142c9a3e1a95737b5037a19df8e9afc6345a415b499de19b0b5488d5"
       },
       "source": {
         "territoryRow": 1259,
@@ -39679,7 +39679,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a0de9d6b20bf4c1725ad9f8a2c1f82e9fc2a2d5713a1f72769a01ad9ba876868"
+        "manifestSha256": "82833fda393c76f25cfae3485bc02e79a65081427fb743da6efcafd8f8b1ef41"
       },
       "source": {
         "territoryRow": 1260,
@@ -39722,7 +39722,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a0de9d6b20bf4c1725ad9f8a2c1f82e9fc2a2d5713a1f72769a01ad9ba876868"
+        "manifestSha256": "82833fda393c76f25cfae3485bc02e79a65081427fb743da6efcafd8f8b1ef41"
       },
       "source": {
         "territoryRow": 1261,
@@ -39765,7 +39765,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "fe746797d90fbc252da7fbb56c44b641258a8909e3c2852854d729651a1f4586"
+        "manifestSha256": "fde74010ead2c24da1828e010c8fe7442a85b2269b75a3978ff1e2c2addaef6e"
       },
       "source": {
         "territoryRow": 1262,
@@ -39808,7 +39808,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "fe746797d90fbc252da7fbb56c44b641258a8909e3c2852854d729651a1f4586"
+        "manifestSha256": "fde74010ead2c24da1828e010c8fe7442a85b2269b75a3978ff1e2c2addaef6e"
       },
       "source": {
         "territoryRow": 1263,
@@ -39849,7 +39849,7 @@
           "y": 42.0,
           "z": -26.6667
         },
-        "manifestSha256": "c9d36f13d2a87cbb791ba110d5efbdc5559cb91d291203335c602dcc1ec992ef"
+        "manifestSha256": "0bc571c9c54ab4ba8bb98dd642dc0ae81497f3614c8fd77afc781bbcf7b321d0"
       },
       "source": {
         "territoryRow": 1264,
@@ -39890,7 +39890,7 @@
           "y": 42.0,
           "z": -26.6667
         },
-        "manifestSha256": "c9d36f13d2a87cbb791ba110d5efbdc5559cb91d291203335c602dcc1ec992ef"
+        "manifestSha256": "0bc571c9c54ab4ba8bb98dd642dc0ae81497f3614c8fd77afc781bbcf7b321d0"
       },
       "source": {
         "territoryRow": 1265,
@@ -40056,7 +40056,7 @@
           "y": 1.5356,
           "z": 99.3034
         },
-        "manifestSha256": "7b6b9a1ecf88ce4786c3e797685c8bfc5449c2c5f8b63bbeeefb136da644a172"
+        "manifestSha256": "0dddb2ac038e1caee68be56b29082b728999be20ec9f4ca1a044976280372e20"
       },
       "source": {
         "territoryRow": 1270,
@@ -40099,7 +40099,7 @@
           "y": 1.5356,
           "z": 99.3034
         },
-        "manifestSha256": "7b6b9a1ecf88ce4786c3e797685c8bfc5449c2c5f8b63bbeeefb136da644a172"
+        "manifestSha256": "0dddb2ac038e1caee68be56b29082b728999be20ec9f4ca1a044976280372e20"
       },
       "source": {
         "territoryRow": 1271,
@@ -40222,7 +40222,7 @@
           "y": 1.5356,
           "z": 99.3034
         },
-        "manifestSha256": "7b6b9a1ecf88ce4786c3e797685c8bfc5449c2c5f8b63bbeeefb136da644a172"
+        "manifestSha256": "0dddb2ac038e1caee68be56b29082b728999be20ec9f4ca1a044976280372e20"
       },
       "source": {
         "territoryRow": 1275,
@@ -40263,7 +40263,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "a0de9d6b20bf4c1725ad9f8a2c1f82e9fc2a2d5713a1f72769a01ad9ba876868"
+        "manifestSha256": "82833fda393c76f25cfae3485bc02e79a65081427fb743da6efcafd8f8b1ef41"
       },
       "source": {
         "territoryRow": 1276,
@@ -40427,7 +40427,7 @@
           "y": 23.214,
           "z": 32.3054
         },
-        "manifestSha256": "6afb8cb41d0660b6961bf36fd5c30262d1792bd8a2a745da96ea88a8fc749e3a"
+        "manifestSha256": "e3f3b55715067c52c9f0c561136a2e24f2fcbb3209e3ed19f0af9123e9cd1e27"
       },
       "source": {
         "territoryRow": 1280,
@@ -40468,7 +40468,7 @@
           "y": 59.4844,
           "z": 577.8802
         },
-        "manifestSha256": "a3cb387dfd11ba0d3ce2c6ec198efe52acba6efedf2cee2d2d4b86dcabfb3271"
+        "manifestSha256": "e23bee9fa0f878955ec283609ddec4a86f453f33aa3abcab30f0a5005cf2adad"
       },
       "source": {
         "territoryRow": 1281,
@@ -40509,7 +40509,7 @@
           "y": 1.83,
           "z": -300.522
         },
-        "manifestSha256": "35ad88edb371e6333bfb44f2c8ce8e104355af33c3a025de17e898296300e149"
+        "manifestSha256": "d7ba7955e5b7d2079138e18ed18aa7661bb0f9dca5a187be58a8043b384a1af6"
       },
       "source": {
         "territoryRow": 1282,
@@ -40874,11 +40874,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": 780.0541,
-          "y": -80.3083,
-          "z": 224.4965
+          "x": 552.7704,
+          "y": -300.4943,
+          "z": 574.0885
         },
-        "manifestSha256": "bb5f1d3870bd7103de85e9d450c68f23a10b908bdcfd14453104dffa21d313d7"
+        "manifestSha256": "fca0c65f06a1fc5c499d9eb6831834b6cd008012efe37486204aa48287aa7a55"
       },
       "source": {
         "territoryRow": 1291,
@@ -41057,7 +41057,7 @@
           "y": -100.0001,
           "z": 106.6689
         },
-        "manifestSha256": "3e2f1438dc868e208ad36f63727cd40172d88e65db4d3f360679aa494d797b1d"
+        "manifestSha256": "c0785605d30a58be07641537d68c1f48fc6feee5c784ee1a31abbebf0b6c0ea3"
       },
       "source": {
         "territoryRow": 1295,
@@ -41100,7 +41100,7 @@
           "y": -100.0001,
           "z": 106.6689
         },
-        "manifestSha256": "3e2f1438dc868e208ad36f63727cd40172d88e65db4d3f360679aa494d797b1d"
+        "manifestSha256": "c0785605d30a58be07641537d68c1f48fc6feee5c784ee1a31abbebf0b6c0ea3"
       },
       "source": {
         "territoryRow": 1296,
@@ -41141,7 +41141,7 @@
           "y": 13.5385,
           "z": 331.0711
         },
-        "manifestSha256": "f3ba5c47e4fa19db9d3199f7c6681b32864ed58e338b35623d0c1edd9168928a"
+        "manifestSha256": "9c0cdc0204eaba55422c65338129637ccc0b5de347ebafd2a5e1db9ff5bda3ca"
       },
       "source": {
         "territoryRow": 1297,
@@ -41264,7 +41264,7 @@
           "y": 101.3433,
           "z": 770.356
         },
-        "manifestSha256": "b8623058e16fd67785b11489479e0bb740daaaf4a038d397d59a729168f158e8"
+        "manifestSha256": "a3cf59c53b6230302f78e30806905876384b840bea3c8135b8e7f36b3968936e"
       },
       "source": {
         "territoryRow": 1300,
@@ -41305,7 +41305,7 @@
           "y": 101.3433,
           "z": 770.356
         },
-        "manifestSha256": "b8623058e16fd67785b11489479e0bb740daaaf4a038d397d59a729168f158e8"
+        "manifestSha256": "a3cf59c53b6230302f78e30806905876384b840bea3c8135b8e7f36b3968936e"
       },
       "source": {
         "territoryRow": 1301,
@@ -41346,7 +41346,7 @@
           "y": -900.0,
           "z": 112.8002
         },
-        "manifestSha256": "eb190a56edfe7028dd0ed1e2c296b91aa5e8e5319fac1fac384cd4960553a54b"
+        "manifestSha256": "7d7f38d34abfefc585100b4494d498812d43198829256de92284d2c9fcf66812"
       },
       "source": {
         "territoryRow": 1304,
@@ -41389,7 +41389,7 @@
           "y": 101.3433,
           "z": 770.356
         },
-        "manifestSha256": "b8623058e16fd67785b11489479e0bb740daaaf4a038d397d59a729168f158e8"
+        "manifestSha256": "a3cf59c53b6230302f78e30806905876384b840bea3c8135b8e7f36b3968936e"
       },
       "source": {
         "territoryRow": 1306,
@@ -41510,11 +41510,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -5.7043,
-          "y": 0.2905,
-          "z": -3.753
+          "x": 113.7765,
+          "y": 3.3108,
+          "z": 64.2097
         },
-        "manifestSha256": "623c7c9591f1ddb8839dca88e5d9162da18b5ea080e7f337c2a37f5d6d980493"
+        "manifestSha256": "880ea4f889154c0f07719f81187b901fe292976bc2f82860f05639b7acd23957"
       },
       "source": {
         "territoryRow": 1309,
@@ -41551,11 +41551,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -160.2302,
-          "y": 36.3028,
-          "z": 121.9641
+          "x": 405.3333,
+          "y": -60.2579,
+          "z": 490.6667
         },
-        "manifestSha256": "b997b47f221f29d5039e3f6506db9fbf31e4307a019aeea3766f565fdd15f245"
+        "manifestSha256": "20c2fdf38618883aa3a07079e76a3dc93205280ec89dd1cf7a387f04536687b9"
       },
       "source": {
         "territoryRow": 1310,
@@ -41637,7 +41637,7 @@
           "y": -100.0001,
           "z": 106.6689
         },
-        "manifestSha256": "3e2f1438dc868e208ad36f63727cd40172d88e65db4d3f360679aa494d797b1d"
+        "manifestSha256": "c0785605d30a58be07641537d68c1f48fc6feee5c784ee1a31abbebf0b6c0ea3"
       },
       "source": {
         "territoryRow": 1312,
@@ -41678,7 +41678,7 @@
           "y": 21.0,
           "z": -148.3393
         },
-        "manifestSha256": "94d72f1a09449c663d50288fd2d1cd9d65e5970edceef00d28e16575a0140cd9"
+        "manifestSha256": "3251da82b54d15f28b4627fde3bf7660ffed10783d23391a13ff364202d25559"
       },
       "source": {
         "territoryRow": 1313,
@@ -41928,7 +41928,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "e66c9135f4d269ab7ceb8a74e7405ead90a8ca4bec7e9ed54acd3f2da2d41d53"
+        "manifestSha256": "d72bf5fc8febd08b7f9428fa2c8ab7db9a85fa3a7a7614bcb04b019da634f034"
       },
       "source": {
         "territoryRow": 1320,
@@ -41971,7 +41971,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "e66c9135f4d269ab7ceb8a74e7405ead90a8ca4bec7e9ed54acd3f2da2d41d53"
+        "manifestSha256": "d72bf5fc8febd08b7f9428fa2c8ab7db9a85fa3a7a7614bcb04b019da634f034"
       },
       "source": {
         "territoryRow": 1321,
@@ -42014,7 +42014,7 @@
           "y": -0.6001,
           "z": 83.2837
         },
-        "manifestSha256": "30a3e4d95a91388633a8732d8a87dd9a32f23db2abe5fca92dc1b3fd76c7ae78"
+        "manifestSha256": "184e2647c02bbd5c813867b741b2cfeb617c07f15f46e3885c095c403ecad782"
       },
       "source": {
         "territoryRow": 1322,
@@ -42057,7 +42057,7 @@
           "y": -0.6001,
           "z": 83.2837
         },
-        "manifestSha256": "30a3e4d95a91388633a8732d8a87dd9a32f23db2abe5fca92dc1b3fd76c7ae78"
+        "manifestSha256": "184e2647c02bbd5c813867b741b2cfeb617c07f15f46e3885c095c403ecad782"
       },
       "source": {
         "territoryRow": 1323,
@@ -42100,7 +42100,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "f159ec230247457f956775634150b5e9aeaa97f5c4c38e68726fd7334f2968a4"
+        "manifestSha256": "7ffdee75b665090b7743a6fa110962787289c6a4dfdb2a7cf29d2515dc1f11b4"
       },
       "source": {
         "territoryRow": 1324,
@@ -42143,7 +42143,7 @@
           "y": 0.0,
           "z": -66.6667
         },
-        "manifestSha256": "f159ec230247457f956775634150b5e9aeaa97f5c4c38e68726fd7334f2968a4"
+        "manifestSha256": "7ffdee75b665090b7743a6fa110962787289c6a4dfdb2a7cf29d2515dc1f11b4"
       },
       "source": {
         "territoryRow": 1325,
@@ -42186,7 +42186,7 @@
           "y": -159.567,
           "z": 150.197
         },
-        "manifestSha256": "45b06f7c7adce9a19b54193e267b0893eeea8cca639e67269106999878d8eb3a"
+        "manifestSha256": "097027bf07219a77c94b34858865be63e48e13bc7ca3f51b3c5985d322191c06"
       },
       "source": {
         "territoryRow": 1326,
@@ -42229,7 +42229,7 @@
           "y": -159.567,
           "z": 150.197
         },
-        "manifestSha256": "45b06f7c7adce9a19b54193e267b0893eeea8cca639e67269106999878d8eb3a"
+        "manifestSha256": "097027bf07219a77c94b34858865be63e48e13bc7ca3f51b3c5985d322191c06"
       },
       "source": {
         "territoryRow": 1327,
@@ -42516,7 +42516,7 @@
           "y": -0.3591,
           "z": -690.6221
         },
-        "manifestSha256": "77fc9194c126486f3ec2e5c00ada1dd097732a7d2e1797696a9477fa12d07122"
+        "manifestSha256": "f4c9efe2587428b8c6b72845bf9a0ad7217ea63d9a9032caff0558f4535bff61"
       },
       "source": {
         "territoryRow": 1336,
@@ -43051,7 +43051,7 @@
           "y": 69.1224,
           "z": 78.6446
         },
-        "manifestSha256": "dc1db8de601904466e512707426a83ba093114a85ce362561de7019f40f41f34"
+        "manifestSha256": "b0dc68d00499c586292de445a8e09568e5501032f305d39643ff6f99527165c8"
       },
       "source": {
         "territoryRow": 1359,
@@ -43092,7 +43092,7 @@
           "y": 4.574,
           "z": -57.9987
         },
-        "manifestSha256": "cc68e54406cc83d09ca3f3fa51644488ceb9aedfcaef0f4cb7d827854d5042da"
+        "manifestSha256": "9915822dac6f85a1f1eec6064331e1e782c490619b6d3bd6efa6b7ed1435f01d"
       },
       "source": {
         "territoryRow": 1360,
@@ -43133,7 +43133,7 @@
           "y": -200.0,
           "z": 104.4864
         },
-        "manifestSha256": "67879824de783cc0a152e1da69ca01ab117468ee1eb392374767083f3825898a"
+        "manifestSha256": "1af29f467c2c253dfd96ae8a35752a01c085c7de62000a628a35fe5b72ecc4de"
       },
       "source": {
         "territoryRow": 1361,
@@ -43176,7 +43176,7 @@
           "y": -200.0,
           "z": 104.4864
         },
-        "manifestSha256": "67879824de783cc0a152e1da69ca01ab117468ee1eb392374767083f3825898a"
+        "manifestSha256": "1af29f467c2c253dfd96ae8a35752a01c085c7de62000a628a35fe5b72ecc4de"
       },
       "source": {
         "territoryRow": 1362,
@@ -43217,7 +43217,7 @@
           "y": 64.0961,
           "z": 21.0063
         },
-        "manifestSha256": "d4690007890cf52736cbbb550f5a25ac41a751a33639f42304dc9446aec81fc5"
+        "manifestSha256": "6e5f1260785de09f2b6c9992d10fa8575ef8977314af560e4bcfade8c68fe4c7"
       },
       "source": {
         "territoryRow": 1363,
@@ -43258,7 +43258,7 @@
           "y": -3.0807,
           "z": -67.0739
         },
-        "manifestSha256": "f7a15f5720ecc041500127f050163f823f789fd355d9a4186faf04a5e93b5b19"
+        "manifestSha256": "a9f5b0d6024702da572f707feddaebad4bd5541e49f687136a74852d5b76b90d"
       },
       "source": {
         "territoryRow": 1364,
@@ -43299,7 +43299,7 @@
           "y": -0.3888,
           "z": -75.9519
         },
-        "manifestSha256": "a2486c67ae8474f0d1f592732a8d7848f75d191a7d570cd1e9bf0c007959e3be"
+        "manifestSha256": "13ad36595ff43c272033231d781fc232cd305d6dd76b585f88826c01ac67f5b5"
       },
       "source": {
         "territoryRow": 1365,
@@ -43463,7 +43463,7 @@
           "y": -3.0807,
           "z": -67.0739
         },
-        "manifestSha256": "f7a15f5720ecc041500127f050163f823f789fd355d9a4186faf04a5e93b5b19"
+        "manifestSha256": "a9f5b0d6024702da572f707feddaebad4bd5541e49f687136a74852d5b76b90d"
       },
       "source": {
         "territoryRow": 1371,
@@ -43504,7 +43504,7 @@
           "y": -200.0,
           "z": 104.4864
         },
-        "manifestSha256": "67879824de783cc0a152e1da69ca01ab117468ee1eb392374767083f3825898a"
+        "manifestSha256": "1af29f467c2c253dfd96ae8a35752a01c085c7de62000a628a35fe5b72ecc4de"
       },
       "source": {
         "territoryRow": 1373,
@@ -43664,11 +43664,11 @@
       "status": {
         "rebuildStatus": "built",
         "spawn": {
-          "x": -5.7043,
-          "y": 0.2905,
-          "z": -3.753
+          "x": 113.7765,
+          "y": 3.3108,
+          "z": 64.2097
         },
-        "manifestSha256": "623c7c9591f1ddb8839dca88e5d9162da18b5ea080e7f337c2a37f5d6d980493"
+        "manifestSha256": "880ea4f889154c0f07719f81187b901fe292976bc2f82860f05639b7acd23957"
       },
       "source": {
         "territoryRow": 1384,
