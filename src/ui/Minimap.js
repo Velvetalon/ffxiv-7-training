@@ -17,7 +17,7 @@ export function drawMap(canvas, info, sceneId, expanded = false) {
   if(info.map.image){
     if(!mapImages.has(info.map.image)){const image=new Image();image.src=info.map.image;mapImages.set(info.map.image,image);}
     const image=mapImages.get(info.map.image), area=info.map.imageBounds;
-    if(image.complete&&image.naturalWidth)ctx.drawImage(image,px(area.minX),py(area.minZ),(area.maxX-area.minX)*scale,(area.maxZ-area.minZ)*scale);
+    if(area&&image.complete&&image.naturalWidth)ctx.drawImage(image,px(area.minX),py(area.minZ),(area.maxX-area.minX)*scale,(area.maxZ-area.minZ)*scale);
   }
   ctx.strokeStyle = '#e4e3b519'; ctx.lineWidth = 1;
   for (let i = -500; i < 500; i += 20) {

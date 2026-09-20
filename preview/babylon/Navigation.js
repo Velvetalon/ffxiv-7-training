@@ -8,6 +8,25 @@ const EPSILON = 1e-5;
 const STREAM_TRIANGLE_BUDGET = 160000;
 const STREAM_PIN_RADIUS = 128;
 
+export function createFallbackNavigation(point, radius = 192) {
+  const source = Array.isArray(point)
+    ? { x: Number(point[0]) || 0, y: Number(point[1]) || 0, z: Number(point[2]) || 0 }
+    : { x: Number(point?.x) || 0, y: Number(point?.y) || 0, z: Number(point?.z) || 0 };
+  const extent = Math.max(16, Number(radius) || 192);
+  const y = source.y;
+  const positions = new Float32Array([
+    source.x - extent, y, source.z - extent,
+    source.x + extent, y, source.z - extent,
+    source.x + extent, y, source.z + extent,
+    source.x - extent, y, source.z - extent,
+    source.x + extent, y, source.z + extent,
+    source.x - extent, y, source.z + extent,
+  ]);
+  const navigation = new Navigation(positions);
+  navigation.fallback = true;
+  return navigation;
+}
+
 function byteView(value) {
   const source = value?.bytes ?? value;
   if (source instanceof ArrayBuffer) return new Uint8Array(source);

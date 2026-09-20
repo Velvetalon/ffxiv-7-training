@@ -273,6 +273,16 @@ export function createBabylonMapLoader({
       if (distanceSquaredToRecord(record, cameraPosition) <= radiusSquared) bootstrapIndices.add(record.index);
     }
   }
+  if (!bootstrapIndices.size && records.length) {
+    // A few hidden territories have sparse or zero instance bounds. Keep the
+    // first frame renderable by loading the nearest models instead of an empty
+    // bootstrap set; the remaining models still stream normally.
+    const nearest = records
+      .map(record => ({ record, distance: distanceSquaredToRecord(record, cameraPosition) }))
+      .sort((left, right) => left.distance - right.distance)
+      .slice(0, Math.min(8, records.length));
+    for (const entry of nearest) bootstrapIndices.add(entry.record.index);
+  }
   state.bootstrapCount = bootstrapIndices.size;
   for (const record of records) {
     record.bootstrap = bootstrapIndices.has(record.index);

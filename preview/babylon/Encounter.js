@@ -1,6 +1,18 @@
 import { Color3, MeshBuilder, StandardMaterial, TransformNode, Vector3 } from '@babylonjs/core';
 import { mapImageBounds } from '../../src/world/imported/MapCoordinates.js';
 
+function optionalMapImageBounds(sceneId, legacy) {
+  if (legacy?.imageBounds) return legacy.imageBounds;
+  if (!legacy?.mapTexture) return null;
+  try {
+    return mapImageBounds(sceneId);
+  } catch {
+    // Hidden territories may not have a catalog map canvas. The minimap can
+    // still render collision bounds and landmarks without a background image.
+    return null;
+  }
+}
+
 const LANDMARK_NAMES = {
   "The Roost": '栖木旅馆',
   'Carline Canopy': '魔女咖啡馆',
@@ -135,9 +147,26 @@ export function prepareEncounter(manifest, navigation) {
   }
   const [x, y, z] = manifest.spawn || manifest.aetheryte || [0, 0, 0];
   navigation.height = y;
-  const center = navigation.nearestWalkable(x, z, 40, y);
+  let center = navigation.nearestWalkable(x, z, 40, y);
+  // Source spawns for instanced/hidden territories can be authored slightly
+  // outside collision coverage, or on a disconnected platform. Probe outward
+  // before failing the whole scene.
+  if (!center) {
+    search: for (const radius of [16, 32, 64, 96, 128, 192]) {
+      for (let step = 0; step < 24; step += 1) {
+        const angle = step * Math.PI / 12;
+        center = navigation.nearestWalkable(
+          x + Math.sin(angle) * radius,
+          z + Math.cos(angle) * radius,
+          16,
+          y,
+        );
+        if (center) break search;
+      }
+    }
+  }
   if (!center) throw new Error(`${manifest.scene}: 无法在源地标附近找到练习地面`);
-  for (const radius of [4, 7, 10, 14]) {
+  for (const radius of [4, 7, 10, 14, 20, 28]) {
     for (let step = 0; step < 16; step += 1) {
       const angle = step * Math.PI / 8;
       const spawn = new Vector3(center.x + Math.sin(angle) * radius, center.y, center.z + Math.cos(angle) * radius);
@@ -239,7 +268,7 @@ export function mountEncounter(world, assets, navigation, encounter, { createDum
       surfaces: [],
       water: [],
       image: null,
-      imageBounds: legacy.imageBounds || mapImageBounds(world.sceneId),
+      imageBounds: optionalMapImageBounds(world.sceneId, legacy),
       sourceVersion: legacy.sourceVersion,
     },
   };

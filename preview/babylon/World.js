@@ -13,7 +13,7 @@ import EnvironmentAdapter from './EnvironmentAdapter.js';
 import MaterialAdapter from './MaterialAdapter.js';
 import { DebugRenderMode } from './DebugRenderMode.js';
 import { createBabylonMapLoader } from './SceneLoader.js';
-import { Navigation } from './Navigation.js';
+import { Navigation, createFallbackNavigation } from './Navigation.js';
 import { EffectSystem } from './Effects.js';
 import {
   EntityRegistry,
@@ -336,7 +336,17 @@ export class World {
       [draft.navigation] = await Promise.all([collisionTask, bootstrapTask]);
       if (request !== this.loadRequest) { this.disposeDraft(draft); return false; }
       this.validateBootstrap(draft.loader, id);
-      const encounter = prepareEncounter(draft.assets.legacy, draft.navigation);
+      let encounter;
+      try {
+        encounter = prepareEncounter(draft.assets.legacy, draft.navigation);
+      } catch (error) {
+        const source = draft.assets.legacy?.spawn || draft.assets.map?.spawn?.point;
+        if (!source) throw error;
+        draft.navigation?.dispose?.();
+        draft.navigation = createFallbackNavigation(source);
+        encounter = prepareEncounter(draft.assets.legacy, draft.navigation);
+        console.warn(`Babylon collision fallback for ${id}: ${error.message}`);
+      }
       const arrivalConnection = entry.arrivalConnection
         ? draft.assets.legacy.connections?.find(connection => connection.id === entry.arrivalConnection)
         : null;
