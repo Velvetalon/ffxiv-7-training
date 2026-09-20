@@ -29,9 +29,9 @@ const contextTarget = new THREE.Vector3();
 const contextPlayer = new THREE.Vector3();
 
 export class World {
-  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, initialScene = 'gridania' } = {}) {
+  constructor(canvas, { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, onDutyEntrance, initialScene = 'gridania' } = {}) {
     this.canvas = canvas;
-    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection };
+    this.callbacks = { onTarget, onInteract, onMove, onLoading, onSceneReady, onConnection, onDutyEntrance };
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(52, 1, 0.1, 650);
     this.followCamera = new FollowCamera(this.camera);
@@ -73,6 +73,8 @@ export class World {
     this.quality = 'high';
     this.movementSpeed = 1;
     this.returnGate = null;
+    this.dutyEntrances = [];
+    this.dutyEntrancesRoot = null;
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
     this.input = new InputController(canvas, {
@@ -172,6 +174,8 @@ export class World {
       this.layout=mountEncounter(this,loaded,navigation,encounter);
       loaded.layout = this.layout;
       mountConnections(this.sceneRoot,loaded.manifest.connections || []);
+      this.dutyEntrancesRoot = null;
+      this.mountDutyEntranceGates();
       this.scene.add(this.sceneRoot);
       this.water=[];this.crystals=[];this.architecture=[];this.landmarkLabels=[];
       this.importedManifest=loaded.manifest;
@@ -239,6 +243,64 @@ export class World {
   canUseConnection(id) {
     const connection=this.getConnections().find(connection=>connection.id===id);
     return !this.loading && !!connection && connectionDistance(connection,this.player.position)<=(connection.radius || 3);
+  }
+
+  setDutyEntrances(entrances) {
+    this.dutyEntrances = Array.isArray(entrances) ? entrances : [];
+    this.mountDutyEntranceGates();
+  }
+
+  getDutyEntrances() {
+    if (!this.isImported) return [];
+    return this.dutyEntrances.filter(gate => gate.fromSceneId === this.sceneId);
+  }
+
+  mountDutyEntranceGates() {
+    if (this.dutyEntrancesRoot) {
+      this.sceneRoot?.remove(this.dutyEntrancesRoot);
+      disposeObject(this.dutyEntrancesRoot);
+      this.dutyEntrancesRoot = null;
+    }
+    if (!this.sceneRoot || this.loading || !this.isImported) return;
+    const gates = this.getDutyEntrances();
+    if (!gates.length) return;
+    const root = new THREE.Group();
+    root.name = 'DutyEntranceGates';
+    const material = new THREE.MeshBasicMaterial({ color: '#e2c268', transparent: true, opacity: 0.72 });
+    for (const gate of gates) {
+      const marker = new THREE.Group();
+      marker.name = `duty-entrance:${gate.dutyKey}`;
+      marker.position.set(gate.position.x, gate.position.y, gate.position.z);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(1.4, 0.08, 6, 28), material);
+      ring.rotation.x = Math.PI / 2;
+      ring.position.y = 0.14;
+      const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.28, 2.4, 10, 1, true), material);
+      beam.position.y = 1.2;
+      marker.add(ring, beam);
+      marker.userData.dutyEntrance = gate;
+      ring.userData.dutyEntrance = gate;
+      beam.userData.dutyEntrance = gate;
+      root.add(marker);
+    }
+    this.dutyEntrancesRoot = root;
+    this.sceneRoot.add(root);
+  }
+
+  getNearbyDutyEntrance() {
+    if (this.loading) return null;
+    for (const gate of this.getDutyEntrances()) {
+      const distance = Math.hypot(
+        this.player.position.x - gate.position.x,
+        this.player.position.z - gate.position.z,
+      );
+      if (distance <= (gate.radius || 4)) return gate;
+    }
+    return null;
+  }
+
+  canUseDutyEntrance(dutyKey) {
+    const gate = this.getDutyEntrances().find(item => item.dutyKey === dutyKey);
+    return Boolean(gate) && this.getNearbyDutyEntrance()?.dutyKey === dutyKey;
   }
 
   setJob(id) {
@@ -485,6 +547,7 @@ export class World {
     if (!this.sceneRoot) return;
     this.scene.remove(this.sceneRoot);
     disposeObject(this.sceneRoot);
+    this.dutyEntrancesRoot = null;
     this.assetScene?.release();
     this.assetScene = null;
   }
@@ -593,6 +656,14 @@ export class World {
     const rect = this.canvas.getBoundingClientRect();
     this.pointer.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.camera);
+    if (this.dutyEntrancesRoot) {
+      const gateHit = this.raycaster.intersectObjects(this.dutyEntrancesRoot.children, true)
+        .find(value => value.object.userData.dutyEntrance);
+      if (gateHit) {
+        this.callbacks.onDutyEntrance?.(gateHit.object.userData.dutyEntrance);
+        return;
+      }
+    }
     const portals = this.sceneRoot.children.filter(node => node.userData.connection);
     const portalHit = this.raycaster.intersectObjects(portals, true)[0];
     if (portalHit) {
@@ -633,4 +704,3 @@ export class World {
     return true;
   }
 }
-

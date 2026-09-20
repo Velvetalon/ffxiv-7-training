@@ -15,6 +15,16 @@ function selectedPublicAssets() {
       for (const item of await fs.readdir(source)) {
         if (!['extracted', 'sandbox'].includes(item)) await fs.cp(path.join(source, item), path.join(destination, item), { recursive: true });
       }
+      const dutiesDestination = path.join(destination, 'duties');
+      await fs.mkdir(dutiesDestination, { recursive: true });
+      await fs.copyFile(
+        path.join(config.root, 'config/duties/duty-catalog.json'),
+        path.join(dutiesDestination, 'catalog.json'),
+      );
+      await fs.copyFile(
+        path.join(config.root, 'config/duties/entrances.json'),
+        path.join(dutiesDestination, 'entrances.json'),
+      );
       const externalSandboxRelease = Boolean(process.env.SANDBOX_RELEASE_DIR);
       const sandboxRoot = path.resolve(process.env.SANDBOX_RELEASE_DIR || path.join(source, 'sandbox'));
       const sandboxPublishPath = path.join(sandboxRoot, 'publish-manifest.json');

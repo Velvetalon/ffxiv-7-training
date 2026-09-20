@@ -25,7 +25,7 @@ export class EffectSystem {
     this.vfxRuntime.registerCatalog(catalog);
     // Client-derived catalog is fetched when deployed; when absent, the baseline
     // catalog above still exercises the runtime.
-    fetch('/vfx/definitions/catalog.json')
+    fetch(`${import.meta.env.BASE_URL}vfx/definitions/catalog.json`)
       .then(response => (response.ok ? response.json() : null))
       .then(clientCatalog => { if (clientCatalog) this.vfxRuntime.registerCatalog(clientCatalog); })
       .catch(() => {});
@@ -161,7 +161,6 @@ export class EffectSystem {
     this.fields.delete(id);
   }
 }
-
 
 
 
