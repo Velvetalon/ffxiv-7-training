@@ -4,11 +4,9 @@
     "site": "https://ff14.huijiwiki.com/",
     "api": "MediaWiki action=query / action=parse",
     "retrievedAtUtc": "2026-09-18",
-    "sourceSha256": {
-      "huiji-duty-category-search.json": "bce55da73ede297b77c187e864ef78411b13a6575d237f661579c5f151d83971",
-      "huiji-geography-search.json": "75be5afdf4cceab72577ae5a67e0aee107f39492901ecdb9146c66b29b001167",
-      "huiji-entrance-rendered.json": "3253fbc5afca4f246072831d786909d1c262b94c1d33bc46cf5d5bef21b8833a"
-    },
+    "structuredEvidence": "work/wiki/huiji-instance-data-current.json",
+    "structuredPagesFetched": 427,
+    "sourceSha256": {},
     "joinRule": "Duty names join by exact Chinese title. Wiki duty IDs are page/InstanceContent-style IDs and must not be joined to ContentFinderCondition."
   },
   "duties": [
@@ -16,2565 +14,3416 @@
       "zh": "万魔殿 炼净之狱1",
       "ja": "万魔殿パンデモニウム：煉獄編1",
       "en": "Abyssos: The Fifth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30116
     },
     {
       "zh": "万魔殿 炼净之狱2",
       "ja": "万魔殿パンデモニウム：煉獄編2",
       "en": "Abyssos: The Sixth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30120
     },
     {
       "zh": "万魔殿 炼净之狱3",
       "ja": "万魔殿パンデモニウム：煉獄編3",
       "en": "Abyssos: The Seventh Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30118
     },
     {
       "zh": "万魔殿 炼净之狱4",
       "ja": "万魔殿パンデモニウム：煉獄編4",
       "en": "Abyssos: The Eighth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30122
     },
     {
       "zh": "万魔殿 荒天之狱1",
       "ja": "万魔殿パンデモニウム：天獄編1",
       "en": "Anabaseios: The Ninth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30126
     },
     {
       "zh": "万魔殿 荒天之狱2",
       "ja": "万魔殿パンデモニウム：天獄編2",
       "en": "Anabaseios: The Tenth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30128
     },
     {
       "zh": "万魔殿 荒天之狱3",
       "ja": "万魔殿パンデモニウム：天獄編3",
       "en": "Anabaseios: The Eleventh Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30130
     },
     {
       "zh": "万魔殿 荒天之狱4",
       "ja": "万魔殿パンデモニウム：天獄編4",
       "en": "Anabaseios: The Twelfth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30132
     },
     {
       "zh": "万魔殿 边境之狱1",
       "ja": "万魔殿パンデモニウム：辺獄編1",
       "en": "Asphodelos: The First Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30111
     },
     {
       "zh": "万魔殿 边境之狱2",
       "ja": "万魔殿パンデモニウム：辺獄編2",
       "en": "Asphodelos: The Second Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30113
     },
     {
       "zh": "万魔殿 边境之狱3",
       "ja": "万魔殿パンデモニウム：辺獄編3",
       "en": "Asphodelos: The Third Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30109
     },
     {
       "zh": "万魔殿 边境之狱4",
       "ja": "万魔殿パンデモニウム：辺獄編4",
       "en": "Asphodelos: The Fourth Circle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30107
     },
     {
       "zh": "丛林竞流生息河岸",
       "ja": "濁流遡上 イフイカ・トゥム",
       "en": "Ihuykatumu",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 94
     },
     {
       "zh": "乐园都市笑笑镇",
       "ja": "楽園都市 スマイルトン",
       "en": "Smileton",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 85
     },
     {
       "zh": "乐欲之所瓯博讷修道院",
       "ja": "楽欲の僧院 オーボンヌ",
       "en": "the Orbonne Monastery",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30077
     },
     {
       "zh": "亚历山大机神城 启动之章1",
       "ja": "機工城アレキサンダー：起動編1",
       "en": "Alexander - The Fist of the Father",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30021
     },
     {
       "zh": "亚历山大机神城 启动之章2",
       "ja": "機工城アレキサンダー：起動編2",
       "en": "Alexander - The Cuff of the Father",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30022
     },
     {
       "zh": "亚历山大机神城 启动之章3",
       "ja": "機工城アレキサンダー：起動編3",
       "en": "Alexander - The Arm of the Father",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30023
     },
     {
       "zh": "亚历山大机神城 启动之章4",
       "ja": "機工城アレキサンダー：起動編4",
       "en": "Alexander - The Burden of the Father",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30024
     },
     {
       "zh": "亚历山大机神城 天动之章1",
       "ja": "機工城アレキサンダー：天動編1",
       "en": "Alexander - The Eyes of the Creator",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30039
     },
     {
       "zh": "亚历山大机神城 天动之章2",
       "ja": "機工城アレキサンダー：天動編2",
       "en": "Alexander - The Breath of the Creator",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30040
     },
     {
       "zh": "亚历山大机神城 天动之章3",
       "ja": "機工城アレキサンダー：天動編3",
       "en": "Alexander - The Heart of the Creator",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30041
     },
     {
       "zh": "亚历山大机神城 天动之章4",
       "ja": "機工城アレキサンダー：天動編4",
       "en": "Alexander - The Soul of the Creator",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30042
     },
     {
       "zh": "亚历山大机神城 律动之章1",
       "ja": "機工城アレキサンダー：律動編1",
       "en": "Alexander - The Fist of the Son",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30030
     },
     {
       "zh": "亚历山大机神城 律动之章2",
       "ja": "機工城アレキサンダー：律動編2",
       "en": "Alexander - The Cuff of the Son",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30031
     },
     {
       "zh": "亚历山大机神城 律动之章3",
       "ja": "機工城アレキサンダー：律動編3",
       "en": "Alexander - The Arm of the Son",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30032
     },
     {
       "zh": "亚历山大机神城 律动之章4",
       "ja": "機工城アレキサンダー：律動編4",
       "en": "Alexander - The Burden of the Son",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30033
     },
     {
       "zh": "亚历山大绝境战",
       "ja": "絶アレキサンダー討滅戦",
       "en": "the Epic of Alexander (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30086
     },
     {
       "zh": "亚历山大零式机神城 启动之章1",
       "ja": "機工城アレキサンダー零式：起動編1",
       "en": "Alexander - The Fist of the Father (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30025
     },
     {
       "zh": "亚历山大零式机神城 启动之章2",
       "ja": "機工城アレキサンダー零式：起動編2",
       "en": "Alexander - The Cuff of the Father (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30026
     },
     {
       "zh": "亚历山大零式机神城 启动之章3",
       "ja": "機工城アレキサンダー零式：起動編3",
       "en": "Alexander - The Arm of the Father (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30027
     },
     {
       "zh": "亚历山大零式机神城 启动之章4",
       "ja": "機工城アレキサンダー零式：起動編4",
       "en": "Alexander - The Burden of the Father (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30028
     },
     {
       "zh": "亚历山大零式机神城 天动之章1",
       "ja": "機工城アレキサンダー零式：天動編1",
       "en": "Alexander - The Eyes of the Creator (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30043
     },
     {
       "zh": "亚历山大零式机神城 天动之章2",
       "ja": "機工城アレキサンダー零式：天動編2",
       "en": "Alexander - The Breath of the Creator (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30044
     },
     {
       "zh": "亚历山大零式机神城 天动之章3",
       "ja": "機工城アレキサンダー零式：天動編3",
       "en": "Alexander - The Heart of the Creator (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30045
     },
     {
       "zh": "亚历山大零式机神城 天动之章4",
       "ja": "機工城アレキサンダー零式：天動編4",
       "en": "Alexander - The Soul of the Creator (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30046
     },
     {
       "zh": "亚历山大零式机神城 律动之章1",
       "ja": "機工城アレキサンダー零式：律動編1",
       "en": "Alexander - The Fist of the Son (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30034
     },
     {
       "zh": "亚历山大零式机神城 律动之章2",
       "ja": "機工城アレキサンダー零式：律動編2",
       "en": "Alexander - The Cuff of the Son (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30035
     },
     {
       "zh": "亚历山大零式机神城 律动之章3",
       "ja": "機工城アレキサンダー零式：律動編3",
       "en": "Alexander - The Arm of the Son (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30036
     },
     {
       "zh": "亚历山大零式机神城 律动之章4",
       "ja": "機工城アレキサンダー零式：律動編4",
       "en": "Alexander - The Burden of the Son (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30037
     },
     {
       "zh": "亡灵府邸闹鬼庄园",
       "ja": "亡霊屋敷 ホーンテッドマナー",
       "en": "the Haunted Manor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 25001
     },
     {
       "zh": "人偶军事基地",
       "ja": "人形タチノ軍事基地",
       "en": "the Puppets' Bunker",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30096
     },
     {
       "zh": "伊弗利特歼殛战",
       "ja": "極イフリート討滅戦",
       "en": "the Bowl of Embers (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20008
     },
     {
       "zh": "伊弗利特歼灭战",
       "ja": "真イフリート討滅戦",
       "en": "the Bowl of Embers (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20004
     },
     {
       "zh": "伊弗利特讨伐战",
       "ja": "イフリート討伐戦",
       "en": "the Bowl of Embers",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20001
     },
     {
       "zh": "伊甸希望乐园 共鸣之章1",
       "ja": "希望の園エデン：共鳴編1",
       "en": "Eden's Verse: Fulmination",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30088
     },
     {
       "zh": "伊甸希望乐园 共鸣之章2",
       "ja": "希望の園エデン：共鳴編2",
       "en": "Eden's Verse: Furor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30090
     },
     {
       "zh": "伊甸希望乐园 共鸣之章3",
       "ja": "希望の園エデン：共鳴編3",
       "en": "Eden's Verse: Iconoclasm",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30092
     },
     {
       "zh": "伊甸希望乐园 共鸣之章4",
       "ja": "希望の園エデン：共鳴編4",
       "en": "Eden's Verse: Refulgence",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30094
     },
     {
       "zh": "伊甸希望乐园 再生之章1",
       "ja": "希望の園エデン：再生編1",
       "en": "Eden's Promise: Umbra",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30097
     },
     {
       "zh": "伊甸希望乐园 再生之章2",
       "ja": "希望の園エデン：再生編2",
       "en": "Eden's Promise: Litany",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30099
     },
     {
       "zh": "伊甸希望乐园 再生之章3",
       "ja": "希望の園エデン：再生編3",
       "en": "Eden's Promise: Anamorphosis",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30101
     },
     {
       "zh": "伊甸希望乐园 再生之章4",
       "ja": "希望の園エデン：再生編4",
       "en": "Eden's Promise: Eternity",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30103
     },
     {
       "zh": "伊甸希望乐园 觉醒之章1",
       "ja": "希望の園エデン：覚醒編1",
       "en": "Eden's Gate: Resurrection",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30078
     },
     {
       "zh": "伊甸希望乐园 觉醒之章2",
       "ja": "希望の園エデン：覚醒編2",
       "en": "Eden's Gate: Descent",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30082
     },
     {
       "zh": "伊甸希望乐园 觉醒之章3",
       "ja": "希望の園エデン：覚醒編3",
       "en": "Eden's Gate: Inundation",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30080
     },
     {
       "zh": "伊甸希望乐园 觉醒之章4",
       "ja": "希望の園エデン：覚醒編4",
       "en": "Eden's Gate: Sepulture",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30084
     },
     {
       "zh": "伊甸零式希望乐园 共鸣之章1",
       "ja": "希望の園エデン零式：共鳴編1",
       "en": "Eden's Verse: Fulmination (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30089
     },
     {
       "zh": "伊甸零式希望乐园 共鸣之章2",
       "ja": "希望の園エデン零式：共鳴編2",
       "en": "Eden's Verse: Furor (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30091
     },
     {
       "zh": "伊甸零式希望乐园 共鸣之章3",
       "ja": "希望の園エデン零式：共鳴編3",
       "en": "Eden's Verse: Iconoclasm (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30093
     },
     {
       "zh": "伊甸零式希望乐园 共鸣之章4",
       "ja": "希望の園エデン零式：共鳴編4",
       "en": "Eden's Verse: Refulgence (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30095
     },
     {
       "zh": "伊甸零式希望乐园 再生之章1",
       "ja": "希望の園エデン零式：再生編1",
       "en": "Eden's Promise: Umbra (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30098
     },
     {
       "zh": "伊甸零式希望乐园 再生之章2",
       "ja": "希望の園エデン零式：再生編2",
       "en": "Eden's Promise: Litany (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30100
     },
     {
       "zh": "伊甸零式希望乐园 再生之章3",
       "ja": "希望の園エデン零式：再生編3",
       "en": "Eden's Promise: Anamorphosis (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30102
     },
     {
       "zh": "伊甸零式希望乐园 再生之章4",
       "ja": "希望の園エデン零式：再生編4",
       "en": "Eden's Promise: Eternity (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30104
     },
     {
       "zh": "伊甸零式希望乐园 觉醒之章1",
       "ja": "希望の園エデン零式：覚醒編1",
       "en": "Eden's Gate: Resurrection (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30079
     },
     {
       "zh": "伊甸零式希望乐园 觉醒之章2",
       "ja": "希望の園エデン零式：覚醒編2",
       "en": "Eden's Gate: Descent (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30083
     },
     {
       "zh": "伊甸零式希望乐园 觉醒之章3",
       "ja": "希望の園エデン零式：覚醒編3",
       "en": "Eden's Gate: Inundation (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30081
     },
     {
       "zh": "伊甸零式希望乐园 觉醒之章4",
       "ja": "希望の園エデン零式：覚醒編4",
       "en": "Eden's Gate: Sepulture (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30085
     },
     {
       "zh": "休养胜地布雷福洛克斯野营地",
       "ja": "奪還支援 ブレイフロクスの野営地",
       "en": "Brayflox's Longstop",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 8
     },
     {
       "zh": "伪造天界格鲁格火山",
       "ja": "偽造天界 グルグ火山",
       "en": "Mt. Gulg",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 70
     },
     {
       "zh": "佐拉加歼殛战",
       "ja": "極ゾラージャ討滅戦",
       "en": "Everkeep (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20097
     },
     {
       "zh": "佐拉加歼灭战",
       "ja": "ゾラージャ討滅戦",
       "en": "Everkeep",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20096
     },
     {
       "zh": "佐迪亚克暝暗歼灭战",
       "ja": "極ゾディアーク討滅戦",
       "en": "the Minstrel's Ballad: Zodiark's Fall",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20081
     },
     {
       "zh": "佐迪亚克歼灭战",
       "ja": "ゾディアーク討滅戦",
       "en": "the Dark Inside",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20080
     },
     {
       "zh": "保镖歼灭战",
       "ja": "真ヨウジンボウ討滅戦",
       "en": "Kugane Ohashi",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20059
     },
     {
       "zh": "修行古刹星导寺",
       "ja": "壊神修行 星導山寺院",
       "en": "the Temple of the Fist",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 51
     },
     {
       "zh": "俾斯麦歼殛战",
       "ja": "極ビスマルク討滅戦",
       "en": "the Limitless Blue (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20034
     },
     {
       "zh": "俾斯麦歼灭战",
       "ja": "真ビスマルク討滅戦",
       "en": "the Limitless Blue (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20033
     },
     {
       "zh": "光之战士幻耀歼灭战",
       "ja": "極ウォーリア・オブ・ライト討滅戦",
       "en": "the Seat of Sacrifice (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20072
     },
     {
       "zh": "光之战士歼灭战",
       "ja": "ウォーリア・オブ・ライト討滅戦",
       "en": "the Seat of Sacrifice",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20071
     },
     {
       "zh": "光暗未来绝境战",
       "ja": "絶もうひとつの未来",
       "en": "Futures Rewritten (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30143
     },
     {
       "zh": "军工要地克吕提俄斯魔导工厂",
       "ja": "妖異侵攻 クルティウス魔導工廠",
       "en": "the Clyteum",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 104
     },
     {
       "zh": "冰雪废堡暮卫塔",
       "ja": "廃砦捜索 ダスクヴィジル",
       "en": "the Dusk Vigil",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 36
     },
     {
       "zh": "凛冽洞天披雪大冰壁",
       "ja": "氷結潜窟 スノークローク大氷壁",
       "en": "Snowcloak",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 27
     },
     {
       "zh": "击溃哥布林炸弹军团！",
       "ja": "爆弾魔ゴブリン軍団を撃滅せよ！",
       "en": "Flicking Sticks and Taking Names",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10008
     },
     {
       "zh": "创造机构阿尼德罗学院",
       "ja": "創造機関 アナイダアカデミア",
       "en": "Akadaemia Anyder",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 71
     },
     {
       "zh": "创造环境极北造物院",
       "ja": "創造環境 ヒュペルボレア造物院",
       "en": "Ktisis Hyperboreia",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 82
     },
     {
       "zh": "利维亚桑幻巧战",
       "ja": "幻リヴァイアサン討滅戦",
       "en": "the Whorleater (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64003
     },
     {
       "zh": "利维亚桑歼殛战",
       "ja": "極リヴァイアサン討滅戦",
       "en": "the Whorleater (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20018
     },
     {
       "zh": "利维亚桑歼灭战",
       "ja": "真リヴァイアサン討滅戦",
       "en": "the Whorleater (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20017
     },
     {
       "zh": "制止三方混战的巨人族，守住遗物！",
       "ja": "三つ巴の巨人族を制し、遺物を守れ！",
       "en": "Solemn Trinity",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10014
     },
     {
       "zh": "前哨基地先锋营",
       "ja": "外征前哨 ヴァンガード",
       "en": "Vanguard",
       "wikiDutyId": 97,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 97
     },
     {
       "zh": "剑斗领域日影地修炼所",
       "ja": "剣闘領域 ハラタリ修練所 (Hard)",
       "en": "Halatali (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 21
     },
     {
       "zh": "加加财富天坑",
       "ja": "宝物庫 セノーテ・ジャジャグラル",
       "en": "Cenote Ja Ja Gural",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55012
     },
     {
       "zh": "卓异的悲寂歼灭战",
       "ja": "エミネントグリーフ討滅戦",
       "en": "the Final Verse",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 60052
     },
     {
       "zh": "卓异的悲寂深想战",
       "ja": "詩想エミネントグリーフ討滅戦",
       "en": "the Final Verse (Quantum)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 60051
     },
     {
       "zh": "博兹雅堡垒追忆战",
       "ja": "極シタデル・ボズヤ追憶戦",
       "en": "Memoria Misera (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20070
     },
     {
       "zh": "博物战舰无限回廊",
       "ja": "博物戦艦 フラクタル・コンティニアム",
       "en": "the Fractal Continuum",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 35
     },
     {
       "zh": "卢比坎特歼殛战",
       "ja": "極ルビカンテ討滅戦",
       "en": "Mount Ordeals (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20087
     },
     {
       "zh": "卢比坎特歼灭战",
       "ja": "ルビカンテ討滅戦",
       "en": "Mount Ordeals",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20086
     },
     {
       "zh": "厄尔庇斯育体宝殿",
       "ja": "宝物庫 エルピス・ギュムナシオン祭殿",
       "en": "the Shifting Gymnasion Agonon",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55011
     },
     {
       "zh": "古代遗迹喀恩埋没圣堂",
       "ja": "遺跡探索 カルン埋没寺院",
       "en": "the Sunken Temple of Qarn",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 9
     },
     {
       "zh": "吉祥天女歼殛战",
       "ja": "極ラクシュミ討滅戦",
       "en": "Emanation (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20049
     },
     {
       "zh": "吉祥天女歼灭战",
       "ja": "ラクシュミ討滅戦",
       "en": "Emanation",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20048
     },
     {
       "zh": "名门府邸静语庄园",
       "ja": "名門屋敷 ハウケタ御用邸",
       "en": "Haukke Manor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 6
     },
     {
       "zh": "哈迪斯孤念歼灭战",
       "ja": "極ハーデス討滅戦",
       "en": "the Minstrel's Ballad: Hades's Elegy",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20067
     },
     {
       "zh": "哈迪斯歼灭战",
       "ja": "ハーデス討滅戦",
       "en": "the Dying Gasp",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20066
     },
     {
       "zh": "喜悦神域欧芙洛绪涅",
       "ja": "喜びの神域 エウプロシュネ",
       "en": "Euphrosyne",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30125
     },
     {
       "zh": "噩梦乐园迷途鬼区",
       "ja": "悪夢遊園 ストレイバロー",
       "en": "The Strayborough Deadwalk",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 99
     },
     {
       "zh": "国境防线基姆利特暗区",
       "ja": "境界戦線 ギムリトダーク",
       "en": "the Ghimlyt Dark",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64
     },
     {
       "zh": "圆桌骑士幻巧战",
       "ja": "幻ナイツ・オブ・ラウンド討滅戦",
       "en": "The Singularity Reactor (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64008
     },
     {
       "zh": "圆桌骑士幻想歼灭战",
       "ja": "蒼天幻想 ナイツ・オブ・ラウンド討滅戦",
       "en": "the Minstrel's Ballad: Thordan's Reign",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20036
     },
     {
       "zh": "圆桌骑士歼灭战",
       "ja": "ナイツ・オブ・ラウンド討滅戦",
       "en": "the Singularity Reactor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20035
     },
     {
       "zh": "圣教中枢伊修加德教皇厅",
       "ja": "強硬突入 イシュガルド教皇庁",
       "en": "the Vault",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 34
     },
     {
       "zh": "地下灵殿塔姆·塔拉墓园",
       "ja": "地下霊殿 タムタラの墓所",
       "en": "the Tam-Tara Deepcroft",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 2
     },
     {
       "zh": "地脉灵灯天狼星灯塔",
       "ja": "制圧巨塔 シリウス大灯台 (Hard)",
       "en": "Pharos Sirius (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 40
     },
     {
       "zh": "坚牢铁壁巴埃萨长城",
       "ja": "巨大防壁 バエサルの長城",
       "en": "Baelsar's Wall",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 48
     },
     {
       "zh": "复制工厂废墟",
       "ja": "複製サレタ工場廃墟",
       "en": "the Copied Factory",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30087
     },
     {
       "zh": "多变迷宫 六根山",
       "ja": "ヴァリアントダンジョン 六根山",
       "en": "Mount Rokkon",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 36002
     },
     {
       "zh": "多变迷宫 商客奇谭",
       "ja": "ヴァリアントダンジョン 商客物語",
       "en": "The Merchant's Tale",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 36004
     },
     {
       "zh": "多变迷宫 希拉狄哈水道",
       "ja": "ヴァリアントダンジョン シラディハ水道",
       "en": "the Sil'dihn Subterrane",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 36001
     },
     {
       "zh": "多变迷宫 阿罗阿罗岛",
       "ja": "ヴァリアントダンジョン アロアロ島",
       "en": "Aloalo Island",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 36003
     },
     {
       "zh": "大桥上的决斗",
       "ja": "ギルガメッシュ討伐戦",
       "en": "Battle on the Big Bridge",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20021
     },
     {
       "zh": "天山深境索姆阿尔灵峰",
       "ja": "霊峰浄化 ソーム・アル (Hard)",
       "en": "Sohm Al (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 49
     },
     {
       "zh": "天山绝顶索姆阿尔灵峰",
       "ja": "霊峰踏破 ソーム・アル",
       "en": "Sohm Al",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37
+    },
+    {
+      "zh": "天幕魔导城最终决战",
+      "ja": "最終決戦 魔導城プラエトリウム",
+      "en": "the Praetorium",
+      "huijiInstancePageId": 16,
+      "source": "Huiji structured Data Instance page"
     },
     {
       "zh": "天然要害沙斯塔夏溶洞",
       "ja": "天然要害 サスタシャ浸食洞",
       "en": "Sastasha",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 4
     },
     {
       "zh": "天龙宫殿忆罪宫",
       "ja": "天竜宮殿 ソール・カイ",
       "en": "Sohr Khai",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 44
     },
     {
       "zh": "失落之都拉巴纳斯塔",
       "ja": "失われた都 ラバナスタ",
       "en": "the Royal City of Rabanastre",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30058
     },
     {
       "zh": "奥丁歼灭战",
       "ja": "闘神オーディン討滅戦",
       "en": "Urth's Fount",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20027
     },
     {
       "zh": "妖星乱舞绝境战",
       "ja": "絶妖星乱舞",
       "en": "Dancing Mad (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30162
     },
     {
       "zh": "学识宝库迦巴勒幻想图书馆",
       "ja": "禁書回収 グブラ幻想図書館",
       "en": "the Great Gubal Library",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 31
     },
     {
       "zh": "完成集团战训练！",
       "ja": "集団戦訓練をくぐり抜けろ！",
       "en": "Basic Training: Enemy Parties",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10001
     },
     {
       "zh": "对龙城塞石卫塔",
       "ja": "城塞攻略 ストーンヴィジル",
       "en": "the Stone Vigil",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 11
     },
     {
       "zh": "封锁坑道铜铃铜山",
       "ja": "封鎖坑道 カッパーベル銅山",
       "en": "Copperbell Mines",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 3
     },
     {
       "zh": "封闭圣塔黎铎拉纳大灯塔",
       "ja": "封じられた聖塔 リドルアナ",
       "en": "the Ridorana Lighthouse",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30068
     },
     {
       "zh": "尼德霍格传奇征龙战",
       "ja": "極ニーズヘッグ征竜戦",
       "en": "the Minstrel's Ballad: Nidhogg's Rage",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20040
     },
     {
       "zh": "尼德霍格征龙战",
       "ja": "ニーズヘッグ征竜戦",
       "en": "the Final Steps of Faith",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20039
     },
     {
       "zh": "山中战线泽梅尔要塞",
       "ja": "掃討作戦 ゼーメル要塞",
       "en": "Dzemael Darkhold",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 13
     },
     {
       "zh": "巡梦金库",
       "ja": "宝物庫 ボルト・オネイロン",
       "en": "Vault Oneiron",
       "wikiDutyId": null,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55013
     },
     {
       "zh": "巨炮要塞帝国白山堡",
       "ja": "巨砲要塞 カストルム・アバニア",
       "en": "Castrum Abania",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55
     },
     {
       "zh": "巴哈姆特大迷宫 入侵之章1",
       "ja": "大迷宮バハムート：侵攻編1",
       "en": "the Second Coil of Bahamut - Turn 1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30007
     },
     {
       "zh": "巴哈姆特大迷宫 入侵之章2",
       "ja": "大迷宮バハムート：侵攻編2",
       "en": "the Second Coil of Bahamut - Turn 2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30008
     },
     {
       "zh": "巴哈姆特大迷宫 入侵之章3",
       "ja": "大迷宮バハムート：侵攻編3",
       "en": "the Second Coil of Bahamut - Turn 3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30009
     },
     {
       "zh": "巴哈姆特大迷宫 入侵之章4",
       "ja": "大迷宮バハムート：侵攻編4",
       "en": "the Second Coil of Bahamut - Turn 4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30010
     },
     {
       "zh": "巴哈姆特大迷宫 真源之章1",
       "ja": "大迷宮バハムート：真成編1",
       "en": "the Final Coil of Bahamut - Turn 1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30016
     },
     {
       "zh": "巴哈姆特大迷宫 真源之章2",
       "ja": "大迷宮バハムート：真成編2",
       "en": "the Final Coil of Bahamut - Turn 2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30017
     },
     {
       "zh": "巴哈姆特大迷宫 真源之章3",
       "ja": "大迷宮バハムート：真成編3",
       "en": "the Final Coil of Bahamut - Turn 3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30018
     },
     {
       "zh": "巴哈姆特大迷宫 真源之章4",
       "ja": "大迷宮バハムート：真成編4",
       "en": "the Final Coil of Bahamut - Turn 4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30019
     },
     {
       "zh": "巴哈姆特大迷宫 邂逅之章1",
       "ja": "大迷宮バハムート：邂逅編1",
       "en": "the Binding Coil of Bahamut - Turn 1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30002
     },
     {
       "zh": "巴哈姆特大迷宫 邂逅之章2",
       "ja": "大迷宮バハムート：邂逅編2",
       "en": "the Binding Coil of Bahamut - Turn 2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30003
     },
     {
       "zh": "巴哈姆特大迷宫 邂逅之章3",
       "ja": "大迷宮バハムート：邂逅編3",
       "en": "the Binding Coil of Bahamut - Turn 3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30004
     },
     {
       "zh": "巴哈姆特大迷宫 邂逅之章4",
       "ja": "大迷宮バハムート：邂逅編4",
       "en": "the Binding Coil of Bahamut - Turn 4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30005
     },
     {
       "zh": "巴哈姆特大迷宫 邂逅之章5",
       "ja": "大迷宮バハムート：邂逅編5",
       "en": "the Binding Coil of Bahamut - Turn 5",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30006
     },
     {
       "zh": "巴哈姆特绝境战",
       "ja": "絶バハムート討滅戦",
       "en": "the Unending Coil of Bahamut (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30057
     },
     {
       "zh": "巴哈姆特零式大迷宫 入侵之章1",
       "ja": "大迷宮バハムート零式：侵攻編1",
       "en": "the Second Coil of Bahamut (Savage) - Turn 1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30012
     },
     {
       "zh": "巴哈姆特零式大迷宫 入侵之章2",
       "ja": "大迷宮バハムート零式：侵攻編2",
       "en": "the Second Coil of Bahamut (Savage) - Turn 2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30013
     },
     {
       "zh": "巴哈姆特零式大迷宫 入侵之章3",
       "ja": "大迷宮バハムート零式：侵攻編3",
       "en": "the Second Coil of Bahamut (Savage) - Turn 3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30014
     },
     {
       "zh": "巴哈姆特零式大迷宫 入侵之章4",
       "ja": "大迷宮バハムート零式：侵攻編4",
       "en": "the Second Coil of Bahamut (Savage) - Turn 4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30015
     },
     {
       "zh": "巴尔巴莉希娅歼殛战",
       "ja": "極バルバリシア討滅戦",
       "en": "Storm's Crown (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20085
     },
     {
       "zh": "巴尔巴莉希娅歼灭战",
       "ja": "バルバリシア討滅戦",
       "en": "Storm's Crown",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20084
     },
     {
       "zh": "希望之炮台：“塔”",
       "ja": "希望ノ砲台：「塔」",
       "en": "the Tower at Paradigm's Breach",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30105
     },
     {
       "zh": "希瓦幻巧战",
       "ja": "幻シヴァ討滅戦",
       "en": "the Akh Afah Amphitheatre (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64001
     },
     {
       "zh": "希瓦歼殛战",
       "ja": "極シヴァ討滅戦",
       "en": "the Akh Afah Amphitheatre (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20025
     },
     {
       "zh": "希瓦歼灭战",
       "ja": "真シヴァ討滅戦",
       "en": "the Akh Afah Amphitheatre (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20024
     },
     {
       "zh": "幻想龙诗绝境战",
       "ja": "絶竜詩戦争",
       "en": "Dragonsong's Reprise (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30106
     },
     {
       "zh": "幻龙残骸密约之塔",
       "ja": "幻龍残骸 黙約の塔",
       "en": "the Keeper of the Lake",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 32
     },
     {
       "zh": "废弃据点玉韦亚瓦塔实验站",
       "ja": "廃地討究 ユウェヤーワータ",
       "en": "Yuweyawata Field Station",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 100
     },
     {
       "zh": "异形楼阁佐特塔",
       "ja": "異形楼閣 ゾットの塔",
       "en": "the Tower of Zot",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 78
     },
     {
       "zh": "异界孤城特罗亚宫廷",
       "ja": "異界孤城 トロイアコート",
       "en": "the Fell Court of Troia",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 88
     },
     {
       "zh": "异界深渊月面地下溪谷",
       "ja": "深淵潜行 月の地下渓谷",
       "en": "the Lunar Subterrane",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 91
     },
     {
       "zh": "异界遗构希尔科斯孪晶塔",
       "ja": "異界遺構 シルクス・ツイニング",
       "en": "the Twinning",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 68
     },
     {
       "zh": "异闻六根山",
       "ja": "アナザーダンジョン 異聞六根山",
       "en": "Another Mount Rokkon",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37003
     },
     {
       "zh": "异闻商客奇谭",
       "ja": "アナザーダンジョン 異聞商客物語",
       "en": "Another Merchant's Tale",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37007
     },
     {
       "zh": "异闻希拉狄哈水道",
       "ja": "アナザーダンジョン 異聞シラディハ水道",
       "en": "Another Sil'dihn Subterrane",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37001
     },
     {
       "zh": "异闻阿罗阿罗岛",
       "ja": "アナザーダンジョン 異聞アロアロ島",
       "en": "Another Aloalo Island",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37005
     },
     {
       "zh": "影之国",
       "ja": "影の国ダン・スカー",
       "en": "Dun Scaith",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30047
     },
     {
       "zh": "忆中金曦亚历山德里亚",
       "ja": "記憶幻想 アレクサンドリア",
       "en": "Alexandria",
       "wikiDutyId": 95,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 95
     },
     {
       "zh": "恩欧歼殛战",
       "ja": "極エヌオー討滅戦",
       "en": "the Unmaking (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20109
     },
     {
       "zh": "恩欧歼灭战",
       "ja": "エヌオー討滅戦",
       "en": "the Unmaking",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20108
     },
     {
       "zh": "恶党孤城黄金阁",
       "ja": "悪党成敗 クガネ城",
       "en": "Kugane Castle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 57
     },
     {
       "zh": "恶灵府邸静语庄园",
       "ja": "妖異屋敷 ハウケタ御用邸 (Hard)",
       "en": "Haukke Manor (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 19
     },
     {
       "zh": "惊奇百宝城",
       "ja": "宝物庫 エキサイトロン",
       "en": "the Excitatron 6000",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55009
     },
     {
       "zh": "惨剧灵殿塔姆·塔拉墓园",
       "ja": "惨劇霊殿 タムタラの墓所 (Hard)",
       "en": "the Tam-Tara Deepcroft (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 24
     },
     {
       "zh": "护锁刃龙上位狩猎战",
       "ja": "極護竜アルシュベルド狩猟戦",
       "en": "the Windward Wilds (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20103
     },
     {
       "zh": "护锁刃龙狩猎战",
       "ja": "護竜アルシュベルド狩猟戦",
       "en": "the Windward Wilds",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20102
     },
     {
       "zh": "拉姆歼殛战",
       "ja": "極ラムウ討滅戦",
       "en": "the Striking Tree (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20023
     },
     {
       "zh": "拉姆歼灭战",
       "ja": "真ラムウ討滅戦",
       "en": "the Striking Tree (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20022
     },
     {
       "zh": "捕获金币龟！",
       "ja": "ギルガメを捕獲せよ！",
       "en": "Hero on the Half Shell",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10004
     },
     {
       "zh": "文明古迹奇坦那神影洞",
       "ja": "古跡探索 キタンナ神影洞",
       "en": "the Qitana Ravel",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 66
     },
     {
       "zh": "无瑕灵君歼殛战",
       "ja": "極イノセンス討滅戦",
       "en": "the Crown of the Immaculate (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20065
     },
     {
       "zh": "无瑕灵君歼灭战",
       "ja": "イノセンス討滅戦",
       "en": "the Crown of the Immaculate",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20064
     },
     {
       "zh": "无限城的死斗",
       "ja": "真ギルガメッシュ討滅戦",
       "en": "Battle in the Big Keep",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20030
     },
     {
       "zh": "星海深幽寻因星晶镜",
       "ja": "星海潜航 アイティオン星晶鏡",
       "en": "the Aitiascope",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 81
     },
     {
       "zh": "星海空间颠倒塔",
       "ja": "星海観測 逆さの塔",
       "en": "the Antitower",
       "wikiDutyId": 43,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 43
     },
     {
       "zh": "暗影决战诺弗兰特",
       "ja": "漆黒決戦 ノルヴラント",
       "en": "the Heroes' Gauntlet",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 75
     },
     {
       "zh": "暗黑之云诛灭战",
       "ja": "滅暗闇の雲激闘戦",
       "en": "the Cloud of Darkness (Chaotic)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20098
     },
     {
       "zh": "最终决战天幕魔导城",
       "ja": "最終決戦 魔導城プラエトリウム",
       "en": "the Praetorium",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 86
     },
     {
       "zh": "最终幻想末世终迹",
       "ja": "最終幻想 レムナント",
       "en": "the Dead Ends",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 84
     },
     {
       "zh": "月读幻巧战",
       "ja": "幻ツクヨミ討滅戦",
       "en": "Tsukuyomi's Pain (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64012
     },
     {
       "zh": "月读幽夜歼灭战",
       "ja": "極ツクヨミ討滅戦",
       "en": "the Minstrel's Ballad: Tsukuyomi's Pain",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20056
     },
     {
       "zh": "月读歼灭战",
       "ja": "ツクヨミ討滅戦",
       "en": "Castrum Fluminis",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20055
     },
     {
       "zh": "末日暗影亚马乌罗提",
       "ja": "終末幻想 アーモロート",
       "en": "Amaurot",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 67
     },
     {
       "zh": "末日树海万相森国",
       "ja": "終末樹海 ヴァナスパティ",
       "en": "Vanaspati",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 83
     },
     {
       "zh": "朱诺：第一巡行",
       "ja": "ジュノ：ザ・ファーストウォーク",
       "en": "Jeuno: The First Walk",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30144
     },
     {
       "zh": "朱雀幻巧战",
       "ja": "幻朱雀征魂戦",
       "en": "Hells' Kier (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64010
     },
     {
       "zh": "朱雀诗魂战",
       "ja": "極朱雀征魂戦",
       "en": "Hells' Kier (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20058
     },
     {
       "zh": "朱雀镇魂战",
       "ja": "朱雀征魂戦",
       "en": "Hells' Kier",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20057
     },
     {
       "zh": "格莱杨拉波尔歼殛战",
       "ja": "極グラシャラボラス討滅戦",
       "en": "Hell on Rails (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20107
     },
     {
       "zh": "格莱杨拉波尔歼灭战",
       "ja": "グラシャラボラス討滅戦",
       "en": "Hell on Rails",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20106
     },
     {
       "zh": "桑多利亚：第二巡行",
       "ja": "サンドリア：ザ・セカンドウォーク",
       "en": "San d'Oria: The Second Walk",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30153
     },
     {
       "zh": "梦羽宝境",
       "ja": "宝物庫 リェー・ギア・ダンジョン",
       "en": "The Dungeons of Lyhe Ghiah",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55006
     },
     {
       "zh": "梦羽宝殿",
       "ja": "宝物庫 リェー・ギア・ダンジョン祭殿",
       "en": "the Shifting Oubliettes of Lyhe Ghiah",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55008
     },
     {
       "zh": "欧米茄时空狭缝 德尔塔幻境1",
       "ja": "次元の狭間オメガ：デルタ編1",
       "en": "Deltascape V1.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30049
     },
     {
       "zh": "欧米茄时空狭缝 德尔塔幻境2",
       "ja": "次元の狭間オメガ：デルタ編2",
       "en": "Deltascape V2.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30050
     },
     {
       "zh": "欧米茄时空狭缝 德尔塔幻境3",
       "ja": "次元の狭間オメガ：デルタ編3",
       "en": "Deltascape V3.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30051
     },
     {
       "zh": "欧米茄时空狭缝 德尔塔幻境4",
       "ja": "次元の狭間オメガ：デルタ編4",
       "en": "Deltascape V4.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30052
     },
     {
       "zh": "欧米茄时空狭缝 西格玛幻境1",
       "ja": "次元の狭間オメガ：シグマ編1",
       "en": "Sigmascape V1.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30059
     },
     {
       "zh": "欧米茄时空狭缝 西格玛幻境2",
       "ja": "次元の狭間オメガ：シグマ編2",
       "en": "Sigmascape V2.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30060
     },
     {
       "zh": "欧米茄时空狭缝 西格玛幻境3",
       "ja": "次元の狭間オメガ：シグマ編3",
       "en": "Sigmascape V3.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30061
     },
     {
       "zh": "欧米茄时空狭缝 西格玛幻境4",
       "ja": "次元の狭間オメガ：シグマ編4",
       "en": "Sigmascape V4.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30062
     },
     {
       "zh": "欧米茄时空狭缝 阿尔法幻境1",
       "ja": "次元の狭間オメガ：アルファ編1",
       "en": "Alphascape V1.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30069
     },
     {
       "zh": "欧米茄时空狭缝 阿尔法幻境2",
       "ja": "次元の狭間オメガ：アルファ編2",
       "en": "Alphascape V2.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30070
     },
     {
       "zh": "欧米茄时空狭缝 阿尔法幻境3",
       "ja": "次元の狭間オメガ：アルファ編3",
       "en": "Alphascape V3.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30071
     },
     {
       "zh": "欧米茄时空狭缝 阿尔法幻境4",
       "ja": "次元の狭間オメガ：アルファ編4",
       "en": "Alphascape V4.0",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30072
     },
     {
       "zh": "欧米茄绝境验证战",
       "ja": "絶オメガ検証戦",
       "en": "the Omega Protocol (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30124
     },
     {
       "zh": "欧米茄零式时空狭缝 德尔塔幻境1",
       "ja": "次元の狭間オメガ零式：デルタ編1",
       "en": "Deltascape V1.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30053
     },
     {
       "zh": "欧米茄零式时空狭缝 德尔塔幻境2",
       "ja": "次元の狭間オメガ零式：デルタ編2",
       "en": "Deltascape V2.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30054
     },
     {
       "zh": "欧米茄零式时空狭缝 德尔塔幻境3",
       "ja": "次元の狭間オメガ零式：デルタ編3",
       "en": "Deltascape V3.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30055
     },
     {
       "zh": "欧米茄零式时空狭缝 德尔塔幻境4",
       "ja": "次元の狭間オメガ零式：デルタ編4",
       "en": "Deltascape V4.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30056
     },
     {
       "zh": "欧米茄零式时空狭缝 西格玛幻境1",
       "ja": "次元の狭間オメガ零式：シグマ編1",
       "en": "Sigmascape V1.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30063
     },
     {
       "zh": "欧米茄零式时空狭缝 西格玛幻境2",
       "ja": "次元の狭間オメガ零式：シグマ編2",
       "en": "Sigmascape V2.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30064
     },
     {
       "zh": "欧米茄零式时空狭缝 西格玛幻境3",
       "ja": "次元の狭間オメガ零式：シグマ編3",
       "en": "Sigmascape V3.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30065
     },
     {
       "zh": "欧米茄零式时空狭缝 西格玛幻境4",
       "ja": "次元の狭間オメガ零式：シグマ編4",
       "en": "Sigmascape V4.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30066
     },
     {
       "zh": "欧米茄零式时空狭缝 阿尔法幻境1",
       "ja": "次元の狭間オメガ零式：アルファ編1",
       "en": "Alphascape V1.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30073
     },
     {
       "zh": "欧米茄零式时空狭缝 阿尔法幻境2",
       "ja": "次元の狭間オメガ零式：アルファ編2",
       "en": "Alphascape V2.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30074
     },
     {
       "zh": "欧米茄零式时空狭缝 阿尔法幻境3",
       "ja": "次元の狭間オメガ零式：アルファ編3",
       "en": "Alphascape V3.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30075
     },
     {
       "zh": "欧米茄零式时空狭缝 阿尔法幻境4",
       "ja": "次元の狭間オメガ零式：アルファ編4",
       "en": "Alphascape V4.0 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30076
     },
     {
       "zh": "武装圣域放浪神古神殿",
       "ja": "武装聖域 ワンダラーパレス (Hard)",
       "en": "the Wanderer's Palace (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30
     },
     {
       "zh": "死亡大地终末焦土",
       "ja": "永久焦土 ザ・バーン",
       "en": "the Burn",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 63
     },
     {
       "zh": "死化奇美拉讨伐战",
       "ja": "ドルムキマイラ討伐戦",
       "en": "A Relic Reborn: the Chimera",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20019
     },
     {
       "zh": "歼灭特殊阵型的妖异！",
       "ja": "不気味な陣形を組む妖異をせん滅せよ！",
       "en": "Ward Up",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10013
     },
     {
       "zh": "毒雾洞窟黄金谷",
       "ja": "霧中行軍 オーラムヴェイル",
       "en": "the Aurum Vale",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 5
     },
     {
       "zh": "水城宝物库",
       "ja": "宝物庫 アクアポリス",
       "en": "the Aquapolis",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55001
     },
     {
       "zh": "水妖幻园多恩美格禁园",
       "ja": "水妖幻園 ドォーヌ・メグ",
       "en": "Dohn Mheg",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 65
     },
     {
       "zh": "水晶塔 古代人迷宫",
       "ja": "クリスタルタワー：古代の民の迷宮",
       "en": "the Labyrinth of the Ancients",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30001
     },
     {
       "zh": "水晶塔 希尔科斯塔",
       "ja": "クリスタルタワー：シルクスの塔",
       "en": "Syrcus Tower",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30011
     },
     {
       "zh": "水晶塔 暗之世界",
       "ja": "クリスタルタワー：闇の世界",
       "en": "the World of Darkness",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30020
     },
     {
       "zh": "永久幽界中央终端",
       "ja": "永久幽界 メインターミナル",
       "en": "the Meso Terminal",
       "wikiDutyId": 102,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 102
     },
     {
       "zh": "永恒女王忆想歼灭战",
       "ja": "極エターナルクイーン討滅戦",
       "en": "the Minstrel's Ballad: Sphene's Burden",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20099
     },
     {
       "zh": "永恒女王歼灭战",
       "ja": "エターナルクイーン討滅戦",
       "en": "the Interphos",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20095
     },
     {
       "zh": "永远之暗悲惶歼灭战",
       "ja": "極永遠の闇討滅戦",
       "en": "the Minstrel's Ballad: Necron's Embrace",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20105
     },
     {
       "zh": "永远之暗歼灭战",
       "ja": "永遠の闇討滅戦",
       "en": "the Ageless Necropolis",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20104
     },
     {
       "zh": "污染庭园圣茉夏娜植物园",
       "ja": "草木汚染 聖モシャーヌ植物園 (Hard)",
       "en": "Saint Mocianne's Arboretum (Hard)",
       "wikiDutyId": 62,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 62
     },
     {
       "zh": "沉没神殿斯卡拉遗迹",
       "ja": "水没遺構 スカラ",
       "en": "the Drowned City of Skalla",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 58
     },
     {
       "zh": "注意无敌的眷属，讨伐大型妖异！",
       "ja": "無敵の眷属を従えし、大型妖異を討て！",
       "en": "Shadow and Claw",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10011
     },
     {
       "zh": "泰坦幻巧战",
       "ja": "幻タイタン討滅戦",
       "en": "the Navel (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64002
     },
     {
       "zh": "泰坦歼殛战",
       "ja": "極タイタン討滅戦",
       "en": "the Navel (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20009
     },
     {
       "zh": "泰坦歼灭战",
       "ja": "真タイタン討滅戦",
       "en": "the Navel (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20005
     },
     {
       "zh": "泰坦讨伐战",
       "ja": "タイタン討伐戦",
       "en": "the Navel",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20002
     },
     {
       "zh": "泽罗姆斯歼殛战",
       "ja": "極ゼロムス討滅戦",
       "en": "the Abyssal Fracture (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20092
     },
     {
       "zh": "泽罗姆斯歼灭战",
       "ja": "ゼロムス討滅戦",
       "en": "the Abyssal Fracture",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20091
     },
     {
       "zh": "泽莲尼娅歼殛战",
       "ja": "極ゼレニア討滅戦",
       "en": "Recollection (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20101
     },
     {
       "zh": "泽莲尼娅歼灭战",
       "ja": "ゼレニア討滅戦",
       "en": "Recollection",
       "wikiDutyId": 20100,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20100
     },
     {
       "zh": "流沙迷宫樵鸣洞",
       "ja": "流砂迷宮 カッターズクライ",
       "en": "Cutter's Cry",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 12
     },
     {
       "zh": "海底宫殿紫水宫",
       "ja": "海底宮殿 紫水宮",
       "en": "Shisui of the Violet Tides",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 50
     },
     {
       "zh": "海德拉讨伐战",
       "ja": "ハイドラ討伐戦",
       "en": "A Relic Reborn: the Hydra",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20020
     },
     {
       "zh": "海德林晖光歼灭战",
       "ja": "極ハイデリン討滅戦",
       "en": "the Minstrel's Ballad: Hydaelyn's Call",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20078
     },
     {
       "zh": "海德林歼灭战",
       "ja": "ハイデリン討滅戦",
       "en": "the Mothercrystal",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20077
     },
     {
       "zh": "消灭恶徒团伙寄生蜂团！",
       "ja": "無法者「似我蜂団」を撃滅せよ！",
       "en": "Stinging Back",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10006
     },
     {
       "zh": "深读商客奇谭",
       "ja": "アドバンスド・ヴァリアントダンジョン 商客物語",
       "en": "The Merchant's Tale (Advanced)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 38001
     },
     {
       "zh": "温达斯：第三巡行",
       "ja": "ウィンダス：ザ・サードウォーク",
       "en": "Windurst: The Third Walk",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30163
     },
     {
       "zh": "滑稽灵殿闹鬼盛宴",
       "ja": "道化饗宴 ホーンテッドフィースト",
       "en": "The Phantoms' Feast",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 25003
     },
     {
       "zh": "漂流海域妖歌海",
       "ja": "漂流海域 セイレーン海",
       "en": "the Sirensong Sea",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 52
     },
     {
       "zh": "激战城塞石卫塔",
       "ja": "城塞奪回 ストーンヴィジル (Hard)",
       "en": "the Stone Vigil (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 25
     },
     {
       "zh": "火龙上位狩猎战",
       "ja": "極リオレウス狩猟戦",
       "en": "the Great Hunt (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20054
     },
     {
       "zh": "火龙狩猎战",
       "ja": "リオレウス狩猟戦",
       "en": "the Great Hunt",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20053
     },
     {
       "zh": "灿烂神域阿格莱亚",
       "ja": "輝ける神域 アグライア",
       "en": "Aglaia",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30115
     },
     {
       "zh": "王城古迹永护塔底",
       "ja": "王城旧跡 アンダーキープ",
       "en": "the Underkeep",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 101
     },
     {
       "zh": "瓦伦提昂蛋糕店",
-      "ja": null,
-      "en": null,
-      "source": "Category:副本 search snippet"
+      "ja": "ヴァレンティオンパティスリー",
+      "en": "the Pâtisserie",
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 25004
     },
     {
       "zh": "电脑梦境斯提格玛四",
       "ja": "電脳夢想 スティグマ・フォー",
       "en": "the Stigma Dreamscape",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 79
     },
     {
       "zh": "疯狂战舰无限回廊",
       "ja": "暴走戦艦 フラクタル・コンティニアム (Hard)",
       "en": "the Fractal Continuum (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 60
     },
     {
       "zh": "白虎幻巧战",
       "ja": "幻白虎征魂戦",
       "en": "The Jade Stoa (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64009
     },
     {
       "zh": "白虎诗魂战",
       "ja": "極白虎征魂戦",
       "en": "the Jade Stoa (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20052
     },
     {
       "zh": "白虎镇魂战",
       "ja": "白虎征魂戦",
       "en": "the Jade Stoa",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20051
     },
     {
       "zh": "皇都伊修加德保卫战",
       "ja": "皇都イシュガルド防衛戦",
       "en": "the Steps of Faith",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20028
     },
     {
       "zh": "监狱废墟托托·拉克千狱",
       "ja": "監獄廃墟 トトラクの千獄",
       "en": "the Thousand Maws of Toto-Rak",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 1
     },
     {
       "zh": "祖尔宛幻巧战",
       "ja": "幻鬼神ズルワーン討滅戦",
       "en": "Containment Bay Z1T9 (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64007
     },
     {
       "zh": "祖尔宛歼殛战",
       "ja": "極鬼神ズルワーン討滅戦",
       "en": "Containment Bay Z1T9 (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20044
     },
     {
       "zh": "祖尔宛歼灭战",
       "ja": "鬼神ズルワーン討滅戦",
       "en": "Containment Bay Z1T9",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20043
     },
     {
       "zh": "神兵要塞帝国南方堡",
       "ja": "外郭攻略 カストルム・メリディアヌム",
       "en": "Castrum Meridianum",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 15
     },
     {
       "zh": "神圣禁地深空天坑",
       "ja": "遺産踏査 天深きセノーテ",
       "en": "the Skydeep Cenote",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 96
     },
     {
       "zh": "神圣遗迹无限城市街古迹",
       "ja": "神聖遺跡 古アムダプール市街 (Hard)",
       "en": "the Lost City of Amdapor (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 42
     },
     {
       "zh": "神灵圣域放浪神古神殿",
       "ja": "旅神聖域 ワンダラーパレス",
       "en": "the Wanderer's Palace",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10
     },
     {
       "zh": "神龙幻巧战",
       "ja": "幻神龍討滅戦",
       "en": "Shinryu's Domain (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64013
     },
     {
       "zh": "神龙梦幻歼灭战",
       "ja": "極神龍討滅戦",
       "en": "the Minstrel's Ballad: Shinryu's Domain",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20050
     },
     {
       "zh": "神龙歼灭战",
       "ja": "神龍討滅戦",
       "en": "the Royal Menagerie",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20045
     },
     {
       "zh": "禁忌城邦玛哈",
       "ja": "禁忌都市マハ",
       "en": "the Weeping City of Mhach",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30038
     },
     {
       "zh": "秘本宝库迦巴勒幻想图书馆",
       "ja": "稀書回収 グブラ幻想図書館 (Hard)",
       "en": "the Great Gubal Library (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 47
     },
     {
       "zh": "究极神兵假想作战",
       "ja": "究極幻想 アルテマウェポン破壊作戦",
       "en": "the Minstrel's Ballad: Ultima's Bane",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20013
     },
     {
       "zh": "究极神兵幻巧战",
       "ja": "幻アルテマウェポン破壊作戦",
       "en": "Ultima's Bane (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64004
     },
     {
       "zh": "究极神兵破坏作战",
       "ja": "アルテマウェポン破壊作戦",
       "en": "the Porta Decumana",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20082
     },
     {
       "zh": "究极神兵绝境战",
       "ja": "絶アルテマウェポン破壊作戦",
       "en": "the Weapon's Refrain (Ultimate)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30067
     },
     {
       "zh": "空中神域不获岛",
       "ja": "神域浮島 ネバーリープ",
       "en": "Neverreap",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 33
     },
     {
       "zh": "突破所有关门，讨伐最深处的敌人！",
       "ja": "全関門を突破し、最深部の敵を討て！",
       "en": "Basic Training: Enemy Strongholds",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10003
     },
     {
       "zh": "索菲娅幻巧战",
       "ja": "幻女神ソフィア討滅戦",
       "en": "Containment Bay P1T6 (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64006
     },
     {
       "zh": "索菲娅歼殛战",
       "ja": "極女神ソフィア討滅戦",
       "en": "Containment Bay P1T6 (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20042
     },
     {
       "zh": "索菲娅歼灭战",
       "ja": "女神ソフィア討滅戦",
       "en": "Containment Bay P1T6",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20041
     },
     {
       "zh": "红宝石神兵狂想作战",
       "ja": "極ルビーウェポン破壊作戦",
       "en": "Cinder Drift (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20069
     },
     {
       "zh": "红宝石神兵破坏作战",
       "ja": "ルビーウェポン破壊作戦",
       "en": "Cinder Drift",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20068
     },
     {
       "zh": "红玉火山狱之盖",
       "ja": "紅玉火山 獄之蓋",
       "en": "Hells' Lid",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 59
     },
     {
       "zh": "纷争要地布雷福洛克斯野营地",
       "ja": "盟友支援 ブレイフロクスの野営地 (Hard)",
       "en": "Brayflox's Longstop (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20
     },
     {
       "zh": "终极之战",
       "ja": "終極の戦い",
       "en": "the Minstrel's Ballad: Endsinger's Aria",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20083
     },
     {
       "zh": "终结之战",
       "ja": "終焉の戦い",
       "en": "the Final Day",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20079
     },
     {
       "zh": "绿宝石神兵狂想作战",
       "ja": "極エメラルドウェポン破壊作戦",
       "en": "Castrum Marinum (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20074
     },
     {
       "zh": "绿宝石神兵破坏作战",
       "ja": "エメラルドウェポン破壊作戦",
       "en": "Castrum Marinum",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20073
     },
     {
       "zh": "缇坦妮雅歼殛战",
       "ja": "極ティターニア討滅戦",
       "en": "the Dancing Plague (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20063
     },
     {
       "zh": "缇坦妮雅歼灭战",
       "ja": "ティターニア討滅戦",
       "en": "the Dancing Plague",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20062
     },
     {
       "zh": "罗波那歼殛战",
       "ja": "極ラーヴァナ討滅戦",
       "en": "Thok ast Thok (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20032
     },
     {
       "zh": "罗波那歼灭战",
       "ja": "真ラーヴァナ討滅戦",
       "en": "Thok ast Thok (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20031
     },
     {
       "zh": "腐坏遗迹无限城市街古迹",
       "ja": "腐敗遺跡 古アムダプール市街",
       "en": "the Lost City of Amdapor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 22
     },
     {
       "zh": "良缘仪式",
       "ja": "ヴァレンティオンセレモニー",
       "en": "the Valentione's Ceremony",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 25002
     },
     {
       "zh": "艳翼蛇鸟歼殛战",
       "ja": "極ヴァリガルマンダ討滅戦",
       "en": "Worqor Lar Dor (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20094
     },
     {
       "zh": "艳翼蛇鸟歼灭战",
       "ja": "ヴァリガルマンダ討滅戦",
       "en": "Worqor Lar Dor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20093
     },
     {
       "zh": "艾玛吉娜杯斗技大会决赛",
       "ja": "アマジナ杯闘技会決勝戦",
       "en": "the Dragon's Neck",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20026
     },
     {
       "zh": "苏醒遗迹喀恩埋没圣堂",
       "ja": "遺跡救援 カルン埋没寺院 (Hard)",
       "en": "the Sunken Temple of Qarn (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 26
     },
     {
       "zh": "草木庭园圣茉夏娜植物园",
       "ja": "草木庭園 聖モシャーヌ植物園",
       "en": "Saint Mocianne's Arboretum",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 41
     },
     {
       "zh": "荒野秘境仙人刺谷",
       "ja": "荒野秘境 サボテンダーバレー",
       "en": "Tender Valley",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 98
     },
     {
       "zh": "荣华神域塔利亚",
       "ja": "華めく神域 タレイア",
       "en": "Thaleia",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30134
     },
     {
       "zh": "莫古力贤王歼殛战",
       "ja": "極王モグル・モグXII世討滅戦",
       "en": "Thornmarch (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20012
     },
     {
       "zh": "莫古力贤王歼灭战",
       "ja": "善王モグル・モグXII世討滅戦",
       "en": "Thornmarch (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20011
     },
     {
       "zh": "萨菲洛特幻巧战",
       "ja": "幻魔神セフィロト討滅戦",
       "en": "Containment Bay S1T7 (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64005
     },
     {
       "zh": "萨菲洛特歼殛战",
       "ja": "極魔神セフィロト討滅戦",
       "en": "Containment Bay S1T7 (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20038
     },
     {
       "zh": "萨菲洛特歼灭战",
       "ja": "魔神セフィロト討滅戦",
       "en": "Containment Bay S1T7",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20037
     },
     {
       "zh": "血战苍穹魔科学研究所",
       "ja": "蒼天聖戦 魔科学研究所",
       "en": "the Aetherochemical Research Facility",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 38
     },
     {
       "zh": "解放决战多玛王城",
       "ja": "解放決戦 ドマ城",
       "en": "Doma Castle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 54
     },
     {
       "zh": "讨伐坑道中出现的妖异！",
       "ja": "坑道に現れた妖異ブソを討て！",
       "en": "Annoy the Void",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10010
     },
     {
       "zh": "讨伐彷徨死灵！",
       "ja": "彷徨う死霊を討て！",
       "en": "Under the Armor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10002
     },
     {
       "zh": "讨伐梦幻之布拉奇希奥！",
       "ja": "夢幻のブラキシオを討て！",
       "en": "All's Well that Ends in the Well",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10007
     },
     {
       "zh": "讨伐污染源头魔界花！",
       "ja": "汚染源モルボルを討て！",
       "en": "More than a Feeler",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10009
     },
     {
       "zh": "讨伐爆弹怪的女王！",
       "ja": "ボムを率いる「ボムクイーン」を討て！",
       "en": "Long Live the Queen",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10012
     },
     {
       "zh": "试炼行路巴儿达木霸道",
       "ja": "伝統試練 バルダム覇道",
       "en": "Bardam's Mettle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 53
     },
     {
       "zh": "财宝传说破舰岛",
       "ja": "財宝伝説 ハルブレーカー・アイル",
       "en": "Hullbreaker Isle",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 23
     },
     {
       "zh": "运河宝物库",
       "ja": "宝物庫 ウズネアカナル",
       "en": "the Lost Canals of Uznair",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55002
     },
     {
       "zh": "运河宝物库深层",
       "ja": "宝物庫 ウズネアカナル深層",
       "en": "the Hidden Canals of Uznair",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55003
     },
     {
       "zh": "运河宝物库神殿",
       "ja": "宝物庫 ウズネアカナル祭殿",
       "en": "the Shifting Altars of Uznair",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 55004
     },
     {
       "zh": "近东秘宝阿尔扎达尔海底遗迹群",
       "ja": "近東秘宝 アルザダール海底遺跡群",
       "en": "Alzadaal's Legacy",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 87
     },
     {
       "zh": "迦楼罗歼殛战",
       "ja": "極ガルーダ討滅戦",
       "en": "the Howling Eye (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20010
     },
     {
       "zh": "迦楼罗歼灭战",
       "ja": "真ガルーダ討滅戦",
       "en": "the Howling Eye (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20006
     },
     {
       "zh": "迦楼罗讨伐战",
       "ja": "ガルーダ討伐戦",
       "en": "the Howling Eye",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20003
     },
     {
       "zh": "逆转要害沙斯塔夏溶洞",
       "ja": "逆襲要害 サスタシャ浸食洞 (Hard)",
       "en": "Sastasha (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 28
     },
     {
       "zh": "通天绝壁沃刻佐莫山",
       "ja": "山嶺登頂 ウォーコー・ゾーモー",
       "en": "Worqor Zormor",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 92
     },
     {
       "zh": "遇袭集落水滩村",
       "ja": "殺戮郷村 ホルミンスター",
       "en": "Holminster Switch",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 72
     },
     {
       "zh": "遗忘行路雾之迹",
       "ja": "遺忘行路 ミストウェイク",
       "en": "Mistwake",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 103
     },
     {
       "zh": "避暑离宫马利卡大井",
       "ja": "爽涼離宮 マリカの大井戸",
       "en": "Malikah's Well",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 69
     },
     {
       "zh": "那布里亚勒斯讨伐战",
       "ja": "アシエン・ナプリアレス討伐戦",
       "en": "the Chrysalis",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20029
     },
     {
       "zh": "邪念妖地无限城古堡",
       "ja": "邪念排撃 古城アムダプール (Hard)",
       "en": "Amdapor Keep (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 29
     },
     {
       "zh": "邪教驻地无限城古堡",
       "ja": "邪教排撃 古城アムダプール",
       "en": "Amdapor Keep",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 14
     },
     {
       "zh": "邪龙王座龙巢神殿",
       "ja": "邪竜血戦 ドラゴンズエアリー",
       "en": "the Aery",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 39
     },
     {
       "zh": "里塔提恩强攻战",
       "ja": "リットアティン強襲戦",
       "en": "Cape Westwind",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20007
     },
     {
       "zh": "鏖战红莲阿拉米格",
       "ja": "紅蓮決戦 アラミゴ",
       "en": "Ala Mhigo",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 56
     },
     {
       "zh": "钻石神兵捕获作战",
       "ja": "ダイヤウェポン捕獲作戦",
       "en": "the Cloud Deck",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20075
     },
     {
       "zh": "钻石神兵狂想作战",
       "ja": "極ダイヤウェポン捕獲作戦",
       "en": "the Cloud Deck (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20076
     },
     {
       "zh": "间歇灵泉哈姆岛",
       "ja": "星霊間欠 ハーム島",
       "en": "the Aetherfont",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 90
     },
     {
       "zh": "阿修罗歼灭战",
       "ja": "アスラ討滅戦",
       "en": "the Gilded Araya",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20088
     },
     {
       "zh": "阿卡狄亚登天斗技场 中量级1",
       "ja": "至天の座アルカディア：クルーザー級1",
       "en": "AAC Cruiserweight M1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30145
     },
     {
       "zh": "阿卡狄亚登天斗技场 中量级2",
       "ja": "至天の座アルカディア：クルーザー級2",
       "en": "AAC Cruiserweight M2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30147
     },
     {
       "zh": "阿卡狄亚登天斗技场 中量级3",
       "ja": "至天の座アルカディア：クルーザー級3",
       "en": "AAC Cruiserweight M3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30149
     },
     {
       "zh": "阿卡狄亚登天斗技场 中量级4",
       "ja": "至天の座アルカディア：クルーザー級4",
       "en": "AAC Cruiserweight M4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30151
     },
     {
       "zh": "阿卡狄亚登天斗技场 轻量级1",
       "ja": "至天の座アルカディア：ライトヘビー級1",
       "en": "AAC Light-heavyweight M1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30135
     },
     {
       "zh": "阿卡狄亚登天斗技场 轻量级2",
       "ja": "至天の座アルカディア：ライトヘビー級2",
       "en": "AAC Light-heavyweight M2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30137
     },
     {
       "zh": "阿卡狄亚登天斗技场 轻量级3",
       "ja": "至天の座アルカディア：ライトヘビー級3",
       "en": "AAC Light-heavyweight M3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30139
     },
     {
       "zh": "阿卡狄亚登天斗技场 轻量级4",
       "ja": "至天の座アルカディア：ライトヘビー級4",
       "en": "AAC Light-heavyweight M4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30141
     },
     {
       "zh": "阿卡狄亚登天斗技场 重量级1",
       "ja": "至天の座アルカディア：ヘビー級1",
       "en": "AAC Heavyweight M1",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30154
     },
     {
       "zh": "阿卡狄亚登天斗技场 重量级2",
       "ja": "至天の座アルカディア：ヘビー級2",
       "en": "AAC Heavyweight M2",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30156
     },
     {
       "zh": "阿卡狄亚登天斗技场 重量级3",
       "ja": "至天の座アルカディア：ヘビー級3",
       "en": "AAC Heavyweight M3",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30158
     },
     {
       "zh": "阿卡狄亚登天斗技场 重量级4",
       "ja": "至天の座アルカディア：ヘビー級4",
       "en": "AAC Heavyweight M4",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30160
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 中量级1",
       "ja": "至天の座アルカディア零式：クルーザー級1",
       "en": "AAC Cruiserweight M1 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30146
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 中量级2",
       "ja": "至天の座アルカディア零式：クルーザー級2",
       "en": "AAC Cruiserweight M2 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30148
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 中量级3",
       "ja": "至天の座アルカディア零式：クルーザー級3",
       "en": "AAC Cruiserweight M3 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30150
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 中量级4",
       "ja": "至天の座アルカディア零式：クルーザー級4",
       "en": "AAC Cruiserweight M4 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30152
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 轻量级1",
       "ja": "至天の座アルカディア零式：ライトヘビー級1",
       "en": "AAC Light-heavyweight M1 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30136
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 轻量级2",
       "ja": "至天の座アルカディア零式：ライトヘビー級2",
       "en": "AAC Light-heavyweight M2 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30138
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 轻量级3",
       "ja": "至天の座アルカディア零式：ライトヘビー級3",
       "en": "AAC Light-heavyweight M3 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30140
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 轻量级4",
       "ja": "至天の座アルカディア零式：ライトヘビー級4",
       "en": "AAC Light-heavyweight M4 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30142
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 重量级1",
       "ja": "至天の座アルカディア零式：ヘビー級1",
       "en": "AAC Heavyweight M1 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30155
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 重量级2",
       "ja": "至天の座アルカディア零式：ヘビー級2",
       "en": "AAC Heavyweight M2 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30157
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 重量级3",
       "ja": "至天の座アルカディア零式：ヘビー級3",
       "en": "AAC Heavyweight M3 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30159
     },
     {
       "zh": "阿卡狄亚零式登天斗技场 重量级4",
       "ja": "至天の座アルカディア零式：ヘビー級4",
       "en": "AAC Heavyweight M4 (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30161
     },
     {
       "zh": "险峻峡谷塞尔法特尔溪谷",
       "ja": "峻厳渓谷 ゼルファトル",
       "en": "Xelphatol",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 46
     },
     {
       "zh": "雪山奥窟冥魂石洞",
       "ja": "雪山冥洞 ラピス・マナリス",
       "en": "Lapis Manalis",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 89
     },
     {
       "zh": "零式万魔殿 炼净之狱1",
       "ja": "万魔殿パンデモニウム零式：煉獄編1",
       "en": "Abyssos: The Fifth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30117
     },
     {
       "zh": "零式万魔殿 炼净之狱2",
       "ja": "万魔殿パンデモニウム零式：煉獄編2",
       "en": "Abyssos: The Sixth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30121
     },
     {
       "zh": "零式万魔殿 炼净之狱3",
       "ja": "万魔殿パンデモニウム零式：煉獄編3",
       "en": "Abyssos: The Seventh Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30119
     },
     {
       "zh": "零式万魔殿 炼净之狱4",
       "ja": "万魔殿パンデモニウム零式：煉獄編4",
       "en": "Abyssos: The Eighth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30123
     },
     {
       "zh": "零式万魔殿 荒天之狱1",
       "ja": "万魔殿パンデモニウム零式：天獄編1",
       "en": "Anabaseios: The Ninth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30127
     },
     {
       "zh": "零式万魔殿 荒天之狱2",
       "ja": "万魔殿パンデモニウム零式：天獄編2",
       "en": "Anabaseios: The Tenth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30129
     },
     {
       "zh": "零式万魔殿 荒天之狱3",
       "ja": "万魔殿パンデモニウム零式：天獄編3",
       "en": "Anabaseios: The Eleventh Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30131
     },
     {
       "zh": "零式万魔殿 荒天之狱4",
       "ja": "万魔殿パンデモニウム零式：天獄編4",
       "en": "Anabaseios: The Twelfth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30133
     },
     {
       "zh": "零式万魔殿 边境之狱1",
       "ja": "万魔殿パンデモニウム零式：辺獄編1",
       "en": "Asphodelos: The First Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30112
     },
     {
       "zh": "零式万魔殿 边境之狱2",
       "ja": "万魔殿パンデモニウム零式：辺獄編2",
       "en": "Asphodelos: The Second Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30114
     },
     {
       "zh": "零式万魔殿 边境之狱3",
       "ja": "万魔殿パンデモニウム零式：辺獄編3",
       "en": "Asphodelos: The Third Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30110
     },
     {
       "zh": "零式万魔殿 边境之狱4",
       "ja": "万魔殿パンデモニウム零式：辺獄編4",
       "en": "Asphodelos: The Fourth Circle (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30108
     },
     {
       "zh": "零式异闻六根山",
       "ja": "アナザーダンジョン 異聞六根山 零式",
       "en": "Another Mount Rokkon (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37004
     },
     {
       "zh": "零式异闻希拉狄哈水道",
       "ja": "アナザーダンジョン 異聞シラディハ水道 零式",
       "en": "Another Sil'dihn Subterrane (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37002
     },
     {
       "zh": "零式异闻阿罗阿罗岛",
       "ja": "アナザーダンジョン 異聞アロアロ島 零式",
       "en": "Another Aloalo Island (Savage)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 37006
     },
     {
       "zh": "青龙幻巧战",
       "ja": "幻青龍征魂戦",
       "en": "the Wreath of Snakes (Unreal)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 64011
     },
     {
       "zh": "青龙诗魂战",
       "ja": "極青龍征魂戦",
       "en": "the Wreath of Snakes (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20061
     },
     {
       "zh": "青龙镇魂战",
       "ja": "青龍征魂戦",
       "en": "the Wreath of Snakes",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20060
     },
     {
       "zh": "须佐之男歼殛战",
       "ja": "極スサノオ討滅戦",
       "en": "the Pool of Tribute (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20047
     },
     {
       "zh": "须佐之男歼灭战",
       "ja": "スサノオ討滅戦",
       "en": "the Pool of Tribute",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20046
     },
     {
       "zh": "领航明灯天狼星灯塔",
       "ja": "怪鳥巨塔 シリウス大灯台",
       "en": "Pharos Sirius",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 17
     },
     {
       "zh": "风水灵庙岩燕庙",
       "ja": "風水霊殿 ガンエン廟",
       "en": "the Swallow's Compass",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 61
     },
     {
       "zh": "驱除剧毒妖花！",
       "ja": "有毒妖花を駆除せよ！",
       "en": "Pulling Poison Posies",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 10005
     },
     {
       "zh": "骚乱坑道铜铃铜山",
       "ja": "騒乱坑道 カッパーベル銅山 (Hard)",
       "en": "Copperbell Mines (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 18
     },
     {
       "zh": "高贝扎歼殛战",
       "ja": "極ゴルベーザ討滅戦",
       "en": "the Voidcast Dais (Extreme)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20090
     },
     {
       "zh": "高贝扎歼灭战",
       "ja": "ゴルベーザ討滅戦",
       "en": "the Voidcast Dais",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 20089
     },
     {
       "zh": "魂魄工厂创生设施",
       "ja": "魂魄工廠 オリジェニクス",
       "en": "Origenics",
       "wikiDutyId": 93,
-      "source": "rendered duty page infobox"
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 93
     },
     {
       "zh": "魔兽领域日影地修炼所",
       "ja": "魔獣領域 ハラタリ修練所",
       "en": "Halatali",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 7
     },
     {
       "zh": "魔导神门巴别塔",
       "ja": "魔導神門 バブイルの塔",
       "en": "the Tower of Babil",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 80
     },
     {
       "zh": "魔术工房玛托雅工作室",
       "ja": "魔術工房 マトーヤのアトリエ",
       "en": "Matoya's Relict",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 76
     },
     {
       "zh": "魔法宫殿宇宙宫",
       "ja": "魔法宮殿 グラン・コスモス",
       "en": "the Grand Cosmos",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 73
     },
     {
       "zh": "魔航船虚无方舟",
       "ja": "魔航船ヴォイドアーク",
       "en": "the Void Ark",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 30029
     },
     {
       "zh": "黄金平原帕戈尔赞草原",
       "ja": "黄金平原 パガルザン",
       "en": "Paglth'an",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 77
     },
     {
       "zh": "黑涡传说破舰岛",
       "ja": "黒渦伝説 ハルブレーカー・アイル (Hard)",
       "en": "Hullbreaker Isle (Hard)",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 45
     },
     {
       "zh": "黑风海底阿尼德罗追忆馆",
       "ja": "黒風海底 アニドラス・アナムネーシス",
       "en": "Anamnesis Anyder",
-      "source": "Category:副本 search snippet"
+      "wikiDutyId": null,
+      "source": "Huiji structured Data Instance page",
+      "huijiInstancePageId": 74
     }
   ],
   "geography": [

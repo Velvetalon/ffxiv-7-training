@@ -2,6 +2,7 @@
 import collections
 import csv
 import concurrent.futures
+import hashlib
 import io
 import json
 import math
@@ -162,6 +163,10 @@ def material_record(path):
     for i in range(constants):
         ident,off,num=struct.unpack_from("<IHH",data,constants_start+i*8)
         values[ident]=list(struct.unpack_from("<"+str(num//4)+"f",data,values_offset+off))
+    def finite_list(value, default):
+        return [v if math.isfinite(v) else d for v, d in zip(value, default)]
+    def finite_scalar(value, default):
+        return value if math.isfinite(value) else default
     return {
         "shader":shader,"textures":textures,"diffuse":diffuse,
         "normal":next(iter(by_usage.get("normal", [])),None),
@@ -171,15 +176,15 @@ def material_record(path):
         "keys":key_values,
         "colorMap1":next((textures[s["index"]] for s in samples if s["id"]==0x6968DF0A and s["index"]<len(textures)),None),
         "normalMap1Path":next((textures[s["index"]] for s in samples if s["id"]==0xDDB3E97F and s["index"]<len(textures)),None),
-        "multiDiffuseColor":values.get(0x3F8AC211,[1,1,1]),
-        "alphaMultiParam":values.get(0x07EDA444,[0,0,0,0]),
-        "diffuseColor":values.get(0x2C2A34DD,[1,1,1]),
-        "emissiveColor":values.get(0x38A64362,[0,0,0]),
-        "colorUVScale":values.get(0xA5D02C52,[1,1,1,1]),
-        "normalUVScale":values.get(0xBB99CF76,[1,1,1,1]),
-        "specularUVScale":values.get(0x8D03A782,[1,1,1,1]),
-        "normalScale":values.get(0xB5545FBB,[1])[0],
-        "alphaThreshold":values.get(0x29AC0223,[0])[0],
+        "multiDiffuseColor":finite_list(values.get(0x3F8AC211,[1,1,1]),[1,1,1]),
+        "alphaMultiParam":finite_list(values.get(0x07EDA444,[0,0,0,0]),[0,0,0,0]),
+        "diffuseColor":finite_list(values.get(0x2C2A34DD,[1,1,1]),[1,1,1]),
+        "emissiveColor":finite_list(values.get(0x38A64362,[0,0,0]),[0,0,0]),
+        "colorUVScale":finite_list(values.get(0xA5D02C52,[1,1,1,1]),[1,1,1,1]),
+        "normalUVScale":finite_list(values.get(0xBB99CF76,[1,1,1,1]),[1,1,1,1]),
+        "specularUVScale":finite_list(values.get(0x8D03A782,[1,1,1,1]),[1,1,1,1]),
+        "normalScale":finite_scalar(values.get(0xB5545FBB,[1])[0],1),
+        "alphaThreshold":finite_scalar(values.get(0x29AC0223,[0])[0],0),
     }
 
 def assemble(scene, destination=DEST, exports=EXPORTS):
@@ -233,7 +238,30 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
             token=tuple(round(v,4) for v in m)
             if token not in seen:seen.add(token);unique.append(m)
         groups[key]=unique
-    models=[];materials={};tex_needed=set()
+    models=[];materials={};tex_needed=set();synthetic_donor=None
+    # Source materials can reference the unversioned shared dummy placeholder
+    # at the export root. The extraction layout varies by scene, so copy the
+    # already-extracted client dummy color from the current scene when it was
+    # exported; otherwise use the lexicographically first verified raw donor.
+    donor=None;donor_kind=None
+    scene_dummy=source/"bgcommon/texture/dummy_d.tex"
+    if scene_dummy.is_file():
+        donor=scene_dummy;donor_kind="current-scene"
+    else:
+        candidates=sorted(path for path in ROOT.glob("../../work/duty-build/full/raw/*/bgcommon/texture/dummy_d.tex") if path.is_file())
+        donor=candidates[0] if candidates else None
+        donor_kind="lexicographic-first-raw" if donor else None
+    if not (source/"dummy.tex").is_file():
+        if donor is None:
+            raise FileNotFoundError(f"{scene}: dummy.tex and shared dummy color are unavailable")
+        shutil.copyfile(donor,source/"dummy.tex")
+        donor_bytes=donor.read_bytes()
+        synthetic_donor={"kind":"synthetic-dummy-texture","donorPath":str(donor),
+                         "donorKind":donor_kind,
+                         "donorSha256":hashlib.sha256(donor_bytes).hexdigest(),
+                         "donorBytes":len(donor_bytes)}
+        limitations.append("dummy.tex synthesized from client-derived donor "
+                           f"{donor_kind} donor; provenance in syntheticDummyTexture.")
     for i,(asset,transforms) in enumerate(sorted(groups.items())):
         path=source/(asset+".glb")
         if not path.exists():errors.append({"path":asset,"error":"Missing model GLB"});continue
@@ -297,7 +325,8 @@ def assemble(scene, destination=DEST, exports=EXPORTS):
                 x,y,z=item["position"]
                 landmarks.append({"id":str(place),"name":names.get(place,str(place)),"x":x,"y":y,"z":z,"type":"landmark"})
     report={"sourceVersion":manifest["gameVersion"],"scene":scene,**metadata(scene),"mapTexture":map_texture_relative,"mapTextureFallback":map_image_generated,"aetheryte":aetheryte,"spawn":aetheryte,"connections":[],"models":models,"materials":materials,"layers":layer_stats,"errors":errors,"limitations":[*manifest.get("limitations",[]),*limitations],"source":"Local installed client, read-only SqPack export","sharedGroups":len(shared_cache),"landmarks":landmarks}
-    (target/"scene.json").write_text(json.dumps(report,separators=(",",":")),encoding="utf-8")
+    if synthetic_donor:report["syntheticDummyTexture"]=synthetic_donor
+    (target/"scene.json").write_text(json.dumps(report,separators=(",",":"),allow_nan=False),encoding="utf-8")
     print(json.dumps({"scene":scene,"models":len(models),"instances":sum(len(m["matrices"]) for m in models),"textures":len(texture_map),"materials":len(materials),"sharedGroups":len(shared_cache),"errors":len(errors),"examples":errors[:5]}),flush=True)
     if errors: raise RuntimeError(f"{scene}: {len(errors)} assembly errors; see scene.json")
 

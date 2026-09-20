@@ -1,11 +1,13 @@
 {
-  "schemaVersion": 1,
-  "taskId": "20260918-duty-reconstruction",
-  "snapshotAtUtc": "2026-09-18T05:29:55Z",
-  "repository": "G:/UGit/ffxiv-7-training",
-  "branch": "master",
-  "baselineHead": "48f25c16baab9522dd4b407e30412b1096936162",
-  "remote": "https://github.com/Velvetalon/ffxiv-7-training.git",
+    "schemaVersion": 2,
+    "taskId": "20260918-duty-reconstruction",
+    "snapshotAtUtc": "2026-09-19T23:38:59Z",
+    "repository": "E:/Code/ffxiv-7-training",
+    "branch": "master",
+    "baselineHead": "e741a548f1ece83da4daf13007639ac12e4078aa",
+    "remote": "https://github.com/Velvetalon/ffxiv-7-training.git",
+    "pushCommand": "git -c http.proxy=http://127.0.0.1:7890 push origin master",
+    "deploymentStatus": "not-deployed-and-forbidden",
   "scope": {
     "existingPublicScenes": 65,
     "oldExcludedTerritories": 942,
@@ -13,54 +15,114 @@
     "newResourceRootScenes": 531,
     "fullRuntimeScenes": 596,
     "dutyRecords": 1072,
-    "sourceVerifiedEntrances": 18
+    "sourceVerifiedEntrances": 18,
+    "entranceAliases": 18,
+    "unmatchedEntrances": 0
   },
-  "rebuild": {
-    "coordinatorCommand": "py -3 tools/map-tools/rebuild_hidden_maps.py --client G:/WeGameApps/rail_apps/ffxiv(2000340) --work work/duty-build/full --state work/duty-build/full/rebuild-state.json --workers 4 --chunk-size 12 --package-workers 2",
-    "snapshotProcessId": 275824,
-    "processWasRunning": true,
-    "statePath": "work/duty-build/full/rebuild-state.json",
-    "authoritativeStatusPath": "work/duty-build/full/packed/<sceneId>/package-state.json",
-    "stateCounts": {
-      "complete": 176,
-      "failed": 18,
-      "queued": 337
-    },
-    "packageStateCheckedAtUtc": "2026-09-18T05:37:37Z",
-    "packageStateCounts": {
-      "complete": 197
-    },
-    "failuresAreFinal": false
+  "geometry": {
+    "packageComplete": 531,
+    "packageTotal": 531,
+    "authoritativeStatusPath": "work/duty-build/full/packed/<sceneId>/package-state.json"
   },
   "lighting": {
     "parsedScenes": 523,
-    "totalScenes": 531,
-    "lights": 69207,
-    "envSets": 4887,
-    "envLocations": 1618,
-    "aggregateJson": "work/duty-build/source-lights.hidden.json",
-    "runtimeIntegration": "pending-lazy-per-scene"
+    "parserUnavailableScenes": 8,
+    "parserUnavailableIds": [
+      "a2e2",
+      "a2fa",
+      "a2fd",
+      "o1a1",
+      "o1fa",
+      "r1e2",
+      "s1b7",
+      "z1j1"
+    ],
+    "perSceneRuntime": "routed-and-served",
+    "trackedState": "config/duties/duty-lights.json"
   },
   "audio": {
-    "sourceScenesResolved": 531,
-    "playableScenes": 173,
-    "bgmNullScenes": 345,
-    "unknownScenes": 13,
-    "extractionErrors": 0,
-    "manifest": "work/duty-build/audio-hidden/audio-source-manifest.json",
-    "runtimeIntegration": "pending"
+    "sourceFiles": 106,
+    "oggFiles": 89,
+    "wavFiles": 17,
+    "runtimeResourceReferences": 150,
+    "sceneMappings": 596,
+    "additivePacks": 85,
+    "additivePackBytes": 546689506,
+    "runtimeIntegrated": true
   },
-  "huijiNames": {
-    "trackedDutyMatches": 421,
-    "trackedGeographyMatches": 279,
-    "structuredInstancePagesFetched": 427,
-    "structuredEntriesParsed": 427,
-    "structuredEvidencePath": "work/wiki/huiji-instance-data-current.json",
-    "structuredMergeStatus": "pending"
+  "names": {
+    "catalogDutyMatches": 422,
+    "catalogGeographyMatches": 279,
+    "wikiFileDutyRows": 427,
+    "wikiFileGeographyRows": 206,
+    "unnamedSceneIds": [
+      "m5e1",
+      "k5e2",
+      "h1i1",
+      "h1i2",
+      "h1i3",
+      "h2i1",
+      "h2i2",
+      "h2i3"
+    ]
   },
-  "deployment": {
-    "previewBaseUrl": "https://yuluo.site/ff14-web-babylon-preview/",
-    "mainSiteIsProtected": true,
-    "status": "not-deployed-for-this-task"
+  "federatedRelease": {
+    "path": "D:/Cache/duty-asset-pipeline/union-596-v2",
+    "releaseId": "duty-full-20260918T205414Z",
+    "maps": 596,
+    "publishFiles": 21805,
+    "catalog": "D:/Cache/duty-asset-pipeline/union-596-v2/catalog_merged.json",
+    "staticPreviewRoot": "D:/Cache/duty-asset-pipeline/union-preview-v2"
+  },
+  "visualQA": {
+    "closureTask": "SC-004",
+    "shard1": {
+      "actualRuntimeScreenshots": 53,
+      "failures": 7,
+      "gzipFailuresBeforeServerFix": 6,
+      "g3fbFailure": "bootstrap geometry",
+      "run": "work/qa/visual-acceptance/run-v3/shard-1"
+    },
+    "shard2": {
+      "captures": 60,
+      "ready": 58,
+      "interactionUnconfirmed": "n4f1",
+      "timeout": "n5r9",
+      "run": "work/qa/visual-acceptance/run-v4/shard-2"
+    },
+    "shard3": {
+      "status": "complete",
+      "ready": 60,
+      "total": 60,
+      "run": "work/qa/visual-acceptance/run-v5/shard-3"
+    },
+    "shard1Retry": {
+      "usableForSceneUpgrade": false,
+      "helperBug": "canvas counters declared outside evaluated scope",
+      "g3fb": "bootstrap geometry reproduced in 2/2 attempts",
+      "run": "work/qa/visual-acceptance/run-v5/shard-1-retry"
+    },
+    "references": {
+      "files": 180,
+      "matches": 69,
+      "none": 111,
+      "bannersCountAsRuntimeScreenshots": false
+    },
+    "imageScoring": "pending"
+  },
+  "remainingActions": [
+    "rerun six shard-1 gzip failures with fixed federation server and corrected helper",
+    "re-capture and diagnose g3fb",
+    "re-capture and diagnose n4f1 interaction",
+    "re-capture and diagnose n5r9 readiness",
+    "score all runtime screenshots in batches of at most 10 via image-capable subagent",
+    "close SC-004 only after explicit accepted or root-caused outcome for all 180 positions"
+  ],
+  "validationAtSnapshot": {
+    "syntaxChecks": "passed",
+    "testsDuties": "passed",
+    "testsAudioRun": "5 tests passed",
+    "testsAudioPublicEntry": "5 tests passed",
+    "babylonBuild": "passed in 2m10s; npm cache redirected to work/npm-cache"
   }
 }

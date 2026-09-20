@@ -50,6 +50,13 @@ def text(value):
     return value.strip() if isinstance(value, str) else ""
 
 
+def join_key(value):
+    """NFKC, fullwidth-space, and whitespace normalization for stable joins."""
+    if not isinstance(value, str):
+        return ""
+    return unicodedata.normalize("NFKC", value).replace("\u3000", " ").strip()
+
+
 def source_root(row):
     if not text(row.get("Bg")):
         return None
@@ -137,8 +144,8 @@ def build():
         for row_id, values in place_name_document["languages"]["zh"]["rows"].items()
     }
     wiki_names = json.loads((DUTY_DATA / "wiki-names.json").read_text(encoding="utf-8"))
-    wiki_duties = {item["zh"]: item for item in wiki_names["duties"] if item.get("zh")}
-    wiki_geography = {item["zh"]: item for item in wiki_names["geography"] if item.get("zh")}
+    wiki_duties = {join_key(item["zh"]): item for item in wiki_names.get("duties", []) if item.get("zh")}
+    wiki_geography = {join_key(item["zh"]): item for item in wiki_names.get("geography", []) if item.get("zh")}
     current_territories = read_sheet("TerritoryType").get("zh", {})
     current_maps = {
         int(row_id): current_map_record(row)
@@ -287,8 +294,8 @@ def build():
         english_place = place_names.get(integer(row.get("PlaceName")), row["Name"])
         chinese_place = place_names_zh.get(integer(row.get("PlaceName")), english_place)
         cfc_name_zh = text(cfc[43]) if len(cfc) > 43 else ""
-        wiki_duty = wiki_duties.get(cfc_name_zh)
-        wiki_place = wiki_geography.get(chinese_place)
+        wiki_duty = wiki_duties.get(join_key(cfc_name_zh))
+        wiki_place = wiki_geography.get(join_key(chinese_place))
         name_zh = cfc_name_zh or chinese_place
         name_en = wiki_duty.get("en") if wiki_duty and wiki_duty.get("en") else (
             wiki_place.get("en") if wiki_place and wiki_place.get("en") else english_place

@@ -17,10 +17,13 @@ for (let i = 2; i < process.argv.length; i++) {
 if (options.help || !options.out) {
   console.log(`Usage: node scripts/assets/build-pipeline.mjs --out work/assets [options]
   --scenes gridania,limsa   Select maps; omitted means the full active catalog
+  --active path             Explicitly use a non-default active catalog
   --analysis path          Explicitly reuse an existing analysis/shard index
   --python executable      Python with Pillow installed (default: python)
   --pack-bytes n           Target bundle size (default: 8388608)
   --bootstrap-radius n     Must match runtime coverage (default: 35)
+  --expected-maps n        Required catalog map count (default: 65)
+  --expected-connections n Required directed map connections (default: 145)
   --no-previews            Skip temporary 128px texture tier
   --collision-chunks       Partition large collision data; optional longer build
   --collision-cache path   Reuse verified per-map collision work
@@ -32,6 +35,12 @@ and pipeline-result.json. It does not upload or activate a deployment.`);
 } else {
   const out = path.resolve(project, String(options.out));
   if (out === path.parse(out).root || out === project) throw new Error('--out must be a dedicated build directory');
+
+  const expectedMaps = Number(options['expected-maps'] ?? 65);
+  const expectedConnections = Number(options['expected-connections'] ?? 145);
+  if (!Number.isInteger(expectedMaps) || expectedMaps < 0) throw new Error('--expected-maps must be a non-negative integer');
+  if (!Number.isInteger(expectedConnections) || expectedConnections < 0) throw new Error('--expected-connections must be a non-negative integer');
+
   const node = process.execPath;
   const python = String(options.python || 'python');
   const analyzed = path.join(out, 'analysis', 'reference-analysis.json');
@@ -42,10 +51,10 @@ and pipeline-result.json. It does not upload or activate a deployment.`);
   const chunked = path.join(out, 'release');
   const steps = [];
   if (!options.analysis) {
-    steps.push({ name: 'analyze', executable: node, args: ['--max-old-space-size=8192', 'scripts/assets/reference-analyzer.mjs', '--out', path.dirname(analyzed), ...(options.scenes ? ['--scenes', String(options.scenes)] : [])] });
+    steps.push({ name: 'analyze', executable: node, args: ['--max-old-space-size=8192', 'scripts/assets/reference-analyzer.mjs', '--out', path.dirname(analyzed), ...(options.active ? ['--active', path.resolve(project, String(options.active))] : []), ...(options.scenes ? ['--scenes', String(options.scenes)] : [])] });
     steps.push({ name: 'shard', executable: node, args: ['scripts/assets/summarize-reference-analysis.mjs', `--input=${analyzed}`, `--shard-out=${shards}`] });
   }
-  steps.push({ name: 'bundle', executable: node, args: ['--max-old-space-size=8192', 'scripts/assets/bundle-planner.mjs', '--analysis', analysis, '--out', packed, '--target-bytes', String(options['pack-bytes'] || 8388608), '--bootstrap-radius', String(options['bootstrap-radius'] || 35)] });
+  steps.push({ name: 'bundle', executable: node, args: ['--max-old-space-size=8192', 'scripts/assets/bundle-planner.mjs', '--analysis', analysis, '--out', packed, '--target-bytes', String(options['pack-bytes'] || 8388608), '--bootstrap-radius', String(options['bootstrap-radius'] || 35), '--expected-maps', String(expectedMaps), '--expected-connections', String(expectedConnections)] });
   let release = packed;
   if (!options['no-previews']) {
     steps.push({ name: 'preview', executable: python, args: ['scripts/assets/build-previews.py', '--dir', packed, '--analysis', analysis, '--out', previews, '--cache', path.join(out, 'preview-cache'), '--workers', '2', '--resume'] });

@@ -59,6 +59,39 @@ function absolutePosition(node, target = new Vector3()) {
   return target.copyFrom(node?.position || Vector3.Zero());
 }
 
+class DutyLightsLoader {
+  static TIMEOUT_MS = 5000;
+
+  constructor() {
+    this.cache = new Map();
+    this.inflight = new Map();
+  }
+
+  /** Returns cached payload or fetches it; null on 404/timeout/abort/bad JSON. */
+  async load(sceneId, signal) {
+    if (this.cache.has(sceneId)) return this.cache.get(sceneId);
+    const pending = this.inflight.get(sceneId);
+    if (pending) return pending;
+    const controller = new AbortController();
+    signal?.addEventListener('abort', () => controller.abort(), { once: true });
+    const timeout = AbortSignal.timeout(DutyLightsLoader.TIMEOUT_MS);
+    timeout.addEventListener('abort', () => controller.abort(timeout.reason), { once: true });
+    const request = fetch(`${import.meta.env.BASE_URL}extracted/duty-lights/${sceneId}.json`, {
+      signal: controller.signal,
+    }).then(async response => {
+      if (!response.ok) return null;
+      try { return await response.json(); } catch { return null; }
+    }).catch(() => null);
+    this.inflight.set(sceneId, request);
+    const payload = await request;
+    this.inflight.delete(sceneId);
+    if (payload && !signal?.aborted) this.cache.set(sceneId, payload);
+    return payload;
+  }
+}
+
+const dutyLightsLoader = new DutyLightsLoader();
+
 async function upgradeSceneMaterials(adapter, scene) {
   if (!adapter?.upgradeMaterial) return { requested: 0, upgraded: 0, rejected: [] };
   const materials = [...new Set(scene.materials || [])].filter(material => material?.metadata?.ffxiv?.preview);
@@ -253,10 +286,28 @@ export class World {
       draft.assets = await new BabylonAssets({ mapId: id }).initializeForMap(id);
       if (request !== this.loadRequest) { draft.assets.dispose(); return false; }
       draft.materials = new MaterialAdapter({ scene: this.scene, assets: draft.assets, map: draft.assets.map });
+      const buildTimeLights = draft.assets.config?.lightingObjects?.[id]
+        || draft.assets.lightingObjects
+        || null;
+      // Duty/hidden scenes are not in the build-time bundle; fetch the
+      // per-scene payload on demand so the runtime avoids a 531-scene blob.
+      const lightsRequest = new AbortController();
+      const lightsSignal = lightsRequest.signal;
+      const currentRequest = request;
+      const lightingObjects = buildTimeLights || await dutyLightsLoader.load(id, lightsSignal)
+        .then(payload => {
+          if (currentRequest !== this.loadRequest || lightsSignal.aborted) return null;
+          return payload;
+        });
+      if (currentRequest !== this.loadRequest) {
+        lightsRequest.abort();
+        draft.assets.dispose();
+        return false;
+      }
       draft.environmentAdapter = new EnvironmentAdapter({
         scene: this.scene,
         profile: draft.assets.profile,
-        lightingObjects: draft.assets.config?.lightingObjects?.[id] || draft.assets.lightingObjects || null,
+        lightingObjects,
       });
       draft.environment = new NativeEnvironmentRuntime(
         draft.environmentAdapter,

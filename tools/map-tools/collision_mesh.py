@@ -1,6 +1,7 @@
 """Decode original PCB collision triangles and bake source instance transforms."""
 import array
 import collections
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -58,7 +59,25 @@ def grounded_seed(triangles):
         score=area*(abs(ny)/length)**2
         total,best,best_point=cells.get(key,(0,0,None))
         cells[key]=(total+score,max(best,score),point if score>best else best_point)
-    if not cells:raise RuntimeError("No broad upward-facing collision surface for spawn")
+    if not cells:
+        if not triangles:
+            raise RuntimeError("No collision triangles available for spawn")
+        count=len(triangles)//9
+        index=count//2
+        point=triangles[index*9:index*9+3]
+        vertices=[tuple(triangles[index*9+j*3:index*9+j*3+3]) for j in range(3)]
+        ux,uy,uz=(b-a for b,a in zip(vertices[1],vertices[0]))
+        vx,vy,vz=(b-a for b,a in zip(vertices[2],vertices[0]))
+        nx,ny,nz=uy*vz-uz*vy,uz*vx-ux*vz,ux*vy-uy*vx
+        grounded_seed.last_fallback={
+            "kind":"collision-midpoint-triangle",
+            "triangleIndex":index,
+            "triangleCount":count,
+            "triangleVertices":[[round(v,4) for v in vertex] for vertex in vertices],
+            "normalRaw":[round(v,6) for v in (nx,ny,nz)],
+        }
+        return [round(value,4) for value in point]
+    grounded_seed.last_fallback=None
     _,(_,_,point)=max(cells.items(),key=lambda item:(item[1][0],item[1][1]))
     return [round(value,4) for value in point]
 
@@ -105,7 +124,8 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
         # Keep them renderable with a clearly marked navigation plane; this is
         # not presented as source collision data.
         center=[statistics.median(point[axis] for point in fallback_points) if fallback_points else 0 for axis in range(3)]
-        radius=max(200.0, *(max(abs(point[axis]) for point in fallback_points)+100 for axis in (0,2) if fallback_points))
+        fallback_radius=[max(abs(point[axis]) for point in fallback_points)+100 for axis in (0,2)] if fallback_points else []
+        radius=max([200.0, *fallback_radius])
         x,y,z=center; a=(-radius+x,y,-radius+z);b=(radius+x,y,-radius+z);c=(radius+x,y,radius+z);d=(-radius+x,y,radius+z)
         triangles.extend((*a,*b,*c,*a,*c,*d))
         collision_fallback={"kind":"ground-plane","source":"layout translation median","center":[round(value,4) for value in center],"radius":radius,"sourceTriangles":0}
@@ -114,15 +134,30 @@ def build(scene, destination=DEST, exports=ROOT/"exports"):
     with destination.open("wb") as f:triangles.tofile(f)
     scene_path=destination.with_name("scene.json")
     scene_data=json.loads(scene_path.read_text(encoding="utf-8"))
+    payload_bytes=triangles.tobytes()
+    payload_sha256=hashlib.sha256(payload_bytes).hexdigest()
     if scene_data.get("aetheryte"):
         scene_data["spawn"]=scene_data["aetheryte"]
-        scene_data["spawnSource"]={"kind":"aetheryte-layout"}
+        spawn_source={"kind":"aetheryte-layout","triangleCount":len(triangles)//9,
+                      "collisionSha256":payload_sha256}
     else:
         scene_data["spawn"]=grounded_seed(triangles)
-        scene_data["spawnSource"]={"kind":"collision-flat-surface" if not collision_fallback else "fallback-ground-plane","triangleCount":len(triangles)//9}
+        if collision_fallback:
+            spawn_kind="fallback-ground-plane"
+            spawn_source={"kind":spawn_kind,"triangleCount":len(triangles)//9,
+                          "collisionSha256":payload_sha256,"groundPlane":collision_fallback}
+        else:
+            spawn_kind="collision-flat-surface"
+            spawn_source={"kind":spawn_kind,"triangleCount":len(triangles)//9,
+                          "collisionSha256":payload_sha256}
+        if getattr(grounded_seed,"last_fallback",None):
+            spawn_source["midpointTriangle"]=dict(grounded_seed.last_fallback)
+            spawn_source["kind"]="collision-midpoint-triangle"
+    scene_data["spawnSource"]=spawn_source
+    scene_data["collisionSha256"]=payload_sha256
     if collision_fallback:scene_data["collisionFallback"]=collision_fallback
     scene_path.write_text(json.dumps(scene_data,separators=(",",":")),encoding="utf-8")
-    report={"scene":scene,"terrainChunks":terrain_count,"instancedCollisionModels":len(groups),"sourceTriangles":source_triangle_count,"collisionFallback":collision_fallback,"triangles":len(triangles)//9,"bytes":len(triangles)*4,"spawn":scene_data["spawn"],"errors":failures}
+    report={"scene":scene,"terrainChunks":terrain_count,"instancedCollisionModels":len(groups),"sourceTriangles":source_triangle_count,"collisionFallback":collision_fallback,"triangles":len(triangles)//9,"bytes":len(triangles)*4,"spawn":scene_data["spawn"],"spawnSource":spawn_source,"collisionSha256":payload_sha256,"errors":failures}
     destination.with_name("collision-report.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
     print(json.dumps(report),flush=True)
     if failures: raise RuntimeError(f"{scene}: collision conversion failed; see collision-report.json")

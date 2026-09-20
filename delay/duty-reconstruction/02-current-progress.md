@@ -1,179 +1,84 @@
 # Current Progress And Evidence
 
-Snapshot time: 2026-09-18 05:29:55 UTC, or 13:29:55 Asia/Shanghai.
+Snapshot time: 2026-09-19T23:38:59Z (2026-09-20 07:38:59 Asia/Hong_Kong).
 
 ## Git And Workspace
 
-- Repository: G:/UGit/ffxiv-7-training
+- Repository: E:/Code/ffxiv-7-training
 - Branch: master
-- Starting HEAD for this delayed work: 48f25c16baab9522dd4b407e30412b1096936162
-- Remote: https://github.com/Velvetalon/ffxiv-7-training.git
-- The worktree contains the in-progress duty catalog, rebuild tools, runtime integration, lighting/audio tooling, tests, and package metadata.
-- work/ is ignored and holds generated evidence and packages. It is not part of Git.
+- Baseline HEAD: e741a548f1ece83da4daf13007639ac12e4078aa
+- Remote origin: https://github.com/Velvetalon/ffxiv-7-training.git
+- At snapshot time HEAD matched origin/master. The intended uncommitted source/data changes were present; this snapshot records them before the selective staging/commit.
+- `work/`, `site-babylon-preview/`, QA screenshots, federation helpers, and D:/Cache outputs are intentionally outside Git.
+- The coordinator was not running at snapshot time. All 531 `work/duty-build/full/packed/<sceneId>/package-state.json` files have status `complete`.
 
-## Catalog And Names
-
-Authoritative summary: config/duties/catalog-summary.json.
+## Settled Content Scope
 
 - Existing public scenes: 65
 - Old excluded territory records: 942
 - Supplementary current-only territories: 130
-- Unique new resource roots/scenes: 531
-- Full runtime scenes: 596
-- Duty records: 1072
+- New resource roots/scenes: 531 / 531 package-complete
+- Full runtime scenes after root merge: 596
+- Duty records: 1,072
 - Source-verified physical entrances: 18
-- Entrance aliases mapped to canonical target scenes: 18
+- Entrance aliases: 18; unmatched entrances: 0
 - Content Finder linked records: 799
 
-Category counts:
+Generated category totals remain: Alliance 24, Dungeon 168, Event 171, High end 44, Housing 12, Internal 41, Other instance 275, PvP 51, Raid 25, Trial 261. The authoritative source is `config/duties/catalog-summary.json`; do not hand-edit totals.
 
-- Alliance: 24
-- Dungeon: 168
-- Event: 171
-- High end: 44
-- Housing: 12
-- Internal: 41
-- Other instance: 275
-- PvP: 51
-- Raid: 25
-- Trial: 261
+## Names
 
-Current tracked Huiji evidence in tools/map-tools/data/duties/wiki-names.json contributes 421 duty-title matches and 279 geography-title matches. Remaining records use the official localized TerritoryType/PlaceName source tables.
+The tracked catalog reports 422 duty-title matches and 279 geography-title matches. `tools/map-tools/data/duties/wiki-names.json` contains 427 duty rows and 206 geography rows; the catalog tracked-match total can be lower than raw row count and must be regenerated from source rather than edited.
 
-An additional structured Huiji fetch completed after this tracked catalog was generated:
+Eight current records still have no official place name: m5e1, k5e2, h1i1, h1i2, h1i3, h2i1, h2i2, h2i3. Their source rows have zero PlaceName/Map references. Do not invent formal titles.
 
-- Evidence: work/wiki/huiji-instance-data-current.json
-- Data:Instance/*.json pages fetched: 427
-- Parsed entries: 427
-- Missing or invalid pages: 0
-- The payload uses Chinese field names such as 中文名, 日文名, 英文名, 地点, and MapID.
-- This newer structured evidence has not yet been merged into wiki-names.json or the generated duty catalog. Normalize and merge it later without restarting the active geometry coordinator.
+## Geometry And Lighting
 
-Eight current records still have no official place name:
+All 531 new-resource-root package states are complete. Their final runtime status is recorded in `config/duties/duty-lights.json`: 523 scenes parsed successfully and 8 are explicitly parser-unavailable. The parser-unavailable scene IDs are a2e2, a2fa, a2fd, o1a1, o1fa, r1e2, s1b7, and z1j1.
 
-- m5e1, k5e2
-- h1i1, h1i2, h1i3
-- h2i1, h2i2, h2i3
-
-Their source rows have PlaceName and Map references to zero. Keep them identifiable by territory key and do not invent a formal map title.
-
-## Geometry Rebuild
-
-Coordinator command still in use:
-
-py -3 tools/map-tools/rebuild_hidden_maps.py --client G:/WeGameApps/rail_apps/ffxiv(2000340) --work work/duty-build/full --state work/duty-build/full/rebuild-state.json --workers 4 --chunk-size 12 --package-workers 2
-
-At snapshot time, coordinator PID 275824 was still running. Always check for an existing coordinator before invoking it again. The script skips completed package states and resumes the remainder.
-
-State-file snapshot:
-
-- Scene records: 531
-- State complete: 176
-- State failed: 18
-- State queued: 337
-- Package-state files on disk at the later 2026- UTC check: complete 197
-
-The state file can lag package completion. The authoritative per-scene completion signal is work/duty-build/full/packed/<sceneId>/package-state.json containing status complete.
-
-Early failures include chunk-cascade failures and must not be treated as final scene verdicts.
-
-Completed probes and fixes:
-
-- Initial smoke rebuilds passed for f1d1 and f1d4.
-- Four-map parallel trial passed for a2d1, a2d2, a2d3, and a2d4.
-- a2e4 passed end to end without terrain collision input because six instanced collision models supplied 1,904 source triangles.
-- Terrain collision extraction is skipped when the raw root has no collision/list.pcb.
-- Missing map textures are fetched even when --skip-extract is used.
-- A navigation ground-plane fallback can be emitted only when neither source terrain nor instanced collision triangles exist, and it remains explicitly marked.
-
-## Lighting
-
-Probe outputs:
-
-- work/duty-build/source-lights.hidden.json
-- work/duty-build/source-lights-state.json
-- work/duty-build/environment-probe/
-
-Results:
-
-- Parsed successfully: 523 / 531 scenes
-- Lights: 69,207
-- EnvSets: 4,887
-- EnvLocations: 1,618
-- Source-confirmed zero-light scenes: 23
-- Explicit parser failures: 8
-
-Parser-unavailable scenes:
-
-- a2e2
-- a2fa
-- a2fd
-- o1a1
-- o1fa
-- r1e2
-- s1b7
-- z1j1
-
-Consult source-lights-state.json before classifying any remaining scene; do not derive the final unavailable list only from arithmetic.
-
-Do not concatenate the 15.2 MB hidden-light aggregate into app-config.json. Emit per-scene lighting JSON and lazy-load only the active scene. Missing or parser-unavailable data falls back to the existing environment system and must be disclosed.
+Lighting is per-scene routed and served. `preview/babylon/World.js` lazily fetches `extracted/duty-lights/<sceneId>.json`; the Vite server/build emits those files plus `manifest.json`. Missing or parser-unavailable payloads fall back to the existing environment system.
 
 ## Audio
 
-Extraction evidence:
+- Source audio resources: 106 distinct files (89 OGG and 17 WAV; 133 manifest resources identify OGG MIME and 17 identify WAV MIME, including shared reuse).
+- Runtime resource references: 150 `audio` entries in `public/sandbox/manifest.json`.
+- Scene BGM mappings: 596.
+- Additive sandbox output: 85 immutable packs in `public/sandbox/packs/*.aethpak`, 546,689,506 bytes total.
+- New sandbox entry JSONs from this task: `public/sandbox/sandbox_397cfdd112141368d960caa46ad1a77c2a2c4a1eb38ad924aca4c5832e1a3fc1.json` and `public/sandbox/sandbox_fbfee4f9b21c2709bb1b6b5304a39cf726b816d173dbef250512559e3825d6c5.json`.
+- Existing character, mount, skill, action SFX, and public-scene mappings are preserved in the additive release.
 
-- work/duty-build/audio-hidden/
-- work/duty-build/audio-hidden-stage/
-- work/duty-build/scene-bgm-hidden.json
-- work/duty-build/audio-hidden/audio-source-manifest.json
+## Federated QA Release
 
-Results:
+Authoritative release: `D:/Cache/duty-asset-pipeline/union-596-v2`.
 
-- Source chains resolved: 531 / 531
-- Unique non-empty DayPaths: 91
-- Extracted SCDs: 90
-- Extraction errors: 0
-- Scenes with playable resources: 173
-- Music resources: 89
-- Audio files: 88
-- Audio bytes: approximately 272 MB
-- BGM_Null scenes: 345
-- Unknown/no-playback scenes: 13
+- Release ID: duty-full-20260918T205414Z
+- Maps: 596 (531 hidden plus 65 public)
+- Publish files/routes: 21,805
+- Catalog: `D:/Cache/duty-asset-pipeline/union-596-v2/catalog_merged.json`
+- Static preview root: `D:/Cache/duty-asset-pipeline/union-preview-v2`
+- The release summary records full SHA-256/size verification of every published file, exact catalog-to-manifest checks, and no ID/path/hash conflicts.
 
-Of the 13 Unknown cases, 12 have an empty DayPath because both source BGM IDs are zero. One points to music/ex1/BGM_EX1_Null.scd, which exists but contains zero audio tracks.
+## Visual QA Evidence
 
-Remaining audio work is packaging and runtime integration. Do not re-extract unless the client version or catalog changes.
+The runtime evidence is not a linear 180-scene completion. It spans corrected runs and must be interpreted from per-run state/summary files, not from banners.
 
-## Runtime Integration
+- Shard 1 v3: 53/60 actual runtime screenshots and 7 failures. Failures were c1w1, c1w3, e3f1, e3f3, f1f2, h1m2, and g3fb. Six c1/e3/f1/h1 failures showed gzip payload misparse before the fixed federation server was used; g3fb reported `bootstrap produced no Babylon geometry`.
+- Shard 2 v4: 60/60 captures with 58 ready, n4f1 interaction-unconfirmed, and n5r9 bootstrap/readiness timeout. Evidence: `work/qa/visual-acceptance/run-v4/shard-2/batch-log.txt`.
+- Shard 3 v5: complete, 60/60 runtime-ready states and screenshots, using the fixed union federation server on port 4533. Evidence: `work/qa/visual-acceptance/run-v5/shard-3/summary.json` and `shots/`.
+- The later shard-1 retry in `work/qa/visual-acceptance/run-v5/shard-1-retry` used the fixed server, but its own canvas-evaluation helper had an out-of-scope-variable bug (initially `sampledNonblack`, later `sampledNonzeroAlpha`); it therefore did not upgrade shard-1 evidence. Its g3fb attempts reproduced no geometry in both repeats. Resume with the corrected helper.
+- Direct reference metadata covers 180 files: 69 matches and 111 with reference status `none`. Xivapi duty banners are name-matched art, not runtime screenshots, and do not satisfy image scoring.
+- Image scoring remains pending. Do not close SC-004 on capture metadata alone.
 
-Modified major files include:
+## Commit/Push Validation
 
-- src/main.js
-- src/ui/Dialogs.js
-- src/core/TeleportController.js
-- src/world/duties/
-- preview/babylon/World.js
-- preview/babylon/AssetBridge.js
-- vite.babylon.config.js
+Before selective staging, these checks passed in the working tree:
 
-Implemented or partially implemented:
+1. `node --check scripts/assets/build-pipeline.mjs`
+2. `node --check scripts/assets/bundle-planner.mjs`
+3. `node --check preview/babylon/World.js`
+4. `node tests/duties/runtime.test.mjs`
+5. `node tests/audio/run.mjs` (5 tests passed)
+6. `node tests/audio/public-entry.mjs` (5 tests passed)
+7. `npm run build:babylon` completed in 2m10s after redirecting npm cache to `work/npm-cache`; the default C:\ cache failed with UNKNOWN mkdir errno -4094.
 
-- Teleport modal world/duties tabs
-- Duty categories, search, and 50-item pagination
-- Duty enter/leave and return stack through DutyTransport
-- Duty spawn placement from scene manifest
-- 18 physical entrance markers and Babylon gate meshes
-- Catalog build-time emission and runtime fetch
-- Teleport entry propagation
-- Duty gate click and F-key handling
-
-The previously suspected wrong gate import has been corrected in preview/babylon/World.js to import from ../../src/world/duties/entranceGateMeshes.js.
-
-Not yet validated as a final runtime:
-
-- Full Babylon production build
-- Menu lists all 1072 records
-- All built duty scenes enterable
-- Planned and failed entries visible but disabled with reason
-- Representative hidden-map browser loading
-- Lighting and audio integration through the full asset release
+No deployment was performed.

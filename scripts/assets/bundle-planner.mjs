@@ -6,6 +6,8 @@ import path from 'node:path';
 const MAGIC = Buffer.from('AETHPAK1');
 const ALIGNMENT = 8;
 const DEFAULT_TARGET_BYTES = 8 * 1024 * 1024;
+const DEFAULT_EXPECTED_MAP_COUNT = 65;
+const DEFAULT_EXPECTED_CONNECTION_COUNT = 145;
 const root = process.cwd();
 const option = name => {
   const index = process.argv.indexOf(`--${name}`);
@@ -21,6 +23,9 @@ Options:
   --reuse-from <directory> Reuse byte-identical packs from an existing release via hard links
   --target-bytes <bytes>  Raw pack target, default 8388608 (8 MiB)
   --bootstrap-radius <n>  Runtime-aligned horizontal geometry radius (default: 35)
+  --expected-maps <n>     Required catalog map count (default: 65)
+  --expected-connections <n>
+                          Required directed map connections (default: 145)
 `;
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
   console.log(usage);
@@ -99,8 +104,12 @@ const outRoot = path.resolve(root, option('out') || 'work/asset-performance/pack
 const reuseFromRoot = option('reuse-from') && path.resolve(root, option('reuse-from'));
 const targetBytes = Number(option('target-bytes') || DEFAULT_TARGET_BYTES);
 const bootstrapRadius = Number(option('bootstrap-radius') || 35);
+const expectedMapCount = Number(option('expected-maps') ?? DEFAULT_EXPECTED_MAP_COUNT);
+const expectedConnectionCount = Number(option('expected-connections') ?? DEFAULT_EXPECTED_CONNECTION_COUNT);
 if (!Number.isInteger(targetBytes) || targetBytes < ALIGNMENT) throw new Error('--target-bytes must be an integer of at least 8');
 if (!Number.isFinite(bootstrapRadius) || bootstrapRadius < 0) throw new Error('--bootstrap-radius must be non-negative');
+if (!Number.isInteger(expectedMapCount) || expectedMapCount < 0) throw new Error('--expected-maps must be a non-negative integer');
+if (!Number.isInteger(expectedConnectionCount) || expectedConnectionCount < 0) throw new Error('--expected-connections must be a non-negative integer');
 const analysis = await readAnalysis(analysisPath);
 const analysisHash = (await hashFile(analysisPath)).hash;
 if (analysis.schemaVersion !== 1) throw new Error(`Expected analysis schemaVersion 1, got ${analysis.schemaVersion}`);
@@ -443,7 +452,7 @@ const expectedSceneIds = [...(analysis.input?.sceneIds || Object.keys(maps))].so
 const actualSceneIds = Object.keys(maps).sort();
 if (expectedSceneIds.join(',') !== actualSceneIds.join(',')) throw new Error('Map catalog scene IDs differ from the analysis input');
 const connectionCount = Object.values(maps).reduce((sum, map) => sum + (map.connections || []).length, 0);
-if (connectionCount !== 145) throw new Error(`Expected 145 directed map connections, got ${connectionCount}`);
+if (connectionCount !== expectedConnectionCount) throw new Error(`Expected ${expectedConnectionCount} directed map connections, got ${connectionCount}`);
 for (const sceneId of Object.keys(maps).sort()) {
   const selected = resourceClosure(sceneId);
   const mapResources = Object.fromEntries([...selected].sort().map(id => [id, resources[id]]));
@@ -464,7 +473,7 @@ const catalogText = JSON.stringify(catalog);
 const catalogHash = sha256(catalogText);
 const catalogName = `catalog_${catalogHash}.json`;
 await fsp.writeFile(path.join(outRoot, catalogName), catalogText);
-if (Object.keys(catalog.maps).length !== 65) throw new Error(`Expected 65 catalog maps, got ${Object.keys(catalog.maps).length}`);
+if (Object.keys(catalog.maps).length !== expectedMapCount) throw new Error(`Expected ${expectedMapCount} catalog maps, got ${Object.keys(catalog.maps).length}`);
 const publishManifest = {
   schemaVersion: 1,
   releaseId,
@@ -511,7 +520,7 @@ const diagnostic = {
   schemaVersion: 1,
   releaseId,
   input: path.relative(root, analysisPath).split(path.sep).join('/'),
-  coverage: { catalogMaps: Object.keys(catalog.maps).length, directedConnections: connectionCount, verifiedResourceSlices: binaryResources.length },
+  coverage: { expectedMaps: expectedMapCount, expectedConnections: expectedConnectionCount, catalogMaps: Object.keys(catalog.maps).length, directedConnections: connectionCount, verifiedResourceSlices: binaryResources.length },
   packing: {
     targetBytes,
     bootstrapRadius,
@@ -538,6 +547,8 @@ await writeJson(path.join(outRoot, 'packing-diagnostic.json'), diagnostic);
 console.log(JSON.stringify({
   out: path.relative(root, outRoot).split(path.sep).join('/'),
   entry: catalogName,
+  expectedMaps: expectedMapCount,
+  expectedConnections: expectedConnectionCount,
   packCount: Object.keys(bundles).length,
   packBytes: Object.values(bundles).reduce((sum, bundle) => sum + bundle.size, 0),
   oversizedPacks,

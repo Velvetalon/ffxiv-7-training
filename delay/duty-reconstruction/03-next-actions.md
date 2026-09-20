@@ -1,82 +1,82 @@
 # Ordered Resume Actions
 
-Execute in this order. Do not skip ahead to asset publication while geometry rebuild is still progressing.
+Execute from `E:/Code/ffxiv-7-training`. Do not deploy. Do not restart geometry; all 531 package states are complete.
 
-## 1. Protect The Running Rebuild
+## 1. Rerun Shard-1 Gzip Failures
 
-Check for an existing coordinator with:
+The fixed union federation server is the prerequisite; do not reuse the old v3 server process. Before the next capture, fix the shard-1 helper canvas counters by moving their declarations into the same browser-evaluated scope that increments them (around line 97 of the retry script), or replace the helper with the working v5 pattern.
 
-Get-CimInstance Win32_Process -Filter "name = 'python.exe'" | Where-Object { $_.CommandLine -match 'rebuild_hidden_maps.py' } | Select-Object ProcessId,CommandLine
+Then run, one PowerShell process at a time:
 
-If a coordinator exists, monitor it. If none exists, inspect failed chunks/logs and rerun the exact command in 02-current-progress.md. Completed package states are skipped.
+```powershell
+$env:npm_config_cache='E:/Code/ffxiv-7-training/work/npm-cache'
+$env:QA_RETRY_PORT='4535'
+$env:QA_SCENES='c1w1,c1w3,e3f1,e3f3,f1f2,h1m2'
+node work/qa/visual-acceptance/run-v5/shard-1-retry/capture-retry-v5.mjs
+```
 
-Stop retrying only when all 531 package-state files are complete, or every remaining failure has a source-backed terminal reason and evidence.
+Expected: six ready states/screenshots under `work/qa/visual-acceptance/run-v5/shard-1-retry/state`, with zero serious console/network errors. Treat any repeated gzip SyntaxError as a server-side failure, not a scene verdict.
 
-## 2. Merge Structured Huiji Names
+The failed-default npm cache may be bypassed for this QA-only command with the `npm_config_cache` assignment shown above. Do not edit repo proxy or npm configuration.
 
-Normalize the Chinese-keyed fields in work/wiki/huiji-instance-data-current.json and merge them into the tracked Huiji name catalog. Preserve Chinese, Japanese, and English titles. Preserve the Huiji Instance ID only as page/InstanceContent-style evidence.
+## 2. Re-capture And Isolate g3fb
 
-Never join that ID to ContentFinderCondition. Join duty titles by exact official Chinese title. Regenerate the catalog when safe, then verify:
+Run the corrected helper separately:
 
-- All 1072 records remain present.
-- No formal translation is invented for the eight unnamed territories.
-- Existing entrance mappings remain unchanged.
-- Name and category totals are recomputed rather than hand-edited.
+```powershell
+$env:npm_config_cache='E:/Code/ffxiv-7-training/work/npm-cache'
+$env:QA_RETRY_PORT='4536'
+$env:QA_SCENES='g3fb'
+$env:QA_REPEATS='2'
+node work/qa/visual-acceptance/run-v5/shard-1-retry/capture-retry-v5.mjs
+```
 
-## 3. Build The Full Runtime Catalog
+If both attempts still report `g3fb bootstrap produced no Babylon geometry`, diagnose in this order: inspect the g3fb map manifest under `D:/Cache/duty-asset-pipeline/union-596-v2`; compare its model/collision routes against a neighboring passing g3 scene; and use a bounded Playwright probe to log the first failed route and console stack. Do not rebuild all 531 scenes for one bootstrap failure.
 
-After geometry reaches a terminal state, run:
+## 3. Diagnose The Two Shard-2 Residuals
 
-py -3 tools/map-tools/build_full_runtime_catalog.py
+- n4f1: geometry and interaction capture are present, but movement did not change player position. Re-run n4f1 with the v5 interaction contract, then compare spawn/collision input and player coordinates with a passing public app scene such as limsa.
+- n5r9: readiness timed out with no mesh evidence. Re-run n5r9 through the fixed server, then inspect its exact manifest/model routes in `routes.json` and loader failure samples before changing source data.
 
-Expected outputs are work/duty-build/analysis-active/active.json and updated duty statuses/spawn points. Verify all 531 hidden package states and all 596 merged runtime entries. Preserve old public scene bases relative to the analysis-active file.
+## 4. Score Existing Screenshots In Small Batches
 
-## 4. Integrate Lighting Lazily
+Existing acceptable evidence includes shard-1 v3 53 screenshots, shard-2 v4 58 ready screenshots, and shard-3 v5 60 ready screenshots. Inspect in batches of at most 10 images. Pass image paths to an image-capable subagent; the coordinator must not load or decode images. Record per-image verdicts in a new text/JSON evidence file under `work/qa/visual-acceptance`, not in Git.
 
-Emit one source-light JSON file per scene under environment/source-lights/, then load only the active scene. Missing or parser-unavailable files return null and use the existing fallback. Keep the aggregate JSON out of the application bundle.
+If direct-reference matching is revisited, distinguish 69 matched references from 111 `none` references and never count Xivapi banners as runtime screenshots. Keep metadata files read-only unless the matching script is explicitly rerun.
 
-## 5. Package And Publish Audio Additively
+## 5. Close SC-004 Only After All Evidence Is Explicit
 
-Merge hidden audio into the sandbox/audio asset release while preserving public scene mappings, character/mount/skill audio, and existing object names. Publish only new immutable objects. Do not overwrite or delete shared assets.
+SC-004 can close only when every one of the 180 scene positions has an explicit accepted/source-backed-unavailable outcome:
 
-## 6. Run The Full Asset Pipeline
+1. six shard-1 gzip failures re-captured and accepted or root-caused;
+2. g3fb accepted or root-caused;
+3. n4f1 interaction accepted or root-caused;
+4. n5r9 readiness accepted or root-caused;
+5. all 180 captures scored in small batches, with 69/111 reference metadata treated as search metadata only.
 
-Inspect current options first. Intended form:
+Produce separate totals for accepted, source-backed unavailable, parser/tooling failure, and intentionally unimplemented work. Do not average away failures.
 
-node scripts/assets/build-pipeline.mjs --active work/duty-build/analysis-active/active.json --out work/duty-build/asset-pipeline --reuse-from work/asset-performance/packed-all-final --collision-chunks
+## 6. Selective Commit And Push Baseline
 
-If scripts/assets/build-pipeline.mjs lacks an --active option, add pass-through support to reference-analyzer.mjs rather than copying over the old active catalog.
+The delay snapshot update must be staged/committed by the explicitly whitelisted selective process. Future commits remain limited to source, compact catalogs/evidence, and delay documentation. Never stage `work/`, logs, screenshots, federation scripts, `D:/Cache`, node modules, or unrelated files. Do not force-push, reset, checkout, or discard work.
 
-## 7. Finish Runtime Integration And Local Validation
+Before a future source commit, rerun:
 
-Required checks:
+```powershell
+node --check scripts/assets/build-pipeline.mjs
+node --check scripts/assets/bundle-planner.mjs
+node --check preview/babylon/World.js
+node tests/duties/runtime.test.mjs
+node tests/audio/run.mjs
+node tests/audio/public-entry.mjs
+```
 
-- Node syntax checks for changed JavaScript modules
-- npm run test:duties
-- npm run build:babylon
-- Default-entry browser validation
-- Representative hidden maps, including one no-terrain-collision case and at least one parser-unavailable lighting case such as o1fa
-- Duty menu count, pagination, search, enter/leave, and return position
-- All 18 entrance gates only on their canonical source scene
-- Main project entry smoke once
+Run `npm run build:babylon` only when disk headroom and changed runtime surface justify it; set `npm_config_cache=E:/Code/ffxiv-7-training/work/npm-cache` if the default cache again fails.
 
-Do not run all-map visual inspection. Fast Validation and focused samples are sufficient for this stage.
+Push using only the explicit per-command proxy:
 
-## 8. Publish Preview Additively
+```powershell
+git -c http.proxy=http://127.0.0.1:7890 push origin master
+```
 
-Publish new immutable assets first, then the isolated preview application. Never touch:
-
-- /opt/ff14-web/current
-- /ff14-web/
-- shared ticket secrets
-- shared COS objects
-- unrelated CDN caches
-- the old preview sidecar
-
-Content-level online evidence must include preview title/build hashes/catalog counts, unchanged main-site title/hash, /api/healthz status JSON, and a random-path catch-all control.
-
-## 9. Close The Task
-
-Produce separate lists for verified complete, source-backed unavailable, parser/tooling failure, and intentionally unimplemented work.
-
-Commit only source, tests, compact catalogs/evidence, and documentation. Generated packages stay in ignored work/. Push the final commit to origin/master.
+If origin/master has advanced, stop and report the exact divergence. Do not rebase or overwrite. Deployment remains forbidden for this task.

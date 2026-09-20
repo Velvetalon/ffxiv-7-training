@@ -11,9 +11,10 @@ const sandboxPrefix = '/__ff14_preview_sandbox__/';
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const defaultMapId = 'e3t1';
 const world = path.resolve(repo, process.env.BABYLON_ASSET_DIR || 'work/asset-performance/packed-all-final');
-const catalogEntry = 'catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3b5f5a59f3baf99.json';
+const catalogEntry = process.env.BABYLON_CATALOG_ENTRY || 'catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3b5f5a59f3baf99.json';
 const mapManifest = 'maps/e3t1/manifest_ab686a714791aad26083e35fe8348e409998a6b3c1d970342f9286f9bd0d33b4.json.gz';
-const active = readJson(path.join(repo, 'public/extracted/active.json'));
+const activePath = process.env.BABYLON_ACTIVE || 'public/extracted/active.json';
+const active = readJson(path.resolve(repo, activePath));
 const profiles = readJson(path.join(repo, 'src/world/environment/source-profiles.json'));
 let lightingObjects = {};
 try {
@@ -29,6 +30,7 @@ const visualValidatorPath = path.join(repo, 'scripts/validate-visual-references.
 const visualValidatorSha256 = createHash('sha256').update(fs.readFileSync(visualValidatorPath)).digest('hex');
 const dutyCatalogPath = path.join(repo, 'config/duties/duty-catalog.json');
 const dutyEntrancesPath = path.join(repo, 'config/duties/entrances.json');
+const dutyLightsPath = path.join(repo, 'config/duties/duty-lights.json');
 const runtimeVisualReferences = {
   ...visualReferences,
   views: visualReferences.views.map(({ referenceProvenance, ...view }) => view),
@@ -80,9 +82,11 @@ const hasDutyCatalog = fs.existsSync(dutyCatalogPath);
 const dutyCatalog = hasDutyCatalog ? readJson(dutyCatalogPath) : { schemaVersion: 1, duties: [], unavailable: true };
 const hasDutyEntrances = fs.existsSync(dutyEntrancesPath);
 const dutyEntrances = hasDutyEntrances ? readJson(dutyEntrancesPath) : { schemaVersion: 1, entrances: [] };
+const hasDutyLights = fs.existsSync(dutyLightsPath);
+const dutyLights = hasDutyLights ? readJson(dutyLightsPath) : {};
 
 export default defineConfig(({ command }) => {
-  const local = command === 'serve' && Boolean(process.env.BABYLON_ASSET_DIR);
+  const local = (command === 'serve' && Boolean(process.env.BABYLON_ASSET_DIR)) || Boolean(process.env.BABYLON_QA_STATIC);
   const config = {
     appBasePath: appBase,
     defaultMapId,
@@ -132,6 +136,27 @@ export default defineConfig(({ command }) => {
       if (url.pathname === `${appBase}duties/entrances.json` || url.pathname === '/duties/entrances.json') {
         response.setHeader('Content-Type', 'application/json');
         response.end(JSON.stringify(dutyEntrances));
+        return;
+      }
+      const dutyLightsMatch = /^(?:\/ff14-web-babylon-preview\/|\/)extracted\/duty-lights\/([a-z0-9]+)\.json$/.exec(url.pathname);
+      const dutyLightsManifestMatch = /^(?:\/ff14-web-babylon-preview\/|\/)extracted\/duty-lights\/manifest\.json$/.exec(url.pathname);
+      if (dutyLightsManifestMatch) {
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify({
+          schemaVersion: 1,
+          client: '2026.09.01.0000.0000',
+          catalog: 'config/duties/hidden-catalog.json',
+          statusCounts: Object.values(dutyLights).reduce((acc, entry) => { acc[entry.status] = (acc[entry.status] || 0) + 1; return acc; }, {}),
+          scenes: Object.fromEntries(Object.entries(dutyLights).map(([id, entry]) => [id, { status: entry.status, lights: entry.lights.length }])),
+        }));
+        return;
+      }
+      if (dutyLightsMatch) {
+        const sceneId = dutyLightsMatch[1];
+        const payload = dutyLights[sceneId];
+        if (!payload) { response.writeHead(404).end(); return; }
+        response.setHeader('Content-Type', 'application/json');
+        response.end(JSON.stringify(payload));
         return;
       }
       if (url.pathname === '/ff14-assets/ticket') {
@@ -242,6 +267,17 @@ export default defineConfig(({ command }) => {
         this.emitFile({ type: 'asset', fileName: 'extracted/active.json', source: JSON.stringify(active) });
         this.emitFile({ type: 'asset', fileName: 'duties/catalog.json', source: JSON.stringify(dutyCatalog) });
         this.emitFile({ type: 'asset', fileName: 'duties/entrances.json', source: JSON.stringify(dutyEntrances) });
+        this.emitFile({ type: 'asset', fileName: 'extracted/duty-lights/manifest.json', source: JSON.stringify({
+          schemaVersion: 1,
+          generatedAtUtc: new Date().toISOString(),
+          client: '2026.09.01.0000.0000',
+          catalog: 'config/duties/hidden-catalog.json',
+          statusCounts: Object.values(dutyLights).reduce((acc, entry) => { acc[entry.status] = (acc[entry.status] || 0) + 1; return acc; }, {}),
+          scenes: Object.fromEntries(Object.entries(dutyLights).map(([id, entry]) => [id, { status: entry.status, lights: entry.lights.length }])),
+        }) });
+        for (const [sceneId, entry] of Object.entries(dutyLights)) {
+          this.emitFile({ type: 'asset', fileName: `extracted/duty-lights/${sceneId}.json`, source: JSON.stringify(entry) });
+        }
         this.emitFile({ type: 'asset', fileName: 'build-info.json', source: JSON.stringify({ ...createBuildInfo(), threeModules: threeImports.length }) });
       },
       configureServer: configureDataServer,
