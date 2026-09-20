@@ -9,8 +9,8 @@ const args = Object.fromEntries(process.argv.slice(2).map(value => {
   return [key, rest.join('=')];
 }));
 const origin = args.origin || 'https://yuluo.site';
-const base = '/ff14-web-babylon-preview/';
-const source = path.resolve(root, args.source || 'site-babylon-preview');
+const base = '/ff14-web/';
+const source = path.resolve(root, args.source || 'site');
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const htmlIdentity = text => ({
   title: /<title>(.*?)<\/title>/s.exec(text)?.[1] || null,
@@ -30,29 +30,25 @@ async function sameArtifact(relative) {
   return evidence;
 }
 
-const [preview, main, fallback, health] = await Promise.all([
-  readRemote(base), readRemote('/ff14-web/'), readRemote('/ff14-web-nope-content-proof/'), readRemote('/api/healthz'),
+const [main, fallback, health] = await Promise.all([
+  readRemote(base), readRemote('/ff14-web-nope-content-proof/'), readRemote('/api/healthz'),
 ]);
 const localIndex = await fs.readFile(path.join(source, 'index.html'));
-const localMain = await fs.readFile(path.join(root, 'site/index.html'));
-const previewIdentity = htmlIdentity(preview.body.toString());
 const mainIdentity = htmlIdentity(main.body.toString());
 const fallbackIdentity = htmlIdentity(fallback.body.toString());
-checks.push({ name: 'preview-local-content', pass: preview.sha256 === sha(localIndex) && preview.status === 200 });
-checks.push({ name: 'preview-not-catch-all', pass: preview.sha256 !== fallback.sha256 && previewIdentity.title !== fallbackIdentity.title });
-checks.push({ name: 'preview-not-main', pass: preview.sha256 !== main.sha256 && previewIdentity.scripts[0] !== mainIdentity.scripts[0] });
-checks.push({ name: 'main-content-preserved', pass: main.sha256 === sha(localMain) && main.status === 200 });
+checks.push({ name: 'main-local-content', pass: main.sha256 === sha(localIndex) && main.status === 200 });
+checks.push({ name: 'main-not-catch-all', pass: main.sha256 !== fallback.sha256 && mainIdentity.title !== fallbackIdentity.title });
 let healthJson;
 try { healthJson = JSON.parse(health.body.toString()); } catch { healthJson = null; }
 checks.push({ name: 'api-json-health', pass: health.status === 200 && Boolean(healthJson) && (healthJson.status === 'ok' || healthJson.ok === true) });
 const build = JSON.parse(await fs.readFile(path.join(source, 'build-info.json'), 'utf8'));
-checks.push({ name: 'native-babylon-build', pass: build.engine === 'Babylon.js' && build.engineVersion === '9.26.0' && build.threeModules === 0 && build.mapCount === 65 });
+checks.push({ name: 'native-babylon-build', pass: build.engine === 'Babylon.js' && build.engineVersion === '9.26.0' && build.threeModules === 0 && build.mapCount === 596 });
 const files = ['build-info.json', 'app-config.json', 'extracted/active.json'];
-for (const script of previewIdentity.scripts) {
-  if (!script.startsWith(base)) throw new Error(`Unexpected preview script outside isolated base: ${script}`);
+for (const script of mainIdentity.scripts) {
+  if (!script.startsWith(base)) throw new Error(`Unexpected main script outside isolated base: ${script}`);
   files.push(script.slice(base.length));
 }
-for (const match of preview.body.toString().matchAll(/href=["']([^"']+\.css)["']/g)) {
+for (const match of main.body.toString().matchAll(/href=["']([^"']+\.css)["']/g)) {
   if (match[1].startsWith(base)) files.push(match[1].slice(base.length));
 }
 for (const name of await fs.readdir(path.join(source, 'assets'))) {
@@ -70,7 +66,6 @@ const evidence = (response, identity) => {
 const report = {
   checkedAt: new Date().toISOString(),
   status: checks.every(check => check.pass) ? 'PASS' : 'FAIL',
-  preview: evidence(preview, previewIdentity),
   main: evidence(main, mainIdentity),
   fallback: evidence(fallback, fallbackIdentity),
   api: { ...evidence(health), content: healthJson },

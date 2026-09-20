@@ -287,10 +287,11 @@ def run_publish(args: argparse.Namespace) -> dict[str, Any]:
     if args.activate and (files_only or selected_prefixes or skip_control_manifest):
         raise PublishError("--activate requires the complete unfiltered release")
     client = bucket = None
+    check_only = bool(getattr(args, "check_only", False))
     if args.head_fixture:
         client = FixtureHeadClient(Path(args.head_fixture).resolve())
         bucket = "fixture"
-    elif args.apply:
+    elif args.apply or check_only:
         client, bucket = build_cos_client()
 
     results: list[dict[str, str]] = []
@@ -298,6 +299,7 @@ def run_publish(args: argparse.Namespace) -> dict[str, Any]:
     if progress_every < 0:
         raise PublishError("--progress-every must not be negative")
     action_counts: dict[str, int] = {}
+    action_bytes: dict[str, int] = {}
     for completed, asset in enumerate(planned, 1):
         key = object_key(prefix, asset.path)
         if client is None:
@@ -313,6 +315,7 @@ def run_publish(args: argparse.Namespace) -> dict[str, Any]:
                 action = "would-upload"
         results.append({"path": asset.path, "key": key, "action": action, "sha256": asset.sha256})
         action_counts[action] = action_counts.get(action, 0) + 1
+        action_bytes[action] = action_bytes.get(action, 0) + asset.size
         if progress_every and (completed % progress_every == 0 or completed == len(planned)):
             print(json.dumps({"event": "progress", "completed": completed, "total": len(planned), "actions": action_counts}, separators=(",", ":")), flush=True)
 
@@ -340,6 +343,8 @@ def run_publish(args: argparse.Namespace) -> dict[str, Any]:
         "entry": object_key(prefix, entry) if entry is not None else None,
         "manifest": object_key(prefix, manifest_asset.path),
         "objects": results,
+        "totalBytes": sum(asset.size for asset in planned),
+        "actionBytes": action_bytes,
         "pointer": {"key": pointer_key, "action": pointer_action},
     }
 
@@ -397,6 +402,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dir", help="planner output directory containing publish-manifest.json")
     parser.add_argument("--prefix", default="ff14-assets/v1", help="immutable COS key namespace")
     parser.add_argument("--apply", action="store_true", help="perform COS writes; omitted means dry-run")
+    parser.add_argument("--check-only", action="store_true", help="HEAD every selected object without uploading")
     parser.add_argument("--activate", action="store_true", help="write current.json last after all immutable objects verify")
     parser.add_argument("--head-fixture", help="local JSON fixture for HEAD-only verification; never writes COS")
     parser.add_argument("--only-prefix", action="append", default=[], help="publish only a manifest-relative directory prefix; repeatable")
@@ -419,13 +425,16 @@ def main() -> int:
         if args.self_test:
             self_test()
             return 0
+        if args.check_only and args.activate:
+            raise PublishError("--check-only cannot be combined with --activate")
         result = run_publish(args)
         if args.summary_only:
             counts: dict[str, int] = {}
             for item in result["objects"]:
                 counts[item["action"]] = counts.get(item["action"], 0) + 1
             print(json.dumps({key: result[key] for key in ("dryRun", "fixture", "releaseId", "prefix", "entry", "manifest", "pointer")}
-                             | {"objectCount": len(result["objects"]), "actions": counts}, ensure_ascii=False))
+                             | {"objectCount": len(result["objects"]), "totalBytes": result["totalBytes"],
+                                "actions": counts, "actionBytes": result["actionBytes"]}, ensure_ascii=False))
         else:
             print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0

@@ -1,8 +1,8 @@
-export const APP_BASE_PATH = '/ff14-web-babylon-preview/';
+export const APP_BASE_PATH = '/ff14-web/';
 export const DEFAULT_MAP_ID = 'e3t1';
 // Kept as a compatibility export for existing preview checks.
 export const MAP_ID = 'e3t1';
-export const CACHE_NAME = 'ff14-babylon-preview-packs-v1';
+export const CACHE_NAME = 'ff14-babylon-main-packs-v2';
 
 export function requestedMapId(config, locationHref = location.href) {
   const requested = new URL(locationHref).searchParams.get('scene');

@@ -5,16 +5,42 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const repo = path.dirname(fileURLToPath(import.meta.url));
-const appBase = '/ff14-web-babylon-preview/';
+const appBase = '/ff14-web/';
 const assetPrefix = '/__ff14_preview_assets__/';
 const sandboxPrefix = '/__ff14_preview_sandbox__/';
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const defaultMapId = 'e3t1';
-const world = path.resolve(repo, process.env.BABYLON_ASSET_DIR || 'work/asset-performance/packed-all-final');
-const catalogEntry = process.env.BABYLON_CATALOG_ENTRY || 'catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3b5f5a59f3baf99.json';
+const world = path.resolve(repo, process.env.BABYLON_ASSET_DIR || process.env.ASSET_PIPELINE_DIR || 'work/asset-performance/packed-all-final');
+const worldPublish = (() => {
+  try { return readJson(path.join(world, 'publish-manifest.json')); } catch { return null; }
+})();
+const catalogEntry = process.env.BABYLON_CATALOG_ENTRY || worldPublish?.entry || 'catalog_5e743913257385546b7b52c79e80f26ade94a6dfdd98f5a8d3b5f5a59f3baf99.json';
+const worldCatalog = worldPublish ? readJson(path.join(world, catalogEntry)) : null;
 const mapManifest = 'maps/e3t1/manifest_ab686a714791aad26083e35fe8348e409998a6b3c1d970342f9286f9bd0d33b4.json.gz';
 const activePath = process.env.BABYLON_ACTIVE || 'public/extracted/active.json';
 const active = readJson(path.resolve(repo, activePath));
+const expectedMaps = process.env.BABYLON_EXPECTED_MAPS ? Number(process.env.BABYLON_EXPECTED_MAPS) : null;
+if (expectedMaps !== null && (!Number.isInteger(expectedMaps) || Object.keys(active.scenes || {}).length !== expectedMaps)) {
+  throw new Error(`active.json scene count ${Object.keys(active.scenes || {}).length} does not match BABYLON_EXPECTED_MAPS=${expectedMaps}`);
+}
+if (worldCatalog?.maps) {
+  const activeIds = Object.keys(active.scenes || {}).sort();
+  const catalogIds = Object.keys(worldCatalog.maps).sort();
+  if (activeIds.join(',') !== catalogIds.join(',')) {
+    throw new Error(`active.json scene IDs differ from ${catalogEntry}`);
+  }
+}
+const ticketPath = process.env.ASSET_CDN_TICKET || '';
+const publishedActive = ticketPath
+  ? {
+      ...active,
+      scenes: Object.fromEntries(Object.entries(active.scenes || {}).map(([id, record]) => [
+        id,
+        { ...record, base: `${active.runId}/${id}/` },
+      ])),
+      assetPipeline: { ticket: ticketPath },
+    }
+  : active;
 const profiles = readJson(path.join(repo, 'src/world/environment/source-profiles.json'));
 let lightingObjects = {};
 try {
@@ -84,6 +110,7 @@ const hasDutyEntrances = fs.existsSync(dutyEntrancesPath);
 const dutyEntrances = hasDutyEntrances ? readJson(dutyEntrancesPath) : { schemaVersion: 1, entrances: [] };
 const hasDutyLights = fs.existsSync(dutyLightsPath);
 const dutyLights = hasDutyLights ? readJson(dutyLightsPath) : {};
+let resolvedViteConfig;
 
 export default defineConfig(({ command }) => {
   const local = (command === 'serve' && Boolean(process.env.BABYLON_ASSET_DIR)) || Boolean(process.env.BABYLON_QA_STATIC);
@@ -101,7 +128,7 @@ export default defineConfig(({ command }) => {
     sandboxManifestUrl: local ? `${sandboxPrefix}manifest.json` : '/ff14-web/sandbox/manifest.json',
     assetPointer: local
       ? { manifest: `${assetPrefix}${catalogEntry}`, base: assetPrefix }
-      : { ticket: '/ff14-assets/ticket', base: 'https://img.yuluo.site/ff14-assets/v1/' },
+      : { ticket: ticketPath || '/ff14-assets/ticket', base: 'https://img.yuluo.site/ff14-assets/v1/' },
     profile: profiles[defaultMapId],
     // Runtime needs view/camera policy only. The tracked manifest remains the
     // provenance source of truth and may contain private local capture URLs.
@@ -120,7 +147,7 @@ export default defineConfig(({ command }) => {
       }
       if (url.pathname === `${appBase}extracted/active.json`) {
         response.setHeader('Content-Type', 'application/json');
-        response.end(JSON.stringify(active));
+        response.end(JSON.stringify(publishedActive));
         return;
       }
       if (url.pathname === `${appBase}build-info.json` || url.pathname === '/build-info.json') {
@@ -138,8 +165,8 @@ export default defineConfig(({ command }) => {
         response.end(JSON.stringify(dutyEntrances));
         return;
       }
-      const dutyLightsMatch = /^(?:\/ff14-web-babylon-preview\/|\/)extracted\/duty-lights\/([a-z0-9]+)\.json$/.exec(url.pathname);
-      const dutyLightsManifestMatch = /^(?:\/ff14-web-babylon-preview\/|\/)extracted\/duty-lights\/manifest\.json$/.exec(url.pathname);
+      const dutyLightsMatch = /^(?:\/ff14-web\/|\/)extracted\/duty-lights\/([a-z0-9]+)\.json$/.exec(url.pathname);
+      const dutyLightsManifestMatch = /^(?:\/ff14-web\/|\/)extracted\/duty-lights\/manifest\.json$/.exec(url.pathname);
       if (dutyLightsManifestMatch) {
         response.setHeader('Content-Type', 'application/json');
         response.end(JSON.stringify({
@@ -228,20 +255,19 @@ export default defineConfig(({ command }) => {
         // yuluo.site and is intercepted by the dev middleware above before
         // the proxy sees it.
         '/ff14-assets': { target: 'https://img.yuluo.site', changeOrigin: true, secure: true },
-        '/ff14-web/': { target: 'https://yuluo.site', changeOrigin: true, secure: true },
       },
     },
     preview: {
       host: '127.0.0.1',
       proxy: {
         '/ff14-assets': { target: 'https://img.yuluo.site', changeOrigin: true, secure: true },
-        '/ff14-web/': { target: 'https://yuluo.site', changeOrigin: true, secure: true },
       },
     },
-    build: { outDir: path.join(repo, 'site-babylon-preview'), emptyOutDir: true, target: 'es2022' },
+    build: { outDir: path.resolve(repo, process.env.BABYLON_OUT_DIR || 'site'), emptyOutDir: true, target: 'es2022' },
     plugins: [{
       name: 'isolated-babylon-world-config',
       enforce: 'pre',
+      configResolved(value) { resolvedViteConfig = value; },
       resolveId(source, importer) {
         if (!importer || !source.startsWith('.')) return;
         const resolved = path.relative(repo, path.resolve(path.dirname(importer.split('?')[0]), source)).replaceAll('\\', '/');
@@ -264,7 +290,7 @@ export default defineConfig(({ command }) => {
         const threeImports = [...this.getModuleIds()].filter(id => /\/node_modules\/(?:three|three-mesh-bvh)\//.test(id.replaceAll('\\', '/')));
         if (threeImports.length) this.error(`Babylon preview imports the old engine: ${threeImports[0]}`);
         this.emitFile({ type: 'asset', fileName: 'app-config.json', source: configText });
-        this.emitFile({ type: 'asset', fileName: 'extracted/active.json', source: JSON.stringify(active) });
+        this.emitFile({ type: 'asset', fileName: 'extracted/active.json', source: JSON.stringify(publishedActive) });
         this.emitFile({ type: 'asset', fileName: 'duties/catalog.json', source: JSON.stringify(dutyCatalog) });
         this.emitFile({ type: 'asset', fileName: 'duties/entrances.json', source: JSON.stringify(dutyEntrances) });
         this.emitFile({ type: 'asset', fileName: 'extracted/duty-lights/manifest.json', source: JSON.stringify({
@@ -279,6 +305,19 @@ export default defineConfig(({ command }) => {
           this.emitFile({ type: 'asset', fileName: `extracted/duty-lights/${sceneId}.json`, source: JSON.stringify(entry) });
         }
         this.emitFile({ type: 'asset', fileName: 'build-info.json', source: JSON.stringify({ ...createBuildInfo(), threeModules: threeImports.length }) });
+      },
+      async closeBundle() {
+        const outDir = path.resolve(repo, resolvedViteConfig.build.outDir);
+        const copy = async (source, relative) => {
+          const destination = path.join(outDir, relative);
+          await fs.promises.mkdir(path.dirname(destination), { recursive: true });
+          await fs.promises.cp(source, destination, { recursive: true });
+        };
+        for (const name of ['favicon.svg', 'icons', 'vfx']) await copy(path.join(repo, 'public', name), name);
+        const sandboxRoot = path.resolve(process.env.SANDBOX_RELEASE_DIR || path.join(repo, 'public/sandbox'));
+        const sandboxManifest = process.env.SANDBOX_CDN === '1' ? 'manifest.cdn.json' : 'manifest.json';
+        await copy(path.join(sandboxRoot, sandboxManifest), 'sandbox/manifest.json');
+        await copy(path.join(sandboxRoot, 'human.cmp'), 'sandbox/human.cmp');
       },
       configureServer: configureDataServer,
       configurePreviewServer: configureDataServer,

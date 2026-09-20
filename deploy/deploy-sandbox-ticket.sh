@@ -23,10 +23,11 @@ python3 - "$release/site/extracted/active.json" "$release/ticket/publish-manifes
 import json, sys
 active=json.load(open(sys.argv[1], encoding='utf-8'))
 ticket=json.load(open(sys.argv[2], encoding='utf-8'))
-assert len(active['scenes']) == 65
+assert len(active['scenes']) == 596
 assert active['assetPipeline'] == {'ticket':'/ff14-assets/ticket'}
 assert ticket['entry'].startswith('catalog_')
-assert len(ticket['files']) > 8115
+assert len(ticket['files']) > 16000
+assert len(ticket['files']) <= 20000
 assert any(item['path'].startswith('sandbox_') for item in ticket['files'])
 PY
 

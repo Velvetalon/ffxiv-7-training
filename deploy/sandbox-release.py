@@ -24,6 +24,7 @@ from pathlib import Path, PurePosixPath
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORLD = ROOT / "work" / "asset-performance" / "packed-all-final"
 DEFAULT_OUT_ROOT = ROOT / "work" / "deployment"
+DEFAULT_ACTIVE = ROOT / "work" / "duty-build" / "analysis-active" / "active.json"
 PREFIX = "ff14-assets/v1"
 TICKET_PATH = "/ff14-assets/ticket"
 CDN_BASE = "https://img.yuluo.site/ff14-assets/v1/"
@@ -127,11 +128,14 @@ def merged_ticket_manifest(world: dict, sandbox: dict) -> dict:
     entry = clean_relative(world["entry"], "world.entry")
     if entry not in paths:
         raise ReleaseError("world entry is not in its allowlist")
+    files = [*world_files, *sandbox_files]
+    if len(files) > 20_000:
+        raise ReleaseError(f"merged ticket manifest has {len(files)} objects; ticket server limit is 20000")
     return {
         "schemaVersion": 1,
         "releaseId": f"sandbox-web-{sandbox['releaseId']}",
         "entry": entry,
-        "files": [*world_files, *sandbox_files],
+        "files": files,
         "releaseComposition": {
             "worldReleaseId": world["releaseId"],
             "sandboxReleaseId": sandbox["releaseId"],
@@ -162,11 +166,11 @@ def require_fast_validation(proof: Path | None) -> str:
     return sha256_file(proof)
 
 
-def verify_site(site: Path, sandbox_manifest: dict) -> None:
+def verify_site(site: Path, sandbox_manifest: dict, expected_scenes: int) -> None:
     active = read_json(site / "extracted" / "active.json")
     scenes = active.get("scenes")
-    if not isinstance(scenes, dict) or len(scenes) != 65:
-        raise ReleaseError("ticket-mode site does not retain all 65 world scenes")
+    if not isinstance(scenes, dict) or len(scenes) != expected_scenes:
+        raise ReleaseError(f"ticket-mode site does not retain all {expected_scenes} world scenes")
     if active.get("assetPipeline") != {"ticket": TICKET_PATH}:
         raise ReleaseError("ticket-mode site has an unexpected assetPipeline")
     if (site / "assets" / "world").exists() or (site / "extracted" / "world").exists():
@@ -225,12 +229,15 @@ def prepare(args: argparse.Namespace) -> dict:
     env = os.environ | {
         "ASSET_PIPELINE_DIR": str(world_root),
         "ASSET_CDN_TICKET": TICKET_PATH,
+        "BABYLON_ACTIVE": str(Path(args.active).resolve()),
+        "BABYLON_EXPECTED_MAPS": str(args.expected_scenes),
+        "BABYLON_OUT_DIR": str(prepared / "site"),
         "SANDBOX_RELEASE_DIR": str(sandbox_root),
         "SANDBOX_CDN": "1",
     }
     try:
-        subprocess.run([*npm_command(), "run", "release", "--", "--outDir", str(prepared / "site")], cwd=ROOT, env=env, check=True)
-        verify_site(prepared / "site", sandbox_manifest)
+        subprocess.run([*npm_command(), "run", "release"], cwd=ROOT, env=env, check=True)
+        verify_site(prepared / "site", sandbox_manifest, args.expected_scenes)
         ticket_dir = prepared / "ticket"
         ticket_dir.mkdir()
         shutil.copy2(ROOT / "scripts" / "asset-ticket-server.mjs", ticket_dir / "asset-ticket-server.mjs")
@@ -241,7 +248,7 @@ def prepare(args: argparse.Namespace) -> dict:
             "codeFreezeCommit": commit,
             "fastValidationProofSha256": proof_hash,
             "assetPublication": {"required": True, "complete": False, "pointerTouched": False},
-            "site": {"sha256": sha256_file(prepared / "site" / "index.html"), "worldSceneCount": 65},
+            "site": {"sha256": sha256_file(prepared / "site" / "index.html"), "worldSceneCount": args.expected_scenes},
             "sandboxFiles": [{"path": item["path"], "sha256": item["hash"], "mime": item["contentType"]} for item in sandbox["files"]],
         }
         # The archive intentionally contains a release record without its own
@@ -259,6 +266,8 @@ def prepare(args: argparse.Namespace) -> dict:
 
 
 def publish_assets(args: argparse.Namespace) -> dict:
+    world_root = Path(args.world_dir).resolve()
+    world_manifest = validate_manifest(world_root, "world", verify_assets=False)
     sandbox_root = Path(args.sandbox_release).resolve()
     sandbox_manifest = validate_manifest(sandbox_root, "sandbox")
     prepared = None
@@ -268,23 +277,45 @@ def publish_assets(args: argparse.Namespace) -> dict:
         record = read_json(record_path)
         if record.get("sandbox", {}).get("releaseId") != sandbox_manifest["releaseId"]:
             raise ReleaseError("prepared record was made from a different Sandbox release")
+        if record.get("world", {}).get("releaseId") != world_manifest["releaseId"]:
+            raise ReleaseError("prepared record was made from a different world release")
     # `--only-prefix` cannot include the root-level hashed entry alongside
     # `packs/`. The Sandbox manifest contains only newly assembled files, so
     # `--files-only` is the exact selection and excludes the derived control
     # manifest and current.json.
-    command = [sys.executable, str(ROOT / "scripts" / "assets" / "publish-cos.py"), "--dir", str(sandbox_root), "--prefix", PREFIX,
-               "--files-only"]
-    if args.apply:
-        command.append("--apply")
-    command += ["--summary-only", "--progress-every", "1"]
+    commands = []
+    for root in (world_root, sandbox_root):
+        command = [sys.executable, str(ROOT / "scripts" / "assets" / "publish-cos.py"), "--dir", str(root),
+                   "--prefix", PREFIX, "--files-only"]
+        if args.apply:
+            command.append("--apply")
+        elif args.check:
+            command.append("--check-only")
+        command += ["--summary-only", "--progress-every", "1000"]
+        commands.append(command)
     if args.execute:
-        subprocess.run(command, cwd=ROOT, check=True)
+        for command in commands:
+            subprocess.run(command, cwd=ROOT, check=True)
     if args.apply and args.execute and prepared:
         record_path = prepared / "release-record.json"
         record = read_json(record_path)
-        record["assetPublication"] = {"required": True, "complete": True, "pointerTouched": False, "publisher": "publish-cos.py --files-only"}
+        record["assetPublication"] = {
+            "required": True,
+            "complete": True,
+            "pointerTouched": False,
+            "publisher": "publish-cos.py --files-only",
+            "worldObjects": len(world_manifest["files"]),
+            "sandboxObjects": len(sandbox_manifest["files"]),
+        }
         write_json(record_path, record)
-    return {"dryRun": not args.apply, "command": command, "note": "No current.json activation; all and only Sandbox manifest files."}
+    return {
+        "dryRun": not args.apply,
+        "checkOnly": bool(args.check),
+        "commands": commands,
+        "world": {"releaseId": world_manifest["releaseId"], "objects": len(world_manifest["files"])},
+        "sandbox": {"releaseId": sandbox_manifest["releaseId"], "objects": len(sandbox_manifest["files"])},
+        "note": "No current.json activation; publishes all and only world plus Sandbox manifest files.",
+    }
 
 
 def deploy(args: argparse.Namespace) -> dict:
@@ -348,14 +379,18 @@ def main() -> int:
     prepare_parser.add_argument("--sandbox-release", required=True)
     prepare_parser.add_argument("--release-id", required=True)
     prepare_parser.add_argument("--world-dir", default=DEFAULT_WORLD)
+    prepare_parser.add_argument("--active", default=str(DEFAULT_ACTIVE))
+    prepare_parser.add_argument("--expected-scenes", type=int, default=596)
     prepare_parser.add_argument("--out")
     prepare_parser.add_argument("--freeze-ref")
     prepare_parser.add_argument("--fast-validation-proof")
     prepare_parser.add_argument("--apply", action="store_true", help="perform local build/archive creation")
     publish_parser = sub.add_parser("publish-assets")
     publish_parser.add_argument("--sandbox-release", required=True)
+    publish_parser.add_argument("--world-dir", default=DEFAULT_WORLD)
     publish_parser.add_argument("--prepared-dir", help="mark this local release record complete after a successful --apply --execute")
     publish_parser.add_argument("--apply", action="store_true", help="perform immutable COS uploads")
+    publish_parser.add_argument("--check", action="store_true", help="HEAD every object against COS without uploading")
     publish_parser.add_argument("--execute", action="store_true", help="run the printed publisher command")
     deploy_parser = sub.add_parser("deploy")
     deploy_parser.add_argument("--prepared-dir", required=True)
