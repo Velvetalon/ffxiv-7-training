@@ -89,7 +89,17 @@ for _ in 1 2 3 4 5; do curl -fsS https://yuluo.site/ff14-web/ -o "$release/serve
 cmp "$release/site/index.html" "$release/served-index.html"
 test "$(curl -sS -o /dev/null -w '%{http_code}' https://yuluo.site/ff14-web)" = 308
 curl -fsS https://yuluo.site/api/healthz >/dev/null
+# The ticket sidecar is recreated just above; wait for it to bind before
+# treating a connection refusal as a deployment failure.
+for attempt in 1 2 3 4 5 6 7 8 9 10; do
+  if curl -fsS https://yuluo.site/ff14-assets/healthz >/dev/null; then break; fi
+  sleep 2
+done
 curl -fsS https://yuluo.site/ff14-assets/healthz >/dev/null
+for attempt in 1 2 3 4 5 6 7 8 9 10; do
+  if curl -fsS 'https://yuluo.site/ff14-assets/ticket?mode=batch' -o "$release/ticket-bootstrap.json"; then break; fi
+  sleep 2
+done
 curl -fsS 'https://yuluo.site/ff14-assets/ticket?mode=batch' -o "$release/ticket-bootstrap.json"
 python3 - "$release/ticket-bootstrap.json" "$release/ticket/publish-manifest.json" <<'PY'
 import json, sys
