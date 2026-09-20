@@ -82,7 +82,16 @@ Before selective staging, these checks passed in the working tree:
 6. `node tests/audio/public-entry.mjs` (5 tests passed)
 7. `npm run build:babylon` completed in 2m10s after redirecting npm cache to `work/npm-cache`; the default C:\ cache failed with UNKNOWN mkdir errno -4094.
 
-No deployment was performed. The local pack/catalog release is not yet complete; do not publish it.
+Deployed to the main site /ff14-web/ on 2026-09-20 by explicit user authorization.
+
+- Release: 20260920T091500Z-9f9e6929, previous releases/20260910T230855Z-v3.
+- Archive SHA-256: b62ec0ce3a2f6379af4e84b64d73be501d1e4eb468500ac871f30e14f4fac838.
+- Code commits: 624ff1032 (main-site duty entrances, BASE_URL VFX catalog, duties build copy) and 9f9e69291 (ticket sidecar readiness wait).
+- Fast Validation before release: PASS, smoke 65/65, representatives 4/4.
+- COS: 35 sandbox objects all already present (35 skipped, 0 uploaded); current.json untouched.
+- Post-deploy content checks: index 200 with title Aetheryte; /ff14-web 308; /api/healthz 200; /ff14-assets/healthz 200; ticket bootstrap 200.
+- Post-deploy live browser check: app imported e3t1, FFXIV character/NPC runtime ready, zero page errors.
+- Live duty menu renders 1072 entries in 9 categories with 21 enterable public-scene duties. The 531 hidden maps are NOT published to the CDN, so their duties remain non-enterable online.
 
 ## Resume Update 2026-09-20
 

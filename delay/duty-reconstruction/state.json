@@ -7,7 +7,7 @@
     "baselineHead": "0f26a0de54cde47cfbd2d146166a600624801329",
     "remote": "https://github.com/Velvetalon/ffxiv-7-training.git",
     "pushCommand": "git -c http.proxy=http://127.0.0.1:7890 push origin master",
-    "deploymentStatus": "not-deployed-and-forbidden",
+    "deploymentStatus": "deployed-to-main-site-20260920T091500Z-9f9e6929",
   "scope": {
     "existingPublicScenes": 65,
     "oldExcludedTerritories": 942,
